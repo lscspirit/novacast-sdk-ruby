@@ -22,12 +22,32 @@ module Novacast
           self.execute_operation op
         end
 
-        def get_page_runtime(event_uid, content_path)
-          path = '/events/{event_uid}/runtimes/{content_path}'
+        def get_page_runtime(event_uid, page_path)
+          path = '/events/{event_uid}/runtimes/{page_path}'
           op   = Novacast::SDK::Operation.new path, :get
 
-          op.params[:event_uid]    = event_uid
-          op.params[:content_path] = content_path
+          op.params[:event_uid] = event_uid
+          op.params[:page_path] = page_path
+
+          self.execute_operation op
+        end
+
+        def get_event_session(session_uid)
+          path = '/sessions/{session_uid}'
+          op   = Novacast::SDK::Operation.new path, :get
+
+          op.response_representation = Resources::EventSession
+          op.params[:session_uid] = session_uid
+
+          self.execute_operation op
+        end
+
+        def get_session_runtime(session_uid)
+          path = '/sessions/{session_uid}/runtime'
+          op   = Novacast::SDK::Operation.new path, :get
+
+          op.response_representation = Resources::PageRuntime
+          op.params[:session_uid] = session_uid
 
           self.execute_operation op
         end
