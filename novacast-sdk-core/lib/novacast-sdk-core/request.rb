@@ -61,6 +61,7 @@ module Novacast
                       Net::HTTP::Post.new endpoint_uri.request_uri
                   end
 
+        request['Content-Type'] = 'application/json'
         request.use_ssl = true if endpoint_uri.scheme == 'https'
 
         # set request body for non 'get' request

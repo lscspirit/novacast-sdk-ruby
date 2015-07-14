@@ -2,7 +2,8 @@ require 'novacast-sdk-core'
 
 module Novacast
   module API
-    autoload :EventV1, 'novacast-sdk/apis/event_v1'
+    autoload :Resources, 'novacast-sdk/apis/resources'
+    autoload :EventV1,   'novacast-sdk/apis/event_v1'
   end
 
   module SDK

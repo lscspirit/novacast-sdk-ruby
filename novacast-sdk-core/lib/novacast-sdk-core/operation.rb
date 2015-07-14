@@ -1,6 +1,6 @@
 require 'addressable/uri'
 require 'addressable/template'
-require 'ostruct'
+require 'novacast-sdk-core/response_object'
 
 module Novacast
   module SDK
@@ -38,6 +38,11 @@ module Novacast
         @request_representation = representation
       end
 
+      def request_wrap=(wrap)
+        raise ArgumentError, 'Request wrap must either be a String or Symbol' unless wrap.is_a?(Symbol) || wrap.is_a?(String)
+        @request_wrap = wrap
+      end
+
       def response_representation=(representation)
         raise ArgumentError, 'Representation must be a JsonRepresentation object' unless representation <= JsonRepresentation
         @response_representation = representation
@@ -49,7 +54,7 @@ module Novacast
         if @request_representation.nil?
           @request_body = obj.to_s
         else
-          @request_body = @request_representation.new(obj).to_json
+          @request_body = @request_representation.new(obj).to_json(wrap: @request_wrap)
         end
       end
 
@@ -59,7 +64,7 @@ module Novacast
       def response=(resp)
         @response = resp
         unless @response_representation.nil?
-          @response_obj = @response_representation.new(OpenStruct.new).from_json(resp.body)
+          @response_obj = @response_representation.new(ResponseObject.new).from_json(resp.body)
         end
       end
 

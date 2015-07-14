@@ -2,9 +2,26 @@ module Novacast
   module API
     module EventV1
       module Resources
+        #
+        # Channel Resources
+        #
+
+        class Channel < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :name
+        end
+
+        #
+        # Event Resources
+        #
+
         class Event < Novacast::SDK::JsonRepresentation
           property :uid
           property :name
+        end
+
+        class EventList < Novacast::SDK::JsonRepresentation
+          collection :events, decorator: Event
         end
 
         class EventContent < Novacast::SDK::JsonRepresentation
@@ -47,6 +64,42 @@ module Novacast
             end
           end
         end
+
+        #
+        # Asset Resources
+        #
+
+        class AssetBundle < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :label
+        end
+
+        class BundleContent < Novacast::SDK::JsonRepresentation
+          property :file_path
+          property :url
+        end
+
+        class AssetBundleList < Novacast::SDK::JsonRepresentation
+          collection :asset_bundles, decorator: AssetBundle
+        end
+
+        class AssetBundleWithContents < AssetBundle
+          collection :bundle_contents, decorator: BundleContent
+        end
+
+        #
+        # Remote Resources
+        #
+
+        class PreSignedUpload < Novacast::SDK::JsonRepresentation
+          property :url
+          property :fields
+          property :callback_data
+        end
+
+        #
+        # Slide Resources
+        #
 
         class Slide < Novacast::SDK::JsonRepresentation
           property :uid
