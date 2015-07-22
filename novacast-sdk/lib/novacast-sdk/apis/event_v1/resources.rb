@@ -15,25 +15,56 @@ module Novacast
         # Event Resources
         #
 
-        class Event < Novacast::SDK::JsonRepresentation
+        class PageContent < Novacast::SDK::JsonRepresentation
+          property :locale
+          property :content
+
+          property :path, exec_context: :decorator
+
+          def path
+            represented.event_page.path
+          end
+
+          def path=(val)
+            if represented.event_page
+              represented.event_page.path = val
+            else
+              represented.path = val
+            end
+          end
+        end
+
+        class EventPage < Novacast::SDK::JsonRepresentation
+          property :path
+          property :page_config_json, as: :page_config
+
+          property :session_uid, exec_context: :decorator
+
+          def session_uid
+            represented.event_session ? represented.event_session.uid : nil
+          end
+
+          def session_uid=(val)
+            if represented.event_session
+              represented.event_session.uid = val
+            else
+              represented.event_session_uid = val
+            end
+          end
+        end
+
+        class EventInfo < Novacast::SDK::JsonRepresentation
           property :uid
           property :name
         end
 
-        class EventList < Novacast::SDK::JsonRepresentation
-          collection :events, decorator: Event
+        class PublicAlias < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :path
+          property :event, decorator: EventInfo
         end
 
-        class EventContent < Novacast::SDK::JsonRepresentation
-          property :type
-          property :value
-        end
-
-        class PageRuntime < Novacast::SDK::JsonRepresentation
-          property :runtime
-        end
-
-        class EventSession < Novacast::SDK::JsonRepresentation
+        class EventSessionInfo < Novacast::SDK::JsonRepresentation
           property :uid
           property :label
 
@@ -63,6 +94,29 @@ module Novacast
               represented.event_name = val
             end
           end
+        end
+
+        class EventSession < EventSessionInfo
+          property :module_config_json, as: :module_config
+        end
+
+        class Event < EventInfo
+          collection :event_sessions, decorator: EventSessionInfo
+          collection :event_pages,    decorator: EventPage
+          collection :public_aliases, decorator: PublicAlias
+        end
+
+        class EventList < Novacast::SDK::JsonRepresentation
+          collection :events, decorator: EventInfo
+        end
+
+        class EventContent < Novacast::SDK::JsonRepresentation
+          property :type
+          property :value
+        end
+
+        class PageRuntime < Novacast::SDK::JsonRepresentation
+          property :runtime
         end
 
         #
@@ -106,6 +160,37 @@ module Novacast
           property :page
           property :url
           property :thumb_url
+        end
+
+        class SlideDeckInfo < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :label
+          property :page_count
+        end
+
+        class SlideDeck < SlideDeckInfo
+          collection :slides, decorator: Slide
+        end
+
+        class SlideDeckList < Novacast::SDK::JsonRepresentation
+          collection :slide_decks, decorator: SlideDeckInfo
+        end
+
+        class StreamSource < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :url
+          property :source
+        end
+
+        class StreamMedium < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :label
+
+          collection :stream_sources, decorator: StreamSource
+        end
+
+        class StreamMediumList < Novacast::SDK::JsonRepresentation
+          collection :stream_media, decorator: StreamMedium
         end
       end
     end
