@@ -64,6 +64,35 @@ module Novacast
           property :event, decorator: EventInfo
         end
 
+        #
+        # Module Configurations
+        #
+
+        class SessionModuleResource < Novacast::SDK::JsonRepresentation
+          property :usage
+          property :resource_name, as: 'rn'
+        end
+
+        class SessionModule < Novacast::SDK::JsonRepresentation
+          property :module_name
+          property :config
+
+          collection :resources, decorator: SessionModuleResource
+        end
+
+        class SessionModuleConfigs < Novacast::SDK::JsonRepresentation
+          collection :session_modules, as: :modules, decorator: SessionModule
+        end
+
+        class PageRuntime < Novacast::SDK::JsonRepresentation
+          property   :session_uid
+          collection :modules
+        end
+
+        #
+        # Session
+        #
+
         class EventSessionInfo < Novacast::SDK::JsonRepresentation
           property :uid
           property :label
@@ -96,8 +125,12 @@ module Novacast
           end
         end
 
+        class EventSessionList < Novacast::SDK::JsonRepresentation
+          collection :sessions, decorator: EventSessionInfo
+        end
+
         class EventSession < EventSessionInfo
-          property :module_config_json, as: :module_config
+          collection :session_modules, as: :modules, decorator: SessionModule
         end
 
         class Event < EventInfo
@@ -115,16 +148,13 @@ module Novacast
           property :value
         end
 
-        class PageRuntime < Novacast::SDK::JsonRepresentation
-          property :runtime
-        end
-
         #
         # Asset Resources
         #
 
         class AssetBundle < Novacast::SDK::JsonRepresentation
           property :uid
+          property :uid_rn, as: 'rn'
           property :label
         end
 
@@ -164,6 +194,7 @@ module Novacast
 
         class SlideDeckInfo < Novacast::SDK::JsonRepresentation
           property :uid
+          property :uid_rn, as: 'rn'
           property :label
           property :page_count
         end
@@ -184,6 +215,7 @@ module Novacast
 
         class StreamMedium < Novacast::SDK::JsonRepresentation
           property :uid
+          property :uid_rn, as: 'rn'
           property :label
 
           collection :stream_sources, decorator: StreamSource
