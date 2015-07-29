@@ -48,7 +48,7 @@ module Novacast
             if represented.event_session
               represented.event_session.uid = val
             else
-              represented.event_session_uid = val
+              represented.session_uid = val
             end
           end
         end
@@ -77,11 +77,11 @@ module Novacast
           property :module_name
           property :config
 
-          collection :resources, decorator: SessionModuleResource
+          collection :resources, decorator: SessionModuleResource, class: OpenStruct
         end
 
         class SessionModuleConfigs < Novacast::SDK::JsonRepresentation
-          collection :session_modules, as: :modules, decorator: SessionModule
+          collection :session_modules, as: :modules, decorator: SessionModule, class: OpenStruct
         end
 
         class PageRuntime < Novacast::SDK::JsonRepresentation
@@ -126,21 +126,21 @@ module Novacast
         end
 
         class EventSessionList < Novacast::SDK::JsonRepresentation
-          collection :sessions, decorator: EventSessionInfo
+          collection :sessions, decorator: EventSessionInfo, class: OpenStruct
         end
 
         class EventSession < EventSessionInfo
-          collection :session_modules, as: :modules, decorator: SessionModule
+          collection :session_modules, as: :modules, decorator: SessionModule, class: OpenStruct
         end
 
         class Event < EventInfo
-          collection :event_sessions, decorator: EventSessionInfo
-          collection :event_pages,    decorator: EventPage
-          collection :public_aliases, decorator: PublicAlias
+          collection :event_sessions, decorator: EventSessionInfo, class: OpenStruct
+          collection :event_pages,    decorator: EventPage,        class: OpenStruct
+          collection :public_aliases, decorator: PublicAlias,      class: OpenStruct
         end
 
         class EventList < Novacast::SDK::JsonRepresentation
-          collection :events, decorator: EventInfo
+          collection :events, decorator: EventInfo, class: OpenStruct
         end
 
         class EventContent < Novacast::SDK::JsonRepresentation
@@ -164,11 +164,11 @@ module Novacast
         end
 
         class AssetBundleList < Novacast::SDK::JsonRepresentation
-          collection :asset_bundles, decorator: AssetBundle
+          collection :asset_bundles, decorator: AssetBundle, class: OpenStruct
         end
 
         class AssetBundleWithContents < AssetBundle
-          collection :bundle_contents, decorator: BundleContent
+          collection :bundle_contents, decorator: BundleContent, class: OpenStruct
         end
 
         #
@@ -200,11 +200,11 @@ module Novacast
         end
 
         class SlideDeck < SlideDeckInfo
-          collection :slides, decorator: Slide
+          collection :slides, decorator: Slide, class: OpenStruct
         end
 
         class SlideDeckList < Novacast::SDK::JsonRepresentation
-          collection :slide_decks, decorator: SlideDeckInfo
+          collection :slide_decks, decorator: SlideDeckInfo, class: OpenStruct
         end
 
         class StreamSource < Novacast::SDK::JsonRepresentation
@@ -218,11 +218,11 @@ module Novacast
           property :uid_rn, as: 'rn'
           property :label
 
-          collection :stream_sources, decorator: StreamSource
+          collection :stream_sources, decorator: StreamSource, class: OpenStruct
         end
 
         class StreamMediumList < Novacast::SDK::JsonRepresentation
-          collection :stream_media, decorator: StreamMedium
+          collection :stream_media, decorator: StreamMedium, class: OpenStruct
         end
       end
     end
