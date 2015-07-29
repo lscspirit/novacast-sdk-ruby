@@ -4,6 +4,7 @@ module Novacast
   module API
     autoload :Resources, 'novacast-sdk/apis/resources'
     autoload :EventV1,   'novacast-sdk/apis/event_v1'
+    autoload :IdentityV1,   'novacast-sdk/apis/identity_v1'
   end
 
   module SDK
