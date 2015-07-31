@@ -88,10 +88,10 @@ module Novacast
         # @param [String] app_token application_uid | application_secret
         def validate_token(access_token, app_token)
           path = 'accounts/validate_token'
-          op   = Novacast::SDK::Operation.new path, :post
+          op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::ValidateTokenRequest
-          op.request_obj             = {
+          op.query             = {
               :access_token => access_token,
               :app_token => app_token
           }
