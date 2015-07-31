@@ -70,6 +70,8 @@ module Novacast
           self.execute_operation op
         end
 
+        # @param [String] access_token access_token to revoke
+        #
         def logout(access_token)
           path = 'accounts/logout'
           op   = Novacast::SDK::Operation.new path, :post
@@ -83,17 +85,16 @@ module Novacast
           self.execute_operation op
         end
 
-        # @param [String] access_token access_token to revoke
+        # @param [String] access_token access_token
         #
-        # @param [String] app_token application_uid | application_secret
-        def validate_token(access_token, app_token)
+        def validate_token(access_token)
           path = 'accounts/validate_token'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::ValidateTokenRequest
           op.query             = {
               :access_token => access_token,
-              :app_token => app_token
+              :app_token => @app_token
           }
           op.response_representation = Resources::ValidateTokenResponse
 
