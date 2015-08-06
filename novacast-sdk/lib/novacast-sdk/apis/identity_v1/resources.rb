@@ -86,6 +86,48 @@ module Novacast
           property :resource
         end
 
+        class AccessRoleRepresenter < Novacast::SDK::JsonRepresentation
+          property :domain_id
+          property :name
+          property :desc
+        end
+
+        class AccessPermissionRepresenter < Novacast::SDK::JsonRepresentation
+          property :name
+          property :desc
+        end
+
+        class AccessResourceRepresenter < Novacast::SDK::JsonRepresentation
+          property :name
+          property :desc
+        end
+
+        class AccessRolePermissionRepresenter < Novacast::SDK::JsonRepresentation
+          property :role_id
+          property :permission_id
+          property :resource_id
+        end
+
+        class AccessUserRoleRepresenter < Novacast::SDK::JsonRepresentation
+          property :user_id
+          property :role_id
+        end
+
+        class GenericAccessObjRequest < Novacast::SDK::JsonRepresentation
+          property :id
+        end
+
+        class CreateRolePermissionRequest < Novacast::SDK::JsonRepresentation
+          property :role
+          property :permission
+          property :resource
+        end
+
+        class CreateUserRoleRequest < Novacast::SDK::JsonRepresentation
+          property :user_id
+          property :role
+        end
+
         ############### Response Resources ###################
 
         class PermissionRepresenter < Novacast::SDK::JsonRepresentation
@@ -114,6 +156,12 @@ module Novacast
 
         class UserPermissionsValidationResponse < Novacast::SDK::JsonRepresentation
           property :valid
+        end
+
+        class GenericAccessObjResponse < Novacast::SDK::JsonRepresentation
+          property :success
+          property :message
+          property :result
         end
 
       end
