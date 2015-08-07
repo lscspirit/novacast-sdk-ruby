@@ -61,7 +61,7 @@ module Novacast
 
         class ValidateTokenResponse < Novacast::SDK::JsonRepresentation
           property :valid
-          property :user_id
+          property :user_uid
           property :message
         end
 

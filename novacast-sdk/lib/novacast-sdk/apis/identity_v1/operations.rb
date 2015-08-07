@@ -80,6 +80,10 @@ module Novacast
           self.execute_operation op
         end
 
+        def get_guest_account
+          oauth_login('ether', 'ether', '')
+        end
+
         # @param [String] access_token access_token to revoke
         #
         def logout(access_token)
