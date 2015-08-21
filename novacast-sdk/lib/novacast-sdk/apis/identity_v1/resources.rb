@@ -65,6 +65,12 @@ module Novacast
           property :message
         end
 
+        ############### Object Resources ###################
+
+        class Domain < Novacast::SDK::JsonRepresentation
+          property :key
+          property :name
+        end
 
         #
         ############# Authorization Services ########################
