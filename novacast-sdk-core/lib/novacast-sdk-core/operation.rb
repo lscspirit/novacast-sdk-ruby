@@ -27,12 +27,6 @@ module Novacast
         @path_template.expand(@params).request_uri
       end
 
-      def method=(m)
-        m_sym = m.to_sym
-        raise ArgumentError, 'Operation method must be one of :get, :post, :put, :delete' unless [:get, :post, :put, :delete].include?(m_sym)
-        @method = m_sym
-      end
-
       def request_representation=(representation)
         raise ArgumentError, 'Representation must be a JsonRepresentation object' unless representation <= JsonRepresentation
         @request_representation = representation
@@ -50,11 +44,18 @@ module Novacast
 
       def request_obj=(obj)
         raise RuntimeError, 'A :get operation cannot have a request object' if method == :get
+        @request_obj = obj
+      end
 
-        if @request_representation.nil?
-          @request_body = obj.to_s
+      def request_body
+        if @request_obj.is_a? Novacast::SDK::JsonRepresentation
+          @request_obj.to_json wrap: @request_wrap
+        elsif @request_obj.nil?
+          nil
+        elsif @request_representation.nil?
+          @request_obj.to_s
         else
-          @request_body = @request_representation.new(obj).to_json(wrap: @request_wrap)
+          @request_representation.new(@request_obj).to_json(wrap: @request_wrap)
         end
       end
 
@@ -69,6 +70,12 @@ module Novacast
       end
 
       private
+
+      def method=(m)
+        m_sym = m.to_sym
+        raise ArgumentError, 'Operation method must be one of :get, :post, :put, :delete' unless [:get, :post, :put, :delete].include?(m_sym)
+        @method = m_sym
+      end
 
       # Check the provided path parameters and make sure all of them are set
       def check_path_variables!
