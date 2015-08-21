@@ -253,6 +253,53 @@ module Novacast
         end
 
         #
+        # Question Resources
+        #
+
+        class QuestionContentType < Novacast::SDK::JsonRepresentation
+          property :name
+          property :desc
+          property :type_key
+          property :params
+        end
+
+        class QuestionSubmission < Novacast::SDK::JsonRepresentation
+          property :user_uid
+          property :answer
+          property :question_content_type, extend: QuestionContentType, class: OpenStruct
+        end
+
+        class QuestionContent < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :set_id
+          property :question
+          property :order
+          property :content
+          property :question_content_type, extend: QuestionContentType, class: OpenStruct
+        end
+
+        class QuestionSet < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :label
+          property :state
+        end
+
+        class QuestionSetContent < QuestionSet
+          collection :question_contents, extend: QuestionContent, class: OpenStruct
+        end
+
+        class QuestionSetList < Novacast::SDK::JsonRepresentation
+          collection :question_sets, extend: QuestionSet, class: OpenStruct
+        end
+
+        class QuestionContentList < Novacast::SDK::JsonRepresentation
+          collection :question_contents, extend: QuestionContent, class: OpenStruct
+        end
+
+        class QuestionSubmissionList < Novacast::SDK::JsonRepresentation
+          collection :question_submissions, extend: QuestionSubmission, class: OpenStruct
+        end
+        #
         # Slide Resources
         #
 
