@@ -7,6 +7,19 @@ module Novacast
         ################ Authentication Services ###################
         #
 
+        ############### Object Resources ###################
+
+        class Domain < Novacast::SDK::JsonRepresentation
+          property :key
+          property :name
+        end
+
+        class User < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :identifier
+          property :domain_id
+        end
+
         ########### Request Resources ############
 
         #
@@ -45,31 +58,21 @@ module Novacast
         ############### Response Resources ###################
 
         class SignUpResponse < Novacast::SDK::JsonRepresentation
-          property :success
-          property :message
+          property :user, decorator: User
         end
 
         class LoginResponse < Novacast::SDK::JsonRepresentation
-          property :success
-          property :message
+          property :user, decorator: User
           property :token
         end
 
         class LogoutResponse < Novacast::SDK::JsonRepresentation
-          property :success
+          property :token
+          property :revoked_at
         end
 
         class ValidateTokenResponse < Novacast::SDK::JsonRepresentation
-          property :valid
-          property :user_uid
-          property :message
-        end
-
-        ############### Object Resources ###################
-
-        class Domain < Novacast::SDK::JsonRepresentation
-          property :key
-          property :name
+          property :user, decorator: User
         end
 
         #
