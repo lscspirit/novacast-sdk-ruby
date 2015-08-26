@@ -8,7 +8,7 @@ module Novacast
           case represented
             when String then [represented]
             when Array then represented
-            when ActiveRecord::Base then represented.errors
+            when ActiveRecord::Base then represented.errors.full_messages
             else [represented.to_s]
           end
         end
