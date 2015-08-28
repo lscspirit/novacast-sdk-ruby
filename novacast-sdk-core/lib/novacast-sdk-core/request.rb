@@ -4,20 +4,19 @@ require 'net/http'
 module Novacast
   module SDK
     class Request
-      attr_reader :client, :endpoint, :endpoint_uri, :method, :body
+      attr_reader :client, :endpoint, :endpoint_uri, :method, :body, :query
 
       # Create a new Novacast API Request
-      # @param client   [Client] Novacast service client
-      # @param endpoint [String] API endpoint
-      # @param method   [Symbol,String] http method (:get, :post, :put, :delete)
-      # @param query    [Hash]   query parameters to be included
-      # @param body     [String] request body (except for :get)
-      def initialize(client, endpoint = nil, method = :get, query = nil, body = nil)
+      # @param client   [Client]    Novacast service client
+      # @param op       [Operation] operation object to build the request from
+      # @param endpoint [String]    API endpoint
+      def initialize(client, op, endpoint = nil)
         @client       = client
-        self.method   = method
+        @op           = op
+        self.method   = op.method
+        self.query    = op.query
+        self.body     = op.request_body
         self.endpoint = endpoint
-        self.query    = query
-        self.body     = body unless body.nil?
       end
 
       #
@@ -32,23 +31,30 @@ module Novacast
 
       def endpoint=(path)
         @endpoint = path || ''
-        # build the final endpoint url
-        @endpoint_uri = client.base_uri + endpoint
       end
 
       def query=(q)
-        @endpoint_uri.query = URI.encode_www_form(q) unless q.nil? || q.empty?
+        @query = q
       end
 
       def body=(b)
-        raise ArgumentError, 'Request body must be a String' unless b.is_a?(String)
-        @body = b
+        @body = case
+                  when b.blank?
+                    nil
+                  when b.is_a?(String)
+                    b
+                  when b.respond_to?(:to_s)
+                    b.to_s
+                  else
+                    raise ArgumentError, 'Request body must be a String or can respond to :to_s'
+                end
       end
 
       # Send the request
       # @return [Net::HTTPResponse] http response object
       def send
-        http = Net::HTTP::new(endpoint_uri.host, endpoint_uri.port)
+        uri  = build_uri
+        http = Net::HTTP::new(uri.host, uri.port)
 
         # set timeouts
         http.open_timeout = 10
@@ -56,13 +62,13 @@ module Novacast
 
         request = case method
                     when :get
-                      Net::HTTP::Get.new endpoint_uri.request_uri
+                      Net::HTTP::Get.new uri.request_uri
                     else
-                      Net::HTTP::Post.new endpoint_uri.request_uri
+                      Net::HTTP::Post.new uri.request_uri
                   end
 
         request['Content-Type'] = 'application/json'
-        request.use_ssl = true if endpoint_uri.scheme == 'https'
+        request.use_ssl = true if uri.scheme == 'https'
 
         # set request body for non 'get' request
         unless method == :get || body.nil? || body.empty?
@@ -70,6 +76,17 @@ module Novacast
         end
 
         Response.new http.request(request)
+      end
+
+      private
+
+      def build_uri
+        uri = client.base_uri + endpoint
+
+        q = @op.use_app_credentials? ? { app_token: "#{@client.app_uid}|#{@client.app_secret}" }.merge(query) : query
+        uri.query = URI.encode_www_form(q) unless q.blank?
+
+        uri
       end
     end
   end

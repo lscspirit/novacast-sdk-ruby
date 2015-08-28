@@ -16,6 +16,8 @@ module Novacast
         @options = options
         @params  = {}
         @query   = {}
+
+        @use_app_credentials = false
       end
 
       #
@@ -25,6 +27,14 @@ module Novacast
       def path
         check_path_variables!
         @path_template.expand(@params).request_uri
+      end
+
+      def use_app_credentials=(val)
+        @use_app_credentials = (val === true)
+      end
+
+      def use_app_credentials?
+        @use_app_credentials
       end
 
       def request_representation=(representation)
@@ -53,7 +63,7 @@ module Novacast
         elsif @request_obj.nil?
           nil
         elsif @request_representation.nil?
-          @request_obj.to_s
+          @request_obj.respond_to?(:to_json) ? @response_obj.to_json : @request_obj.to_s
         else
           @request_representation.new(@request_obj).to_json(wrap: @request_wrap)
         end

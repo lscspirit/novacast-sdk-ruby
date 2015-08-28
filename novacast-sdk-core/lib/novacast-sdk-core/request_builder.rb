@@ -14,7 +14,7 @@ module Novacast
       # @return [Request] a Request object to be used to send the actual HTTP request
       def build(op)
         endpoint = construct_endpoint op
-        Request.new @client, endpoint, op.method, op.query, op.request_body
+        Request.new @client, op, endpoint
       end
 
       private

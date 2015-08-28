@@ -3,6 +3,7 @@ module Novacast
     # Base class for all Novacast services' Ruby client
     class Client
       attr_reader :base_uri, :request_builder
+      attr_reader :app_uid, :app_secret
 
       # Create a new service client
       # @param  opts [Hash] options to create the client with
@@ -12,12 +13,17 @@ module Novacast
       # @option opts [String]               :path (nil)   base path of the service
       # @option opts [Boolean]              :ssl  (false) whether to use SSL or not
       # @option opts [String]               :api_version  API version to use
+      # @option opts [String]               :app_uid      application uid
+      # @option opts [String]               :app_secret   application secret
       def initialize(opts = {})
         @base_uri        = build_base_uri(opts[:uri] || opts[:host], opts[:port], opts[:path], opts[:ssl])
         @request_builder = RequestBuilder.new self
 
         raise ArgumentError, 'Must specify an API version' if opts[:api_version].nil?
         @api_version     = opts[:api_version].to_s
+
+        @app_uid    = opts[:app_uid]
+        @app_secret = opts[:app_secret]
 
         extend_client_ops!
       end

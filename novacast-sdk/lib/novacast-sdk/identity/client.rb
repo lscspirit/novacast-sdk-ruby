@@ -10,12 +10,10 @@ module Novacast
         # app_secret - the oauth applicaiton secret for the client
         #
         def initialize(opts = {})
-
-          raise ArgumentError, 'Must specify the App UID & App Secret' if opts[:app_uid].nil? or opts[:app_secret].nil?
-          @app_token = opts[:app_uid]+'|'+ opts[:app_secret]
-
           #call the parent constructor
           super(opts)
+
+          raise ArgumentError, 'Must specify the App UID & App Secret' if @app_uid.blank? or @app_secret.blank?
         end
 
 
