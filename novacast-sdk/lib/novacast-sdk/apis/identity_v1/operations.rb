@@ -106,14 +106,52 @@ module Novacast
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::ValidateTokenRequest
-          op.query             = {
-              :access_token => access_token,
-              :app_token => @app_token
-          }
+          op.use_app_credentials     = true
+          op.query                   = { access_token: access_token }
           op.response_representation = Resources::ValidateTokenResponse
 
           self.execute_operation op
         end
+
+        #
+        # Domain Operations
+        #
+
+        def create_domain(key, name)
+          path = '/domains'
+          op   = Novacast::SDK::Operation.new path, :post
+
+          op.request_representation  = Resources::Domain
+          op.request_wrap            = :domain
+          op.request_obj             = { key: key, name: name }
+          op.response_representation = Resources::Domain
+
+          self.execute_operation op
+        end
+
+        def get_domain(domain_id)
+          path = '/domains/{domain_id}'
+          op   = Novacast::SDK::Operation.new path, :get
+
+          op.response_representation = Resources::Domain
+          op.params[:domain_id]      = domain_id
+
+          self.execute_operation op
+        end
+
+        def get_domain_by_key(key)
+          path = '/domains/query'
+          op   = Novacast::SDK::Operation.new path, :get
+
+          op.response_representation = Resources::Domain
+          op.query                   = { key: key }
+
+          self.execute_operation op
+        end
+
+        #
+        # Role/Permission Operations
+        #
 
         def get_user_role_permissions(user_id)
           path = 'access/get_user_role_permissions'
