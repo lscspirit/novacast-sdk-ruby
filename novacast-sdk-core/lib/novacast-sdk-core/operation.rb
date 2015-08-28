@@ -64,9 +64,27 @@ module Novacast
       # @param resp [Response] Response object
       def response=(resp)
         @response = resp
-        unless @response_representation.nil?
+        if @response_representation.nil? || !resp.success?
+          @response_obj = JSON.parse(resp.body, object_class: OpenStruct)
+        else
           @response_obj = @response_representation.new(ResponseObject.new).from_json(resp.body)
         end
+      end
+
+      def errors
+        success? ? nil : response_obj.errors
+      end
+
+      def error_messages
+        errors ? errors.join(', ') : nil
+      end
+
+      def completed?
+        !response.nil?
+      end
+
+      def success?
+        response && response.success?
       end
 
       private
