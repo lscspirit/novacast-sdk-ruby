@@ -58,11 +58,11 @@ module Novacast
         ############### Response Resources ###################
 
         class SignUpResponse < Novacast::SDK::JsonRepresentation
-          property :user, decorator: User
+          property :user, decorator: User, class: OpenStruct
         end
 
         class LoginResponse < Novacast::SDK::JsonRepresentation
-          property :user, decorator: User
+          property :user, decorator: User, class: OpenStruct
           property :token
         end
 
@@ -72,7 +72,7 @@ module Novacast
         end
 
         class ValidateTokenResponse < Novacast::SDK::JsonRepresentation
-          property :user, decorator: User
+          property :user, decorator: User, class: OpenStruct
         end
 
         #

@@ -11,7 +11,7 @@ module Novacast
           op.request_obj             = channel
           op.response_representation = Resources::Channel
 
-          self.execute_operation op
+          op
         end
 
         def get_channel(channel_uid)
@@ -21,7 +21,7 @@ module Novacast
           op.response_representation = Resources::Channel
           op.params[:channel_uid]    = channel_uid
 
-          self.execute_operation op
+          op
         end
 
         def get_event(event_uid)
@@ -30,7 +30,7 @@ module Novacast
           op.response_representation = Resources::Event
           op.params[:event_uid]      = event_uid
 
-          self.execute_operation op
+          op
         end
 
         def get_event_content(event_uid, content_path)
@@ -41,7 +41,7 @@ module Novacast
           op.params[:event_uid]      = event_uid
           op.params[:content_path]   = content_path
 
-          self.execute_operation op
+          op
         end
 
         def get_page_runtime(event_uid, page_path)
@@ -52,7 +52,7 @@ module Novacast
           op.params[:event_uid]      = event_uid
           op.params[:page_path]      = page_path
 
-          self.execute_operation op
+          op
         end
 
         def get_event_session(session_uid)
@@ -62,7 +62,7 @@ module Novacast
           op.response_representation = Resources::EventSession
           op.params[:session_uid]    = session_uid
 
-          self.execute_operation op
+          op
         end
 
         def get_session_runtime(session_uid)
@@ -72,7 +72,7 @@ module Novacast
           op.response_representation = Resources::PageRuntime
           op.params[:session_uid]    = session_uid
 
-          self.execute_operation op
+          op
         end
       end
     end

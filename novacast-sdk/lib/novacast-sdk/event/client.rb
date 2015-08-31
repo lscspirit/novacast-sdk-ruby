@@ -5,10 +5,10 @@ module Novacast
 
         private
 
-        def extend_client_ops!
+        def load_api!
           case @api_version
             when '1'
-              self.extend(Novacast::API::EventV1::Operations)
+              Novacast::API::EventV1
             else
               raise ArgumentError, "Invalid API version. Version '#{@api_version}' is not a supported version."
           end

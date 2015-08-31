@@ -81,12 +81,12 @@ module Novacast
         end
       end
 
-      def errors
-        success? ? nil : response_obj.errors
+      def error_code
+        success? ? nil : response_obj.error
       end
 
       def error_messages
-        errors ? errors.join(', ') : nil
+        Array.wrap response_obj.error_messages
       end
 
       def completed?

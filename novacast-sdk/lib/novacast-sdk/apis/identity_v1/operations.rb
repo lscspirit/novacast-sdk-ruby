@@ -4,11 +4,11 @@ module Novacast
       module Operations
         def init_op
           @access_obj_representer = {
-              'access_role' => Resources::AccessRoleRepresenter,
-              'access_permission' => Resources::AccessPermissionRepresenter,
-              'access_resource' => Resources::AccessResourceRepresenter,
-              'access_role_permission' => Resources::AccessRolePermissionRepresenter,
-              'access_user_role' => Resources::AccessUserRoleRepresenter
+              'access_role' => Resources::AccessRole,
+              'access_permission' => Resources::AccessPermission,
+              'access_resource' => Resources::AccessResource,
+              'access_role_permission' => Resources::AccessRolePermission,
+              'access_user_role' => Resources::AccessUserRole
           }
         end
 
@@ -26,7 +26,7 @@ module Novacast
           }
           op.response_representation = Resources::SignUpResponse
 
-          self.execute_operation op
+          op
         end
 
         def oauth_signup(domain_name, provider_name, access_token)
@@ -43,7 +43,7 @@ module Novacast
           }
           op.response_representation = Resources::SignUpResponse
 
-          self.execute_operation op
+          op
         end
 
         def novacast_login(domain_name, identifier, password)
@@ -60,7 +60,7 @@ module Novacast
           }
           op.response_representation = Resources::LoginResponse
 
-          self.execute_operation op
+          op
         end
 
         def oauth_login(domain_name, provider_name, access_token)
@@ -77,7 +77,7 @@ module Novacast
           }
           op.response_representation = Resources::LoginResponse
 
-          self.execute_operation op
+          op
         end
 
         def get_guest_account
@@ -96,7 +96,7 @@ module Novacast
           }
           op.response_representation = Resources::LogoutResponse
 
-          self.execute_operation op
+          op
         end
 
         # @param [String] access_token access_token
@@ -110,7 +110,7 @@ module Novacast
           op.query                   = { access_token: access_token }
           op.response_representation = Resources::ValidateTokenResponse
 
-          self.execute_operation op
+          op
         end
 
         #
@@ -126,7 +126,7 @@ module Novacast
           op.request_obj             = { key: key, name: name }
           op.response_representation = Resources::Domain
 
-          self.execute_operation op
+          op
         end
 
         def get_domain(domain_id)
@@ -136,7 +136,7 @@ module Novacast
           op.response_representation = Resources::Domain
           op.params[:domain_id]      = domain_id
 
-          self.execute_operation op
+          op
         end
 
         def get_domain_by_key(key)
@@ -146,7 +146,7 @@ module Novacast
           op.response_representation = Resources::Domain
           op.query                   = { key: key }
 
-          self.execute_operation op
+          op
         end
 
         #
@@ -163,7 +163,7 @@ module Novacast
           }
           op.response_representation = Resources::UserRolePermissionsResponse
 
-          self.execute_operation op
+          op
         end
 
         def get_user_permissions(user_id)
@@ -176,7 +176,7 @@ module Novacast
           }
           op.response_representation = Resources::UserPermissionsResponse
 
-          self.execute_operation op
+          op
         end
 
         # @param [Integer] user_id
@@ -194,7 +194,7 @@ module Novacast
           }
           op.response_representation = Resources::UserPermissionsValidationResponse
 
-          self.execute_operation op
+          op
         end
 
         def create_role_for_domain(domain_id, role_name, role_desc)
@@ -279,7 +279,7 @@ module Novacast
           }
           op.response_representation = Resources::GenericAccessObjResponse
 
-          self.execute_operation op
+          op
         end
 
         def set_role_for_user(user_id, role)
@@ -293,7 +293,7 @@ module Novacast
           }
           op.response_representation = Resources::GenericAccessObjResponse
 
-          self.execute_operation op
+          op
         end
 
         private
@@ -327,7 +327,7 @@ module Novacast
             end
             op.response_representation = Resources::GenericAccessObjResponse
 
-            self.execute_operation op
+            op
           end
         end
 

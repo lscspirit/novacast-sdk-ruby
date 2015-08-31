@@ -20,12 +20,11 @@ module Novacast
         @request_builder = RequestBuilder.new self
 
         raise ArgumentError, 'Must specify an API version' if opts[:api_version].nil?
-        @api_version     = opts[:api_version].to_s
+        @api_version = opts[:api_version].to_s
+        @api         = load_api!
 
-        @app_uid    = opts[:app_uid]
-        @app_secret = opts[:app_secret]
-
-        extend_client_ops!
+        @app_uid     = opts[:app_uid]
+        @app_secret  = opts[:app_secret]
       end
 
       # Base URL of the service client
@@ -40,15 +39,15 @@ module Novacast
         @api_version
       end
 
-      protected
-
-      # Execute an API Operation using this client
-      # @param op [Operation] API operation
-      # @return [Operation] the API operation object
-      def execute_operation(op)
-        op.request  = @request_builder.build op
-        op.response = op.request.send
-        op
+      # Route method call to API operations
+      # All API method calls will go through this method_missing function
+      # @example Simple API call
+      #   IdentityClient.validate_token 'ad3de482'    #=> returns an Operation regardless of response status
+      # @example Simple API call that raise exception on failure
+      #   IdentityClient.validate_token! 'ad3de482'   #=> returns an Operation if successful; otherwise raise the corresponding Novacast::SDK::Error returned by server
+      def method_missing(m, *args, &block)
+        op_name, bang = m.to_s.match(/^([^!]*)(!?)$/).captures
+        bang == '!' ? execute_operation!(op_name, *args) : execute_operation(op_name, *args)
       end
 
       private
@@ -56,8 +55,44 @@ module Novacast
       # Extend the Client instance with API operations
       # Override this method in Client implementation to load the appropriate API base
       # on the API version supplied
-      def extend_client_ops!
+      def load_api!
 
+      end
+
+      # Execute an API Operation using this client
+      # @param op_name [String] API operation name
+      # @return [Operation] the API operation object
+      def execute_operation(op_name, *args)
+        op = @api::Operations.instance_method(op_name).bind(self).call(*args)
+
+        op.request  = @request_builder.build op
+        op.response = op.request.send
+        op
+      end
+
+      def execute_operation!(op_name, *args)
+        op = execute_operation op_name, *args
+
+        unless op.success?
+          raise find_error_class(op.error_code), op.error_messages.join(', ')
+        end
+
+        op
+      end
+
+      def find_error_class(error_code)
+        klass_name = error_code.camelize
+        klass      = Novacast::SDK::Error
+
+        ["#{@api.name}::#{klass_name}Error", "Novacast::SDK::#{klass_name}Error"].find do |full_klass_name|
+          begin
+            klass = full_klass_name.constantize
+          rescue NameError
+            false
+          end
+        end
+
+        klass
       end
 
       # Construct the base URI of the service
