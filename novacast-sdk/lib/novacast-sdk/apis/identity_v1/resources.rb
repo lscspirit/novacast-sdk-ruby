@@ -115,7 +115,6 @@ module Novacast
         class AccessRolePermission < Novacast::SDK::JsonRepresentation
           property :role_id
           property :permission_id
-          property :resource_id
         end
 
         # Role Permission List
@@ -123,28 +122,38 @@ module Novacast
           collection :role_permissions, decorator: AccessRolePermission, class: OpenStruct
         end
 
-        # Role Permission with names
-        class Permission < Novacast::SDK::JsonRepresentation
-          property :permission_name, as: :permission
-          property :resource_name,   as: :resource
-        end
-
-        # Role Permission (with names) List
-        class RolePermissions < Novacast::SDK::JsonRepresentation
-          property   :name, as: :role_name
-          collection :role_permissions, as: :permissions, decorator: Permission, class: OpenStruct
-        end
-
         # User and Role mapping
         class AccessUserRole < Novacast::SDK::JsonRepresentation
           property :user_uid
           property :role_id
+          property :resource_id
         end
 
         # User and Role mapping with names
         class UserRole < Novacast::SDK::JsonRepresentation
           property :role_name, as: :name
           property :role_desc, as: :desc
+          property :resource_name, as: :resource
+        end
+
+        # User's role and permissions on resources
+        class UserRolePermission < UserRole
+          property :permissions
+        end
+
+        # Role and its associated permissions
+        #
+        # @example
+        # name: 'EventAdmin'
+        # permissions: ["EditEvent", "DeleteEvent"]
+        class RolePermissions < Novacast::SDK::JsonRepresentation
+          property :name
+          property :permissions
+        end
+
+        class UserPermission < Novacast::SDK::JsonRepresentation
+          property :resource
+          property :permissions
         end
 
         # User and Role mapping List
@@ -175,12 +184,12 @@ module Novacast
         class CreateRolePermissionRequest < Novacast::SDK::JsonRepresentation
           property :role
           property :permission
-          property :resource
         end
 
         class CreateUserRoleRequest < Novacast::SDK::JsonRepresentation
           property :user_uid
           property :role
+          property :resource
         end
 
         ############### Response Resources ###################
@@ -191,11 +200,11 @@ module Novacast
         end
 
         class UserRolePermissionsResponse < Novacast::SDK::JsonRepresentation
-          collection :roles, decorator: RolePermissions, class: OpenStruct
+          collection :roles, decorator: UserRolePermission, class: OpenStruct
         end
 
         class UserPermissionsResponse < Novacast::SDK::JsonRepresentation
-          collection :permissions, decorator: Permission, class: OpenStruct
+          collection :user_permissions, decorator: UserPermission, class: OpenStruct
         end
 
         class UserPermissionValidationResponse < Novacast::SDK::JsonRepresentation
