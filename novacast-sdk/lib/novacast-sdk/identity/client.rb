@@ -1,6 +1,14 @@
 module Novacast
   module SDK
     module Identity
+      def self.init(options = {})
+        @opts = options
+      end
+
+      def self.client
+        Client.new @opts
+      end
+
       class Client < Novacast::SDK::Client
 
         #

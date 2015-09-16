@@ -9,6 +9,7 @@ module Novacast
           op.request_representation  = Resources::Channel
           op.request_wrap            = :channel
           op.request_obj             = channel
+          op.query                   = { access_token: access_token }
           op.response_representation = Resources::Channel
 
           op

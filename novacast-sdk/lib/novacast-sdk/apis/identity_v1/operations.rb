@@ -153,42 +153,44 @@ module Novacast
         # Role/Permission Operations
         #
 
-        def get_user_role_permissions(user_id)
+        def get_user_role_permissions(user_uid, resources = nil)
           path = 'access/get_user_role_permissions'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::UserRolePermissionsRequest
           op.query             = {
-              :user_id => user_id
+              :user_uid      => user_uid,
+              :'resources[]' => Array.wrap(resources)
           }
           op.response_representation = Resources::UserRolePermissionsResponse
 
           op
         end
 
-        def get_user_permissions(user_id)
+        def get_user_permissions(user_uid, resources = nil)
           path = 'access/get_user_permissions'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::UserPermissionsRequest
           op.query             = {
-              :user_id => user_id
+              :user_uid      => user_uid,
+              :'resources[]' => Array.wrap(resources)
           }
           op.response_representation = Resources::UserPermissionsResponse
 
           op
         end
 
-        # @param [Integer] user_id
+        # @param [Integer] user_uid
         # @param [String] permission The Permissions in question
         # @param [String] resource The resource to be tested for given permission
-        def validate_permissions_for_user(user_id, permission, resource)
+        def validate_permissions_for_user(user_uid, permission, resource)
           path = 'access/validate_permissions_for_user'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::UserPermissionsValidationRequest
           op.query             = {
-              :user_id => user_id,
+              :user_uid => user_uid,
               :permission => permission,
               :resource => resource
           }
@@ -217,12 +219,17 @@ module Novacast
         end
 
         def create_access_resource(name, desc)
-          obj = {
-              :name => name,
-              :desc => desc
-          }
+          path = '/access_resources'
+          op   = Novacast::SDK::Operation.new path, :post
 
-          generic_resource_request('access_resource', :post, nil, obj)
+          op.request_representation = Resources::AccessResource
+          op.request_obj            = {
+            :name => name,
+            :desc => desc
+          }
+          op.response_representation  = Resources::AccessResource
+
+          op
         end
 
         def create_access_role_permission(role_id, permission_id, resource_id)
@@ -235,9 +242,9 @@ module Novacast
           generic_resource_request('access_role_permission', :post, nil, obj)
         end
 
-        def create_access_user_role(user_id, role_id)
+        def create_access_user_role(user_uid, role_id)
           obj = {
-              :user_id => user_id,
+              :user_uid => user_uid,
               :role_id => role_id
           }
 
@@ -258,7 +265,7 @@ module Novacast
 
         #
         # This could be confusing but done in flavor of genericity
-        # for access_user_role: id = user_id
+        # for access_user_role: id = user_uid
         # for access_role: id = domain_id
         # all other objects, this operation is invalid
         #
@@ -282,16 +289,18 @@ module Novacast
           op
         end
 
-        def set_role_for_user(user_id, role)
+        def set_role_for_user(user_uid, role_set, role, resource)
           path = 'access/set_role_for_user'
           op   = Novacast::SDK::Operation.new path, :post
 
           op.request_representation  = Resources::CreateUserRoleRequest
           op.request_obj             = {
-              :user_id => user_id,
-              :role => role
+              user_uid: user_uid,
+              role_set: role_set,
+              role:     role,
+              resource: resource
           }
-          op.response_representation = Resources::GenericAccessObjResponse
+          op.response_representation = Resources::UserRolesResponse
 
           op
         end

@@ -10,6 +10,7 @@ module Novacast
         ############### Objects ###################
 
         class Domain < Novacast::SDK::JsonRepresentation
+          property :id
           property :key
           property :name
         end
@@ -188,6 +189,7 @@ module Novacast
 
         class CreateUserRoleRequest < Novacast::SDK::JsonRepresentation
           property :user_uid
+          property :role_set
           property :role
           property :resource
         end
