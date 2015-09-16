@@ -5,6 +5,7 @@ require 'novacast-sdk-core/response_object'
 module Novacast
   module SDK
     class Operation
+      attr_accessor :client
       attr_accessor :method, :params, :query
       attr_accessor :request_obj, :request_representation, :response_representation
       attr_accessor :request, :response
@@ -81,6 +82,10 @@ module Novacast
         end
       end
 
+      def error
+        success? ? nil : find_error_class(error_code)
+      end
+
       def error_code
         success? ? nil : response_obj.error
       end
@@ -111,6 +116,21 @@ module Novacast
           value = @params[var] || @params[var.to_sym]
           raise RuntimeError, "Operation path param '#{var}' is missing or empty." if value.nil? || value.to_s.empty?
         end
+      end
+
+      def find_error_class(error_code)
+        klass_name = error_code.camelize
+        klass      = Novacast::SDK::Error
+
+        ["#{client.api.name}::#{klass_name}Error", "Novacast::SDK::#{klass_name}Error"].find do |full_klass_name|
+          begin
+            klass = full_klass_name.constantize
+          rescue NameError
+            false
+          end
+        end
+
+        klass
       end
     end
   end

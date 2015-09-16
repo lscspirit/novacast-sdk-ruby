@@ -33,6 +33,12 @@ module Novacast
         base_uri.to_s
       end
 
+      # Client's API module
+      # @return [Module]
+      def api
+        @api
+      end
+
       # Client's API version
       # @return [String] version string
       def api_version
@@ -65,6 +71,7 @@ module Novacast
       def execute_operation(op_name, *args)
         op = @api::Operations.instance_method(op_name).bind(self).call(*args)
 
+        op.client   = self
         op.request  = @request_builder.build op
         op.response = op.request.send
         op
@@ -74,25 +81,10 @@ module Novacast
         op = execute_operation op_name, *args
 
         unless op.success?
-          raise find_error_class(op.error_code), op.error_messages.join(', ')
+          raise op.error, op.error_messages.join(', ')
         end
 
         op
-      end
-
-      def find_error_class(error_code)
-        klass_name = error_code.camelize
-        klass      = Novacast::SDK::Error
-
-        ["#{@api.name}::#{klass_name}Error", "Novacast::SDK::#{klass_name}Error"].find do |full_klass_name|
-          begin
-            klass = full_klass_name.constantize
-          rescue NameError
-            false
-          end
-        end
-
-        klass
       end
 
       # Construct the base URI of the service
