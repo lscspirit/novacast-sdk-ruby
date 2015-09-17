@@ -153,28 +153,30 @@ module Novacast
         # Role/Permission Operations
         #
 
-        def get_user_role_permissions(user_uid, resources = nil)
+        def get_user_role_permissions(user_uid, resources = nil, permissions = nil)
           path = 'access/get_user_role_permissions'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::UserRolePermissionsRequest
           op.query             = {
-              :user_uid      => user_uid,
-              :'resources[]' => Array.wrap(resources)
+              :user_uid        => user_uid,
+              :'resources[]'   => Array.wrap(resources),
+              :'permissions[]' => Array.wrap(permissions)
           }
           op.response_representation = Resources::UserRolePermissionsResponse
 
           op
         end
 
-        def get_user_permissions(user_uid, resources = nil)
+        def get_user_permissions(user_uid, resources = nil, permissions = nil)
           path = 'access/get_user_permissions'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::UserPermissionsRequest
           op.query             = {
-              :user_uid      => user_uid,
-              :'resources[]' => Array.wrap(resources)
+              :user_uid        => user_uid,
+              :'resources[]'   => Array.wrap(resources),
+              :'permissions[]' => Array.wrap(permissions)
           }
           op.response_representation = Resources::UserPermissionsResponse
 

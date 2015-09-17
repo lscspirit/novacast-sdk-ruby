@@ -15,11 +15,22 @@ module Novacast
           op
         end
 
+        def list_channels
+          path = '/channels'
+          op   = Novacast::SDK::Operation.new path, :get
+
+          op.query                   = { access_token: access_token }
+          op.response_representation = Resources::ChannelList
+
+          op
+        end
+
         def get_channel(channel_uid)
           path = channel_uid ? '/channels/{channel_uid}' : '/channels/me'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.response_representation = Resources::Channel
+          op.query                   = { access_token: access_token }
           op.params[:channel_uid]    = channel_uid
 
           op

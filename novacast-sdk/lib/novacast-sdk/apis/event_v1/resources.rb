@@ -11,6 +11,10 @@ module Novacast
           property :name
         end
 
+        class ChannelList < Novacast::SDK::JsonRepresentation
+          collection :channels, decorator: Channel, class: OpenStruct
+        end
+
         #
         # Event Resources
         #
