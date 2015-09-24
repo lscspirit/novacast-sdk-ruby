@@ -144,6 +144,7 @@ module Novacast
         class EventSessionInfo < Novacast::SDK::JsonRepresentation
           property :uid
           property :label
+          property :pathname
 
           property :event_uid,  exec_context: :decorator
           property :event_name, exec_context: :decorator
