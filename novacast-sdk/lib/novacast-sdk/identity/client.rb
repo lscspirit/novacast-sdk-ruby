@@ -1,6 +1,14 @@
 module Novacast
   module SDK
     module Identity
+      def self.init(options = {})
+        @opts = options
+      end
+
+      def self.client
+        Client.new @opts
+      end
+
       class Client < Novacast::SDK::Client
 
         #
@@ -10,22 +18,19 @@ module Novacast
         # app_secret - the oauth applicaiton secret for the client
         #
         def initialize(opts = {})
-
-          raise ArgumentError, 'Must specify the App UID & App Secret' if opts[:app_uid].nil? or opts[:app_secret].nil?
-          @app_token = opts[:app_uid]+'|'+ opts[:app_secret]
-
           #call the parent constructor
           super(opts)
+
+          raise ArgumentError, 'Must specify the App UID & App Secret' if @app_uid.blank? or @app_secret.blank?
         end
 
 
         private
 
-        def extend_client_ops!
+        def load_api!
           case @api_version
             when '1'
-              self.extend(Novacast::API::IdentityV1::Operations)
-              self.init_op
+              Novacast::API::IdentityV1
             else
               raise ArgumentError, "Invalid API version. Version '#{@api_version}' is not a supported version."
           end

@@ -11,6 +11,10 @@ module Novacast
         raise ArgumentError, 'Invalid request object' unless http_response.is_a?(Net::HTTPResponse)
         @http_response = http_response
       end
+
+      def success?
+        (200..299).include? code.to_i
+      end
     end
   end
 end

@@ -5,6 +5,7 @@ require 'novacast-sdk-core/response_object'
 module Novacast
   module SDK
     class Operation
+      attr_accessor :client
       attr_accessor :method, :params, :query
       attr_accessor :request_obj, :request_representation, :response_representation
       attr_accessor :request, :response
@@ -16,6 +17,8 @@ module Novacast
         @options = options
         @params  = {}
         @query   = {}
+
+        @use_app_credentials = false
       end
 
       #
@@ -27,10 +30,12 @@ module Novacast
         @path_template.expand(@params).request_uri
       end
 
-      def method=(m)
-        m_sym = m.to_sym
-        raise ArgumentError, 'Operation method must be one of :get, :post, :put, :delete' unless [:get, :post, :put, :delete].include?(m_sym)
-        @method = m_sym
+      def use_app_credentials=(val)
+        @use_app_credentials = (val === true)
+      end
+
+      def use_app_credentials?
+        @use_app_credentials
       end
 
       def request_representation=(representation)
@@ -50,11 +55,18 @@ module Novacast
 
       def request_obj=(obj)
         raise RuntimeError, 'A :get operation cannot have a request object' if method == :get
+        @request_obj = obj
+      end
 
-        if @request_representation.nil?
-          @request_body = obj.to_s
+      def request_body
+        if @request_obj.is_a? Novacast::SDK::JsonRepresentation
+          @request_obj.to_json wrap: @request_wrap
+        elsif @request_obj.nil?
+          nil
+        elsif @request_representation.nil?
+          @request_obj.respond_to?(:to_json) ? @response_obj.to_json : @request_obj.to_s
         else
-          @request_body = @request_representation.new(obj).to_json(wrap: @request_wrap)
+          @request_representation.new(@request_obj).to_json(wrap: @request_wrap)
         end
       end
 
@@ -63,12 +75,40 @@ module Novacast
       # @param resp [Response] Response object
       def response=(resp)
         @response = resp
-        unless @response_representation.nil?
+        if @response_representation.nil? || !resp.success?
+          @response_obj = JSON.parse(resp.body, object_class: OpenStruct)
+        else
           @response_obj = @response_representation.new(ResponseObject.new).from_json(resp.body)
         end
       end
 
+      def error
+        success? ? nil : find_error_class(error_code)
+      end
+
+      def error_code
+        success? ? nil : response_obj.error
+      end
+
+      def error_messages
+        Array.wrap response_obj.error_messages
+      end
+
+      def completed?
+        !response.nil?
+      end
+
+      def success?
+        response && response.success?
+      end
+
       private
+
+      def method=(m)
+        m_sym = m.to_sym
+        raise ArgumentError, 'Operation method must be one of :get, :post, :put, :delete' unless [:get, :post, :put, :delete].include?(m_sym)
+        @method = m_sym
+      end
 
       # Check the provided path parameters and make sure all of them are set
       def check_path_variables!
@@ -76,6 +116,21 @@ module Novacast
           value = @params[var] || @params[var.to_sym]
           raise RuntimeError, "Operation path param '#{var}' is missing or empty." if value.nil? || value.to_s.empty?
         end
+      end
+
+      def find_error_class(error_code)
+        klass_name = error_code.camelize
+        klass      = Novacast::SDK::Error
+
+        ["#{client.api.name}::#{klass_name}Error", "Novacast::SDK::#{klass_name}Error"].find do |full_klass_name|
+          begin
+            klass = full_klass_name.constantize
+          rescue NameError
+            false
+          end
+        end
+
+        klass
       end
     end
   end

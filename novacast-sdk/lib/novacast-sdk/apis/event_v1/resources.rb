@@ -11,6 +11,10 @@ module Novacast
           property :name
         end
 
+        class ChannelList < Novacast::SDK::JsonRepresentation
+          collection :channels, decorator: Channel, class: OpenStruct
+        end
+
         #
         # Event Resources
         #
@@ -62,6 +66,50 @@ module Novacast
           property :uid
           property :path
           property :event, decorator: EventInfo
+        end
+
+        #
+        # UserSet
+        #
+
+        class EnrollmentField < Novacast::SDK::JsonRepresentation
+          property :name
+          property :data_type
+          property :label
+          property :optional
+          property :index
+        end
+
+        class UserSetInfo < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :label
+          property :access
+          property :enrollment
+          property :account_only
+        end
+
+        class UserSet < UserSetInfo
+          collection :enrollment_fields, as: :fields, decorator: EnrollmentField, class: OpenStruct
+        end
+
+        class UserSetList < Novacast::SDK::JsonRepresentation
+          collection :user_sets, decorator: UserSetInfo, class: OpenStruct
+        end
+
+        class WhiteListedUser < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :identifier_type, as: :type
+          property :identifier
+          property :activation_code
+        end
+
+        class WhiteListedUserList < Novacast::SDK::JsonRepresentation
+          collection :white_listed_users, decorator: WhiteListedUser, class: OpenStruct
+        end
+
+        class Enrollment < Novacast::SDK::JsonRepresentation
+          property :account_type
+          property :account_uid
         end
 
         #
@@ -134,9 +182,36 @@ module Novacast
         end
 
         class Event < EventInfo
+          property :asset_bundle_uid,   exec_context: :decorator
+          property :user_set_uid,       exec_context: :decorator
+
           collection :event_sessions, decorator: EventSessionInfo, class: OpenStruct
           collection :event_pages,    decorator: EventPage,        class: OpenStruct
           collection :public_aliases, decorator: PublicAlias,      class: OpenStruct
+
+          def asset_bundle_uid
+            represented.asset_bundle.uid
+          end
+
+          def asset_bundle_uid=(val)
+            if represented.asset_bundle
+              represented.asset_bundle.uid = val
+            else
+              represented.asset_bundle_uid = val
+            end
+          end
+
+          def user_set_uid
+            represented.user_set ? represented.user_set.uid : nil
+          end
+
+          def user_set_uid=(val)
+            if represented.user_set
+              represented.user_set.uid = val
+            else
+              represented.user_set_uid = val
+            end
+          end
         end
 
         class EventList < Novacast::SDK::JsonRepresentation

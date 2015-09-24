@@ -7,6 +7,20 @@ module Novacast
         ################ Authentication Services ###################
         #
 
+        ############### Objects ###################
+
+        class Domain < Novacast::SDK::JsonRepresentation
+          property :id
+          property :key
+          property :name
+        end
+
+        class User < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :identifier
+          property :domain_id
+        end
+
         ########### Request Resources ############
 
         #
@@ -45,72 +59,123 @@ module Novacast
         ############### Response Resources ###################
 
         class SignUpResponse < Novacast::SDK::JsonRepresentation
-          property :success
-          property :message
+          property :user, decorator: User, class: OpenStruct
         end
 
         class LoginResponse < Novacast::SDK::JsonRepresentation
-          property :success
-          property :message
+          property :user, decorator: User, class: OpenStruct
           property :token
         end
 
         class LogoutResponse < Novacast::SDK::JsonRepresentation
-          property :success
+          property :token
+          property :revoked_at
         end
 
         class ValidateTokenResponse < Novacast::SDK::JsonRepresentation
-          property :valid
-          property :user_uid
-          property :message
+          property :user, decorator: User, class: OpenStruct
         end
-
 
         #
         ############# Authorization Services ########################
         #
 
-        ################ Request Resources #################
+        ############### Objects ###################
 
-        class UserRolePermissionsRequest < Novacast::SDK::JsonRepresentation
-          property :user_id
+        # Role Set
+        class AccessRoleSet < Novacast::SDK::JsonRepresentation
+          property :key
+          property :desc
         end
 
-        class UserPermissionsRequest < Novacast::SDK::JsonRepresentation
-          property :user_id
-        end
-
-        class UserPermissionsValidationRequest < Novacast::SDK::JsonRepresentation
-          property :user_id
-          property :permission
-          property :resource
-        end
-
-        class AccessRoleRepresenter < Novacast::SDK::JsonRepresentation
-          property :domain_id
+        # Role
+        class AccessRole < Novacast::SDK::JsonRepresentation
+          property :role_set_id
           property :name
           property :desc
         end
 
-        class AccessPermissionRepresenter < Novacast::SDK::JsonRepresentation
+        # Role List
+        class AccessRoleList < Novacast::SDK::JsonRepresentation
+          collection :roles, decorator: AccessRole, class: OpenStruct
+        end
+
+        # Permission
+        class AccessPermission < Novacast::SDK::JsonRepresentation
           property :name
           property :desc
         end
 
-        class AccessResourceRepresenter < Novacast::SDK::JsonRepresentation
+        # Resource
+        class AccessResource < Novacast::SDK::JsonRepresentation
           property :name
           property :desc
         end
 
-        class AccessRolePermissionRepresenter < Novacast::SDK::JsonRepresentation
+        # Role Permission
+        class AccessRolePermission < Novacast::SDK::JsonRepresentation
           property :role_id
           property :permission_id
+        end
+
+        # Role Permission List
+        class AccessRolePermissionList < Novacast::SDK::JsonRepresentation
+          collection :role_permissions, decorator: AccessRolePermission, class: OpenStruct
+        end
+
+        # User and Role mapping
+        class AccessUserRole < Novacast::SDK::JsonRepresentation
+          property :user_uid
+          property :role_id
           property :resource_id
         end
 
-        class AccessUserRoleRepresenter < Novacast::SDK::JsonRepresentation
-          property :user_id
-          property :role_id
+        # User and Role mapping with names
+        class UserRole < Novacast::SDK::JsonRepresentation
+          property :role_name, as: :name
+          property :role_desc, as: :desc
+          property :resource_name, as: :resource
+        end
+
+        # User's role and permissions on resources
+        class UserRolePermission < UserRole
+          property :permissions
+        end
+
+        # Role and its associated permissions
+        #
+        # @example
+        # name: 'EventAdmin'
+        # permissions: ["EditEvent", "DeleteEvent"]
+        class RolePermissions < Novacast::SDK::JsonRepresentation
+          property :name
+          property :permissions
+        end
+
+        class UserPermission < Novacast::SDK::JsonRepresentation
+          property :resource
+          property :permissions
+        end
+
+        # User and Role mapping List
+        class AccessUserRoleList < Novacast::SDK::JsonRepresentation
+          collection :user_roles, decorator: AccessUserRole, class: OpenStruct
+        end
+
+        ################ Request Resources #################
+
+        class UserRolePermissionsRequest < Novacast::SDK::JsonRepresentation
+          property :user_uid
+        end
+
+        class UserPermissionsRequest < Novacast::SDK::JsonRepresentation
+          property :user_uid
+        end
+
+        class UserPermissionsValidationRequest < Novacast::SDK::JsonRepresentation
+          property :user_uid
+          property :permission
+          property :resource
         end
 
         class GenericAccessObjRequest < Novacast::SDK::JsonRepresentation
@@ -120,41 +185,31 @@ module Novacast
         class CreateRolePermissionRequest < Novacast::SDK::JsonRepresentation
           property :role
           property :permission
-          property :resource
         end
 
         class CreateUserRoleRequest < Novacast::SDK::JsonRepresentation
-          property :user_id
+          property :user_uid
+          property :role_set
           property :role
+          property :resource
         end
 
         ############### Response Resources ###################
 
-        class PermissionRepresenter < Novacast::SDK::JsonRepresentation
-          property :permission
-          property :resource
-        end
-
-        class Permissions < OpenStruct
-        end
-
-        class RolePermissionRepresenter < Novacast::SDK::JsonRepresentation
-          property :role_name
-          collection :permissions, extend: PermissionRepresenter, class: Permissions
-        end
-
-        class RolePermissions < OpenStruct
+        class UserRolesResponse < Novacast::SDK::JsonRepresentation
+          property   :uid, as: :user_uid
+          collection :user_roles, as: :roles, decorator: UserRole, class: OpenStruct
         end
 
         class UserRolePermissionsResponse < Novacast::SDK::JsonRepresentation
-          collection :roles, extend: RolePermissionRepresenter,class: RolePermissions
+          collection :roles, decorator: UserRolePermission, class: OpenStruct
         end
 
         class UserPermissionsResponse < Novacast::SDK::JsonRepresentation
-          collection :permissions, extend: PermissionRepresenter, class: Permissions
+          collection :user_permissions, decorator: UserPermission, class: OpenStruct
         end
 
-        class UserPermissionsValidationResponse < Novacast::SDK::JsonRepresentation
+        class UserPermissionValidationResponse < Novacast::SDK::JsonRepresentation
           property :valid
         end
 

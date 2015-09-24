@@ -4,11 +4,11 @@ module Novacast
       module Operations
         def init_op
           @access_obj_representer = {
-              'access_role' => Resources::AccessRoleRepresenter,
-              'access_permission' => Resources::AccessPermissionRepresenter,
-              'access_resource' => Resources::AccessResourceRepresenter,
-              'access_role_permission' => Resources::AccessRolePermissionRepresenter,
-              'access_user_role' => Resources::AccessUserRoleRepresenter
+              'access_role' => Resources::AccessRole,
+              'access_permission' => Resources::AccessPermission,
+              'access_resource' => Resources::AccessResource,
+              'access_role_permission' => Resources::AccessRolePermission,
+              'access_user_role' => Resources::AccessUserRole
           }
         end
 
@@ -26,7 +26,7 @@ module Novacast
           }
           op.response_representation = Resources::SignUpResponse
 
-          self.execute_operation op
+          op
         end
 
         def oauth_signup(domain_name, provider_name, access_token)
@@ -43,7 +43,7 @@ module Novacast
           }
           op.response_representation = Resources::SignUpResponse
 
-          self.execute_operation op
+          op
         end
 
         def novacast_login(domain_name, identifier, password)
@@ -60,7 +60,7 @@ module Novacast
           }
           op.response_representation = Resources::LoginResponse
 
-          self.execute_operation op
+          op
         end
 
         def oauth_login(domain_name, provider_name, access_token)
@@ -77,7 +77,7 @@ module Novacast
           }
           op.response_representation = Resources::LoginResponse
 
-          self.execute_operation op
+          op
         end
 
         def get_guest_account
@@ -96,7 +96,7 @@ module Novacast
           }
           op.response_representation = Resources::LogoutResponse
 
-          self.execute_operation op
+          op
         end
 
         # @param [String] access_token access_token
@@ -106,57 +106,99 @@ module Novacast
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::ValidateTokenRequest
-          op.query             = {
-              :access_token => access_token,
-              :app_token => @app_token
-          }
+          op.use_app_credentials     = true
+          op.query                   = { access_token: access_token }
           op.response_representation = Resources::ValidateTokenResponse
 
-          self.execute_operation op
+          op
         end
 
-        def get_user_role_permissions(user_id)
+        #
+        # Domain Operations
+        #
+
+        def create_domain(key, name)
+          path = '/domains'
+          op   = Novacast::SDK::Operation.new path, :post
+
+          op.request_representation  = Resources::Domain
+          op.request_wrap            = :domain
+          op.request_obj             = { key: key, name: name }
+          op.response_representation = Resources::Domain
+
+          op
+        end
+
+        def get_domain(domain_id)
+          path = '/domains/{domain_id}'
+          op   = Novacast::SDK::Operation.new path, :get
+
+          op.response_representation = Resources::Domain
+          op.params[:domain_id]      = domain_id
+
+          op
+        end
+
+        def get_domain_by_key(key)
+          path = '/domains/query'
+          op   = Novacast::SDK::Operation.new path, :get
+
+          op.response_representation = Resources::Domain
+          op.query                   = { key: key }
+
+          op
+        end
+
+        #
+        # Role/Permission Operations
+        #
+
+        def get_user_role_permissions(user_uid, resources = nil, permissions = nil)
           path = 'access/get_user_role_permissions'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::UserRolePermissionsRequest
           op.query             = {
-              :user_id => user_id
+              :user_uid        => user_uid,
+              :'resources[]'   => Array.wrap(resources),
+              :'permissions[]' => Array.wrap(permissions)
           }
           op.response_representation = Resources::UserRolePermissionsResponse
 
-          self.execute_operation op
+          op
         end
 
-        def get_user_permissions(user_id)
+        def get_user_permissions(user_uid, resources = nil, permissions = nil)
           path = 'access/get_user_permissions'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::UserPermissionsRequest
           op.query             = {
-              :user_id => user_id
+              :user_uid        => user_uid,
+              :'resources[]'   => Array.wrap(resources),
+              :'permissions[]' => Array.wrap(permissions)
           }
           op.response_representation = Resources::UserPermissionsResponse
 
-          self.execute_operation op
+          op
         end
 
-        # @param [Integer] user_id
+        # @param [Integer] user_uid
         # @param [String] permission The Permissions in question
         # @param [String] resource The resource to be tested for given permission
-        def validate_permissions_for_user(user_id, permission, resource)
+        def validate_permissions_for_user(user_uid, permission, resource)
           path = 'access/validate_permissions_for_user'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.request_representation  = Resources::UserPermissionsValidationRequest
           op.query             = {
-              :user_id => user_id,
+              :user_uid => user_uid,
               :permission => permission,
               :resource => resource
           }
           op.response_representation = Resources::UserPermissionsValidationResponse
 
-          self.execute_operation op
+          op
         end
 
         def create_role_for_domain(domain_id, role_name, role_desc)
@@ -179,12 +221,17 @@ module Novacast
         end
 
         def create_access_resource(name, desc)
-          obj = {
-              :name => name,
-              :desc => desc
-          }
+          path = '/access_resources'
+          op   = Novacast::SDK::Operation.new path, :post
 
-          generic_resource_request('access_resource', :post, nil, obj)
+          op.request_representation = Resources::AccessResource
+          op.request_obj            = {
+            :name => name,
+            :desc => desc
+          }
+          op.response_representation  = Resources::AccessResource
+
+          op
         end
 
         def create_access_role_permission(role_id, permission_id, resource_id)
@@ -197,9 +244,9 @@ module Novacast
           generic_resource_request('access_role_permission', :post, nil, obj)
         end
 
-        def create_access_user_role(user_id, role_id)
+        def create_access_user_role(user_uid, role_id)
           obj = {
-              :user_id => user_id,
+              :user_uid => user_uid,
               :role_id => role_id
           }
 
@@ -220,7 +267,7 @@ module Novacast
 
         #
         # This could be confusing but done in flavor of genericity
-        # for access_user_role: id = user_id
+        # for access_user_role: id = user_uid
         # for access_role: id = domain_id
         # all other objects, this operation is invalid
         #
@@ -241,21 +288,23 @@ module Novacast
           }
           op.response_representation = Resources::GenericAccessObjResponse
 
-          self.execute_operation op
+          op
         end
 
-        def set_role_for_user(user_id, role)
+        def set_role_for_user(user_uid, role_set, role, resource)
           path = 'access/set_role_for_user'
           op   = Novacast::SDK::Operation.new path, :post
 
           op.request_representation  = Resources::CreateUserRoleRequest
           op.request_obj             = {
-              :user_id => user_id,
-              :role => role
+              user_uid: user_uid,
+              role_set: role_set,
+              role:     role,
+              resource: resource
           }
-          op.response_representation = Resources::GenericAccessObjResponse
+          op.response_representation = Resources::UserRolesResponse
 
-          self.execute_operation op
+          op
         end
 
         private
@@ -289,7 +338,7 @@ module Novacast
             end
             op.response_representation = Resources::GenericAccessObjResponse
 
-            self.execute_operation op
+            op
           end
         end
 
