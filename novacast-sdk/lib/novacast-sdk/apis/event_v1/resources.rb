@@ -271,6 +271,7 @@ module Novacast
         class QuestionSubmission < Novacast::SDK::JsonRepresentation
           property :user_uid
           property :answer
+          property :created_at
           property :question_content_type, extend: QuestionContentType, class: OpenStruct
         end
 
@@ -291,6 +292,10 @@ module Novacast
 
         class QuestionSetContent < QuestionSet
           collection :question_contents, extend: QuestionContent, class: OpenStruct
+        end
+
+        class QuestionContentTypeList < Novacast::SDK::JsonRepresentation
+          collection :question_content_types, extend: QuestionContentType, class: OpenStruct
         end
 
         class QuestionSetList < Novacast::SDK::JsonRepresentation
