@@ -57,6 +57,40 @@ module Novacast
           end
         end
 
+        class SessionPageException < Novacast::SDK::JsonRepresentation
+          property :event_page_path,  exec_context: :decorator
+          property :session_uid,      exec_context: :decorator
+          property :session_pathname, exec_context: :decorator
+
+          def event_page_path
+            represented.event_page.path
+          end
+
+          def event_page_path=(val)
+            represented.event_page_path = val
+          end
+
+          def session_uid
+            represented.event_session.uid
+          end
+
+          def session_uid=(val)
+            represented.session_uid = val
+          end
+
+          def session_pathname
+            represented.event_session.pathname
+          end
+
+          def session_pathname=(val)
+            represented.session_pathname = val
+          end
+        end
+
+        class PageExceptionList < Novacast::SDK::JsonRepresentation
+          collection :exceptions, decorator: SessionPageException, class: OpenStruct
+        end
+
         class EventInfo < Novacast::SDK::JsonRepresentation
           property :uid
           property :name
