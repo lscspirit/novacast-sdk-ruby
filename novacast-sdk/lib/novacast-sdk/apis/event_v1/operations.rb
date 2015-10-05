@@ -41,17 +41,19 @@ module Novacast
           op   = Novacast::SDK::Operation.new path, :get
           op.response_representation = Resources::Event
           op.params[:event_uid]      = event_uid
+          op.query                   = { access_token: access_token }
 
           op
         end
 
-        def get_event_content(event_uid, content_path)
+        def get_event_content(event_uid, content_path, csrf_token)
           path = '/events/{event_uid}/contents/{content_path}'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.response_representation = Resources::EventContent
           op.params[:event_uid]      = event_uid
           op.params[:content_path]   = content_path
+          op.query                   = { access_token: access_token, csrf_token: csrf_token }
 
           op
         end
@@ -63,6 +65,7 @@ module Novacast
           op.response_representation = Resources::PageRuntime
           op.params[:event_uid]      = event_uid
           op.params[:page_path]      = page_path
+          op.query                   = { access_token: access_token }
 
           op
         end
@@ -73,6 +76,7 @@ module Novacast
 
           op.response_representation = Resources::EventSession
           op.params[:session_uid]    = session_uid
+          op.query                   = { access_token: access_token }
 
           op
         end
@@ -83,6 +87,26 @@ module Novacast
 
           op.response_representation = Resources::PageRuntime
           op.params[:session_uid]    = session_uid
+          op.query                   = { access_token: access_token }
+
+          op
+        end
+
+        #
+        # Attendances
+        #
+
+        def track_attendance(event_uid, session_uid, client_session_id, user_data = {})
+          path = '/events/{event_uid}/attendances/track'
+          op   = Novacast::SDK::Operation.new path, :post
+
+          op.params[:event_uid] = event_uid
+
+          op.request_obj = user_data.merge({
+            session_uid:       session_uid,
+            client_session_id: client_session_id
+          })
+          op.query      = { access_token: access_token }
 
           op
         end

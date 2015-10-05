@@ -44,6 +44,8 @@ module Novacast
 
           property :session_uid, exec_context: :decorator
 
+          property :public
+
           def session_uid
             represented.event_session ? represented.event_session.uid : nil
           end
@@ -167,6 +169,7 @@ module Novacast
         end
 
         class PageRuntime < Novacast::SDK::JsonRepresentation
+          property   :user_uid
           property   :session_uid
           collection :modules
         end
@@ -256,6 +259,8 @@ module Novacast
         class EventContent < Novacast::SDK::JsonRepresentation
           property :type
           property :value
+          property :public
+          property :session_uid
         end
 
         #
