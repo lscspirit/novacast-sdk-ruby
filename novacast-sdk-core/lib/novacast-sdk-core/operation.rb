@@ -64,7 +64,7 @@ module Novacast
         elsif @request_obj.nil?
           nil
         elsif @request_representation.nil?
-          @request_obj.respond_to?(:to_json) ? @response_obj.to_json : @request_obj.to_s
+          @request_obj.respond_to?(:to_json) ? @request_obj.to_json : @request_obj.to_s
         else
           @request_representation.new(@request_obj).to_json(wrap: @request_wrap)
         end
