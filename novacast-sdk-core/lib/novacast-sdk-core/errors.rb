@@ -16,5 +16,6 @@ module Novacast
     class MissingParameterError < Error;  DEFAULT_STATUS = :bad_request;            end
     class NoAccessError < Error;          DEFAULT_STATUS = :unauthorized;           end
     class UnauthorizedAppError < Error;   DEFAULT_STATUS = :unauthorized;           end
+    class InvalidAccessTokenError < Error; DEFAULT_STATUS = :unauthorized;          end
   end
 end
