@@ -1,3 +1,4 @@
+require 'novacast-sdk/apis/event_v1/errors'
 require 'novacast-sdk/apis/event_v1/resources'
 require 'novacast-sdk/apis/event_v1/operations'
 

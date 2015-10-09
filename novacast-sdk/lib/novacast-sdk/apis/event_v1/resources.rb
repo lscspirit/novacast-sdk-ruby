@@ -259,6 +259,7 @@ module Novacast
         class EventContent < Novacast::SDK::JsonRepresentation
           property :type
           property :value
+          property :content_path
           property :public
           property :session_uid
         end
