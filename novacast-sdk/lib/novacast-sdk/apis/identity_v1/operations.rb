@@ -99,6 +99,17 @@ module Novacast
           op
         end
 
+        def get_account(account_uid)
+          path = 'accounts/{account_uid}'
+          op   = Novacast::SDK::Operation.new path, :get
+
+          op.use_app_credentials     = true
+          op.params[:account_uid]    = account_uid
+          op.response_representation = Resources::User
+
+          op
+        end
+
         # @param [String] access_token access_token
         #
         def validate_token(access_token)
