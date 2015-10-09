@@ -46,14 +46,14 @@ module Novacast
           op
         end
 
-        def get_event_content(event_uid, content_path, csrf_token)
+        def get_event_content(event_uid, content_path)
           path = '/events/{event_uid}/contents/{content_path}'
           op   = Novacast::SDK::Operation.new path, :get
 
           op.response_representation = Resources::EventContent
           op.params[:event_uid]      = event_uid
           op.params[:content_path]   = content_path
-          op.query                   = { access_token: access_token, csrf_token: csrf_token }
+          op.query                   = { access_token: access_token }
 
           op
         end
