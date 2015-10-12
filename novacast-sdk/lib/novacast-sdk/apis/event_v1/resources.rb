@@ -19,6 +19,38 @@ module Novacast
         # Event Resources
         #
 
+        class PageMapping < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :type
+          property :key
+          property :event_page_path, exec_context: :decorator
+          property :session_uid,     exec_context: :decorator
+
+          def event_page_path
+            represented.event_page.path
+          end
+
+          def event_page_path=(val)
+            represented.event_page_path = val
+          end
+
+          def session_uid
+            represented.event_session ? represented.event_session.uid : nil
+          end
+
+          def session_uid=(val)
+            if represented.event_session
+              represented.event_session.uid = val
+            else
+              represented.session_uid = val
+            end
+          end
+        end
+
+        class PageMappingList < Novacast::SDK::JsonRepresentation
+          collection :usages, decorator: PageMapping, class: OpenStruct
+        end
+
         class PageContent < Novacast::SDK::JsonRepresentation
           property :locale
           property :content
@@ -38,10 +70,8 @@ module Novacast
           end
         end
 
-        class EventPage < Novacast::SDK::JsonRepresentation
+        class EventPageInfo < Novacast::SDK::JsonRepresentation
           property :path
-          property :page_config_json, as: :page_config
-
           property :session_uid, exec_context: :decorator
 
           property :public
@@ -57,6 +87,12 @@ module Novacast
               represented.session_uid = val
             end
           end
+        end
+
+        class EventPage < EventPageInfo
+          property :page_config_json, as: :page_config
+
+          collection :mappings, decorator: PageMapping, class: OpenStruct
         end
 
         class SessionPageException < Novacast::SDK::JsonRepresentation
@@ -224,8 +260,9 @@ module Novacast
           property :user_set_uid,       exec_context: :decorator
 
           collection :event_sessions, decorator: EventSessionInfo, class: OpenStruct
-          collection :event_pages,    decorator: EventPage,        class: OpenStruct
+          collection :event_pages,    decorator: EventPageInfo,    class: OpenStruct
           collection :public_aliases, decorator: PublicAlias,      class: OpenStruct
+          collection :page_mappings,  decorator: PageMapping,      class: OpenStruct
 
           def asset_bundle_uid
             represented.asset_bundle.uid
@@ -262,6 +299,7 @@ module Novacast
           property :content_path
           property :public
           property :session_uid
+          property :mapping_uid
         end
 
         #

@@ -10,8 +10,9 @@ module Novacast
       attr_accessor :request_obj, :request_representation, :response_representation
       attr_accessor :request, :response
       attr_reader   :request_body, :response_obj
+      attr_reader   :options
 
-      def initialize(path, method = :get, options = nil)
+      def initialize(path, method = :get, options = {})
         @path_template = Addressable::Template.new path
         self.method    = method
         @options = options

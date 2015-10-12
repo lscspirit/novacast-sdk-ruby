@@ -1,3 +1,5 @@
+require 'novacast-sdk/event/request_builder'
+
 module Novacast
   module SDK
     module Event
@@ -10,12 +12,21 @@ module Novacast
       end
 
       class Client < Novacast::SDK::Client
+        def initialize(opts = {})
+          super opts
+          @request_builder = Novacast::SDK::Event::RequestBuilder.new self
+        end
+
         def access_token=(access_token)
           @access_token = access_token
         end
 
         def access_token
-          @access_token || raise(RuntimeError, 'Access token not found. Please set the token with Client#access_token=')
+          @access_token
+        end
+
+        def access_token!
+          access_token || raise(RuntimeError, 'Access token not found. Please set the token with Client#access_token=')
         end
 
         private
