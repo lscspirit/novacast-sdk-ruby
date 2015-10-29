@@ -132,6 +132,7 @@ module Novacast
         class EventInfo < Novacast::SDK::JsonRepresentation
           property :uid
           property :name
+          property :stage
         end
 
         class PublicAlias < Novacast::SDK::JsonRepresentation
@@ -364,6 +365,7 @@ module Novacast
 
         class QuestionSet < Novacast::SDK::JsonRepresentation
           property :uid
+          property :uid_rn, as: 'rn'
           property :label
           property :state
         end
