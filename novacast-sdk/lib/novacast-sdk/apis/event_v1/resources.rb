@@ -155,6 +155,7 @@ module Novacast
 
         class UserSetInfo < Novacast::SDK::JsonRepresentation
           property :uid
+          property :uid_rn, as: 'rn'
           property :label
           property :access
           property :enrollment
@@ -395,6 +396,7 @@ module Novacast
 
         class Slide < Novacast::SDK::JsonRepresentation
           property :uid
+          property :uid_rn, as: 'rn'
           property :page
           property :url
           property :thumb_url
@@ -417,20 +419,23 @@ module Novacast
 
         class StreamSource < Novacast::SDK::JsonRepresentation
           property :uid
+          property :uid_rn, as: 'rn'
           property :url
           property :source
         end
 
-        class StreamMedium < Novacast::SDK::JsonRepresentation
+        class StreamMediumInfo < Novacast::SDK::JsonRepresentation
           property :uid
           property :uid_rn, as: 'rn'
           property :label
+        end
 
+        class StreamMedium < StreamMediumInfo
           collection :stream_sources, decorator: StreamSource, class: OpenStruct
         end
 
         class StreamMediumList < Novacast::SDK::JsonRepresentation
-          collection :stream_media, decorator: StreamMedium, class: OpenStruct
+          collection :stream_media, decorator: StreamMediumInfo, class: OpenStruct
         end
       end
     end
