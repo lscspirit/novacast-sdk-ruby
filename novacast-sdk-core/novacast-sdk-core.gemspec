@@ -5,7 +5,7 @@ require 'novacast-sdk-core/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'novacast-sdk-core'
-  spec.version       = Novacast::SDK::Core::VERSION
+  spec.version       = NovacastSDK::Core::VERSION
   spec.authors       = ['lscspirit']
   spec.email         = ['lscspirit@hotmail.com']
 
@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'representable', '~> 2.0'
   spec.add_dependency 'addressable',   '~> 2.0'
   spec.add_dependency 'virtus', '~> 1.0'
 end

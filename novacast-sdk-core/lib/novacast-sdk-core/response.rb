@@ -1,5 +1,5 @@
-module Novacast
-  module SDK
+module NovacastSDK
+  module Client
     class Response
       extend Forwardable
 
@@ -13,7 +13,8 @@ module Novacast
       end
 
       def success?
-        (200..299).include? code.to_i
+        status_code = code.to_i
+        status_code >= 200 && status_code < 300
       end
     end
   end
