@@ -90,7 +90,7 @@ module NovacastSDK
             false
           end
         else # model
-          model = self.class.api_model_module.const_get(type).new
+          model = self.class.api_model_module.const_get(type)
           model.new value
       end
     end
