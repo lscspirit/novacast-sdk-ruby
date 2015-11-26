@@ -1,5 +1,3 @@
-require 'novacast-sdk-core'
-
 module NovacastSDK
   module Rspec
     class Client < NovacastSDK::BaseModel

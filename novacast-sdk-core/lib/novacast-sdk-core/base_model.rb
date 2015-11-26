@@ -74,7 +74,15 @@ module NovacastSDK
     def _deserialize(type, value)
       case type.to_sym
         when :DateTime
-          value.is_a?(DateTime) ? value : DateTime.parse(value)
+          if value.is_a?(DateTime)
+            value
+          elsif value.is_a?(Integer) || value.respond_to?(:to_i)
+            Time.at(value.to_i).to_datetime
+          elsif value.is_a?(String)
+            DateTime.parse(value)
+          else
+            raise "cannot deserialize '#{value}' into a DateTime property"
+          end
         when :Date
           value.is_a?(Date) ? value : Date.parse(value)
         when :String
