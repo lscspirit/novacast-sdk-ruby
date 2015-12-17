@@ -77,11 +77,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -120,11 +115,6 @@ module NovacastSDK
         op.body = info.to_json
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -248,11 +238,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -299,11 +284,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -344,16 +324,54 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
         
         NovacastSDK::IdentityV1::Models::RoleResourcePermissionsList.from_json resp.body
+        
+      end
+
+      # 
+      # Assign a role to an account
+      # @param account_uid uid of the Account
+      # @param role role data
+      # @param [Hash] opts the optional parameters
+      # @return [RoleResourcePermissions]
+      def assign_account_role(account_uid, role, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "role"' if role.nil?
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/accounts/{account_uid}/roles', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['account_uid'] = account_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = role.to_json
+        
+
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::IdentityV1::Models::RoleResourcePermissions.from_json resp.body
         
       end
 
@@ -386,11 +404,6 @@ module NovacastSDK
         # http body (model)
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -435,11 +448,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -479,11 +487,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -521,11 +524,6 @@ module NovacastSDK
         # http body (model)
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -565,11 +563,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -608,11 +601,6 @@ module NovacastSDK
         op.body = permission.to_json
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -657,11 +645,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -699,11 +682,6 @@ module NovacastSDK
         # http body (model)
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -743,11 +721,6 @@ module NovacastSDK
         op.body = resource.to_json
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -792,11 +765,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -835,11 +803,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -877,11 +840,6 @@ module NovacastSDK
         # http body (model)
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -922,11 +880,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -964,11 +917,6 @@ module NovacastSDK
         # http body (model)
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -1008,11 +956,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -1050,11 +993,6 @@ module NovacastSDK
         # http body (model)
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -1099,11 +1037,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -1147,11 +1080,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -1190,11 +1118,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -1232,11 +1155,6 @@ module NovacastSDK
         # http body (model)
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op
@@ -1281,11 +1199,6 @@ module NovacastSDK
         
 
         
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
 
         resp = call_api op
 
@@ -1323,11 +1236,6 @@ module NovacastSDK
         # http body (model)
         
 
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
         
 
         resp = call_api op

@@ -61,6 +61,15 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        :assign_account_role => {
+          
+          200 => 'RoleResourcePermissions',
+          
+          201 => 'RoleResourcePermissions',
+          
+          0 => 'Error'
+          
+        }, 
         :get_account_user_roles => {
           
           200 => 'AccessUserRoleList',
@@ -226,7 +235,7 @@ module NovacastSDK
         resp_type = find_response_type api, status_code
 
         NovacastSDK::Utils.type_check resp_hash, resp_type do |model_name|
-          NovacastSDK::IdentityV1::Models.const_get(model_name).model_properties
+          NovacastSDK::IdentityV1::Models.const_get(model_name)
         end
       end
 
@@ -252,9 +261,9 @@ module NovacastSDK
         status_code = resolve_status status_code
 
         # raise error if the response definition is not found for this api
-        raise ArgumentError, "Api '#{api}' response definition not found" unless (api = RESPONSES[api.to_sym])
+        raise ArgumentError, "Api '#{api}' response definition not found" unless (api_def = RESPONSES[api.to_sym])
         # raise error if the response type (or a fallback) is not defined for this status code
-        raise ArgumentError, "Status code '#{status_code}' response definition not found for '#{api}'" unless (resp_type = api[status_code] || api[0])
+        raise ArgumentError, "Status code '#{status_code}' response definition not found for '#{api}'" unless (resp_type = api_def[status_code] || api_def[0])
 
         resp_type
       end
@@ -279,7 +288,7 @@ RSpec::Matchers.define :be_api_response do |api, status|
   end
 end
 
-RSpec.shared_examples 'an api response' do |api, status, error_klass_name = nil, error_message = nil|
+RSpec.shared_examples 'a novacast IdentityV1 sdk api' do |api, status, error_klass_name = nil, error_message = nil|
   it "responses in the format defined in api specification for #{api} (#{status})" do
     expect(response.body).to be_api_response(api, status)
   end
