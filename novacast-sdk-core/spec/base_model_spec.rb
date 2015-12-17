@@ -9,7 +9,7 @@ module NovacastSDK
 
       def self.model_properties
         {
-          :'name'      => { base_name: 'name',      type: 'String'  },
+          :'name'      => { base_name: 'name',      type: 'String' },
           :'client_id' => { base_name: 'client_id', type: 'Integer' },
           :'company'   => { base_name: 'company',   type: 'Company' },
           :'employees' => { base_name: 'employees', type: 'Array[String]' },
@@ -26,7 +26,22 @@ module NovacastSDK
       end
 
       def self.model_properties
-        { :'name' => { base_name: 'name', type: 'String' } }
+        { :'name' => { base_name: 'name', type: 'String',  required: true } }
+      end
+    end
+
+    class ComplexModel < NovacastSDK::BaseModel
+      attr_accessor :simple_hash, :object_hash
+
+      def self.api_model_module
+        NovacastSDK::Rspec
+      end
+
+      def self.model_properties
+        {
+          :'simple_hash' => { base_name: 'simple_hash', type: 'Hash[String, String]' },
+          :'object_hash' => { base_name: 'object_hash', type: 'Hash[String, Company]' }
+        }
       end
     end
   end
@@ -95,5 +110,75 @@ RSpec.describe 'BaseModel', '#to_hash' do
   it 'returns the model as a hash with non-primitive array attribute' do
     client = NovacastSDK::Rspec::Client.new leads: [ { name: 'Lead 1' }, { name: 'Lead 2' }]
     expect(client.to_hash).to match(leads: [ { name: 'Lead 1' }, { name: 'Lead 2' }])
+  end
+end
+
+RSpec.describe 'BaseModel', '#valid?' do
+  context 'with required property' do
+    it 'returns true if the required property is present' do
+      comp = NovacastSDK::Rspec::Company.new name: 'Client name'
+      expect(comp.valid?).to eq(true)
+    end
+
+    it 'returns false if the required property is missing' do
+      comp = NovacastSDK::Rspec::Company.new({})
+      expect(comp.valid?).to eq(false)
+    end
+  end
+
+  context 'with optional property' do
+    it 'returns true if the optional property is present' do
+      comp = NovacastSDK::Rspec::Client.new name: 'Client name'
+      expect(comp.valid?).to eq(true)
+    end
+
+    it 'returns true if the optional property is missing' do
+      comp = NovacastSDK::Rspec::Client.new({})
+      expect(comp.valid?).to eq(true)
+    end
+  end
+
+  context 'with Array property' do
+    it 'returns true with valid primitive array values' do
+      client = NovacastSDK::Rspec::Client.new employees: ['Employee 1']
+      expect(client.valid?).to eq(true)
+    end
+
+    it 'returns true with empty array' do
+      client = NovacastSDK::Rspec::Client.new employees: []
+      expect(client.valid?).to eq(true)
+    end
+
+    it 'returns true with valid object array values' do
+      client = NovacastSDK::Rspec::Client.new leads: [ { name: 'Lead 1' } ]
+      expect(client.valid?).to eq(true)
+    end
+
+    it 'returns true with invalid object array values' do
+      client = NovacastSDK::Rspec::Client.new leads: [ { name: nil } ]
+      expect(client.valid?).to eq(false)
+    end
+  end
+
+  context 'with Hash property' do
+    it 'returns true if valid primitive hash value' do
+      complex = NovacastSDK::Rspec::ComplexModel.new simple_hash: { 'key_1' => 'value 1' }
+      expect(complex.valid?).to eq(true)
+    end
+
+    it 'returns false if invalid primitive hash value' do
+      complex = NovacastSDK::Rspec::ComplexModel.new simple_hash: { 'key_1' => nil }
+      expect(complex.valid?).to eq(false)
+    end
+
+    it 'returns true if valid object hash value' do
+      complex = NovacastSDK::Rspec::ComplexModel.new object_hash: { 'object_1' => { name: 'company 1' } }
+      expect(complex.valid?).to eq(true)
+    end
+
+    it 'returns true if invalid object hash value' do
+      complex = NovacastSDK::Rspec::ComplexModel.new object_hash: { 'object_1' => { name: nil } }
+      expect(complex.valid?).to eq(false)
+    end
   end
 end

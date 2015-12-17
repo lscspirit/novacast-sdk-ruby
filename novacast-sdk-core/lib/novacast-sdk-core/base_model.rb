@@ -37,6 +37,18 @@ module NovacastSDK
       build_object obj
     end
 
+    def validate
+      model_module = self.class.api_model_module
+      NovacastSDK::Utils.type_check self.to_hash, self.class.name do |model_name|
+        model_module.const_get(model_name)
+      end
+    end
+
+    def valid?
+      diff = self.validate
+      diff.nil?
+    end
+
     #
     # Serialization
     #
@@ -80,21 +92,42 @@ module NovacastSDK
 
         prop_value = obj.send base_name
 
-        if type =~ /^Array\[(.*)\]/i
+        if prop_value.nil?
+          # property not found on object; do nothing
+        elsif type =~ /^Array\[(.*)\]$/i
+          #
+          # this property if of the Array type
+          #
           if prop_value.is_a?(Array)
-            self.send "#{base_name}=", prop_value.map{ |v| _deserialize($1, v) }
+            self.send "#{base_name}=", prop_value.map{ |v| self.class._deserialize($1, v) }
           elsif prop_value.respond_to?(:each)
             # property is not an array, but responds to :each
             arr_values = []
-            prop_value.each { |v| arr_values << _deserialize($1, v) }
+            prop_value.each { |v| arr_values << self.class._deserialize($1, v) }
             self.send "#{base_name}=", arr_values
           else
             raise "property value is not an array for '#{base_name}'"
           end
-        elsif !prop_value.nil?
-          self.send "#{base_name}=", _deserialize(type, prop_value)
+        elsif type =~ /^Hash\[(.*)(?: ?, ?)(.*)\]$/i
+          #
+          # this property if of the Hash type
+          #
+          if prop_value.respond_to?(:each_pair)
+            hash_values = {}
+            prop_value.each_pair do |key, val|
+              h_key = self.class._deserialize($1, key)
+              h_val = self.class._deserialize($2, val)
+              hash_values[h_key] = h_val
+            end
+            self.send "#{base_name}=", hash_values
+          else
+            raise "property value is not a Hash for '#{base_name}'"
+          end
         else
-          # property not found on object
+          #
+          # Other property types
+          #
+          self.send "#{base_name}=", self.class._deserialize(type, prop_value)
         end
       end
     end
@@ -117,7 +150,24 @@ module NovacastSDK
       klass.new(obj)
     end
 
-    def _deserialize(type, value)
+    # Method to output non-array value in the form of hash
+    # For object, use to_hash. Otherwise, just return the value
+    def _to_hash(value)
+      if value.respond_to? :to_hash
+        value.to_hash
+      else
+        value
+      end
+    end
+
+    def inst_serializer=(klass)
+      raise ArgumentError, 'serializer class must be child class of Novacast::ModelSerializer' unless klass < NovacastSDK::ModelSerializer
+      @inst_serializer = klass
+    end
+
+    def self._deserialize(type, value)
+      return nil if value.nil?
+
       case type.to_sym
         when :DateTime
           if value.is_a?(DateTime)
@@ -143,27 +193,12 @@ module NovacastSDK
           else
             false
           end
+        when :Object
+          value
         else # model
-          model = self.class.api_model_module.const_get(type)
+          model = api_model_module.const_get(type)
           model.new value
       end
-    end
-
-    # Method to output non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    def _to_hash(value)
-      if value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
-    end
-
-    private
-
-    def inst_serializer=(klass)
-      raise ArgumentError, 'serializer class must be child class of Novacast::ModelSerializer' unless klass < NovacastSDK::ModelSerializer
-      @inst_serializer = klass
     end
   end
 end
