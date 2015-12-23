@@ -14,7 +14,7 @@ module NovacastSDK
       type_name_sym = type_name.to_sym
 
       case type_name_sym
-        when :DateTime, :Date, :String, :Integer, :Float, :BOOLEAN
+        when :DateTime, :Date, :String, :Integer, :Float, :BOOLEAN, :File
           primitive_check(target, type_name_sym) ? nil : :invalid_type
         when :Object
           target.nil? ? :invalid_type : nil
@@ -76,6 +76,8 @@ module NovacastSDK
                    Float(target) rescue false
                  when :BOOLEAN
                    !!target == target || target =~ /^(true|t|yes|y|1)$/i
+                 when :File
+                   target.respond_to?(:path) && target.respond_to?(:size) && target.respond_to?(:length)
                  else
                    false
                end
