@@ -32,6 +32,8 @@ module NovacastSDK
         request = case method
                     when :get
                       Net::HTTP::Get.new uri.request_uri
+                    when :put
+                      Net::HTTP::Put.new uri.request_uri
                     else
                       Net::HTTP::Post.new uri.request_uri
                   end
