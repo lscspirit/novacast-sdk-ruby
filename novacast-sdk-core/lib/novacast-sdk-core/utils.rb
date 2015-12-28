@@ -14,7 +14,7 @@ module NovacastSDK
       type_name_sym = type_name.to_sym
 
       case type_name_sym
-        when :DateTime, :Date, :String, :Integer, :Float, :BOOLEAN, :File
+        when :DateTime, :Date, :String, :Integer, :Float, :BOOLEAN, :File, :Byte
           primitive_check(target, type_name_sym) ? nil : :invalid_type
         when :Object
           target.nil? ? :invalid_type : nil
@@ -77,7 +77,9 @@ module NovacastSDK
                  when :BOOLEAN
                    !!target == target || target =~ /^(true|t|yes|y|1)$/i
                  when :File
-                   target.respond_to?(:path) && target.respond_to?(:size) && target.respond_to?(:length)
+                   is_file target
+                 when :Byte
+                   true     # anything can be binary
                  else
                    false
                end
@@ -150,6 +152,15 @@ module NovacastSDK
       end
 
       diff.empty? ? nil : diff
+    end
+
+    # Determines if the target is a file object
+    #
+    # @param target target object
+    #
+    # @return [Boolean] target is a file
+    def self.is_file(target)
+      target.respond_to?(:path) && target.respond_to?(:size) && target.respond_to?(:length)
     end
   end
 end
