@@ -24,6 +24,85 @@ module NovacastSDK
       @serializer_klass
     end
 
+    def self.from_json(json)
+      hash = JSON.parse json
+      self.new hash
+    end
+
+    def self.normalize_type(value, type)
+      return nil if value.nil?
+
+      if type =~ /^Array\[(.*)\]$/i
+        #
+        # Array type
+        #
+
+        if value.respond_to?(:each)
+          arr_vals = []
+          value.each { |v| arr_vals << normalize_type(v, $1) }
+          return arr_vals
+        else
+          raise TypeError, 'cannot normalize value into an array'
+        end
+      elsif type =~ /^Hash\[String(?: ?, ?)(.*)\]$/i
+        #
+        # Hash type
+        #
+
+        if value.respond_to?(:each_pair)
+          hash_val = {}
+          value.each_pair { |key, val| hash_val[key.to_s] = normalize_type(val, $1) }
+          return hash_val
+        else
+          raise TypeError, 'cannot normalize value into a Hash'
+        end
+      else
+        #
+        # Other types
+        #
+
+        begin
+          return case type.to_sym
+                   when :DateTime
+                     if value.is_a?(DateTime)
+                       value
+                     elsif value.is_a?(Integer) || value.respond_to?(:to_i)
+                       Time.at(value.to_i).to_datetime
+                     else
+                       DateTime.parse(value)
+                     end
+                   when :Date
+                     value.is_a?(Date) ? value : Date.parse(value)
+                   when :String
+                     value.to_s
+                   when :Integer
+                     Integer(value)
+                   when :Float
+                     Float(value)
+                   when :BOOLEAN
+                     if value === true || value =~ /^(true|t|yes|y|1)$/i
+                       true
+                     elsif value === false || value =~ /^(false|f|no|n|0)$/i
+                       false
+                     else
+                       raise 'invalid boolean value'
+                     end
+                   when :Object
+                     value
+                   when :File
+                     value.to_s
+                   when :Byte
+                     value
+                   else # model
+                     model = api_model_module.const_get(type)
+                     model.new value
+                 end
+        rescue => ex
+          raise TypeError, "cannot normalize value into a #{type}: #{ex.message}"
+        end
+      end
+    end
+
     #
     # Instance
     #
@@ -39,7 +118,7 @@ module NovacastSDK
 
     def validate
       model_module = self.class.api_model_module
-      NovacastSDK::Utils.type_check self.to_hash, self.class.name do |model_name|
+      NovacastSDK::Utils.type_check self.to_h, self.class.name do |model_name|
         model_module.const_get(model_name)
       end
     end
@@ -54,10 +133,10 @@ module NovacastSDK
     #
 
     def to_json(opts = {})
-      to_hash.to_json
+      to_h.to_json
     end
 
-    def to_hash
+    def to_h
       hash = {}
       self.class.model_properties.each_pair do |key, definition|
         value = self.send(definition[:base_name])
@@ -73,12 +152,7 @@ module NovacastSDK
     end
 
     def to_s
-      to_hash.to_s
-    end
-
-    def self.from_json(json)
-      hash = JSON.parse json
-      self.new hash
+      to_h.to_s
     end
 
     private
@@ -91,44 +165,7 @@ module NovacastSDK
         base_name = definition[:base_name]
 
         prop_value = obj.send base_name
-
-        if prop_value.nil?
-          # property not found on object; do nothing
-        elsif type =~ /^Array\[(.*)\]$/i
-          #
-          # this property if of the Array type
-          #
-          if prop_value.is_a?(Array)
-            self.send "#{base_name}=", prop_value.map{ |v| self.class._deserialize($1, v) }
-          elsif prop_value.respond_to?(:each)
-            # property is not an array, but responds to :each
-            arr_values = []
-            prop_value.each { |v| arr_values << self.class._deserialize($1, v) }
-            self.send "#{base_name}=", arr_values
-          else
-            raise "property value is not an array for '#{base_name}'"
-          end
-        elsif type =~ /^Hash\[(.*)(?: ?, ?)(.*)\]$/i
-          #
-          # this property if of the Hash type
-          #
-          if prop_value.respond_to?(:each_pair)
-            hash_values = {}
-            prop_value.each_pair do |key, val|
-              h_key = self.class._deserialize($1, key)
-              h_val = self.class._deserialize($2, val)
-              hash_values[h_key] = h_val
-            end
-            self.send "#{base_name}=", hash_values
-          else
-            raise "property value is not a Hash for '#{base_name}'"
-          end
-        else
-          #
-          # Other property types
-          #
-          self.send "#{base_name}=", self.class._deserialize(type, prop_value)
-        end
+        self.send "#{base_name}=", self.class.normalize_type(prop_value, type)
       end
     end
 
@@ -151,10 +188,10 @@ module NovacastSDK
     end
 
     # Method to output non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
+    # For object, use to_h. Otherwise, just return the value
     def _to_hash(value)
-      if value.respond_to? :to_hash
-        value.to_hash
+      if value.respond_to? :to_h
+        value.to_h
       else
         value
       end
@@ -163,42 +200,6 @@ module NovacastSDK
     def inst_serializer=(klass)
       raise ArgumentError, 'serializer class must be child class of Novacast::ModelSerializer' unless klass < NovacastSDK::ModelSerializer
       @inst_serializer = klass
-    end
-
-    def self._deserialize(type, value)
-      return nil if value.nil?
-
-      case type.to_sym
-        when :DateTime
-          if value.is_a?(DateTime)
-            value
-          elsif value.is_a?(Integer) || value.respond_to?(:to_i)
-            Time.at(value.to_i).to_datetime
-          elsif value.is_a?(String)
-            DateTime.parse(value)
-          else
-            raise "cannot deserialize '#{value}' into a DateTime property"
-          end
-        when :Date
-          value.is_a?(Date) ? value : Date.parse(value)
-        when :String
-          value.to_s
-        when :Integer
-          value.to_i
-        when :Float
-          value.to_f
-        when :BOOLEAN
-          if value === true || value =~ /^(true|t|yes|y|1)$/i
-            true
-          else
-            false
-          end
-        when :Object
-          value
-        else # model
-          model = api_model_module.const_get(type)
-          model.new value
-      end
     end
   end
 end
