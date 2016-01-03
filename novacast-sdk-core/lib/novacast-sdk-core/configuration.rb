@@ -4,8 +4,6 @@ require 'singleton'
 module NovacastSDK
   module Client
     class Configuration
-      include Singleton
-
       #
       # Attributes
       #
@@ -39,20 +37,6 @@ module NovacastSDK
         # default values
         self.scheme = 'http'
         self.port   = 80
-      end
-
-      #
-      # Make instance methods available as if they are class methods
-      #
-      class << self
-        def method_missing(method_name, *args, &block)
-          config = Configuration.instance
-          if config.respond_to?(method_name)
-            config.send(method_name, *args, &block)
-          else
-            super
-          end
-        end
       end
 
       #

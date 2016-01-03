@@ -1,6 +1,10 @@
 module NovacastSDK
   module IdentityV1
     class DefaultApi < NovacastSDK::Client::BaseClient
+      # SDK Configuration
+      def self.config
+        NovacastSDK::IdentityV1.config
+      end
 
 
       # 

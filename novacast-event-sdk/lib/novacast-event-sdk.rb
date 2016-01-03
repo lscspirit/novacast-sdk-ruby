@@ -99,11 +99,11 @@ require 'novacast-event-sdk/api/default_api'
 module NovacastSDK
   module EventV1
     def self.configure
-      yield NovacastSDK::Client::Configuration if block_given?
+      yield self.config if block_given?
     end
 
     def self.config
-      NovacastSDK::Client::Configuration
+      @config ||= NovacastSDK::Client::Configuration.new
     end
   end
 end

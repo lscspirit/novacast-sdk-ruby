@@ -1,6 +1,10 @@
 module NovacastSDK
   module EventV1
     class DefaultApi < NovacastSDK::Client::BaseClient
+      # SDK Configuration
+      def self.config
+        NovacastSDK::EventV1.config
+      end
 
 
       # 
