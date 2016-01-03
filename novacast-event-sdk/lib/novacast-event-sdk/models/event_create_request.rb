@@ -16,10 +16,10 @@ module NovacastSDK
             :'name' => { base_name: 'name', type: 'String', required: true },
             
             # uid of the asset bundle
-            :'asset_bundle_uid' => { base_name: 'asset_bundle_uid', type: 'String', required: true },
+            :'asset_bundle_uid' => { base_name: 'asset_bundle_uid', type: 'String', required: false },
             
             # uid of the user set
-            :'user_set_uid' => { base_name: 'user_set_uid', type: 'String', required: true }
+            :'user_set_uid' => { base_name: 'user_set_uid', type: 'String', required: false }
             
           }
         end
