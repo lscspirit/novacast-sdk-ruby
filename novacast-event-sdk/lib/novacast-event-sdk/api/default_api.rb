@@ -10,9 +10,8 @@ module NovacastSDK
       # 
       # Get asset bundle with contents
       # @param asset_bundle_uid asset bundle uid
-      # @param [Hash] opts the optional parameters
       # @return [AssetBundle]
-      def get_asset_bundle(asset_bundle_uid, opts = {})
+      def get_asset_bundle(asset_bundle_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "asset_bundle_uid"' if asset_bundle_uid.nil?
@@ -55,16 +54,15 @@ module NovacastSDK
       # @param asset_bundle_uid asset bundle uid
       # @param file_path content path within the bundle
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [BundleContent]
-      def confirm_bundle_content(asset_bundle_uid, file_path, body, opts = {})
+      def confirm_bundle_content(asset_bundle_uid, file_path, body)
         # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
         raise ArgumentError, 'Missing required parameter "asset_bundle_uid"' if asset_bundle_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "file_path"' if file_path.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/assets/{asset_bundle_uid}/confirm/{file_path}', :POST
@@ -106,9 +104,8 @@ module NovacastSDK
       # Get an asset bundle content
       # @param asset_bundle_uid asset bundle uid
       # @param file_path content path within the bundle
-      # @param [Hash] opts the optional parameters
       # @return [BundleContent]
-      def get_bundle_content(asset_bundle_uid, file_path, opts = {})
+      def get_bundle_content(asset_bundle_uid, file_path)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "asset_bundle_uid"' if asset_bundle_uid.nil?
@@ -153,14 +150,13 @@ module NovacastSDK
       # Pre upload asset bundle content
       # @param asset_bundle_uid asset bundle uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [PresignedUpload]
-      def bundle_content_pre_upload(asset_bundle_uid, body, opts = {})
+      def bundle_content_pre_upload(asset_bundle_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "asset_bundle_uid"' if asset_bundle_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/assets/{asset_bundle_uid}/pre_upload', :POST
@@ -199,9 +195,8 @@ module NovacastSDK
 
       # 
       # Get a list of all channel for the current user
-      # @param [Hash] opts the optional parameters
       # @return [ChannelList]
-      def get_channel_list(opts = {})
+      def get_channel_list()
         # checks if all required parameters are set
         
 
@@ -239,9 +234,8 @@ module NovacastSDK
       # 
       # Create a new channel
       # @param channel channel data
-      # @param [Hash] opts the optional parameters
       # @return [Channel]
-      def create_channel(channel, opts = {})
+      def create_channel(channel)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "channel"' if channel.nil?
@@ -283,9 +277,8 @@ module NovacastSDK
       # 
       # Get a channel
       # @param channel_uid uid of the channel
-      # @param [Hash] opts the optional parameters
       # @return [Channel]
-      def get_channel(channel_uid, opts = {})
+      def get_channel(channel_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
@@ -327,14 +320,13 @@ module NovacastSDK
       # Update a channel
       # @param channel_uid uid of the channel
       # @param channel channel data
-      # @param [Hash] opts the optional parameters
       # @return [Channel]
-      def update_channel(channel_uid, channel, opts = {})
+      def update_channel(channel_uid, channel)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "channel"' if channel.nil?
-        
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "channel"' if channel.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}', :PUT
@@ -374,9 +366,8 @@ module NovacastSDK
       # 
       # Get information for all asset bundles in a channel
       # @param channel_uid channel uid
-      # @param [Hash] opts the optional parameters
       # @return [AssetBundleInfoList]
-      def get_asset_bundle_list(channel_uid, opts = {})
+      def get_asset_bundle_list(channel_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
@@ -418,14 +409,13 @@ module NovacastSDK
       # Create a new asset bundle
       # @param channel_uid channel uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [AssetBundleInfo]
-      def create_asset_bundle(channel_uid, body, opts = {})
+      def create_asset_bundle(channel_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/assets', :POST
@@ -465,9 +455,8 @@ module NovacastSDK
       # 
       # Get all events belongs to this channel
       # @param channel_uid channel uid
-      # @param [Hash] opts the optional parameters
       # @return [EventList]
-      def get_channel_events(channel_uid, opts = {})
+      def get_channel_events(channel_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
@@ -509,14 +498,13 @@ module NovacastSDK
       # Create a new event
       # @param channel_uid channel uid
       # @param body event creation request data
-      # @param [Hash] opts the optional parameters
       # @return [EventExtended]
-      def create_event(channel_uid, body, opts = {})
+      def create_event(channel_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/events', :POST
@@ -556,9 +544,8 @@ module NovacastSDK
       # 
       # Get the list of question sets
       # @param channel_uid channel uid
-      # @param [Hash] opts the optional parameters
       # @return [QuestionSetList]
-      def get_question_set_list(channel_uid, opts = {})
+      def get_question_set_list(channel_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
@@ -600,14 +587,13 @@ module NovacastSDK
       # Create a new question set
       # @param channel_uid channel uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [QuestionSetInfo]
-      def create_question_set(channel_uid, body, opts = {})
+      def create_question_set(channel_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/question_sets', :POST
@@ -647,9 +633,8 @@ module NovacastSDK
       # 
       # Get all slide deck for the channel
       # @param channel_uid channel uid
-      # @param [Hash] opts the optional parameters
       # @return [SlideDeckInfoList]
-      def get_slide_deck_list(channel_uid, opts = {})
+      def get_slide_deck_list(channel_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
@@ -691,14 +676,13 @@ module NovacastSDK
       # Create a new slide deck
       # @param channel_uid channel uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [SlideDeckInfo]
-      def create_slide_deck(channel_uid, body, opts = {})
+      def create_slide_deck(channel_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/slide_decks', :POST
@@ -738,9 +722,8 @@ module NovacastSDK
       # 
       # Get all the streams for this channel
       # @param channel_uid channel uid
-      # @param [Hash] opts the optional parameters
       # @return [StreamMediumInfoList]
-      def get_stream_medium_list(channel_uid, opts = {})
+      def get_stream_medium_list(channel_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
@@ -782,14 +765,13 @@ module NovacastSDK
       # Create a new stream medium
       # @param channel_uid channel uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [StreamMediumInfo]
-      def create_stream_medium(channel_uid, body, opts = {})
+      def create_stream_medium(channel_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/streams', :POST
@@ -829,9 +811,8 @@ module NovacastSDK
       # 
       # Get all user sets for channel
       # @param channel_uid channel uid
-      # @param [Hash] opts the optional parameters
       # @return [UserSetList]
-      def get_user_set_list(channel_uid, opts = {})
+      def get_user_set_list(channel_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
@@ -873,14 +854,13 @@ module NovacastSDK
       # Create a new user set
       # @param channel_uid channel uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [UserSetExtended]
-      def create_user_set(channel_uid, body, opts = {})
+      def create_user_set(channel_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/user_sets', :POST
@@ -920,9 +900,8 @@ module NovacastSDK
       # 
       # Get Event with extended details
       # @param event_uid event uid
-      # @param [Hash] opts the optional parameters
       # @return [EventExtended]
-      def get_event(event_uid, opts = {})
+      def get_event(event_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -964,14 +943,13 @@ module NovacastSDK
       # Update an event
       # @param event_uid event uid
       # @param body event update request data
-      # @param [Hash] opts the optional parameters
       # @return [EventExtended]
-      def update_event(event_uid, body, opts = {})
+      def update_event(event_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}', :PUT
@@ -1012,14 +990,13 @@ module NovacastSDK
       # Record user attendance
       # @param event_uid event uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [nil]
-      def track_attendance(event_uid, body, opts = {})
+      def track_attendance(event_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/attendances', :POST
@@ -1061,16 +1038,15 @@ module NovacastSDK
       # @param event_uid event uid
       # @param type page mapping type (&#39;usage&#39; or &#39;path&#39;)
       # @param key page mapping key (usage key or page path name)
-      # @param [Hash] opts the optional parameters
       # @return [EventContent]
-      def get_content_by_mapping(event_uid, type, key, opts = {})
+      def get_content_by_mapping(event_uid, type, key)
         # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "type"' if type.nil?
         
         raise ArgumentError, 'Missing required parameter "key"' if key.nil?
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/contents', :GET
@@ -1086,8 +1062,8 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params[:'type'] = type
-        query_params[:'key'] = key
+        query_params['type'] = type
+        query_params['key'] = key
         op.query = query_params
 
         # http body (model)
@@ -1111,9 +1087,8 @@ module NovacastSDK
       # Get event content by path
       # @param event_uid event uid
       # @param content_path path to access the content
-      # @param [Hash] opts the optional parameters
       # @return [EventContent]
-      def get_content_by_path(event_uid, content_path, opts = {})
+      def get_content_by_path(event_uid, content_path)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -1158,9 +1133,8 @@ module NovacastSDK
       # Get the page content of a event page
       # @param event_uid event uid
       # @param page_path event page path
-      # @param [Hash] opts the optional parameters
       # @return [PageContent]
-      def get_event_page_content(event_uid, page_path, opts = {})
+      def get_event_page_content(event_uid, page_path)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -1206,16 +1180,15 @@ module NovacastSDK
       # @param event_uid event uid
       # @param page_path event page path
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [PageContent]
-      def update_event_page_content(event_uid, page_path, body, opts = {})
+      def update_event_page_content(event_uid, page_path, body)
         # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "page_path"' if page_path.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/page_contents/{page_path}', :PUT
@@ -1257,9 +1230,8 @@ module NovacastSDK
       # Get the session exceptions for a shared session page
       # @param event_uid event uid
       # @param page_path event page path
-      # @param [Hash] opts the optional parameters
       # @return [PageSessionExceptions]
-      def get_page_exceptions(event_uid, page_path, opts = {})
+      def get_page_exceptions(event_uid, page_path)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -1305,16 +1277,15 @@ module NovacastSDK
       # @param event_uid event uid
       # @param page_path event page path
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [PageSessionExceptions]
-      def update_page_exceptions(event_uid, page_path, body, opts = {})
+      def update_page_exceptions(event_uid, page_path, body)
         # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "page_path"' if page_path.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/page_exceptions/{page_path}', :PUT
@@ -1355,9 +1326,8 @@ module NovacastSDK
       # 
       # Get the list of page mappings for the event
       # @param event_uid event uid
-      # @param [Hash] opts the optional parameters
       # @return [PageMappingList]
-      def get_page_mapping_list(event_uid, opts = {})
+      def get_page_mapping_list(event_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -1399,14 +1369,13 @@ module NovacastSDK
       # Create a new page mapping
       # @param event_uid event uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [PageMapping]
-      def create_page_mapping(event_uid, body, opts = {})
+      def create_page_mapping(event_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/page_mappings', :POST
@@ -1447,14 +1416,13 @@ module NovacastSDK
       # Create a new page for a event
       # @param event_uid event uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [EventPage]
-      def create_event_page(event_uid, body, opts = {})
+      def create_event_page(event_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/pages', :POST
@@ -1495,9 +1463,8 @@ module NovacastSDK
       # Get the event page
       # @param event_uid event uid
       # @param page_path event page path
-      # @param [Hash] opts the optional parameters
       # @return [EventPage]
-      def get_event_page(event_uid, page_path, opts = {})
+      def get_event_page(event_uid, page_path)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -1543,16 +1510,15 @@ module NovacastSDK
       # @param event_uid event uid
       # @param page_path event page path
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [EventPage]
-      def update_event_page(event_uid, page_path, body, opts = {})
+      def update_event_page(event_uid, page_path, body)
         # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "page_path"' if page_path.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/pages/{page_path}', :PUT
@@ -1594,9 +1560,8 @@ module NovacastSDK
       # Get runtime by path
       # @param event_uid event uid
       # @param content_path path to access the content
-      # @param [Hash] opts the optional parameters
       # @return [PageRuntime]
-      def get_runtime_by_path(event_uid, content_path, opts = {})
+      def get_runtime_by_path(event_uid, content_path)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -1640,9 +1605,8 @@ module NovacastSDK
       # 
       # Get all sessions for the event
       # @param event_uid event uid
-      # @param [Hash] opts the optional parameters
       # @return [EventSessionList]
-      def get_event_session_list(event_uid, opts = {})
+      def get_event_session_list(event_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -1684,14 +1648,13 @@ module NovacastSDK
       # Create a new session for the event
       # @param event_uid event uid
       # @param body create session request body
-      # @param [Hash] opts the optional parameters
       # @return [EventSession]
-      def create_event_session(event_uid, body, opts = {})
+      def create_event_session(event_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/sessions', :POST
@@ -1732,14 +1695,13 @@ module NovacastSDK
       # Update the event stage
       # @param event_uid event uid
       # @param body event stage update request data
-      # @param [Hash] opts the optional parameters
       # @return [Event]
-      def change_event_stage(event_uid, body, opts = {})
+      def change_event_stage(event_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/stage', :PUT
@@ -1779,9 +1741,8 @@ module NovacastSDK
       # 
       # Get the user set for the event
       # @param event_uid event uid
-      # @param [Hash] opts the optional parameters
       # @return [UserSetExtended]
-      def get_event_user_set(event_uid, opts = {})
+      def get_event_user_set(event_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -1823,14 +1784,13 @@ module NovacastSDK
       # Update a page mapping
       # @param mapping_uid uid of the page mapping
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [PageMapping]
-      def update_page_mapping(mapping_uid, body, opts = {})
+      def update_page_mapping(mapping_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "mapping_uid"' if mapping_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/page_mappings/{mapping_uid}', :PUT
@@ -1870,9 +1830,8 @@ module NovacastSDK
       # 
       # Delete a page mapping
       # @param mapping_uid uid of the page mapping
-      # @param [Hash] opts the optional parameters
       # @return [PageMapping]
-      def delete_page_mapping(mapping_uid, opts = {})
+      def delete_page_mapping(mapping_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "mapping_uid"' if mapping_uid.nil?
@@ -1912,9 +1871,8 @@ module NovacastSDK
 
       # 
       # Get the list of all question content types
-      # @param [Hash] opts the optional parameters
       # @return [QuestionContentTypeList]
-      def get_question_content_types(opts = {})
+      def get_question_content_types()
         # checks if all required parameters are set
         
 
@@ -1952,9 +1910,8 @@ module NovacastSDK
       # 
       # Get a question content
       # @param question_content_uid question content uid
-      # @param [Hash] opts the optional parameters
       # @return [QuestionContent]
-      def get_question_content(question_content_uid, opts = {})
+      def get_question_content(question_content_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
@@ -1996,14 +1953,13 @@ module NovacastSDK
       # Update a question content
       # @param question_content_uid question content uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [QuestionContent]
-      def update_question_content(question_content_uid, body, opts = {})
+      def update_question_content(question_content_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/question_contents/{question_content_uid}', :PUT
@@ -2043,9 +1999,8 @@ module NovacastSDK
       # 
       # Delete a question content
       # @param question_content_uid question content uid
-      # @param [Hash] opts the optional parameters
       # @return [QuestionContent]
-      def delete_question_content(question_content_uid, opts = {})
+      def delete_question_content(question_content_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
@@ -2086,9 +2041,8 @@ module NovacastSDK
       # 
       # Get all submissions for a question content
       # @param question_content_uid question content uid
-      # @param [Hash] opts the optional parameters
       # @return [QuestionSubmissionList]
-      def get_question_submissions(question_content_uid, opts = {})
+      def get_question_submissions(question_content_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
@@ -2130,9 +2084,8 @@ module NovacastSDK
       # Get question content submissions for a user
       # @param question_content_uid question content uid
       # @param user_uid uid of the submitter
-      # @param [Hash] opts the optional parameters
       # @return [QuestionSubmissionList]
-      def get_question_submissions_for_user(question_content_uid, user_uid, opts = {})
+      def get_question_submissions_for_user(question_content_uid, user_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
@@ -2178,16 +2131,15 @@ module NovacastSDK
       # @param question_content_uid question content uid
       # @param user_uid uid of the submitter
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [QuestionSubmission]
-      def create_question_submission(question_content_uid, user_uid, body, opts = {})
+      def create_question_submission(question_content_uid, user_uid, body)
         # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
         raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "user_uid"' if user_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/question_contents/{question_content_uid}/users/{user_uid}/submissions', :POST
@@ -2228,9 +2180,8 @@ module NovacastSDK
       # 
       # Get a question set
       # @param question_set_uid question set uid
-      # @param [Hash] opts the optional parameters
       # @return [QuestionSet]
-      def get_question_set(question_set_uid, opts = {})
+      def get_question_set(question_set_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_set_uid"' if question_set_uid.nil?
@@ -2272,14 +2223,13 @@ module NovacastSDK
       # Update a question set
       # @param question_set_uid question set uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [QuestionSetInfo]
-      def update_question_set(question_set_uid, body, opts = {})
+      def update_question_set(question_set_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "question_set_uid"' if question_set_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/question_sets/{question_set_uid}', :PUT
@@ -2319,9 +2269,8 @@ module NovacastSDK
       # 
       # Delete a question set
       # @param question_set_uid question set uid
-      # @param [Hash] opts the optional parameters
       # @return [QuestionSetInfo]
-      def delete_question_set(question_set_uid, opts = {})
+      def delete_question_set(question_set_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_set_uid"' if question_set_uid.nil?
@@ -2362,9 +2311,8 @@ module NovacastSDK
       # 
       # Get all question contents for the question set
       # @param question_set_uid question set uid
-      # @param [Hash] opts the optional parameters
       # @return [QuestionContentList]
-      def get_contents_for_question_set(question_set_uid, opts = {})
+      def get_contents_for_question_set(question_set_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_set_uid"' if question_set_uid.nil?
@@ -2406,14 +2354,13 @@ module NovacastSDK
       # Create a new question content
       # @param question_set_uid question set uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [QuestionContent]
-      def create_question_content(question_set_uid, body, opts = {})
+      def create_question_content(question_set_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "question_set_uid"' if question_set_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/question_sets/{question_set_uid}/question_contents', :POST
@@ -2454,14 +2401,13 @@ module NovacastSDK
       # Reorder question set contents
       # @param question_set_uid question set uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [QuestionSet]
-      def reorder_question_contents(question_set_uid, body, opts = {})
+      def reorder_question_contents(question_set_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "question_set_uid"' if question_set_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/question_sets/{question_set_uid}/reorder', :POST
@@ -2501,9 +2447,8 @@ module NovacastSDK
       # 
       # Get an event session with extended details
       # @param session_uid event session uid
-      # @param [Hash] opts the optional parameters
       # @return [EventSessionExtended]
-      def get_event_session(session_uid, opts = {})
+      def get_event_session(session_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
@@ -2545,14 +2490,13 @@ module NovacastSDK
       # Update the module configurations for a event session
       # @param session_uid event session uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [SessionModuleList]
-      def update_session_modules(session_uid, body, opts = {})
+      def update_session_modules(session_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/modules', :PUT
@@ -2592,9 +2536,8 @@ module NovacastSDK
       # 
       # Get the page runtime configuration of event session
       # @param session_uid event session uid
-      # @param [Hash] opts the optional parameters
       # @return [SessionRuntime]
-      def get_event_session_runtime(session_uid, opts = {})
+      def get_event_session_runtime(session_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
@@ -2635,9 +2578,8 @@ module NovacastSDK
       # 
       # Get a slide deck
       # @param slide_deck_uid slide deck uid
-      # @param [Hash] opts the optional parameters
       # @return [SlideDeck]
-      def get_slide_deck(slide_deck_uid, opts = {})
+      def get_slide_deck(slide_deck_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "slide_deck_uid"' if slide_deck_uid.nil?
@@ -2679,14 +2621,13 @@ module NovacastSDK
       # Update the slide deck
       # @param slide_deck_uid slide deck uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [SlideDeckInfo]
-      def update_slide_deck(slide_deck_uid, body, opts = {})
+      def update_slide_deck(slide_deck_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "slide_deck_uid"' if slide_deck_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/slide_decks/{slide_deck_uid}', :PUT
@@ -2726,9 +2667,8 @@ module NovacastSDK
       # 
       # Delete a slide deck
       # @param slide_deck_uid slide deck uid
-      # @param [Hash] opts the optional parameters
       # @return [SlideDeckInfo]
-      def delete_slide_deck(slide_deck_uid, opts = {})
+      def delete_slide_deck(slide_deck_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "slide_deck_uid"' if slide_deck_uid.nil?
@@ -2770,14 +2710,13 @@ module NovacastSDK
       # Delete slides from slide deck
       # @param slide_deck_uid slide deck uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [SlideDeck]
-      def delete_slides(slide_deck_uid, body, opts = {})
+      def delete_slides(slide_deck_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "slide_deck_uid"' if slide_deck_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/slide_decks/{slide_deck_uid}/delete_slides', :POST
@@ -2818,14 +2757,13 @@ module NovacastSDK
       # Rearrange the order of slide
       # @param slide_deck_uid slide deck uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [SlideDeck]
-      def rearrange_slides(slide_deck_uid, body, opts = {})
+      def rearrange_slides(slide_deck_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "slide_deck_uid"' if slide_deck_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/slide_decks/{slide_deck_uid}/rearrange', :POST
@@ -2866,14 +2804,13 @@ module NovacastSDK
       # Upload a slide
       # @param slide_deck_uid slide deck uid
       # @param files image files
-      # @param [Hash] opts the optional parameters
       # @return [SlideDeck]
-      def upload_slides(slide_deck_uid, files, opts = {})
+      def upload_slides(slide_deck_uid, files)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "files"' if files.nil?
-        
         raise ArgumentError, 'Missing required parameter "slide_deck_uid"' if slide_deck_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "files"' if files.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/slide_decks/{slide_deck_uid}/upload', :POST
@@ -2912,14 +2849,13 @@ module NovacastSDK
       # Confirm the successful uploading of remote stream source
       # @param stream_source_uid stream source uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [StreamSource]
-      def confirm_stream_source(stream_source_uid, body, opts = {})
+      def confirm_stream_source(stream_source_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "stream_source_uid"' if stream_source_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/stream_sources/{stream_source_uid}/confirm', :POST
@@ -2959,9 +2895,8 @@ module NovacastSDK
       # 
       # Get stream medium object
       # @param stream_medium_uid stream medium uid
-      # @param [Hash] opts the optional parameters
       # @return [StreamMedium]
-      def get_stream_medium(stream_medium_uid, opts = {})
+      def get_stream_medium(stream_medium_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "stream_medium_uid"' if stream_medium_uid.nil?
@@ -3003,14 +2938,13 @@ module NovacastSDK
       # Create a new source for a stream medium
       # @param stream_medium_uid stream medium uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [StreamSource]
-      def create_stream_source(stream_medium_uid, body, opts = {})
+      def create_stream_source(stream_medium_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "stream_medium_uid"' if stream_medium_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/streams/{stream_medium_uid}/sources', :POST
@@ -3051,14 +2985,13 @@ module NovacastSDK
       # Create a stream source for remote resource
       # @param stream_medium_uid stream medium uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [PresignedUpload]
-      def stream_source_pre_upload(stream_medium_uid, body, opts = {})
+      def stream_source_pre_upload(stream_medium_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "stream_medium_uid"' if stream_medium_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/streams/{stream_medium_uid}/sources/pre_upload', :POST
@@ -3098,9 +3031,8 @@ module NovacastSDK
       # 
       # Get a user set with extended details
       # @param user_set_uid user set uid
-      # @param [Hash] opts the optional parameters
       # @return [UserSetExtended]
-      def get_user_set(user_set_uid, opts = {})
+      def get_user_set(user_set_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
@@ -3142,14 +3074,13 @@ module NovacastSDK
       # Update a user set
       # @param user_set_uid user set uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [UserSetExtended]
-      def update_user_set(user_set_uid, body, opts = {})
+      def update_user_set(user_set_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/user_sets/{user_set_uid}', :PUT
@@ -3190,14 +3121,13 @@ module NovacastSDK
       # Enroll an account to a user set
       # @param user_set_uid user set uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [Enrollment]
-      def enroll_to_user_set(user_set_uid, body, opts = {})
+      def enroll_to_user_set(user_set_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/user_sets/{user_set_uid}/enroll', :POST
@@ -3238,14 +3168,13 @@ module NovacastSDK
       # White-list an account in a user set
       # @param user_set_uid user set uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
       # @return [WhiteListedUserList]
-      def white_list_accounts(user_set_uid, body, opts = {})
+      def white_list_accounts(user_set_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
         raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/user_sets/{user_set_uid}/white_list', :POST

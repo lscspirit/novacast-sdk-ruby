@@ -75,6 +75,13 @@ module NovacastSDK
         }, 
         validate_account_permission: {
           
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
           :'resource' => {
             type: 'String',
             path_param: false,
@@ -85,13 +92,6 @@ module NovacastSDK
           :'permission' => {
             type: 'String',
             path_param: false,
-            body_param: false,
-            required: true
-          },
-          
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
             body_param: false,
             required: true
           }
@@ -116,17 +116,17 @@ module NovacastSDK
         }, 
         assign_account_role: {
           
-          :'role' => {
-            type: 'AssignRoleRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'account_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'role' => {
+            type: 'AssignRoleRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -143,17 +143,17 @@ module NovacastSDK
         }, 
         create_account_user_role: {
           
-          :'user_role' => {
-            type: 'AccessRoleResource',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'account_uid' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'user_role' => {
+            type: 'AccessRoleResource',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -200,17 +200,17 @@ module NovacastSDK
         }, 
         update_access_permission: {
           
-          :'permission' => {
-            type: 'AccessPermissionInfo',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'permission_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'permission' => {
+            type: 'AccessPermissionInfo',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -237,17 +237,17 @@ module NovacastSDK
         }, 
         update_access_resource: {
           
-          :'resource' => {
-            type: 'AccessResourceInfo',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'resource_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'resource' => {
+            type: 'AccessResourceInfo',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -314,34 +314,34 @@ module NovacastSDK
         }, 
         create_role: {
           
-          :'role' => {
-            type: 'AccessRoleInfo',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'role_set_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'role' => {
+            type: 'AccessRoleInfo',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         update_role: {
           
-          :'role' => {
-            type: 'AccessRoleInfo',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'role_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'role' => {
+            type: 'AccessRoleInfo',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -368,17 +368,17 @@ module NovacastSDK
         }, 
         create_role_permission: {
           
-          :'role_permission' => {
-            type: 'RolePermission',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'role_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'role_permission' => {
+            type: 'RolePermission',
+            path_param: false,
+            body_param: true,
             required: true
           }
           

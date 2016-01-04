@@ -25,13 +25,6 @@ module NovacastSDK
         }, 
         confirm_bundle_content: {
           
-          :'body' => {
-            type: 'BundleContentConfirmRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'asset_bundle_uid' => {
             type: 'String',
             path_param: true,
@@ -43,6 +36,13 @@ module NovacastSDK
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'BundleContentConfirmRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -66,17 +66,17 @@ module NovacastSDK
         }, 
         bundle_content_pre_upload: {
           
-          :'body' => {
-            type: 'BundleContentPreUploadRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'asset_bundle_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'BundleContentPreUploadRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -106,17 +106,17 @@ module NovacastSDK
         }, 
         update_channel: {
           
-          :'channel' => {
-            type: 'ChannelData',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'channel_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'channel' => {
+            type: 'ChannelData',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -133,17 +133,17 @@ module NovacastSDK
         }, 
         create_asset_bundle: {
           
-          :'body' => {
-            type: 'AssetBundleCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'channel_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'AssetBundleCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -160,17 +160,17 @@ module NovacastSDK
         }, 
         create_event: {
           
-          :'body' => {
-            type: 'EventCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'channel_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -187,17 +187,17 @@ module NovacastSDK
         }, 
         create_question_set: {
           
-          :'body' => {
-            type: 'QuestionSetCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'channel_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionSetCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -214,17 +214,17 @@ module NovacastSDK
         }, 
         create_slide_deck: {
           
-          :'body' => {
-            type: 'SlideDeckCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'channel_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SlideDeckCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -241,17 +241,17 @@ module NovacastSDK
         }, 
         create_stream_medium: {
           
-          :'body' => {
-            type: 'StreamMediumCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'channel_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'StreamMediumCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -268,17 +268,17 @@ module NovacastSDK
         }, 
         create_user_set: {
           
-          :'body' => {
-            type: 'UserSetCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'channel_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'UserSetCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -295,39 +295,46 @@ module NovacastSDK
         }, 
         update_event: {
           
-          :'body' => {
-            type: 'EventUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         track_attendance: {
           
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
           :'body' => {
             type: 'TrackAttendanceRequest',
             path_param: false,
             body_param: true,
             required: true
-          },
+          }
+          
+        }, 
+        get_content_by_mapping: {
           
           :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
-          }
-          
-        }, 
-        get_content_by_mapping: {
+          },
           
           :'type' => {
             type: 'String',
@@ -339,13 +346,6 @@ module NovacastSDK
           :'key' => {
             type: 'String',
             path_param: false,
-            body_param: false,
-            required: true
-          },
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
             body_param: false,
             required: true
           }
@@ -387,13 +387,6 @@ module NovacastSDK
         }, 
         update_event_page_content: {
           
-          :'body' => {
-            type: 'PageContentUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'event_uid' => {
             type: 'String',
             path_param: true,
@@ -405,6 +398,13 @@ module NovacastSDK
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PageContentUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -428,13 +428,6 @@ module NovacastSDK
         }, 
         update_page_exceptions: {
           
-          :'body' => {
-            type: 'SessionExceptionUpdate',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'event_uid' => {
             type: 'String',
             path_param: true,
@@ -446,6 +439,13 @@ module NovacastSDK
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SessionExceptionUpdate',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -462,34 +462,34 @@ module NovacastSDK
         }, 
         create_page_mapping: {
           
-          :'body' => {
-            type: 'PageMappingCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PageMappingCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         create_event_page: {
           
-          :'body' => {
-            type: 'EventPageCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventPageCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -513,13 +513,6 @@ module NovacastSDK
         }, 
         update_event_page: {
           
-          :'body' => {
-            type: 'EventPageUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'event_uid' => {
             type: 'String',
             path_param: true,
@@ -531,6 +524,13 @@ module NovacastSDK
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventPageUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -564,34 +564,34 @@ module NovacastSDK
         }, 
         create_event_session: {
           
-          :'body' => {
-            type: 'EventSessionCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventSessionCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         change_event_stage: {
           
-          :'body' => {
-            type: 'EventStageRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventStageRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -608,17 +608,17 @@ module NovacastSDK
         }, 
         update_page_mapping: {
           
-          :'body' => {
-            type: 'PageMappingUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'mapping_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PageMappingUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -648,17 +648,17 @@ module NovacastSDK
         }, 
         update_question_content: {
           
-          :'body' => {
-            type: 'QuestionContentUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'question_content_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionContentUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -702,13 +702,6 @@ module NovacastSDK
         }, 
         create_question_submission: {
           
-          :'body' => {
-            type: 'QuestionSubmissionCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'question_content_uid' => {
             type: 'String',
             path_param: true,
@@ -720,6 +713,13 @@ module NovacastSDK
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionSubmissionCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -736,17 +736,17 @@ module NovacastSDK
         }, 
         update_question_set: {
           
-          :'body' => {
-            type: 'QuestionSetUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'question_set_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionSetUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -773,34 +773,34 @@ module NovacastSDK
         }, 
         create_question_content: {
           
-          :'body' => {
-            type: 'QuestionContentCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'question_set_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionContentCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         reorder_question_contents: {
           
-          :'body' => {
-            type: 'QuestionContentOrderRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'question_set_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionContentOrderRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -817,17 +817,17 @@ module NovacastSDK
         }, 
         update_session_modules: {
           
-          :'body' => {
-            type: 'SessionModuleUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'session_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SessionModuleUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -854,17 +854,17 @@ module NovacastSDK
         }, 
         update_slide_deck: {
           
-          :'body' => {
-            type: 'SlideDeckUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'slide_deck_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SlideDeckUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -881,50 +881,50 @@ module NovacastSDK
         }, 
         delete_slides: {
           
-          :'body' => {
-            type: 'SlideDeleteRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'slide_deck_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SlideDeleteRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         rearrange_slides: {
           
-          :'body' => {
-            type: 'SlideOrderRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'slide_deck_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SlideOrderRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         upload_slides: {
           
-          :'files' => {
-            type: 'Array[Byte]',
-            path_param: false,
+          :'slide_deck_uid' => {
+            type: 'String',
+            path_param: true,
             body_param: false,
             required: true
           },
           
-          :'slide_deck_uid' => {
-            type: 'String',
-            path_param: true,
+          :'files' => {
+            type: 'Array[Byte]',
+            path_param: false,
             body_param: false,
             required: true
           }
@@ -932,17 +932,17 @@ module NovacastSDK
         }, 
         confirm_stream_source: {
           
-          :'body' => {
-            type: 'StreamSourceConfirmRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'stream_source_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'StreamSourceConfirmRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -959,34 +959,34 @@ module NovacastSDK
         }, 
         create_stream_source: {
           
-          :'body' => {
-            type: 'StreamSourceCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'stream_medium_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'StreamSourceCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         stream_source_pre_upload: {
           
-          :'body' => {
-            type: 'StreamSourcePreUploadRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'stream_medium_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'StreamSourcePreUploadRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -1003,51 +1003,51 @@ module NovacastSDK
         }, 
         update_user_set: {
           
-          :'body' => {
-            type: 'UserSetUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'user_set_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'UserSetUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         enroll_to_user_set: {
           
-          :'body' => {
-            type: 'UserSetEnrollRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'user_set_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'UserSetEnrollRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
         }, 
         white_list_accounts: {
           
-          :'body' => {
-            type: 'WhiteListRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
           :'user_set_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'WhiteListRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           

@@ -10,9 +10,8 @@ module NovacastSDK
       # 
       # Validates an access token
       # @param access_token Access token
-      # @param [Hash] opts the optional parameters
       # @return [Account]
-      def validate_token(access_token, opts = {})
+      def validate_token(access_token)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "access_token"' if access_token.nil?
@@ -53,9 +52,8 @@ module NovacastSDK
       # 
       # Creates a new `Account`
       # @param info Account Information
-      # @param [Hash] opts the optional parameters
       # @return [Account]
-      def create_account(info, opts = {})
+      def create_account(info)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "info"' if info.nil?
@@ -92,9 +90,8 @@ module NovacastSDK
       # 
       # Sign in
       # @param info Account Information
-      # @param [Hash] opts the optional parameters
       # @return [LoginResponse]
-      def sign_in(info, opts = {})
+      def sign_in(info)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "info"' if info.nil?
@@ -130,9 +127,8 @@ module NovacastSDK
 
       # 
       # Sign out
-      # @param [Hash] opts the optional parameters
       # @return [LogoutResponse]
-      def sign_out(opts = {})
+      def sign_out()
         # checks if all required parameters are set
         
 
@@ -170,9 +166,8 @@ module NovacastSDK
       # 
       # Gets the `User` object for the account
       # @param account_uid Account UID
-      # @param [Hash] opts the optional parameters
       # @return [Account]
-      def get_account(account_uid, opts = {})
+      def get_account(account_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
@@ -235,7 +230,7 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params[:'resources'] = opts[:'resources'] if opts[:'resources']
+        query_params['resources'] = opts['resources'] if opts['resources']
         op.query = query_params
 
         # http body (model)
@@ -255,16 +250,15 @@ module NovacastSDK
       # @param account_uid uid of the Account
       # @param resource name of the resource
       # @param permission name of the permission
-      # @param [Hash] opts the optional parameters
       # @return [InlineResponse200]
-      def validate_account_permission(account_uid, resource, permission, opts = {})
+      def validate_account_permission(account_uid, resource, permission)
         # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "resource"' if resource.nil?
         
         raise ArgumentError, 'Missing required parameter "permission"' if permission.nil?
-        
-        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/accounts/{account_uid}/permissions/validate', :GET
@@ -280,8 +274,8 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params[:'resource'] = resource
-        query_params[:'permission'] = permission
+        query_params['resource'] = resource
+        query_params['permission'] = permission
         op.query = query_params
 
         # http body (model)
@@ -321,7 +315,7 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params[:'resources'] = opts[:'resources'] if opts[:'resources']
+        query_params['resources'] = opts['resources'] if opts['resources']
         op.query = query_params
 
         # http body (model)
@@ -340,14 +334,13 @@ module NovacastSDK
       # Assign a role to an account
       # @param account_uid uid of the Account
       # @param role role data
-      # @param [Hash] opts the optional parameters
       # @return [RoleResourcePermissions]
-      def assign_account_role(account_uid, role, opts = {})
+      def assign_account_role(account_uid, role)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "role"' if role.nil?
-        
         raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "role"' if role.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/accounts/{account_uid}/roles', :POST
@@ -382,9 +375,8 @@ module NovacastSDK
       # 
       # Get all `AccessUserRole`
       # @param account_uid uid of the user account
-      # @param [Hash] opts the optional parameters
       # @return [AccessUserRoleList]
-      def get_account_user_roles(account_uid, opts = {})
+      def get_account_user_roles(account_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
@@ -421,14 +413,13 @@ module NovacastSDK
       # Create a new `AccessUserRole`
       # @param account_uid uid of the user account
       # @param user_role User role
-      # @param [Hash] opts the optional parameters
       # @return [AccessUserRole]
-      def create_account_user_role(account_uid, user_role, opts = {})
+      def create_account_user_role(account_uid, user_role)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "user_role"' if user_role.nil?
-        
         raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "user_role"' if user_role.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/accounts/{account_uid}/user_roles', :POST
@@ -463,9 +454,8 @@ module NovacastSDK
       # 
       # Create a new `Domain`
       # @param domain domain details
-      # @param [Hash] opts the optional parameters
       # @return [Domain]
-      def create_domain(domain, opts = {})
+      def create_domain(domain)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "domain"' if domain.nil?
@@ -502,9 +492,8 @@ module NovacastSDK
       # 
       # Get a `Domain` using the domain key
       # @param domain_key Domain key
-      # @param [Hash] opts the optional parameters
       # @return [Domain]
-      def get_domain_by_key(domain_key, opts = {})
+      def get_domain_by_key(domain_key)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "domain_key"' if domain_key.nil?
@@ -540,9 +529,8 @@ module NovacastSDK
       # 
       # Get a `Domain`
       # @param domain_id Account Information
-      # @param [Hash] opts the optional parameters
       # @return [Domain]
-      def get_domain(domain_id, opts = {})
+      def get_domain(domain_id)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "domain_id"' if domain_id.nil?
@@ -578,9 +566,8 @@ module NovacastSDK
       # 
       # Create a new `AccessPermission`
       # @param permission Details of the permission
-      # @param [Hash] opts the optional parameters
       # @return [AccessPermission]
-      def create_access_permission(permission, opts = {})
+      def create_access_permission(permission)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "permission"' if permission.nil?
@@ -618,14 +605,13 @@ module NovacastSDK
       # Update an `AccessPermission`
       # @param permission_id AccessPermission id
       # @param permission Details of the permission
-      # @param [Hash] opts the optional parameters
       # @return [AccessPermission]
-      def update_access_permission(permission_id, permission, opts = {})
+      def update_access_permission(permission_id, permission)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "permission"' if permission.nil?
-        
         raise ArgumentError, 'Missing required parameter "permission_id"' if permission_id.nil?
+        
+        raise ArgumentError, 'Missing required parameter "permission"' if permission.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/permissions/{permission_id}', :PUT
@@ -660,9 +646,8 @@ module NovacastSDK
       # 
       # Delete an `AccessPermission`
       # @param permission_id AccessPermission id
-      # @param [Hash] opts the optional parameters
       # @return [AccessPermission]
-      def delete_access_permission(permission_id, opts = {})
+      def delete_access_permission(permission_id)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "permission_id"' if permission_id.nil?
@@ -698,9 +683,8 @@ module NovacastSDK
       # 
       # Create a new `AccessResource`
       # @param resource Details of the resource
-      # @param [Hash] opts the optional parameters
       # @return [AccessResource]
-      def create_access_resource(resource, opts = {})
+      def create_access_resource(resource)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "resource"' if resource.nil?
@@ -738,14 +722,13 @@ module NovacastSDK
       # Update an `AccessResource`
       # @param resource_id AccessResource id
       # @param resource Name of the resource
-      # @param [Hash] opts the optional parameters
       # @return [AccessResource]
-      def update_access_resource(resource_id, resource, opts = {})
+      def update_access_resource(resource_id, resource)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "resource"' if resource.nil?
-        
         raise ArgumentError, 'Missing required parameter "resource_id"' if resource_id.nil?
+        
+        raise ArgumentError, 'Missing required parameter "resource"' if resource.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/resources/{resource_id}', :PUT
@@ -780,9 +763,8 @@ module NovacastSDK
       # 
       # Delete an `AccessResource`
       # @param resource_id AccessResource id
-      # @param [Hash] opts the optional parameters
       # @return [AccessResource]
-      def delete_access_resource(resource_id, opts = {})
+      def delete_access_resource(resource_id)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "resource_id"' if resource_id.nil?
@@ -818,9 +800,8 @@ module NovacastSDK
       # 
       # Delete a `AccessRolePermission`
       # @param role_permission_id AccessRolePermission id
-      # @param [Hash] opts the optional parameters
       # @return [AccessRolePermission]
-      def delete_role_permission(role_permission_id, opts = {})
+      def delete_role_permission(role_permission_id)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "role_permission_id"' if role_permission_id.nil?
@@ -856,9 +837,8 @@ module NovacastSDK
       # 
       # Create a new `RoleSet`
       # @param role_set RoleSet Details
-      # @param [Hash] opts the optional parameters
       # @return [RoleSet]
-      def create_role_set(role_set, opts = {})
+      def create_role_set(role_set)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "role_set"' if role_set.nil?
@@ -895,9 +875,8 @@ module NovacastSDK
       # 
       # Get a `RoleSet` using the role set key
       # @param role_set_key RoleSet key
-      # @param [Hash] opts the optional parameters
       # @return [RoleSet]
-      def get_role_set_by_key(role_set_key, opts = {})
+      def get_role_set_by_key(role_set_key)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "role_set_key"' if role_set_key.nil?
@@ -933,9 +912,8 @@ module NovacastSDK
       # 
       # Get a `RoleSet`
       # @param role_set_id RoleSet Id
-      # @param [Hash] opts the optional parameters
       # @return [RoleSet]
-      def get_role_set(role_set_id, opts = {})
+      def get_role_set(role_set_id)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "role_set_id"' if role_set_id.nil?
@@ -971,9 +949,8 @@ module NovacastSDK
       # 
       # Get all `AccessRole` in the `AccessRoleSet`
       # @param role_set_id AccessRoleSet id
-      # @param [Hash] opts the optional parameters
       # @return [AccessRoleList]
-      def get_roles(role_set_id, opts = {})
+      def get_roles(role_set_id)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "role_set_id"' if role_set_id.nil?
@@ -1010,14 +987,13 @@ module NovacastSDK
       # Create a new `AccessRole`
       # @param role_set_id AccessRoleSet id
       # @param role Access role details
-      # @param [Hash] opts the optional parameters
       # @return [AccessRole]
-      def create_role(role_set_id, role, opts = {})
+      def create_role(role_set_id, role)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "role"' if role.nil?
-        
         raise ArgumentError, 'Missing required parameter "role_set_id"' if role_set_id.nil?
+        
+        raise ArgumentError, 'Missing required parameter "role"' if role.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/role_sets/{role_set_id}/roles', :POST
@@ -1053,14 +1029,13 @@ module NovacastSDK
       # Update an `AccessRole`
       # @param role_id AccessRole id
       # @param role Access role details
-      # @param [Hash] opts the optional parameters
       # @return [AccessRole]
-      def update_role(role_id, role, opts = {})
+      def update_role(role_id, role)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "role"' if role.nil?
-        
         raise ArgumentError, 'Missing required parameter "role_id"' if role_id.nil?
+        
+        raise ArgumentError, 'Missing required parameter "role"' if role.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/roles/{role_id}', :PUT
@@ -1095,9 +1070,8 @@ module NovacastSDK
       # 
       # Delete an `AccessRole`
       # @param role_id AccessRole id
-      # @param [Hash] opts the optional parameters
       # @return [AccessRole]
-      def delete_access_role(role_id, opts = {})
+      def delete_access_role(role_id)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "role_id"' if role_id.nil?
@@ -1133,9 +1107,8 @@ module NovacastSDK
       # 
       # Get `AccessRolePermission`
       # @param role_id AccessRole id
-      # @param [Hash] opts the optional parameters
       # @return [AccessRolePermissionList]
-      def get_role_permissions(role_id, opts = {})
+      def get_role_permissions(role_id)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "role_id"' if role_id.nil?
@@ -1172,14 +1145,13 @@ module NovacastSDK
       # Create a new `AccessRolePermission`
       # @param role_id AccessRole id
       # @param role_permission role permission
-      # @param [Hash] opts the optional parameters
       # @return [AccessRolePermission]
-      def create_role_permission(role_id, role_permission, opts = {})
+      def create_role_permission(role_id, role_permission)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "role_permission"' if role_permission.nil?
-        
         raise ArgumentError, 'Missing required parameter "role_id"' if role_id.nil?
+        
+        raise ArgumentError, 'Missing required parameter "role_permission"' if role_permission.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/roles/{role_id}/permissions', :POST
@@ -1214,9 +1186,8 @@ module NovacastSDK
       # 
       # Delete an `AccessUserRole`
       # @param user_role_id AccessUserRole id
-      # @param [Hash] opts the optional parameters
       # @return [AccessUserRole]
-      def delete_user_role(user_role_id, opts = {})
+      def delete_user_role(user_role_id)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "user_role_id"' if user_role_id.nil?
