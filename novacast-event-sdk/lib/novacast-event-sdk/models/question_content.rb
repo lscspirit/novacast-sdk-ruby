@@ -19,7 +19,7 @@ module NovacastSDK
             :'question' => { base_name: 'question', type: 'String', required: true },
             
             # order index
-            :'order' => { base_name: 'order', type: 'String', required: true },
+            :'order' => { base_name: 'order', type: 'Integer', required: true },
             
             # answer content
             :'content' => { base_name: 'content', type: 'Object', required: true },
