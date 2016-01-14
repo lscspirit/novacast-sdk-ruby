@@ -390,6 +390,19 @@ module Novacast
         class QuestionSubmissionList < Novacast::SDK::JsonRepresentation
           collection :question_submissions, extend: QuestionSubmission, class: OpenStruct
         end
+
+        class QuestionManifest < Novacast::SDK::JsonRepresentation
+          property :uid
+          property :uid_rn, as: 'rn'
+          property :label
+          property :manifest_type
+          property :question_set, extend: QuestionSet, class: OpenStruct
+        end
+
+        class QuestionManifestList < Novacast::SDK::JsonRepresentation
+          collection :question_manifests, extend: QuestionManifest, class: OpenStruct
+        end
+
         #
         # Slide Resources
         #
