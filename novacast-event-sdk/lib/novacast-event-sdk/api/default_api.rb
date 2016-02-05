@@ -1781,6 +1781,137 @@ module NovacastSDK
       end
 
       # 
+      # (LiveCast) Get the current LiveCast module state
+      # @param session_uid session uid
+      # @return [LiveCastState]
+      def get_live_cast_state(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/live_cast/sessions/{session_uid}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::LiveCastState.from_json resp.body
+        
+      end
+
+      # 
+      # Get the current live cast page
+      # @param session_uid session uid
+      # @return [LiveCastSlidePage]
+      def get_live_cast_page(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/live_cast/sessions/{session_uid}/page', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::LiveCastSlidePage.from_json resp.body
+        
+      end
+
+      # 
+      # (LiveCast) Change slide page\nThis will also publish a LiveCastSlidePage command to the session pub sub channel
+      # @param session_uid session uid
+      # @param body request body
+      # @return [LiveCastState]
+      def update_live_cast_page(session_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/live_cast/sessions/{session_uid}/page', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::LiveCastState.from_json resp.body
+        
+      end
+
+      # 
       # Update a page mapping
       # @param mapping_uid uid of the page mapping
       # @param body request body

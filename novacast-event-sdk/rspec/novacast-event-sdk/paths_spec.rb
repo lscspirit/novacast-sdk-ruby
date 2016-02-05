@@ -471,6 +471,39 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /mods/live_cast/sessions/{session_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/mods/live_cast/sessions/{session_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /mods/live_cast/sessions/{session_uid}/page', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/mods/live_cast/sessions/{session_uid}/page', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'PUT /mods/live_cast/sessions/{session_uid}/page', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/mods/live_cast/sessions/{session_uid}/page', path_params))
+            end
+          end
+        
           ::RSpec.describe 'PUT /page_mappings/{mapping_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

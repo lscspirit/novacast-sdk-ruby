@@ -606,6 +606,43 @@ module NovacastSDK
           }
           
         }, 
+        get_live_cast_state: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_live_cast_page: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        update_live_cast_page: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'LiveCastPageChangeRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         update_page_mapping: {
           
           :'mapping_uid' => {
@@ -1378,6 +1415,27 @@ module NovacastSDK
         get_event_user_set: {
           
           200 => 'UserSetExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        get_live_cast_state: {
+          
+          200 => 'LiveCastState',
+          
+          0 => 'Error'
+          
+        }, 
+        get_live_cast_page: {
+          
+          200 => 'LiveCastSlidePage',
+          
+          0 => 'Error'
+          
+        }, 
+        update_live_cast_page: {
+          
+          200 => 'LiveCastState',
           
           0 => 'Error'
           
