@@ -1,109 +1,104 @@
-module Novacast
-  module SDK
-    # Base class for all Novacast services' Ruby client
-    class Client
-      attr_reader :base_uri, :request_builder
-      attr_reader :app_uid, :app_secret
+require 'novacast-sdk-core/client_errors'
+require 'novacast-sdk-core/configuration'
+require 'novacast-sdk-core/request'
+require 'novacast-sdk-core/response'
+require 'novacast-sdk-core/operation'
+require 'novacast-sdk-core/error_response'
 
-      # Create a new service client
-      # @param  opts [Hash] options to create the client with
-      # @option opts [URI::HTTP,URI::HTTPS] :uri          URI instance of the service base URL
-      # @option opts [String]               :host         host name of the service base
-      # @option opts [Integer]              :port         port of the service
-      # @option opts [String]               :path (nil)   base path of the service
-      # @option opts [Boolean]              :ssl  (false) whether to use SSL or not
-      # @option opts [String]               :api_version  API version to use
-      # @option opts [String]               :app_uid      application uid
-      # @option opts [String]               :app_secret   application secret
+module NovacastSDK
+  module Client
+    class BaseClient
+      #
+      # Client configuration
+      #
+
+      def self.config
+        Configuration
+      end
+
+
+      #
+      # Initialization
+      #
+
+      def self.client(opts = {})
+        self.new opts
+      end
+
       def initialize(opts = {})
-        @base_uri        = build_base_uri(opts[:uri] || opts[:host], opts[:port], opts[:path], opts[:ssl])
-        @request_builder = RequestBuilder.new self
-
-        raise ArgumentError, 'Must specify an API version' if opts[:api_version].nil?
-        @api_version = opts[:api_version].to_s
-        @api         = load_api!
-
-        @app_uid     = opts[:app_uid]
-        @app_secret  = opts[:app_secret]
+        @access_token = opts[:access_token]
       end
 
-      # Base URL of the service client
-      # @return [String] base url of the service
-      def base_url
-        base_uri.to_s
-      end
+      protected
 
-      # Client's API module
-      # @return [Module]
-      def api
-        @api
-      end
+      def call_api(op)
+        url = _build_request_url op
+        headers, query = _headers_query_with_security op
 
-      # Client's API version
-      # @return [String] version string
-      def api_version
-        @api_version
-      end
+        req  = NovacastSDK::Client::Request.new url, op.method, query, op.body, headers
+        resp = NovacastSDK::Client::Response.new req.send
 
-      # Route method call to API operations
-      # All API method calls will go through this method_missing function
-      # @example Simple API call
-      #   IdentityClient.validate_token 'ad3de482'    #=> returns an Operation regardless of response status
-      # @example Simple API call that raise exception on failure
-      #   IdentityClient.validate_token! 'ad3de482'   #=> returns an Operation if successful; otherwise raise the corresponding Novacast::SDK::Error returned by server
-      def method_missing(m, *args, &block)
-        op_name, bang = m.to_s.match(/^([^!]*)(!?)$/).captures
-        bang == '!' ? execute_operation!(op_name, *args) : execute_operation(op_name, *args)
+        unless resp.success?
+          # parse error response and raise error
+          err_resp = ErrorResponse.from_json resp.body
+          raise err_resp.klass.new(err_resp.messages.join(', '), err_resp.messages)
+        end
+
+        resp
       end
 
       private
 
-      # Extend the Client instance with API operations
-      # Override this method in Client implementation to load the appropriate API base
-      # on the API version supplied
-      def load_api!
-
+      def _build_request_url(op)
+        self.class.config.base_url + op.endpoint_path
       end
 
-      # Execute an API Operation using this client
-      # @param op_name [String] API operation name
-      # @return [Operation] the API operation object
-      def execute_operation(op_name, *args)
-        op = @api::Operations.instance_method(op_name).bind(self).call(*args)
+      # Injects security credentials into headers/query if needed by the operation
+      def _headers_query_with_security(op)
+        auths = op.auths
 
-        op.client   = self
-        op.request  = @request_builder.build op
-        op.response = op.request.send
-        op
-      end
+        if auths.empty?
+          [op.headers, op.query]
+        else
+          headers = {}.merge(op.headers)  # creates a new copy of header params
+          query   = {}.merge(op.query)    # creates a new copy of query params
 
-      def execute_operation!(op_name, *args)
-        op = execute_operation op_name, *args
+          auths.each do |auth_def|
+            param_key  = auth_def[:key]
+            auth_value = case auth_def[:name]
+                           when 'appSecret'
+                             _get_app_secret
+                           when 'accessKey'
+                             _get_access_key
+                           else
+                             nil
+                         end
 
-        unless op.success?
-          raise op.error, op.error_messages.join(', ')
+            raise NovacastSDK::ClientErrors::ConfigNotFound, "Authentication credential not found for '#{auth_def[:name]}'" if auth_value.nil? || auth_value.empty?
+
+            auth_def[:in_query] ?
+                query[param_key]   = auth_value :
+                headers[param_key] = auth_value
+          end
+
+          [headers, query]
         end
-
-        op
       end
 
-      # Construct the base URI of the service
-      # @param host_or_uri [String,URI::HTTP,URI:HTTPS] host or uri of the service endpoint
-      # @param path [String]  path of the endpoint on the host
-      # @param port [Integer] HTTP port of the service endpoint
-      # @param ssl  [Boolean] whether to use SSL or not
-      # @return [URI::HTTP,URI:HTTPS] URI instance of the service
-      def build_base_uri(host_or_uri, port = nil, path = nil, ssl = false)
-        case host_or_uri
-          when URI::HTTP, URI::HTTPS
-            host_or_uri
-          when String
-            ssl === true ?
-              URI::HTTPS.build(host: host_or_uri, port: port, path: path) :
-              URI::HTTP.build(host: host_or_uri, port: port, path: path)
-          else
-            raise ArgumentError, 'Host/URI must be a String or a URI::HTTP/URI::HTTPS'
-        end
+      def _get_app_secret
+        app_uid    = self.class.config.app_uid
+        app_secret = self.class.config.app_secret
+
+        raise NovacastSDK::ClientErrors::ConfigNotFound, 'App UID is not configured in client' if app_uid.nil? || app_uid.empty?
+        raise NovacastSDK::ClientErrors::ConfigNotFound, 'App secret is not configured in client' if app_secret.nil? || app_secret.empty?
+
+        "#{app_uid}|#{app_secret}"
+      end
+
+      def _get_access_key
+        access_key = @access_token || self.class.config.access_token
+        raise NovacastSDK::ClientErrors::ConfigNotFound, 'Access token is not configured in client' if access_key.nil? || access_key.empty?
+        access_key
       end
     end
   end

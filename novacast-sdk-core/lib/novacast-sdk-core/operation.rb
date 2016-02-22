@@ -1,137 +1,75 @@
 require 'addressable/uri'
 require 'addressable/template'
-require 'novacast-sdk-core/response_object'
 
-module Novacast
-  module SDK
+module NovacastSDK
+  module Client
     class Operation
-      attr_accessor :client
-      attr_accessor :method, :params, :query
-      attr_accessor :request_obj, :request_representation, :response_representation
-      attr_accessor :request, :response
-      attr_reader   :request_body, :response_obj
-      attr_reader   :options
+      attr_accessor :method
+      attr_accessor :params, :headers, :query, :body
+      attr_accessor :auths
+      attr_writer   :endpoint
 
-      def initialize(path, method = :get, options = {})
-        @path_template = Addressable::Template.new path
-        self.method    = method
-        @options = options
-        @params  = {}
-        @query   = {}
-
-        @use_app_credentials = false
+      def initialize(ep, method)
+        self.endpoint = ep
+        self.method   = method
+        @params  = nil
+        @headers = nil
+        @query   = nil
+        @body    = nil
+        @auths   = []
       end
 
-      #
-      # Accessors
-      #
-
-      def path
-        check_path_variables!
-        @path_template.expand(@params).request_uri
+      def params=(values)
+        raise ArgumentError, 'Operation path param values must be a key-value Hash' unless values.nil? || values.is_a?(Hash)
+        @params = values
       end
 
-      def use_app_credentials=(val)
-        @use_app_credentials = (val === true)
+      def headers=(values)
+        raise ArgumentError, 'Operation header values must be a key-value Hash' unless values.nil? || values.is_a?(Hash)
+        @headers = values
       end
 
-      def use_app_credentials?
-        @use_app_credentials
+      def query=(values)
+        raise ArgumentError, 'Operation query param values must be a key-value Hash' unless values.nil? || values.is_a?(Hash)
+        @query = values
       end
-
-      def request_representation=(representation)
-        raise ArgumentError, 'Representation must be a JsonRepresentation object' unless representation <= JsonRepresentation
-        @request_representation = representation
-      end
-
-      def request_wrap=(wrap)
-        raise ArgumentError, 'Request wrap must either be a String or Symbol' unless wrap.is_a?(Symbol) || wrap.is_a?(String)
-        @request_wrap = wrap
-      end
-
-      def response_representation=(representation)
-        raise ArgumentError, 'Representation must be a JsonRepresentation object' unless representation <= JsonRepresentation
-        @response_representation = representation
-      end
-
-      def request_obj=(obj)
-        raise RuntimeError, 'A :get operation cannot have a request object' if method == :get
-        @request_obj = obj
-      end
-
-      def request_body
-        if @request_obj.is_a? Novacast::SDK::JsonRepresentation
-          @request_obj.to_json wrap: @request_wrap
-        elsif @request_obj.nil?
-          nil
-        elsif @request_representation.nil?
-          @request_obj.respond_to?(:to_json) ? @request_obj.to_json : @request_obj.to_s
-        else
-          @request_representation.new(@request_obj).to_json(wrap: @request_wrap)
-        end
-      end
-
-      # Set the Response from the execution of the API request
-      # Once set, the :response_obj becomes available if there is a response_representation
-      # @param resp [Response] Response object
-      def response=(resp)
-        @response = resp
-        if @response_representation.nil? || !resp.success?
-          @response_obj = JSON.parse(resp.body, object_class: OpenStruct)
-        else
-          @response_obj = @response_representation.new(ResponseObject.new).from_json(resp.body)
-        end
-      end
-
-      def error
-        success? ? nil : find_error_class(error_code)
-      end
-
-      def error_code
-        success? ? nil : response_obj.error
-      end
-
-      def error_messages
-        Array.wrap response_obj.error_messages
-      end
-
-      def completed?
-        !response.nil?
-      end
-
-      def success?
-        response && response.success?
-      end
-
-      private
 
       def method=(m)
-        m_sym = m.to_sym
+        m_sym = m.downcase.to_sym
         raise ArgumentError, 'Operation method must be one of :get, :post, :put, :delete' unless [:get, :post, :put, :delete].include?(m_sym)
         @method = m_sym
       end
 
-      # Check the provided path parameters and make sure all of them are set
-      def check_path_variables!
-        @path_template.variables.each do |var|
-          value = @params[var] || @params[var.to_sym]
-          raise RuntimeError, "Operation path param '#{var}' is missing or empty." if value.nil? || value.to_s.empty?
-        end
+      def endpoint=(ep)
+        @endpoint = Addressable::Template.new ep
       end
 
-      def find_error_class(error_code)
-        klass_name = error_code.camelize
-        klass      = Novacast::SDK::Error
+      def endpoint_path
+        check_endpoint_params!
+        @endpoint.expand(@params).to_s
+      end
 
-        ["#{client.api.name}::#{klass_name}Error", "Novacast::SDK::#{klass_name}Error"].find do |full_klass_name|
-          begin
-            klass = full_klass_name.constantize
-          rescue NameError
-            false
-          end
+      def auths=(values)
+        # essentially Array::wrap in Rails
+        @auths = case
+                   when values.nil?
+                     []
+                   when values.is_a?(Array)
+                     values
+                   when values.respond_to?(:to_ary)
+                     values.to_ary || [values]
+                   else
+                     [values]
+                 end
+      end
+
+      private
+
+      def check_endpoint_params!
+        @endpoint.variables.each do |var|
+          value = @params[var] || @params[var.to_sym]
+          raise RuntimeError, "Operation endpoint param '#{var}' is missing or empty." if value.nil? || value.to_s.empty?
         end
-
-        klass
       end
     end
   end
