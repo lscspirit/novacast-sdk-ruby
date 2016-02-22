@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventPage < NovacastSDK::BaseModel
-        attr_accessor :event_uid, :session_uid, :path, :public, :page_config, :mappings
+        attr_accessor :event_uid, :session_uid, :path, :public, :level, :page_config, :mappings
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -23,6 +23,9 @@ module NovacastSDK
             
             # whether this page can be accessed publicly
             :'public' => { base_name: 'public', type: 'BOOLEAN', required: true },
+            
+            # the page level - event, single, shared
+            :'level' => { base_name: 'level', type: 'String', required: true },
             
             # page configuration in json
             :'page_config' => { base_name: 'page_config', type: 'String', required: false },

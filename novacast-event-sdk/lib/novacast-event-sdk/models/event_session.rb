@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventSession < NovacastSDK::BaseModel
-        attr_accessor :uid, :label, :pathname, :event_uid, :event_name
+        attr_accessor :uid, :label, :pathname, :event_uid, :event_name, :is_default
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -25,7 +25,10 @@ module NovacastSDK
             :'event_uid' => { base_name: 'event_uid', type: 'String', required: true },
             
             # name of the event that this session belongs to
-            :'event_name' => { base_name: 'event_name', type: 'String', required: true }
+            :'event_name' => { base_name: 'event_name', type: 'String', required: true },
+            
+            # whether the session is a event&#39;s default
+            :'is_default' => { base_name: 'is_default', type: 'BOOLEAN', required: true }
             
           }
         end

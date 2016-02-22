@@ -1781,6 +1781,97 @@ module NovacastSDK
       end
 
       # 
+      # Get comments submitted for a event or a session
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :event_uid event uid
+      # @option opts [Integer] :session_uid param description
+      # @return [UserCommentList]
+      def get_user_comments(opts = {})
+        # checks if all required parameters are set
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/comment_box/comments', :GET
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['event_uid'] = opts['event_uid'] if opts['event_uid']
+        query_params['session_uid'] = opts['session_uid'] if opts['session_uid']
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::UserCommentList.from_json resp.body
+        
+      end
+
+      # 
+      # Post a new comment
+      # @param body request body
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :event_uid event uid
+      # @option opts [Integer] :session_uid param description
+      # @return [UserComment]
+      def post_user_comment(body, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/comment_box/comments', :POST
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['event_uid'] = opts['event_uid'] if opts['event_uid']
+        query_params['session_uid'] = opts['session_uid'] if opts['session_uid']
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::UserComment.from_json resp.body
+        
+      end
+
+      # 
       # (LiveCast) Get the current LiveCast module state
       # @param session_uid session uid
       # @return [LiveCastState]

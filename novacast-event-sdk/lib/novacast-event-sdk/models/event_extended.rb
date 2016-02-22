@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventExtended < NovacastSDK::BaseModel
-        attr_accessor :asset_bundle_uid, :uid, :public_aliases, :event_pages, :stage, :name, :page_mappings, :user_set_uid, :event_sessions
+        attr_accessor :asset_bundle_uid, :uid, :public_aliases, :event_pages, :stage, :name, :page_mappings, :user_set_uid, :default_session_uid, :event_sessions
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -35,6 +35,9 @@ module NovacastSDK
             
             # user set uid
             :'user_set_uid' => { base_name: 'user_set_uid', type: 'String', required: false },
+            
+            # default session uid
+            :'default_session_uid' => { base_name: 'default_session_uid', type: 'String', required: true },
             
             # list of sessions
             :'event_sessions' => { base_name: 'event_sessions', type: 'Array[EventSession]', required: true }

@@ -606,6 +606,47 @@ module NovacastSDK
           }
           
         }, 
+        get_user_comments: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'session_uid' => {
+            type: 'Integer',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
+        post_user_comment: {
+          
+          :'body' => {
+            type: 'UserCommentPostRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          },
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'session_uid' => {
+            type: 'Integer',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
         get_live_cast_state: {
           
           :'session_uid' => {
@@ -1415,6 +1456,20 @@ module NovacastSDK
         get_event_user_set: {
           
           200 => 'UserSetExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        get_user_comments: {
+          
+          200 => 'UserCommentList',
+          
+          0 => 'Error'
+          
+        }, 
+        post_user_comment: {
+          
+          201 => 'UserComment',
           
           0 => 'Error'
           

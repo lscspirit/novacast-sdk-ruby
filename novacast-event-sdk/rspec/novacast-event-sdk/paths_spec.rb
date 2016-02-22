@@ -471,6 +471,24 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /mods/comment_box/comments', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/mods/comment_box/comments', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'POST /mods/comment_box/comments', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/mods/comment_box/comments', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /mods/live_cast/sessions/{session_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventSessionExtended < NovacastSDK::BaseModel
-        attr_accessor :uid, :event_name, :label, :modules, :pathname, :event_uid
+        attr_accessor :uid, :event_name, :label, :is_default, :modules, :pathname, :event_uid
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -20,6 +20,9 @@ module NovacastSDK
             
             # label of the session
             :'label' => { base_name: 'label', type: 'String', required: true },
+            
+            # whether the session is a event&#39;s default
+            :'is_default' => { base_name: 'is_default', type: 'BOOLEAN', required: true },
             
             # a collection of session modules
             :'modules' => { base_name: 'modules', type: 'Array[SessionModule]', required: true },
