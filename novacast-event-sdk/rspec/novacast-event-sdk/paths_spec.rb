@@ -246,6 +246,28 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /data_sets/{data_set_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'data_set_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/data_sets/{data_set_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /data_sets/{data_set_uid}/partitions', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'data_set_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/data_sets/{data_set_uid}/partitions', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /events/{event_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -300,6 +322,28 @@ module NovacastSDK
               
               }
               expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/contents/{content_path}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /events/{event_uid}/data_sets', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/data_sets', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'POST /events/{event_uid}/data_sets', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_uid' => 'String'
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/events/{event_uid}/data_sets', path_params))
             end
           end
         
@@ -471,24 +515,6 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /mods/comment_box/comments', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-              }
-              expect_path_routable(:GET => generate_path('/api/v1/mods/comment_box/comments', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'POST /mods/comment_box/comments', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-              }
-              expect_path_routable(:POST => generate_path('/api/v1/mods/comment_box/comments', path_params))
-            end
-          end
-        
           ::RSpec.describe 'GET /mods/live_cast/sessions/{session_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -519,6 +545,28 @@ module NovacastSDK
               
               }
               expect_path_routable(:PUT => generate_path('/api/v1/mods/live_cast/sessions/{session_uid}/page', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /mods/user_feedback/{session_uid}/feedbacks', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/mods/user_feedback/{session_uid}/feedbacks', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'POST /mods/user_feedback/{session_uid}/feedbacks', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/mods/user_feedback/{session_uid}/feedbacks', path_params))
             end
           end
         

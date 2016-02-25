@@ -898,6 +898,90 @@ module NovacastSDK
       end
 
       # 
+      # Get a data set
+      # @param data_set_uid data set uid
+      # @return [DataSet]
+      def get_data_set(data_set_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "data_set_uid"' if data_set_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/data_sets/{data_set_uid}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['data_set_uid'] = data_set_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::DataSet.from_json resp.body
+        
+      end
+
+      # 
+      # Get all partitions for a data set
+      # @param data_set_uid data set uid
+      # @return [DataSetPartitionList]
+      def get_data_set_partitions(data_set_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "data_set_uid"' if data_set_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/data_sets/{data_set_uid}/partitions', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['data_set_uid'] = data_set_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::DataSetPartitionList.from_json resp.body
+        
+      end
+
+      # 
       # Get Event with extended details
       # @param event_uid event uid
       # @return [EventExtended]
@@ -1126,6 +1210,95 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::EventContent.from_json resp.body
+        
+      end
+
+      # 
+      # Get all data sets for the event
+      # @param event_uid event uid
+      # @return [DataSetList]
+      def get_data_set_list(event_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/data_sets', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['event_uid'] = event_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::DataSetList.from_json resp.body
+        
+      end
+
+      # 
+      # Create a new data set for the event
+      # @param event_uid event uid
+      # @param body request body
+      # @return [DataSet]
+      def create_data_set(event_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/data_sets', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['event_uid'] = event_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::DataSet.from_json resp.body
         
       end
 
@@ -1781,97 +1954,6 @@ module NovacastSDK
       end
 
       # 
-      # Get comments submitted for a event or a session
-      # @param [Hash] opts the optional parameters
-      # @option opts [String] :event_uid event uid
-      # @option opts [Integer] :session_uid param description
-      # @return [UserCommentList]
-      def get_user_comments(opts = {})
-        # checks if all required parameters are set
-        
-
-        op = NovacastSDK::Client::Operation.new '/mods/comment_box/comments', :GET
-
-        # path parameters
-        path_params = {}
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        query_params['event_uid'] = opts['event_uid'] if opts['event_uid']
-        query_params['session_uid'] = opts['session_uid'] if opts['session_uid']
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::UserCommentList.from_json resp.body
-        
-      end
-
-      # 
-      # Post a new comment
-      # @param body request body
-      # @param [Hash] opts the optional parameters
-      # @option opts [String] :event_uid event uid
-      # @option opts [Integer] :session_uid param description
-      # @return [UserComment]
-      def post_user_comment(body, opts = {})
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/mods/comment_box/comments', :POST
-
-        # path parameters
-        path_params = {}
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        query_params['event_uid'] = opts['event_uid'] if opts['event_uid']
-        query_params['session_uid'] = opts['session_uid'] if opts['session_uid']
-        op.query = query_params
-
-        # http body (model)
-        
-        op.body = body.to_json
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::UserComment.from_json resp.body
-        
-      end
-
-      # 
       # (LiveCast) Get the current LiveCast module state
       # @param session_uid session uid
       # @return [LiveCastState]
@@ -1999,6 +2081,98 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::LiveCastState.from_json resp.body
+        
+      end
+
+      # 
+      # Get user feedbacks submitted for a session
+      # @param session_uid param description
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :data_set_uid uid of the data set. Default to the active data set of the event
+      # @return [UserFeedbackList]
+      def get_user_feedbacks(session_uid, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/user_feedback/{session_uid}/feedbacks', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['data_set_uid'] = opts['data_set_uid'] if opts['data_set_uid']
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::UserFeedbackList.from_json resp.body
+        
+      end
+
+      # 
+      # Post a new user feedback
+      # @param session_uid param description
+      # @param body request body
+      # @return [UserFeedback]
+      def post_user_feedback(session_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/user_feedback/{session_uid}/feedbacks', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::UserFeedback.from_json resp.body
         
       end
 

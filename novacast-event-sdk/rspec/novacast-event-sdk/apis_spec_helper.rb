@@ -283,6 +283,26 @@ module NovacastSDK
           }
           
         }, 
+        get_data_set: {
+          
+          :'data_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_data_set_partitions: {
+          
+          :'data_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_event: {
           
           :'event_uid' => {
@@ -364,6 +384,33 @@ module NovacastSDK
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_data_set_list: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        create_data_set: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'DataSetCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -606,47 +653,6 @@ module NovacastSDK
           }
           
         }, 
-        get_user_comments: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: false,
-            body_param: false,
-            required: false
-          },
-          
-          :'session_uid' => {
-            type: 'Integer',
-            path_param: false,
-            body_param: false,
-            required: false
-          }
-          
-        }, 
-        post_user_comment: {
-          
-          :'body' => {
-            type: 'UserCommentPostRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          },
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: false,
-            body_param: false,
-            required: false
-          },
-          
-          :'session_uid' => {
-            type: 'Integer',
-            path_param: false,
-            body_param: false,
-            required: false
-          }
-          
-        }, 
         get_live_cast_state: {
           
           :'session_uid' => {
@@ -678,6 +684,40 @@ module NovacastSDK
           
           :'body' => {
             type: 'LiveCastPageChangeRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        get_user_feedbacks: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'data_set_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
+        post_user_feedback: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'UserFeedbackPostRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -1327,6 +1367,20 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        get_data_set: {
+          
+          200 => 'DataSet',
+          
+          0 => 'Error'
+          
+        }, 
+        get_data_set_partitions: {
+          
+          200 => 'DataSetPartitionList',
+          
+          0 => 'Error'
+          
+        }, 
         get_event: {
           
           200 => 'EventExtended',
@@ -1358,6 +1412,20 @@ module NovacastSDK
         get_content_by_path: {
           
           200 => 'EventContent',
+          
+          0 => 'Error'
+          
+        }, 
+        get_data_set_list: {
+          
+          200 => 'DataSetList',
+          
+          0 => 'Error'
+          
+        }, 
+        create_data_set: {
+          
+          201 => 'DataSet',
           
           0 => 'Error'
           
@@ -1460,20 +1528,6 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        get_user_comments: {
-          
-          200 => 'UserCommentList',
-          
-          0 => 'Error'
-          
-        }, 
-        post_user_comment: {
-          
-          201 => 'UserComment',
-          
-          0 => 'Error'
-          
-        }, 
         get_live_cast_state: {
           
           200 => 'LiveCastState',
@@ -1491,6 +1545,20 @@ module NovacastSDK
         update_live_cast_page: {
           
           200 => 'LiveCastState',
+          
+          0 => 'Error'
+          
+        }, 
+        get_user_feedbacks: {
+          
+          200 => 'UserFeedbackList',
+          
+          0 => 'Error'
+          
+        }, 
+        post_user_feedback: {
+          
+          201 => 'UserFeedback',
           
           0 => 'Error'
           
