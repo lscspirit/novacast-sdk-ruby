@@ -542,6 +542,95 @@ module NovacastSDK
       end
 
       # 
+      # Get the list of question manifests
+      # @param channel_uid channel uid
+      # @return [QuestionManifestList]
+      def get_question_manifests(channel_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/question_manifests', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['channel_uid'] = channel_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionManifestList.from_json resp.body
+        
+      end
+
+      # 
+      # Create a new question manifest
+      # @param channel_uid channel uid
+      # @param body request body
+      # @return [QuestionManifest]
+      def create_question_manifest(channel_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/question_manifests', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['channel_uid'] = channel_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionManifest.from_json resp.body
+        
+      end
+
+      # 
       # Get the list of question sets
       # @param channel_uid channel uid
       # @return [QuestionSetList]
@@ -2570,6 +2659,137 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::QuestionSubmission.from_json resp.body
+        
+      end
+
+      # 
+      # Get a question manifest
+      # @param question_manifest_uid question manifest uid
+      # @return [QuestionManifest]
+      def get_question_manifest(question_manifest_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/question_manifests/{question_manifest_uid}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionManifest.from_json resp.body
+        
+      end
+
+      # 
+      # Update a question manifest
+      # @param question_manifest_uid question manifest uid
+      # @param body request body
+      # @return [QuestionManifest]
+      def update_question_manifest(question_manifest_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/question_manifests/{question_manifest_uid}', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionManifest.from_json resp.body
+        
+      end
+
+      # 
+      # Delete a question manifest
+      # @param question_manifest_uid question manifest uid
+      # @return [QuestionManifestDeleteResponse]
+      def delete_question_manifest(question_manifest_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/question_manifests/{question_manifest_uid}', :DELETE
+
+        # path parameters
+        path_params = {}
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionManifestDeleteResponse.from_json resp.body
         
       end
 

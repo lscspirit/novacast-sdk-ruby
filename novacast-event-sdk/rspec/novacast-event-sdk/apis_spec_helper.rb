@@ -175,6 +175,33 @@ module NovacastSDK
           }
           
         }, 
+        get_question_manifests: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        create_question_manifest: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionManifestCreateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         get_question_set_list: {
           
           :'channel_uid' => {
@@ -842,6 +869,43 @@ module NovacastSDK
           }
           
         }, 
+        get_question_manifest: {
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        update_question_manifest: {
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionManifestUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        delete_question_manifest: {
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_question_set: {
           
           :'question_set_uid' => {
@@ -1311,6 +1375,20 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        get_question_manifests: {
+          
+          200 => 'QuestionManifestList',
+          
+          0 => 'Error'
+          
+        }, 
+        create_question_manifest: {
+          
+          201 => 'QuestionManifest',
+          
+          0 => 'Error'
+          
+        }, 
         get_question_set_list: {
           
           200 => 'QuestionSetList',
@@ -1622,6 +1700,27 @@ module NovacastSDK
         create_question_submission: {
           
           201 => 'QuestionSubmission',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_manifest: {
+          
+          200 => 'QuestionManifest',
+          
+          0 => 'Error'
+          
+        }, 
+        update_question_manifest: {
+          
+          200 => 'QuestionManifest',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_question_manifest: {
+          
+          200 => 'QuestionManifestDeleteResponse',
           
           0 => 'Error'
           
