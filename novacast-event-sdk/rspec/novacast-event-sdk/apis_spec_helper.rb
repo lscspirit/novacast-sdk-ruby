@@ -442,6 +442,23 @@ module NovacastSDK
           }
           
         }, 
+        set_active_data_set: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'ActiveDataSetUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         get_event_page_content: {
           
           :'event_uid' => {
@@ -1504,6 +1521,13 @@ module NovacastSDK
         create_data_set: {
           
           201 => 'DataSet',
+          
+          0 => 'Error'
+          
+        }, 
+        set_active_data_set: {
+          
+          200 => 'DataSet',
           
           0 => 'Error'
           

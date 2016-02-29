@@ -369,6 +369,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'PUT /events/{event_uid}/data_sets/active', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/events/{event_uid}/data_sets/active', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /events/{event_uid}/page_contents/{page_path}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

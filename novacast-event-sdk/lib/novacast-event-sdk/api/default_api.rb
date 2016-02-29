@@ -1392,6 +1392,53 @@ module NovacastSDK
       end
 
       # 
+      # Set the active data set for an event
+      # @param event_uid event uid
+      # @param body request body
+      # @return [DataSet]
+      def set_active_data_set(event_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/data_sets/active', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['event_uid'] = event_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::DataSet.from_json resp.body
+        
+      end
+
+      # 
       # Get the page content of a event page
       # @param event_uid event uid
       # @param page_path event page path

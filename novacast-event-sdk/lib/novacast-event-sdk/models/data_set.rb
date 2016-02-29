@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class DataSet < NovacastSDK::BaseModel
-        attr_accessor :uid, :label, :production, :active
+        attr_accessor :uid, :label, :production
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -19,10 +19,7 @@ module NovacastSDK
             :'label' => { base_name: 'label', type: 'String', required: true },
             
             # production use
-            :'production' => { base_name: 'production', type: 'BOOLEAN', required: true },
-            
-            # active data set
-            :'active' => { base_name: 'active', type: 'BOOLEAN', required: true }
+            :'production' => { base_name: 'production', type: 'BOOLEAN', required: true }
             
           }
         end
