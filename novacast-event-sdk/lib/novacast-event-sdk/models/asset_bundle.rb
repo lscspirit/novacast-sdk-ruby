@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class AssetBundle < NovacastSDK::BaseModel
-        attr_accessor :uid, :rn, :contents, :label
+        attr_accessor :uid, :label, :rn, :contents
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -15,14 +15,14 @@ module NovacastSDK
             # asset bundle uid
             :'uid' => { base_name: 'uid', type: 'String', required: true },
             
+            # label
+            :'label' => { base_name: 'label', type: 'String', required: true },
+            
             # resource name
             :'rn' => { base_name: 'rn', type: 'String', required: true },
             
             # collection of bundle contents
-            :'contents' => { base_name: 'contents', type: 'Array[BundleContent]', required: true },
-            
-            # label
-            :'label' => { base_name: 'label', type: 'String', required: true }
+            :'contents' => { base_name: 'contents', type: 'Array[BundleContent]', required: true }
             
           }
         end

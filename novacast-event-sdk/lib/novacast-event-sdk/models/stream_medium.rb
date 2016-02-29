@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class StreamMedium < NovacastSDK::BaseModel
-        attr_accessor :uid, :rn, :label, :sources
+        attr_accessor :uid, :label, :rn, :sources
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -15,11 +15,11 @@ module NovacastSDK
             # uid of the stream
             :'uid' => { base_name: 'uid', type: 'String', required: true },
             
-            # resource name
-            :'rn' => { base_name: 'rn', type: 'String', required: true },
-            
             # stream label
             :'label' => { base_name: 'label', type: 'String', required: true },
+            
+            # resource name
+            :'rn' => { base_name: 'rn', type: 'String', required: true },
             
             # a collection of stream sources
             :'sources' => { base_name: 'sources', type: 'Array[StreamSource]', required: true }
