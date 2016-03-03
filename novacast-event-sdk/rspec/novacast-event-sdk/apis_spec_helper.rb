@@ -697,6 +697,104 @@ module NovacastSDK
           }
           
         }, 
+        update_forum_post: {
+          
+          :'forum_post_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'ForumPostUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        get_forum_post_likes: {
+          
+          :'forum_post_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        like_forum_post: {
+          
+          :'forum_post_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'ForumPostLikeRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        get_forum_posts: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        create_forum_post: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'ForumPostCreateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        get_forum_post_likes_for_account: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_extended_forum_posts: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'data_set_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
         get_live_cast_state: {
           
           :'session_uid' => {
@@ -1626,6 +1724,55 @@ module NovacastSDK
         get_event_user_set: {
           
           200 => 'UserSetExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        update_forum_post: {
+          
+          200 => 'ForumPostExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        get_forum_post_likes: {
+          
+          200 => 'ForumPostLikeList',
+          
+          0 => 'Error'
+          
+        }, 
+        like_forum_post: {
+          
+          200 => 'ForumPostLike',
+          
+          0 => 'Error'
+          
+        }, 
+        get_forum_posts: {
+          
+          200 => 'ForumPostList',
+          
+          0 => 'Error'
+          
+        }, 
+        create_forum_post: {
+          
+          201 => 'ForumPost',
+          
+          0 => 'Error'
+          
+        }, 
+        get_forum_post_likes_for_account: {
+          
+          200 => 'ForumPostLikeList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_extended_forum_posts: {
+          
+          200 => 'ForumPostExtendedList',
           
           0 => 'Error'
           

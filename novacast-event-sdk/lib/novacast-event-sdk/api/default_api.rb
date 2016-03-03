@@ -2090,6 +2090,318 @@ module NovacastSDK
       end
 
       # 
+      # Update the state of a forum post
+      # @param forum_post_uid uid of the forum post
+      # @param body request body
+      # @return [ForumPostExtended]
+      def update_forum_post(forum_post_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "forum_post_uid"' if forum_post_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/posts/{forum_post_uid}', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['forum_post_uid'] = forum_post_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPostExtended.from_json resp.body
+        
+      end
+
+      # 
+      # Get all likes for the forum post
+      # @param forum_post_uid uid of the forum post
+      # @return [ForumPostLikeList]
+      def get_forum_post_likes(forum_post_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "forum_post_uid"' if forum_post_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/posts/{forum_post_uid}/likes', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['forum_post_uid'] = forum_post_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPostLikeList.from_json resp.body
+        
+      end
+
+      # 
+      # Like or unlike a forum post
+      # @param forum_post_uid uid of the forum post
+      # @param body request body
+      # @return [ForumPostLike]
+      def like_forum_post(forum_post_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "forum_post_uid"' if forum_post_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/posts/{forum_post_uid}/likes', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['forum_post_uid'] = forum_post_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPostLike.from_json resp.body
+        
+      end
+
+      # 
+      # Get all forum posts of the session
+      # @param session_uid uid of the session
+      # @return [ForumPostList]
+      def get_forum_posts(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/sessions/{session_uid}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPostList.from_json resp.body
+        
+      end
+
+      # 
+      # Create a new forum post
+      # @param session_uid uid of the session
+      # @param body request body
+      # @return [ForumPost]
+      def create_forum_post(session_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/sessions/{session_uid}', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPost.from_json resp.body
+        
+      end
+
+      # 
+      # Get all forum posts likes of the session submitted by the access user
+      # @param session_uid uid of the session
+      # @return [ForumPostLikeList]
+      def get_forum_post_likes_for_account(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/sessions/{session_uid}/account/likes', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPostLikeList.from_json resp.body
+        
+      end
+
+      # 
+      # Get all forum posts (with extended information) of the session
+      # @param session_uid uid of the session
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :data_set_uid uid of the data set. Default to the active data set of the event
+      # @return [ForumPostExtendedList]
+      def get_extended_forum_posts(session_uid, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/sessions/{session_uid}/extended', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['data_set_uid'] = opts['data_set_uid'] if opts['data_set_uid']
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPostExtendedList.from_json resp.body
+        
+      end
+
+      # 
       # (LiveCast) Get the current LiveCast module state
       # @param session_uid session uid
       # @return [LiveCastState]
@@ -2222,7 +2534,7 @@ module NovacastSDK
 
       # 
       # Get user feedbacks submitted for a session
-      # @param session_uid param description
+      # @param session_uid uid of the session
       # @param [Hash] opts the optional parameters
       # @option opts [String] :data_set_uid uid of the data set. Default to the active data set of the event
       # @return [UserFeedbackList]
@@ -2267,7 +2579,7 @@ module NovacastSDK
 
       # 
       # Post a new user feedback
-      # @param session_uid param description
+      # @param session_uid uid of the session
       # @param body request body
       # @return [UserFeedback]
       def post_user_feedback(session_uid, body)

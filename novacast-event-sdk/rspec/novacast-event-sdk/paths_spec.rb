@@ -548,6 +548,83 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'PUT /mods/forum_post/posts/{forum_post_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'forum_post_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/mods/forum_post/posts/{forum_post_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /mods/forum_post/posts/{forum_post_uid}/likes', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'forum_post_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/mods/forum_post/posts/{forum_post_uid}/likes', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'PUT /mods/forum_post/posts/{forum_post_uid}/likes', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'forum_post_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/mods/forum_post/posts/{forum_post_uid}/likes', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /mods/forum_post/sessions/{session_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/mods/forum_post/sessions/{session_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'POST /mods/forum_post/sessions/{session_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/mods/forum_post/sessions/{session_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /mods/forum_post/sessions/{session_uid}/account/likes', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/mods/forum_post/sessions/{session_uid}/account/likes', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /mods/forum_post/sessions/{session_uid}/extended', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/mods/forum_post/sessions/{session_uid}/extended', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /mods/live_cast/sessions/{session_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
