@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class ForumPostExtended < NovacastSDK::BaseModel
-        attr_accessor :uid, :approved, :deleted, :hidden, :submitted_at, :account_uid, :content, :likes
+        attr_accessor :uid, :approved, :visible, :deleted, :hidden, :submitted_at, :account_uid, :content, :likes
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -17,6 +17,9 @@ module NovacastSDK
             
             # approved by moderator
             :'approved' => { base_name: 'approved', type: 'BOOLEAN', required: true },
+            
+            # visible to public
+            :'visible' => { base_name: 'visible', type: 'BOOLEAN', required: true },
             
             # whether the post is deleted
             :'deleted' => { base_name: 'deleted', type: 'BOOLEAN', required: true },

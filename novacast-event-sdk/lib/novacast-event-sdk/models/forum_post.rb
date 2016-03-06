@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class ForumPost < NovacastSDK::BaseModel
-        attr_accessor :uid, :account_uid, :content, :likes, :submitted_at
+        attr_accessor :uid, :account_uid, :content, :likes, :visible, :submitted_at
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -23,6 +23,9 @@ module NovacastSDK
             
             # number of likes
             :'likes' => { base_name: 'likes', type: 'Integer', required: false },
+            
+            # visible to public
+            :'visible' => { base_name: 'visible', type: 'BOOLEAN', required: true },
             
             # submission time
             :'submitted_at' => { base_name: 'submitted_at', type: 'DateTime', required: true }

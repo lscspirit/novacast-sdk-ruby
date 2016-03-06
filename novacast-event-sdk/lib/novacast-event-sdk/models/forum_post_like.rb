@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class ForumPostLike < NovacastSDK::BaseModel
-        attr_accessor :account_uid, :forum_post_uid, :like
+        attr_accessor :account_uid, :forum_post_uid, :liked
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -19,7 +19,7 @@ module NovacastSDK
             :'forum_post_uid' => { base_name: 'forum_post_uid', type: 'String', required: true },
             
             # like or unlike
-            :'like' => { base_name: 'like', type: 'BOOLEAN', required: true }
+            :'liked' => { base_name: 'liked', type: 'BOOLEAN', required: true }
             
           }
         end
