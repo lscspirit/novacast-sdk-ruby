@@ -131,10 +131,44 @@ module NovacastSDK
           }
           
         }, 
+        remove_account_role: {
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'role' => {
+            type: 'DeleteRoleRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        batch_update_account_role: {
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'BatchUpdateRoleRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         get_account_user_roles: {
           
           :'account_uid' => {
-            type: 'Integer',
+            type: 'String',
             path_param: true,
             body_param: false,
             required: true
@@ -144,7 +178,7 @@ module NovacastSDK
         create_account_user_role: {
           
           :'account_uid' => {
-            type: 'Integer',
+            type: 'String',
             path_param: true,
             body_param: false,
             required: true
@@ -511,6 +545,20 @@ module NovacastSDK
           200 => 'RoleResourcePermissions',
           
           201 => 'RoleResourcePermissions',
+          
+          0 => 'Error'
+          
+        }, 
+        remove_account_role: {
+          
+          200 => 'RoleResourcePermissions',
+          
+          0 => 'Error'
+          
+        }, 
+        batch_update_account_role: {
+          
+          200 => 'BatchUpdateRoleResponse',
           
           0 => 'Error'
           

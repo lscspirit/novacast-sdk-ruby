@@ -373,6 +373,90 @@ module NovacastSDK
       end
 
       # 
+      # Remove a role from an account
+      # @param account_uid uid of the Account
+      # @param role role to be deleted
+      # @return [RoleResourcePermissions]
+      def remove_account_role(account_uid, role)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "role"' if role.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/accounts/{account_uid}/roles', :DELETE
+
+        # path parameters
+        path_params = {}
+        path_params['account_uid'] = account_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = role.to_json
+        
+
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::IdentityV1::Models::RoleResourcePermissions.from_json resp.body
+        
+      end
+
+      # 
+      # Assign and delete account role in batch
+      # @param account_uid uid of the Account
+      # @param body request body
+      # @return [BatchUpdateRoleResponse]
+      def batch_update_account_role(account_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/accounts/{account_uid}/roles/batch', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['account_uid'] = account_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::IdentityV1::Models::BatchUpdateRoleResponse.from_json resp.body
+        
+      end
+
+      # 
       # Get all `AccessUserRole`
       # @param account_uid uid of the user account
       # @return [AccessUserRoleList]
