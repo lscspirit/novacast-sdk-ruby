@@ -3509,6 +3509,260 @@ module NovacastSDK
       end
 
       # 
+      # Get the poll status
+      # @param session_uid the session that this poll is relevant to
+      # @param question_manifest_uid quesiton manifest associated uid
+      # @param question_content_uid the question content that is specific for this poll
+      # @return [PollStatus]
+      def get_poll_status(session_uid, question_manifest_uid, question_content_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['question_content_uid'] = question_content_uid
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
+        
+      end
+
+      # 
+      # add statistics for the given poll status
+      # @param session_uid the session that this poll is relevant to
+      # @param question_manifest_uid quesiton manifest associated uid
+      # @param body request body
+      # @return [PollStatus]
+      def add_poll_stat(session_uid, question_manifest_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}/add_stat', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
+        
+      end
+
+      # 
+      # publish statistics for a given poll
+      # @param session_uid the session that this poll is relevant to
+      # @param question_manifest_uid quesiton manifest associated uid
+      # @param body request body
+      # @return [PollStatus]
+      def publish_poll(session_uid, question_manifest_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}/publish', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
+        
+      end
+
+      # 
+      # start the given poll
+      # @param session_uid the session that this poll is relevant to
+      # @param question_manifest_uid quesiton manifest associated uid
+      # @param body request body
+      # @return [PollStatus]
+      def start_poll(session_uid, question_manifest_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}/start', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
+        
+      end
+
+      # 
+      # stop the given poll
+      # @param session_uid the session that this poll is relevant to
+      # @param question_manifest_uid quesiton manifest associated uid
+      # @param body request body
+      # @return [PollStatus]
+      def stop_poll(session_uid, question_manifest_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}/stop', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
+        
+      end
+
+      # 
       # Get the page runtime configuration of event session
       # @param session_uid event session uid
       # @return [SessionRuntime]

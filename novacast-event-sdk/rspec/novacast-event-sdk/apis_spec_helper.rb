@@ -1129,6 +1129,126 @@ module NovacastSDK
           }
           
         }, 
+        get_poll_status: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_content_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        add_poll_stat: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'AddPollStatRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        publish_poll: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PollStatusControlRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        start_poll: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PollStatusControlRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        stop_poll: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PollStatusControlRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         get_event_session_runtime: {
           
           :'session_uid' => {
@@ -1948,6 +2068,41 @@ module NovacastSDK
         update_session_modules: {
           
           200 => 'SessionModuleList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_poll_status: {
+          
+          200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        add_poll_stat: {
+          
+          200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        publish_poll: {
+          
+          200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        start_poll: {
+          
+          200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        stop_poll: {
+          
+          200 => 'PollStatus',
           
           0 => 'Error'
           
