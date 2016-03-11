@@ -2,7 +2,7 @@ module NovacastSDK
   module IdentityV1
     module Models
       # 
-      class BatchUpdateRoleRequest < NovacastSDK::BaseModel
+      class BatchUpdateRolesRequest < NovacastSDK::BaseModel
         attr_accessor :assign, :delete
 
         def self.api_model_module

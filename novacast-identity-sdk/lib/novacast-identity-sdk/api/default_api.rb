@@ -418,8 +418,8 @@ module NovacastSDK
       # Assign and delete account role in batch
       # @param account_uid uid of the Account
       # @param body request body
-      # @return [BatchUpdateRoleResponse]
-      def batch_update_account_role(account_uid, body)
+      # @return [BatchUpdateRolesResponse]
+      def batch_update_account_roles(account_uid, body)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
@@ -452,7 +452,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::IdentityV1::Models::BatchUpdateRoleResponse.from_json resp.body
+        NovacastSDK::IdentityV1::Models::BatchUpdateRolesResponse.from_json resp.body
         
       end
 

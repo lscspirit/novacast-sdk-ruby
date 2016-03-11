@@ -148,7 +148,7 @@ module NovacastSDK
           }
           
         }, 
-        batch_update_account_role: {
+        batch_update_account_roles: {
           
           :'account_uid' => {
             type: 'String',
@@ -158,7 +158,7 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'BatchUpdateRoleRequest',
+            type: 'BatchUpdateRolesRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -556,9 +556,9 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        batch_update_account_role: {
+        batch_update_account_roles: {
           
-          200 => 'BatchUpdateRoleResponse',
+          200 => 'BatchUpdateRolesResponse',
           
           0 => 'Error'
           

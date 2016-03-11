@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class SlideDeck < NovacastSDK::BaseModel
-        attr_accessor :uid, :slides, :rn, :label, :page_count
+        attr_accessor :uid, :slides, :label, :rn, :page_count
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -18,11 +18,11 @@ module NovacastSDK
             # collection of slide information
             :'slides' => { base_name: 'slides', type: 'Array[Slide]', required: true },
             
-            # resource name
-            :'rn' => { base_name: 'rn', type: 'String', required: true },
-            
             # label
             :'label' => { base_name: 'label', type: 'String', required: true },
+            
+            # resource name
+            :'rn' => { base_name: 'rn', type: 'String', required: true },
             
             # number of pages in the slide deck
             :'page_count' => { base_name: 'page_count', type: 'Integer', required: true }
