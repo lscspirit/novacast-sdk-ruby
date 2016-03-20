@@ -22,6 +22,7 @@ module NovacastSDK
     class ResourceNotFound   < Base; DEFAULT_STATUS = :not_found;             end
 
     # API Operation Errors
+    class InvalidRecord      < Base; DEFAULT_STATUS = :bad_request;           end
     class MethodNotFound     < Base; DEFAULT_STATUS = :not_found;             end
     class InvalidArgument    < Base; DEFAULT_STATUS = :bad_request;           end
     class MissingParameter   < Base; DEFAULT_STATUS = :bad_request;           end
