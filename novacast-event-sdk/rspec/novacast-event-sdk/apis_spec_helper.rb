@@ -1249,6 +1249,126 @@ module NovacastSDK
           }
           
         }, 
+        get_questionnaire_status: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_set_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        add_questionnaire_stat: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'AddquestionnaireStatRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        publish_questionnaire: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionnaireStatusControlRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        start_questionnaire: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionnaireStatusControlRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        stop_questionnaire: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionnaireStatusControlRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         get_event_session_runtime: {
           
           :'session_uid' => {
@@ -2103,6 +2223,41 @@ module NovacastSDK
         stop_poll: {
           
           200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        get_questionnaire_status: {
+          
+          200 => 'QuestionnaireStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        add_questionnaire_stat: {
+          
+          200 => 'QuestionnaireStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        publish_questionnaire: {
+          
+          200 => 'QuestionnaireStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        start_questionnaire: {
+          
+          200 => 'QuestionnaireStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        stop_questionnaire: {
+          
+          200 => 'QuestionnaireStatus',
           
           0 => 'Error'
           

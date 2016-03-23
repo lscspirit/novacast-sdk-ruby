@@ -13,7 +13,7 @@ module NovacastSDK
           {
             
             # a collection of module configurations
-            :'modules' => { base_name: 'modules', type: 'Array[SessionModule]', required: true }
+            :'modules' => { base_name: 'modules', type: 'Array[SessionModuleUpdate]', required: true }
             
           }
         end
