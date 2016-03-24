@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class AddquestionnaireStatRequest < NovacastSDK::BaseModel
-        attr_accessor :question_set_uid, :choice
+        attr_accessor :question_set_uid, :answers
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,11 +12,11 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # the question content that is associated with this questionnaire
+            # the question set that is associated with this questionnaire
             :'question_set_uid' => { base_name: 'question_set_uid', type: 'String', required: true },
             
-            # a JSON encoded string to represent the choices chosen
-            :'choice' => { base_name: 'choice', type: 'String', required: true }
+            # answers for all the questions in this questionnaire
+            :'answers' => { base_name: 'answers', type: 'Array[QuestionnaireAnswer]', required: true }
             
           }
         end
