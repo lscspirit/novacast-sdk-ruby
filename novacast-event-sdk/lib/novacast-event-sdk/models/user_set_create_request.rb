@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class UserSetCreateRequest < NovacastSDK::BaseModel
-        attr_accessor :label, :access, :enrollment, :account_only, :fields
+        attr_accessor :label, :ch_acct_only, :whitelisted_only, :full_enrollment, :fields
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -15,14 +15,14 @@ module NovacastSDK
             # label
             :'label' => { base_name: 'label', type: 'String', required: true },
             
-            # access level
-            :'access' => { base_name: 'access', type: 'String', required: false },
+            # channel accounts only
+            :'ch_acct_only' => { base_name: 'ch_acct_only', type: 'BOOLEAN', required: false },
+            
+            # whitelisted accounts only
+            :'whitelisted_only' => { base_name: 'whitelisted_only', type: 'BOOLEAN', required: false },
             
             # enrollment required
-            :'enrollment' => { base_name: 'enrollment', type: 'BOOLEAN', required: false },
-            
-            # account only access
-            :'account_only' => { base_name: 'account_only', type: 'BOOLEAN', required: false },
+            :'full_enrollment' => { base_name: 'full_enrollment', type: 'BOOLEAN', required: false },
             
             # enrollment fields
             :'fields' => { base_name: 'fields', type: 'Array[EnrollmentField]', required: false }

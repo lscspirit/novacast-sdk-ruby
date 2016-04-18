@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class QuestionSet < NovacastSDK::BaseModel
-        attr_accessor :uid, :rn, :contents, :state, :label
+        attr_accessor :uid, :rn, :label, :state, :contents
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -18,14 +18,14 @@ module NovacastSDK
             # resource name
             :'rn' => { base_name: 'rn', type: 'String', required: true },
             
-            # question set contents
-            :'contents' => { base_name: 'contents', type: 'Array[QuestionContent]', required: false },
+            # label
+            :'label' => { base_name: 'label', type: 'String', required: true },
             
             # question set state
             :'state' => { base_name: 'state', type: 'String', required: true },
             
-            # label
-            :'label' => { base_name: 'label', type: 'String', required: true }
+            # question set contents
+            :'contents' => { base_name: 'contents', type: 'Array[QuestionContent]', required: false }
             
           }
         end

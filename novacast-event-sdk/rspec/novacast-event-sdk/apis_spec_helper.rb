@@ -13,12 +13,84 @@ module NovacastSDK
     class ApiRequests
   
       REQUESTS = { 
-        get_asset_bundle: {
+        add_poll_stat: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'AddPollStatRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        add_questionnaire_stat: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'AddquestionnaireStatRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        bundle_content_pre_upload: {
           
           :'asset_bundle_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'BundleContentPreUploadRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        change_event_stage: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventStageRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -47,26 +119,9 @@ module NovacastSDK
           }
           
         }, 
-        get_bundle_content: {
+        confirm_stream_source: {
           
-          :'asset_bundle_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'file_path' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        bundle_content_pre_upload: {
-          
-          :'asset_bundle_uid' => {
+          :'stream_source_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -74,37 +129,14 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'BundleContentPreUploadRequest',
+            type: 'StreamSourceConfirmRequest',
             path_param: false,
             body_param: true,
             required: true
           }
           
         }, 
-        get_channel_list: {
-          
-        }, 
-        create_channel: {
-          
-          :'channel' => {
-            type: 'ChannelData',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_channel: {
-          
-          :'channel_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        update_channel: {
+        create_access_policy: {
           
           :'channel_uid' => {
             type: 'String',
@@ -113,20 +145,10 @@ module NovacastSDK
             required: true
           },
           
-          :'channel' => {
-            type: 'ChannelData',
+          :'body' => {
+            type: 'AccessPolicyCreateRequest',
             path_param: false,
             body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_asset_bundle_list: {
-          
-          :'channel_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
             required: true
           }
           
@@ -148,12 +170,29 @@ module NovacastSDK
           }
           
         }, 
-        get_channel_events: {
+        create_channel: {
           
-          :'channel_uid' => {
+          :'channel' => {
+            type: 'ChannelData',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        create_data_set: {
+          
+          :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'DataSetCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -175,12 +214,87 @@ module NovacastSDK
           }
           
         }, 
-        get_question_manifests: {
+        create_event_page: {
           
-          :'channel_uid' => {
+          :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventPageCreateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        create_event_session: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventSessionCreateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        create_forum_post: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'ForumPostCreateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        create_page_mapping: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PageMappingCreateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        create_question_content: {
+          
+          :'question_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionContentCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -202,16 +316,6 @@ module NovacastSDK
           }
           
         }, 
-        get_question_set_list: {
-          
-          :'channel_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
         create_question_set: {
           
           :'channel_uid' => {
@@ -229,12 +333,26 @@ module NovacastSDK
           }
           
         }, 
-        get_slide_deck_list: {
+        create_question_submission: {
           
-          :'channel_uid' => {
+          :'question_content_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'user_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionSubmissionCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -256,16 +374,6 @@ module NovacastSDK
           }
           
         }, 
-        get_stream_medium_list: {
-          
-          :'channel_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
         create_stream_medium: {
           
           :'channel_uid' => {
@@ -283,12 +391,19 @@ module NovacastSDK
           }
           
         }, 
-        get_user_set_list: {
+        create_stream_source: {
           
-          :'channel_uid' => {
+          :'stream_medium_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'StreamSourceCreateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -310,9 +425,9 @@ module NovacastSDK
           }
           
         }, 
-        get_data_set: {
+        delete_access_policy: {
           
-          :'data_set_uid' => {
+          :'access_policy_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -320,9 +435,9 @@ module NovacastSDK
           }
           
         }, 
-        get_data_set_partitions: {
+        delete_page_mapping: {
           
-          :'data_set_uid' => {
+          :'mapping_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -330,9 +445,9 @@ module NovacastSDK
           }
           
         }, 
-        get_event: {
+        delete_question_content: {
           
-          :'event_uid' => {
+          :'question_content_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -340,9 +455,39 @@ module NovacastSDK
           }
           
         }, 
-        update_event: {
+        delete_question_manifest: {
           
-          :'event_uid' => {
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_question_set: {
+          
+          :'question_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_slide_deck: {
+          
+          :'slide_deck_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_slides: {
+          
+          :'slide_deck_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -350,16 +495,16 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'EventUpdateRequest',
+            type: 'SlideDeleteRequest',
             path_param: false,
             body_param: true,
             required: true
           }
           
         }, 
-        track_attendance: {
+        enroll_to_user_set: {
           
-          :'event_uid' => {
+          :'user_set_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -367,11 +512,91 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'TrackAttendanceRequest',
+            type: 'UserSetEnrollRequest',
             path_param: false,
             body_param: true,
             required: true
           }
+          
+        }, 
+        get_access_policy: {
+          
+          :'access_policy_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_access_policy_list: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_asset_bundle: {
+          
+          :'asset_bundle_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_asset_bundle_list: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_bundle_content: {
+          
+          :'asset_bundle_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'file_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_channel: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_channel_events: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_channel_list: {
           
         }, 
         get_content_by_mapping: {
@@ -415,6 +640,26 @@ module NovacastSDK
           }
           
         }, 
+        get_contents_for_question_set: {
+          
+          :'question_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_data_set: {
+          
+          :'data_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_data_set_list: {
           
           :'event_uid' => {
@@ -425,50 +670,9 @@ module NovacastSDK
           }
           
         }, 
-        create_data_set: {
+        get_data_set_partitions: {
           
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'DataSetCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        set_active_data_set: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'ActiveDataSetUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_event_page_content: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'page_path' => {
+          :'data_set_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -476,72 +680,7 @@ module NovacastSDK
           }
           
         }, 
-        update_event_page_content: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'page_path' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'PageContentUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_page_exceptions: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'page_path' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        update_page_exceptions: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'page_path' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'SessionExceptionUpdate',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_page_mapping_list: {
+        get_event: {
           
           :'event_uid' => {
             type: 'String',
@@ -551,36 +690,12 @@ module NovacastSDK
           }
           
         }, 
-        create_page_mapping: {
+        get_event_interface_filter_chain: {
           
           :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'PageMappingCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        create_event_page: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'EventPageCreateRequest',
-            path_param: false,
-            body_param: true,
             required: true
           }
           
@@ -602,7 +717,7 @@ module NovacastSDK
           }
           
         }, 
-        update_event_page: {
+        get_event_page_content: {
           
           :'event_uid' => {
             type: 'String',
@@ -616,26 +731,12 @@ module NovacastSDK
             path_param: true,
             body_param: false,
             required: true
-          },
-          
-          :'body' => {
-            type: 'EventPageUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
           }
           
         }, 
-        get_runtime_by_path: {
+        get_event_session: {
           
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'content_path' => {
+          :'session_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -653,36 +754,12 @@ module NovacastSDK
           }
           
         }, 
-        create_event_session: {
+        get_event_session_runtime: {
           
-          :'event_uid' => {
+          :'session_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'EventSessionCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        change_event_stage: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'EventStageRequest',
-            path_param: false,
-            body_param: true,
             required: true
           }
           
@@ -690,87 +767,6 @@ module NovacastSDK
         get_event_user_set: {
           
           :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        update_forum_post: {
-          
-          :'forum_post_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'ForumPostUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_forum_post_likes: {
-          
-          :'forum_post_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        like_forum_post: {
-          
-          :'forum_post_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'ForumPostLikeRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_forum_posts: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        create_forum_post: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'ForumPostCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_forum_post_likes_for_account: {
-          
-          :'session_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -795,7 +791,27 @@ module NovacastSDK
           }
           
         }, 
-        get_live_cast_state: {
+        get_forum_post_likes: {
+          
+          :'forum_post_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_forum_post_likes_for_account: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_forum_posts: {
           
           :'session_uid' => {
             type: 'String',
@@ -815,7 +831,44 @@ module NovacastSDK
           }
           
         }, 
-        update_live_cast_page: {
+        get_live_cast_state: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_page_exceptions: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'page_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_page_mapping_list: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_poll_status: {
           
           :'session_uid' => {
             type: 'String',
@@ -824,76 +877,19 @@ module NovacastSDK
             required: true
           },
           
-          :'body' => {
-            type: 'LiveCastPageChangeRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_user_feedbacks: {
-          
-          :'session_uid' => {
+          :'question_manifest_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           },
           
-          :'data_set_uid' => {
+          :'question_content_uid' => {
             type: 'String',
             path_param: false,
             body_param: false,
-            required: false
-          }
-          
-        }, 
-        post_user_feedback: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'UserFeedbackPostRequest',
-            path_param: false,
-            body_param: true,
             required: true
           }
-          
-        }, 
-        update_page_mapping: {
-          
-          :'mapping_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'PageMappingUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        delete_page_mapping: {
-          
-          :'mapping_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_question_content_types: {
           
         }, 
         get_question_content: {
@@ -906,26 +902,42 @@ module NovacastSDK
           }
           
         }, 
-        update_question_content: {
+        get_question_content_types: {
           
-          :'question_content_uid' => {
+        }, 
+        get_question_manifest: {
+          
+          :'question_manifest_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
-          },
+          }
           
-          :'body' => {
-            type: 'QuestionContentUpdateRequest',
-            path_param: false,
-            body_param: true,
+        }, 
+        get_question_manifests: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
             required: true
           }
           
         }, 
-        delete_question_content: {
+        get_question_set: {
           
-          :'question_content_uid' => {
+          :'question_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_question_set_list: {
+          
+          :'channel_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -960,176 +972,7 @@ module NovacastSDK
           }
           
         }, 
-        create_question_submission: {
-          
-          :'question_content_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'user_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'QuestionSubmissionCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_question_manifest: {
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        update_question_manifest: {
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'QuestionManifestUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        delete_question_manifest: {
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_question_set: {
-          
-          :'question_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        update_question_set: {
-          
-          :'question_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'QuestionSetUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        delete_question_set: {
-          
-          :'question_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_contents_for_question_set: {
-          
-          :'question_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        create_question_content: {
-          
-          :'question_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'QuestionContentCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        reorder_question_contents: {
-          
-          :'question_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'QuestionContentOrderRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_event_session: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        update_session_modules: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'SessionModuleUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_poll_status: {
+        get_questionnaire_status: {
           
           :'session_uid' => {
             type: 'String',
@@ -1145,7 +988,7 @@ module NovacastSDK
             required: true
           },
           
-          :'question_content_uid' => {
+          :'question_set_uid' => {
             type: 'String',
             path_param: false,
             body_param: false,
@@ -1153,7 +996,64 @@ module NovacastSDK
           }
           
         }, 
-        add_poll_stat: {
+        get_runtime_by_path: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'content_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_slide_deck: {
+          
+          :'slide_deck_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_slide_deck_list: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_stream_medium: {
+          
+          :'stream_medium_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_stream_medium_list: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_user_feedbacks: {
           
           :'session_uid' => {
             type: 'String',
@@ -1162,7 +1062,47 @@ module NovacastSDK
             required: true
           },
           
-          :'question_manifest_uid' => {
+          :'data_set_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
+        get_user_set: {
+          
+          :'user_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_user_set_list: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_whitelisted_users: {
+          
+          :'user_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        like_forum_post: {
+          
+          :'forum_post_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -1170,7 +1110,24 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'AddPollStatRequest',
+            type: 'ForumPostLikeRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        post_user_feedback: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'UserFeedbackPostRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -1201,102 +1158,6 @@ module NovacastSDK
           }
           
         }, 
-        start_poll: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'PollStatusControlRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        stop_poll: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'PollStatusControlRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_questionnaire_status: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'question_set_uid' => {
-            type: 'String',
-            path_param: false,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        add_questionnaire_stat: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'AddquestionnaireStatRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
         publish_questionnaire: {
           
           :'session_uid' => {
@@ -1315,6 +1176,98 @@ module NovacastSDK
           
           :'body' => {
             type: 'QuestionnaireStatusControlRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        rearrange_slides: {
+          
+          :'slide_deck_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SlideOrderRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        reorder_question_contents: {
+          
+          :'question_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionContentOrderRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        revoke_whitelisted_users: {
+          
+          :'user_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'WhitelistRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        set_active_data_set: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'ActiveDataSetUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        start_poll: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PollStatusControlRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -1345,6 +1298,30 @@ module NovacastSDK
           }
           
         }, 
+        stop_poll: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PollStatusControlRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         stop_questionnaire: {
           
           :'session_uid' => {
@@ -1369,22 +1346,278 @@ module NovacastSDK
           }
           
         }, 
-        get_event_session_runtime: {
+        stream_source_pre_upload: {
+          
+          :'stream_medium_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'StreamSourcePreUploadRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        track_attendance: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'TrackAttendanceRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_access_policy: {
+          
+          :'access_policy_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'AccessPolicyUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_channel: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'channel' => {
+            type: 'ChannelData',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_event: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_event_page: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'page_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventPageUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_event_page_content: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'page_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PageContentUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_forum_post: {
+          
+          :'forum_post_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'ForumPostUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_live_cast_page: {
           
           :'session_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
+          },
+          
+          :'body' => {
+            type: 'LiveCastPageChangeRequest',
+            path_param: false,
+            body_param: true,
+            required: true
           }
           
         }, 
-        get_slide_deck: {
+        update_page_exceptions: {
           
-          :'slide_deck_uid' => {
+          :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
+            required: true
+          },
+          
+          :'page_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SessionExceptionUpdate',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_page_mapping: {
+          
+          :'mapping_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PageMappingUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_question_content: {
+          
+          :'question_content_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionContentUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_question_manifest: {
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionManifestUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_question_set: {
+          
+          :'question_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionSetUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        update_session_modules: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SessionModuleUpdateRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -1406,19 +1639,9 @@ module NovacastSDK
           }
           
         }, 
-        delete_slide_deck: {
+        update_user_set: {
           
-          :'slide_deck_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        delete_slides: {
-          
-          :'slide_deck_uid' => {
+          :'user_set_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -1426,24 +1649,7 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'SlideDeleteRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        rearrange_slides: {
-          
-          :'slide_deck_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'SlideOrderRequest',
+            type: 'UserSetUpdateRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -1467,78 +1673,7 @@ module NovacastSDK
           }
           
         }, 
-        confirm_stream_source: {
-          
-          :'stream_source_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'StreamSourceConfirmRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_stream_medium: {
-          
-          :'stream_medium_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        create_stream_source: {
-          
-          :'stream_medium_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'StreamSourceCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        stream_source_pre_upload: {
-          
-          :'stream_medium_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'StreamSourcePreUploadRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_user_set: {
-          
-          :'user_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        update_user_set: {
+        whitelist_users: {
           
           :'user_set_uid' => {
             type: 'String',
@@ -1548,41 +1683,7 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'UserSetUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        enroll_to_user_set: {
-          
-          :'user_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'UserSetEnrollRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        white_list_accounts: {
-          
-          :'user_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'WhiteListRequest',
+            type: 'WhitelistRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -1646,590 +1747,9 @@ module NovacastSDK
     class ApiResponses
 
       RESPONSES = { 
-        get_asset_bundle: {
-          
-          200 => 'AssetBundle',
-          
-          0 => 'Error'
-          
-        }, 
-        confirm_bundle_content: {
-          
-          200 => 'BundleContent',
-          
-          0 => 'Error'
-          
-        }, 
-        get_bundle_content: {
-          
-          200 => 'BundleContent',
-          
-          0 => 'Error'
-          
-        }, 
-        bundle_content_pre_upload: {
-          
-          200 => 'PresignedUpload',
-          
-          0 => 'Error'
-          
-        }, 
-        get_channel_list: {
-          
-          200 => 'ChannelList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_channel: {
-          
-          201 => 'Channel',
-          
-          0 => 'Error'
-          
-        }, 
-        get_channel: {
-          
-          200 => 'Channel',
-          
-          0 => 'Error'
-          
-        }, 
-        update_channel: {
-          
-          200 => 'Channel',
-          
-          0 => 'Error'
-          
-        }, 
-        get_asset_bundle_list: {
-          
-          200 => 'AssetBundleInfoList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_asset_bundle: {
-          
-          201 => 'AssetBundleInfo',
-          
-          0 => 'Error'
-          
-        }, 
-        get_channel_events: {
-          
-          200 => 'EventList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_event: {
-          
-          201 => 'EventExtended',
-          
-          0 => 'Error'
-          
-        }, 
-        get_question_manifests: {
-          
-          200 => 'QuestionManifestList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_question_manifest: {
-          
-          201 => 'QuestionManifest',
-          
-          0 => 'Error'
-          
-        }, 
-        get_question_set_list: {
-          
-          200 => 'QuestionSetList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_question_set: {
-          
-          201 => 'QuestionSetInfo',
-          
-          0 => 'Error'
-          
-        }, 
-        get_slide_deck_list: {
-          
-          200 => 'SlideDeckInfoList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_slide_deck: {
-          
-          201 => 'SlideDeckInfo',
-          
-          0 => 'Error'
-          
-        }, 
-        get_stream_medium_list: {
-          
-          200 => 'StreamMediumInfoList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_stream_medium: {
-          
-          201 => 'StreamMediumInfo',
-          
-          0 => 'Error'
-          
-        }, 
-        get_user_set_list: {
-          
-          200 => 'UserSetList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_user_set: {
-          
-          201 => 'UserSetExtended',
-          
-          0 => 'Error'
-          
-        }, 
-        get_data_set: {
-          
-          200 => 'DataSet',
-          
-          0 => 'Error'
-          
-        }, 
-        get_data_set_partitions: {
-          
-          200 => 'DataSetPartitionList',
-          
-          0 => 'Error'
-          
-        }, 
-        get_event: {
-          
-          200 => 'EventExtended',
-          
-          0 => 'Error'
-          
-        }, 
-        update_event: {
-          
-          200 => 'EventExtended',
-          
-          0 => 'Error'
-          
-        }, 
-        track_attendance: {
-          
-          200 => '',
-          
-          0 => 'Error'
-          
-        }, 
-        get_content_by_mapping: {
-          
-          200 => 'EventContent',
-          
-          0 => 'Error'
-          
-        }, 
-        get_content_by_path: {
-          
-          200 => 'EventContent',
-          
-          0 => 'Error'
-          
-        }, 
-        get_data_set_list: {
-          
-          200 => 'DataSetList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_data_set: {
-          
-          201 => 'DataSet',
-          
-          0 => 'Error'
-          
-        }, 
-        set_active_data_set: {
-          
-          200 => 'DataSet',
-          
-          0 => 'Error'
-          
-        }, 
-        get_event_page_content: {
-          
-          200 => 'PageContent',
-          
-          0 => 'Error'
-          
-        }, 
-        update_event_page_content: {
-          
-          200 => 'PageContent',
-          
-          0 => 'Error'
-          
-        }, 
-        get_page_exceptions: {
-          
-          200 => 'PageSessionExceptions',
-          
-          0 => 'Error'
-          
-        }, 
-        update_page_exceptions: {
-          
-          200 => 'PageSessionExceptions',
-          
-          0 => 'Error'
-          
-        }, 
-        get_page_mapping_list: {
-          
-          200 => 'PageMappingList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_page_mapping: {
-          
-          201 => 'PageMapping',
-          
-          0 => 'Error'
-          
-        }, 
-        create_event_page: {
-          
-          201 => 'EventPage',
-          
-          0 => 'Error'
-          
-        }, 
-        get_event_page: {
-          
-          200 => 'EventPage',
-          
-          0 => 'Error'
-          
-        }, 
-        update_event_page: {
-          
-          200 => 'EventPage',
-          
-          0 => 'Error'
-          
-        }, 
-        get_runtime_by_path: {
-          
-          200 => 'PageRuntime',
-          
-          0 => 'Error'
-          
-        }, 
-        get_event_session_list: {
-          
-          200 => 'EventSessionList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_event_session: {
-          
-          201 => 'EventSession',
-          
-          0 => 'Error'
-          
-        }, 
-        change_event_stage: {
-          
-          200 => 'Event',
-          
-          0 => 'Error'
-          
-        }, 
-        get_event_user_set: {
-          
-          200 => 'UserSetExtended',
-          
-          0 => 'Error'
-          
-        }, 
-        update_forum_post: {
-          
-          200 => 'ForumPostExtended',
-          
-          0 => 'Error'
-          
-        }, 
-        get_forum_post_likes: {
-          
-          200 => 'ForumPostLikeList',
-          
-          0 => 'Error'
-          
-        }, 
-        like_forum_post: {
-          
-          200 => 'ForumPostLike',
-          
-          0 => 'Error'
-          
-        }, 
-        get_forum_posts: {
-          
-          200 => 'ForumPostList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_forum_post: {
-          
-          201 => 'ForumPost',
-          
-          0 => 'Error'
-          
-        }, 
-        get_forum_post_likes_for_account: {
-          
-          200 => 'ForumPostLikeList',
-          
-          0 => 'Error'
-          
-        }, 
-        get_extended_forum_posts: {
-          
-          200 => 'ForumPostExtendedList',
-          
-          0 => 'Error'
-          
-        }, 
-        get_live_cast_state: {
-          
-          200 => 'LiveCastState',
-          
-          0 => 'Error'
-          
-        }, 
-        get_live_cast_page: {
-          
-          200 => 'LiveCastSlidePage',
-          
-          0 => 'Error'
-          
-        }, 
-        update_live_cast_page: {
-          
-          200 => 'LiveCastState',
-          
-          0 => 'Error'
-          
-        }, 
-        get_user_feedbacks: {
-          
-          200 => 'UserFeedbackList',
-          
-          0 => 'Error'
-          
-        }, 
-        post_user_feedback: {
-          
-          201 => 'UserFeedback',
-          
-          0 => 'Error'
-          
-        }, 
-        update_page_mapping: {
-          
-          200 => 'PageMapping',
-          
-          0 => 'Error'
-          
-        }, 
-        delete_page_mapping: {
-          
-          200 => 'PageMapping',
-          
-          0 => 'Error'
-          
-        }, 
-        get_question_content_types: {
-          
-          200 => 'QuestionContentTypeList',
-          
-          0 => 'Error'
-          
-        }, 
-        get_question_content: {
-          
-          200 => 'QuestionContent',
-          
-          0 => 'Error'
-          
-        }, 
-        update_question_content: {
-          
-          200 => 'QuestionContent',
-          
-          0 => 'Error'
-          
-        }, 
-        delete_question_content: {
-          
-          200 => 'QuestionContent',
-          
-          0 => 'Error'
-          
-        }, 
-        get_question_submissions: {
-          
-          200 => 'QuestionSubmissionList',
-          
-          0 => 'Error'
-          
-        }, 
-        get_question_submissions_for_user: {
-          
-          200 => 'QuestionSubmissionList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_question_submission: {
-          
-          201 => 'QuestionSubmission',
-          
-          0 => 'Error'
-          
-        }, 
-        get_question_manifest: {
-          
-          200 => 'QuestionManifest',
-          
-          0 => 'Error'
-          
-        }, 
-        update_question_manifest: {
-          
-          200 => 'QuestionManifest',
-          
-          0 => 'Error'
-          
-        }, 
-        delete_question_manifest: {
-          
-          200 => 'QuestionManifestDeleteResponse',
-          
-          0 => 'Error'
-          
-        }, 
-        get_question_set: {
-          
-          200 => 'QuestionSet',
-          
-          0 => 'Error'
-          
-        }, 
-        update_question_set: {
-          
-          200 => 'QuestionSetInfo',
-          
-          0 => 'Error'
-          
-        }, 
-        delete_question_set: {
-          
-          200 => 'QuestionSetInfo',
-          
-          0 => 'Error'
-          
-        }, 
-        get_contents_for_question_set: {
-          
-          200 => 'QuestionContentList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_question_content: {
-          
-          201 => 'QuestionContent',
-          
-          0 => 'Error'
-          
-        }, 
-        reorder_question_contents: {
-          
-          200 => 'QuestionSet',
-          
-          0 => 'Error'
-          
-        }, 
-        get_event_session: {
-          
-          200 => 'EventSessionExtended',
-          
-          0 => 'Error'
-          
-        }, 
-        update_session_modules: {
-          
-          200 => 'SessionModuleList',
-          
-          0 => 'Error'
-          
-        }, 
-        get_poll_status: {
-          
-          200 => 'PollStatus',
-          
-          0 => 'Error'
-          
-        }, 
         add_poll_stat: {
           
           200 => 'PollStatus',
-          
-          0 => 'Error'
-          
-        }, 
-        publish_poll: {
-          
-          200 => 'PollStatus',
-          
-          0 => 'Error'
-          
-        }, 
-        start_poll: {
-          
-          200 => 'PollStatus',
-          
-          0 => 'Error'
-          
-        }, 
-        stop_poll: {
-          
-          200 => 'PollStatus',
-          
-          0 => 'Error'
-          
-        }, 
-        get_questionnaire_status: {
-          
-          200 => 'QuestionnaireStatus',
           
           0 => 'Error'
           
@@ -2241,44 +1761,184 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        publish_questionnaire: {
+        bundle_content_pre_upload: {
           
-          200 => 'QuestionnaireStatus',
-          
-          0 => 'Error'
-          
-        }, 
-        start_questionnaire: {
-          
-          200 => 'QuestionnaireStatus',
+          200 => 'PresignedUpload',
           
           0 => 'Error'
           
         }, 
-        stop_questionnaire: {
+        change_event_stage: {
           
-          200 => 'QuestionnaireStatus',
-          
-          0 => 'Error'
-          
-        }, 
-        get_event_session_runtime: {
-          
-          200 => 'SessionRuntime',
+          200 => 'Event',
           
           0 => 'Error'
           
         }, 
-        get_slide_deck: {
+        confirm_bundle_content: {
           
-          200 => 'SlideDeck',
+          200 => 'BundleContent',
           
           0 => 'Error'
           
         }, 
-        update_slide_deck: {
+        confirm_stream_source: {
           
-          200 => 'SlideDeckInfo',
+          200 => 'StreamSource',
+          
+          0 => 'Error'
+          
+        }, 
+        create_access_policy: {
+          
+          201 => 'AccessPolicyExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        create_asset_bundle: {
+          
+          201 => 'AssetBundleInfo',
+          
+          0 => 'Error'
+          
+        }, 
+        create_channel: {
+          
+          201 => 'Channel',
+          
+          0 => 'Error'
+          
+        }, 
+        create_data_set: {
+          
+          201 => 'DataSet',
+          
+          0 => 'Error'
+          
+        }, 
+        create_event: {
+          
+          201 => 'EventExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        create_event_page: {
+          
+          201 => 'EventPage',
+          
+          0 => 'Error'
+          
+        }, 
+        create_event_session: {
+          
+          201 => 'EventSession',
+          
+          0 => 'Error'
+          
+        }, 
+        create_forum_post: {
+          
+          201 => 'ForumPost',
+          
+          0 => 'Error'
+          
+        }, 
+        create_page_mapping: {
+          
+          201 => 'PageMapping',
+          
+          0 => 'Error'
+          
+        }, 
+        create_question_content: {
+          
+          201 => 'QuestionContent',
+          
+          0 => 'Error'
+          
+        }, 
+        create_question_manifest: {
+          
+          201 => 'QuestionManifest',
+          
+          0 => 'Error'
+          
+        }, 
+        create_question_set: {
+          
+          201 => 'QuestionSetInfo',
+          
+          0 => 'Error'
+          
+        }, 
+        create_question_submission: {
+          
+          201 => 'QuestionSubmission',
+          
+          0 => 'Error'
+          
+        }, 
+        create_slide_deck: {
+          
+          201 => 'SlideDeckInfo',
+          
+          0 => 'Error'
+          
+        }, 
+        create_stream_medium: {
+          
+          201 => 'StreamMediumInfo',
+          
+          0 => 'Error'
+          
+        }, 
+        create_stream_source: {
+          
+          201 => 'StreamSource',
+          
+          0 => 'Error'
+          
+        }, 
+        create_user_set: {
+          
+          201 => 'UserSetExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_access_policy: {
+          
+          200 => 'AccessPolicy',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_page_mapping: {
+          
+          200 => 'PageMapping',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_question_content: {
+          
+          200 => 'QuestionContent',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_question_manifest: {
+          
+          200 => 'QuestionManifestDeleteResponse',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_question_set: {
+          
+          200 => 'QuestionSetInfo',
           
           0 => 'Error'
           
@@ -2297,23 +1957,312 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        rearrange_slides: {
+        enroll_to_user_set: {
+          
+          200 => 'Enrollment',
+          
+          201 => 'Enrollment',
+          
+          0 => 'Error'
+          
+        }, 
+        get_access_policy: {
+          
+          200 => 'AccessPolicyExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        get_access_policy_list: {
+          
+          200 => 'AccessPolicyList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_asset_bundle: {
+          
+          200 => 'AssetBundle',
+          
+          0 => 'Error'
+          
+        }, 
+        get_asset_bundle_list: {
+          
+          200 => 'AssetBundleInfoList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_bundle_content: {
+          
+          200 => 'BundleContent',
+          
+          0 => 'Error'
+          
+        }, 
+        get_channel: {
+          
+          200 => 'Channel',
+          
+          0 => 'Error'
+          
+        }, 
+        get_channel_events: {
+          
+          200 => 'EventList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_channel_list: {
+          
+          200 => 'ChannelList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_content_by_mapping: {
+          
+          200 => 'EventContent',
+          
+          0 => 'Error'
+          
+        }, 
+        get_content_by_path: {
+          
+          200 => 'EventContent',
+          
+          0 => 'Error'
+          
+        }, 
+        get_contents_for_question_set: {
+          
+          200 => 'QuestionContentList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_data_set: {
+          
+          200 => 'DataSet',
+          
+          0 => 'Error'
+          
+        }, 
+        get_data_set_list: {
+          
+          200 => 'DataSetList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_data_set_partitions: {
+          
+          200 => 'DataSetPartitionList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event: {
+          
+          200 => 'EventExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event_interface_filter_chain: {
+          
+          200 => 'AccessFilterChain',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event_page: {
+          
+          200 => 'EventPage',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event_page_content: {
+          
+          200 => 'PageContent',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event_session: {
+          
+          200 => 'EventSessionExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event_session_list: {
+          
+          200 => 'EventSessionList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event_session_runtime: {
+          
+          200 => 'SessionRuntime',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event_user_set: {
+          
+          200 => 'UserSetExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        get_extended_forum_posts: {
+          
+          200 => 'ForumPostExtendedList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_forum_post_likes: {
+          
+          200 => 'ForumPostLikeList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_forum_post_likes_for_account: {
+          
+          200 => 'ForumPostLikeList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_forum_posts: {
+          
+          200 => 'ForumPostList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_live_cast_page: {
+          
+          200 => 'LiveCastSlidePage',
+          
+          0 => 'Error'
+          
+        }, 
+        get_live_cast_state: {
+          
+          200 => 'LiveCastState',
+          
+          0 => 'Error'
+          
+        }, 
+        get_page_exceptions: {
+          
+          200 => 'PageSessionExceptions',
+          
+          0 => 'Error'
+          
+        }, 
+        get_page_mapping_list: {
+          
+          200 => 'PageMappingList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_poll_status: {
+          
+          200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_content: {
+          
+          200 => 'QuestionContent',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_content_types: {
+          
+          200 => 'QuestionContentTypeList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_manifest: {
+          
+          200 => 'QuestionManifest',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_manifests: {
+          
+          200 => 'QuestionManifestList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_set: {
+          
+          200 => 'QuestionSet',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_set_list: {
+          
+          200 => 'QuestionSetList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_submissions: {
+          
+          200 => 'QuestionSubmissionList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_submissions_for_user: {
+          
+          200 => 'QuestionSubmissionList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_questionnaire_status: {
+          
+          200 => 'QuestionnaireStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        get_runtime_by_path: {
+          
+          200 => 'PageRuntime',
+          
+          0 => 'Error'
+          
+        }, 
+        get_slide_deck: {
           
           200 => 'SlideDeck',
           
           0 => 'Error'
           
         }, 
-        upload_slides: {
+        get_slide_deck_list: {
           
-          200 => 'SlideDeck',
-          
-          0 => 'Error'
-          
-        }, 
-        confirm_stream_source: {
-          
-          200 => 'StreamSource',
+          200 => 'SlideDeckInfoList',
           
           0 => 'Error'
           
@@ -2325,16 +2274,16 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        create_stream_source: {
+        get_stream_medium_list: {
           
-          201 => 'StreamSource',
+          200 => 'StreamMediumInfoList',
           
           0 => 'Error'
           
         }, 
-        stream_source_pre_upload: {
+        get_user_feedbacks: {
           
-          200 => 'PresignedUpload',
+          200 => 'UserFeedbackList',
           
           0 => 'Error'
           
@@ -2346,6 +2295,216 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        get_user_set_list: {
+          
+          200 => 'UserSetList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_whitelisted_users: {
+          
+          200 => 'WhitelistedUserList',
+          
+          0 => 'Error'
+          
+        }, 
+        like_forum_post: {
+          
+          200 => 'ForumPostLike',
+          
+          0 => 'Error'
+          
+        }, 
+        post_user_feedback: {
+          
+          201 => 'UserFeedback',
+          
+          0 => 'Error'
+          
+        }, 
+        publish_poll: {
+          
+          200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        publish_questionnaire: {
+          
+          200 => 'QuestionnaireStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        rearrange_slides: {
+          
+          200 => 'SlideDeck',
+          
+          0 => 'Error'
+          
+        }, 
+        reorder_question_contents: {
+          
+          200 => 'QuestionSet',
+          
+          0 => 'Error'
+          
+        }, 
+        revoke_whitelisted_users: {
+          
+          200 => 'WhitelistedUserList',
+          
+          0 => 'Error'
+          
+        }, 
+        set_active_data_set: {
+          
+          200 => 'DataSet',
+          
+          0 => 'Error'
+          
+        }, 
+        start_poll: {
+          
+          200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        start_questionnaire: {
+          
+          200 => 'QuestionnaireStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        stop_poll: {
+          
+          200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        stop_questionnaire: {
+          
+          200 => 'QuestionnaireStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        stream_source_pre_upload: {
+          
+          200 => 'PresignedUpload',
+          
+          0 => 'Error'
+          
+        }, 
+        track_attendance: {
+          
+          200 => '',
+          
+          0 => 'Error'
+          
+        }, 
+        update_access_policy: {
+          
+          200 => 'AccessPolicyExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        update_channel: {
+          
+          200 => 'Channel',
+          
+          0 => 'Error'
+          
+        }, 
+        update_event: {
+          
+          200 => 'EventExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        update_event_page: {
+          
+          200 => 'EventPage',
+          
+          0 => 'Error'
+          
+        }, 
+        update_event_page_content: {
+          
+          200 => 'PageContent',
+          
+          0 => 'Error'
+          
+        }, 
+        update_forum_post: {
+          
+          200 => 'ForumPostExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        update_live_cast_page: {
+          
+          200 => 'LiveCastState',
+          
+          0 => 'Error'
+          
+        }, 
+        update_page_exceptions: {
+          
+          200 => 'PageSessionExceptions',
+          
+          0 => 'Error'
+          
+        }, 
+        update_page_mapping: {
+          
+          200 => 'PageMapping',
+          
+          0 => 'Error'
+          
+        }, 
+        update_question_content: {
+          
+          200 => 'QuestionContent',
+          
+          0 => 'Error'
+          
+        }, 
+        update_question_manifest: {
+          
+          200 => 'QuestionManifest',
+          
+          0 => 'Error'
+          
+        }, 
+        update_question_set: {
+          
+          200 => 'QuestionSetInfo',
+          
+          0 => 'Error'
+          
+        }, 
+        update_session_modules: {
+          
+          200 => 'SessionModuleList',
+          
+          0 => 'Error'
+          
+        }, 
+        update_slide_deck: {
+          
+          200 => 'SlideDeckInfo',
+          
+          0 => 'Error'
+          
+        }, 
         update_user_set: {
           
           200 => 'UserSetExtended',
@@ -2353,18 +2512,16 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        enroll_to_user_set: {
+        upload_slides: {
           
-          200 => 'Enrollment',
-          
-          201 => 'Enrollment',
+          200 => 'SlideDeck',
           
           0 => 'Error'
           
         }, 
-        white_list_accounts: {
+        whitelist_users: {
           
-          200 => 'WhiteListedUserList',
+          200 => 'WhitelistedUserList',
           
           0 => 'Error'
           

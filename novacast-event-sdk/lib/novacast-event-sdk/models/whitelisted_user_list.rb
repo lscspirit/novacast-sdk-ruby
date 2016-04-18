@@ -2,7 +2,7 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class WhiteListedUserList < NovacastSDK::BaseModel
+      class WhitelistedUserList < NovacastSDK::BaseModel
         attr_accessor :entries
 
         def self.api_model_module
@@ -13,7 +13,7 @@ module NovacastSDK
           {
             
             # a collection of white-listed entries
-            :'entries' => { base_name: 'entries', type: 'Array[WhiteListedUser]', required: true }
+            :'entries' => { base_name: 'entries', type: 'Array[WhitelistedUser]', required: true }
             
           }
         end

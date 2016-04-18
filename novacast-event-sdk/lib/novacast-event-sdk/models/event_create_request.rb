@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventCreateRequest < NovacastSDK::BaseModel
-        attr_accessor :name, :asset_bundle_uid, :user_set_uid
+        attr_accessor :name, :access_policy_uid, :asset_bundle_uid, :user_set_uid
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -14,6 +14,9 @@ module NovacastSDK
             
             # name of the event
             :'name' => { base_name: 'name', type: 'String', required: true },
+            
+            # uid of the access policy
+            :'access_policy_uid' => { base_name: 'access_policy_uid', type: 'String', required: false },
             
             # uid of the asset bundle
             :'asset_bundle_uid' => { base_name: 'asset_bundle_uid', type: 'String', required: false },
