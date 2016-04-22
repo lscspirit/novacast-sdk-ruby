@@ -744,43 +744,6 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /question_contents/{question_content_uid}/submissions', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'question_content_uid' => 'String'
-              
-              }
-              expect_path_routable(:GET => generate_path('/api/v1/question_contents/{question_content_uid}/submissions', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'GET /question_contents/{question_content_uid}/users/{user_uid}/submissions', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'question_content_uid' => 'String',
-              
-                :'user_uid' => 'String'
-              
-              }
-              expect_path_routable(:GET => generate_path('/api/v1/question_contents/{question_content_uid}/users/{user_uid}/submissions', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'POST /question_contents/{question_content_uid}/users/{user_uid}/submissions', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'question_content_uid' => 'String',
-              
-                :'user_uid' => 'String'
-              
-              }
-              expect_path_routable(:POST => generate_path('/api/v1/question_contents/{question_content_uid}/users/{user_uid}/submissions', path_params))
-            end
-          end
-        
           ::RSpec.describe 'GET /question_manifests/{question_manifest_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -1194,6 +1157,32 @@ module NovacastSDK
               
               }
               expect_path_routable(:POST => generate_path('/api/v1/user_sets/{user_set_uid}/white_list', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET sessions/{session_uid}/question_submissions/{question_manifest_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'question_manifest_uid' => 'String',
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1sessions/{session_uid}/question_submissions/{question_manifest_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'POST sessions/{session_uid}/question_submissions/{question_manifest_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'question_manifest_uid' => 'String',
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1sessions/{session_uid}/question_submissions/{question_manifest_uid}', path_params))
             end
           end
         

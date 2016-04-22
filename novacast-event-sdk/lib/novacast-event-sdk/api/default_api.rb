@@ -2883,145 +2883,6 @@ module NovacastSDK
       end
 
       # 
-      # Get all submissions for a question content
-      # @param question_content_uid question content uid
-      # @return [QuestionSubmissionList]
-      def get_question_submissions(question_content_uid)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/question_contents/{question_content_uid}/submissions', :GET
-
-        # path parameters
-        path_params = {}
-        path_params['question_content_uid'] = question_content_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
-        
-      end
-
-      # 
-      # Get question content submissions for a user
-      # @param question_content_uid question content uid
-      # @param user_uid uid of the submitter
-      # @return [QuestionSubmissionList]
-      def get_question_submissions_for_user(question_content_uid, user_uid)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "user_uid"' if user_uid.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/question_contents/{question_content_uid}/users/{user_uid}/submissions', :GET
-
-        # path parameters
-        path_params = {}
-        path_params['question_content_uid'] = question_content_uid
-        path_params['user_uid'] = user_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
-        
-      end
-
-      # 
-      # Create a question content submission
-      # @param question_content_uid question content uid
-      # @param user_uid uid of the submitter
-      # @param body request body
-      # @return [QuestionSubmission]
-      def create_question_submission(question_content_uid, user_uid, body)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "user_uid"' if user_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/question_contents/{question_content_uid}/users/{user_uid}/submissions', :POST
-
-        # path parameters
-        path_params = {}
-        path_params['question_content_uid'] = question_content_uid
-        path_params['user_uid'] = user_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-        op.body = body.to_json
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::QuestionSubmission.from_json resp.body
-        
-      end
-
-      # 
       # Get a question manifest
       # @param question_manifest_uid question manifest uid
       # @return [QuestionManifest]
@@ -4691,6 +4552,103 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::WhiteListedUserList.from_json resp.body
+        
+      end
+
+      # 
+      # Get all submissions for a question manifest
+      # @param question_manifest_uid question manifest uid
+      # @param session_uid the session uid
+      # @return [QuestionSubmissionList]
+      def get_question_submissions(question_manifest_uid, session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new 'sessions/{session_uid}/question_submissions/{question_manifest_uid}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['question_manifest_uid'] = question_manifest_uid
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
+        
+      end
+
+      # 
+      # Create submissions for a given question manifest
+      # @param question_manifest_uid question manifest uid
+      # @param session_uid the session uid
+      # @param body request body
+      # @return [QuestionSubmission]
+      def create_question_submission(question_manifest_uid, session_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new 'sessions/{session_uid}/question_submissions/{question_manifest_uid}', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['question_manifest_uid'] = question_manifest_uid
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionSubmission.from_json resp.body
         
       end
     end

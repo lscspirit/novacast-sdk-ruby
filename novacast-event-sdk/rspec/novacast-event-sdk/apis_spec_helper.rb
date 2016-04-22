@@ -933,57 +933,6 @@ module NovacastSDK
           }
           
         }, 
-        get_question_submissions: {
-          
-          :'question_content_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_question_submissions_for_user: {
-          
-          :'question_content_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'user_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        create_question_submission: {
-          
-          :'question_content_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'user_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'QuestionSubmissionCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
         get_question_manifest: {
           
           :'question_manifest_uid' => {
@@ -1588,6 +1537,47 @@ module NovacastSDK
             required: true
           }
           
+        }, 
+        get_question_submissions: {
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        create_question_submission: {
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionSubmissionCreateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
         } 
       }
   
@@ -2094,27 +2084,6 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        get_question_submissions: {
-          
-          200 => 'QuestionSubmissionList',
-          
-          0 => 'Error'
-          
-        }, 
-        get_question_submissions_for_user: {
-          
-          200 => 'QuestionSubmissionList',
-          
-          0 => 'Error'
-          
-        }, 
-        create_question_submission: {
-          
-          201 => 'QuestionSubmission',
-          
-          0 => 'Error'
-          
-        }, 
         get_question_manifest: {
           
           200 => 'QuestionManifest',
@@ -2365,6 +2334,20 @@ module NovacastSDK
         white_list_accounts: {
           
           200 => 'WhiteListedUserList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_submissions: {
+          
+          200 => 'QuestionSubmissionList',
+          
+          0 => 'Error'
+          
+        }, 
+        create_question_submission: {
+          
+          201 => 'QuestionSubmission',
           
           0 => 'Error'
           
