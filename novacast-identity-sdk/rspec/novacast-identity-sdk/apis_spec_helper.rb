@@ -13,107 +13,6 @@ module NovacastSDK
     class ApiRequests
   
       REQUESTS = { 
-        validate_token: {
-          
-          :'access_token' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        create_account: {
-          
-          :'info' => {
-            type: 'AccountRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        sign_in: {
-          
-          :'info' => {
-            type: 'AccountRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        sign_out: {
-          
-        }, 
-        get_account: {
-          
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_account_permissions: {
-          
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'resources' => {
-            type: 'Array[String]',
-            path_param: false,
-            body_param: false,
-            required: false
-          }
-          
-        }, 
-        validate_account_permission: {
-          
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'resource' => {
-            type: 'String',
-            path_param: false,
-            body_param: false,
-            required: true
-          },
-          
-          :'permission' => {
-            type: 'String',
-            path_param: false,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_account_roles: {
-          
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'resources' => {
-            type: 'Array[String]',
-            path_param: false,
-            body_param: false,
-            required: false
-          }
-          
-        }, 
         assign_account_role: {
           
           :'account_uid' => {
@@ -125,23 +24,6 @@ module NovacastSDK
           
           :'role' => {
             type: 'AssignRoleRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        remove_account_role: {
-          
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'role' => {
-            type: 'DeleteRoleRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -165,12 +47,32 @@ module NovacastSDK
           }
           
         }, 
-        get_account_user_roles: {
+        create_access_permission: {
           
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
+          :'permission' => {
+            type: 'AccessPermissionInfo',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        create_access_resource: {
+          
+          :'resource' => {
+            type: 'AccessResourceInfo',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        create_account: {
+          
+          :'info' => {
+            type: 'AccountRequest',
+            path_param: false,
+            body_param: true,
             required: true
           }
           
@@ -202,9 +104,147 @@ module NovacastSDK
           }
           
         }, 
-        get_domain_by_key: {
+        create_role: {
           
-          :'domain_key' => {
+          :'role_set_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'role' => {
+            type: 'AccessRoleInfo',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        create_role_permission: {
+          
+          :'role_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'role_permission' => {
+            type: 'RolePermission',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        create_role_set: {
+          
+          :'role_set' => {
+            type: 'RoleSetInfo',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        delete_access_permission: {
+          
+          :'permission_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_access_resource: {
+          
+          :'resource_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_access_role: {
+          
+          :'role_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_role_permission: {
+          
+          :'role_permission_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_user_role: {
+          
+          :'user_role_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_account: {
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_account_permissions: {
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'resources' => {
+            type: 'Array[String]',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
+        get_account_roles: {
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'resources' => {
+            type: 'Array[String]',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
+        get_account_user_roles: {
+          
+          :'account_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -222,14 +262,84 @@ module NovacastSDK
           }
           
         }, 
-        create_access_permission: {
+        get_domain_by_key: {
           
-          :'permission' => {
-            type: 'AccessPermissionInfo',
+          :'domain_key' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_role_permissions: {
+          
+          :'role_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_role_set: {
+          
+          :'role_set_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_role_set_by_key: {
+          
+          :'role_set_key' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_roles: {
+          
+          :'role_set_id' => {
+            type: 'Integer',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        remove_account_role: {
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'role' => {
+            type: 'DeleteRoleRequest',
             path_param: false,
             body_param: true,
             required: true
           }
+          
+        }, 
+        sign_in: {
+          
+          :'info' => {
+            type: 'AccountRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        sign_out: {
           
         }, 
         update_access_permission: {
@@ -243,26 +353,6 @@ module NovacastSDK
           
           :'permission' => {
             type: 'AccessPermissionInfo',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        delete_access_permission: {
-          
-          :'permission_id' => {
-            type: 'Integer',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        create_access_resource: {
-          
-          :'resource' => {
-            type: 'AccessResourceInfo',
             path_param: false,
             body_param: true,
             required: true
@@ -286,83 +376,6 @@ module NovacastSDK
           }
           
         }, 
-        delete_access_resource: {
-          
-          :'resource_id' => {
-            type: 'Integer',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        delete_role_permission: {
-          
-          :'role_permission_id' => {
-            type: 'Integer',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        create_role_set: {
-          
-          :'role_set' => {
-            type: 'RoleSetInfo',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        get_role_set_by_key: {
-          
-          :'role_set_key' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_role_set: {
-          
-          :'role_set_id' => {
-            type: 'Integer',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_roles: {
-          
-          :'role_set_id' => {
-            type: 'Integer',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        create_role: {
-          
-          :'role_set_id' => {
-            type: 'Integer',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'role' => {
-            type: 'AccessRoleInfo',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
         update_role: {
           
           :'role_id' => {
@@ -380,47 +393,34 @@ module NovacastSDK
           }
           
         }, 
-        delete_access_role: {
+        validate_account_permission: {
           
-          :'role_id' => {
-            type: 'Integer',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_role_permissions: {
-          
-          :'role_id' => {
-            type: 'Integer',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        create_role_permission: {
-          
-          :'role_id' => {
-            type: 'Integer',
+          :'account_uid' => {
+            type: 'String',
             path_param: true,
             body_param: false,
             required: true
           },
           
-          :'role_permission' => {
-            type: 'RolePermission',
+          :'resource' => {
+            type: 'String',
             path_param: false,
-            body_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'permission' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
             required: true
           }
           
         }, 
-        delete_user_role: {
+        validate_token: {
           
-          :'user_role_id' => {
-            type: 'Integer',
+          :'access_token' => {
+            type: 'String',
             path_param: true,
             body_param: false,
             required: true
@@ -484,74 +484,11 @@ module NovacastSDK
     class ApiResponses
 
       RESPONSES = { 
-        validate_token: {
-          
-          200 => 'Account',
-          
-          0 => 'Error'
-          
-        }, 
-        create_account: {
-          
-          201 => 'Account',
-          
-          0 => 'Error'
-          
-        }, 
-        sign_in: {
-          
-          200 => 'LoginResponse',
-          
-          0 => 'Error'
-          
-        }, 
-        sign_out: {
-          
-          200 => 'LogoutResponse',
-          
-          0 => 'Error'
-          
-        }, 
-        get_account: {
-          
-          200 => 'Account',
-          
-          0 => 'Error'
-          
-        }, 
-        get_account_permissions: {
-          
-          200 => 'ResourcePermissionsList',
-          
-          0 => 'Error'
-          
-        }, 
-        validate_account_permission: {
-          
-          200 => 'InlineResponse200',
-          
-          0 => 'Error'
-          
-        }, 
-        get_account_roles: {
-          
-          200 => 'RoleResourcePermissionsList',
-          
-          0 => 'Error'
-          
-        }, 
         assign_account_role: {
           
           200 => 'RoleResourcePermissions',
           
           201 => 'RoleResourcePermissions',
-          
-          0 => 'Error'
-          
-        }, 
-        remove_account_role: {
-          
-          200 => 'RoleResourcePermissions',
           
           0 => 'Error'
           
@@ -563,9 +500,23 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        get_account_user_roles: {
+        create_access_permission: {
           
-          200 => 'AccessUserRoleList',
+          201 => 'AccessPermission',
+          
+          0 => 'Error'
+          
+        }, 
+        create_access_resource: {
+          
+          201 => 'AccessResource',
+          
+          0 => 'Error'
+          
+        }, 
+        create_account: {
+          
+          201 => 'Account',
           
           0 => 'Error'
           
@@ -586,121 +537,9 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        get_domain_by_key: {
-          
-          200 => 'Domain',
-          
-          0 => 'Error'
-          
-        }, 
-        get_domain: {
-          
-          200 => 'Domain',
-          
-          0 => 'Error'
-          
-        }, 
-        create_access_permission: {
-          
-          201 => 'AccessPermission',
-          
-          0 => 'Error'
-          
-        }, 
-        update_access_permission: {
-          
-          200 => 'AccessPermission',
-          
-          0 => 'Error'
-          
-        }, 
-        delete_access_permission: {
-          
-          200 => 'AccessPermission',
-          
-          0 => 'Error'
-          
-        }, 
-        create_access_resource: {
-          
-          201 => 'AccessResource',
-          
-          0 => 'Error'
-          
-        }, 
-        update_access_resource: {
-          
-          200 => 'AccessResource',
-          
-          0 => 'Error'
-          
-        }, 
-        delete_access_resource: {
-          
-          200 => 'AccessResource',
-          
-          0 => 'Error'
-          
-        }, 
-        delete_role_permission: {
-          
-          200 => 'AccessRolePermission',
-          
-          0 => 'Error'
-          
-        }, 
-        create_role_set: {
-          
-          201 => 'RoleSet',
-          
-          0 => 'Error'
-          
-        }, 
-        get_role_set_by_key: {
-          
-          200 => 'RoleSet',
-          
-          0 => 'Error'
-          
-        }, 
-        get_role_set: {
-          
-          200 => 'RoleSet',
-          
-          0 => 'Error'
-          
-        }, 
-        get_roles: {
-          
-          200 => 'AccessRoleList',
-          
-          0 => 'Error'
-          
-        }, 
         create_role: {
           
           201 => 'AccessRole',
-          
-          0 => 'Error'
-          
-        }, 
-        update_role: {
-          
-          200 => 'AccessRole',
-          
-          0 => 'Error'
-          
-        }, 
-        delete_access_role: {
-          
-          200 => 'AccessRole',
-          
-          0 => 'Error'
-          
-        }, 
-        get_role_permissions: {
-          
-          200 => 'AccessRolePermissionList',
           
           0 => 'Error'
           
@@ -714,9 +553,170 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        create_role_set: {
+          
+          201 => 'RoleSet',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_access_permission: {
+          
+          200 => 'AccessPermission',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_access_resource: {
+          
+          200 => 'AccessResource',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_access_role: {
+          
+          200 => 'AccessRole',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_role_permission: {
+          
+          200 => 'AccessRolePermission',
+          
+          0 => 'Error'
+          
+        }, 
         delete_user_role: {
           
           200 => 'AccessUserRole',
+          
+          0 => 'Error'
+          
+        }, 
+        get_account: {
+          
+          200 => 'Account',
+          
+          0 => 'Error'
+          
+        }, 
+        get_account_permissions: {
+          
+          200 => 'ResourcePermissionsList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_account_roles: {
+          
+          200 => 'RoleResourcePermissionsList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_account_user_roles: {
+          
+          200 => 'AccessUserRoleList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_domain: {
+          
+          200 => 'Domain',
+          
+          0 => 'Error'
+          
+        }, 
+        get_domain_by_key: {
+          
+          200 => 'Domain',
+          
+          0 => 'Error'
+          
+        }, 
+        get_role_permissions: {
+          
+          200 => 'AccessRolePermissionList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_role_set: {
+          
+          200 => 'RoleSet',
+          
+          0 => 'Error'
+          
+        }, 
+        get_role_set_by_key: {
+          
+          200 => 'RoleSet',
+          
+          0 => 'Error'
+          
+        }, 
+        get_roles: {
+          
+          200 => 'AccessRoleList',
+          
+          0 => 'Error'
+          
+        }, 
+        remove_account_role: {
+          
+          200 => 'RoleResourcePermissions',
+          
+          0 => 'Error'
+          
+        }, 
+        sign_in: {
+          
+          200 => 'LoginResponse',
+          
+          0 => 'Error'
+          
+        }, 
+        sign_out: {
+          
+          200 => 'LogoutResponse',
+          
+          0 => 'Error'
+          
+        }, 
+        update_access_permission: {
+          
+          200 => 'AccessPermission',
+          
+          0 => 'Error'
+          
+        }, 
+        update_access_resource: {
+          
+          200 => 'AccessResource',
+          
+          0 => 'Error'
+          
+        }, 
+        update_role: {
+          
+          200 => 'AccessRole',
+          
+          0 => 'Error'
+          
+        }, 
+        validate_account_permission: {
+          
+          200 => 'InlineResponse200',
+          
+          0 => 'Error'
+          
+        }, 
+        validate_token: {
+          
+          200 => 'Account',
           
           0 => 'Error'
           

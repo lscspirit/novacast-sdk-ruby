@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class Domain < NovacastSDK::BaseModel
-        attr_accessor :name, :key, :id
+        attr_accessor :key, :name, :id
 
         def self.api_model_module
           NovacastSDK::IdentityV1::Models
@@ -12,11 +12,11 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # domain name
-            :'name' => { base_name: 'name', type: 'String', required: false },
-            
             # unique domain key
             :'key' => { base_name: 'key', type: 'String', required: true },
+            
+            # domain name
+            :'name' => { base_name: 'name', type: 'String', required: false },
             
             # domain id
             :'id' => { base_name: 'id', type: 'Integer', required: true }

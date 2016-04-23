@@ -13,7 +13,7 @@ module NovacastSDK
           {
             
             # valid or not
-            :'valid' => { base_name: 'valid', type: 'BOOLEAN', required: false }
+            :'valid' => { base_name: 'valid', type: 'BOOLEAN', required: true }
             
           }
         end
