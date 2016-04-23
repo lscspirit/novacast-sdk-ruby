@@ -877,7 +877,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new 'sessions/{session_uid}/question_submissions/{question_manifest_uid}', :POST
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/question_submissions/{question_manifest_uid}', :POST
 
         # path parameters
         path_params = {}
@@ -3044,7 +3044,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
         
 
-        op = NovacastSDK::Client::Operation.new 'sessions/{session_uid}/question_submissions/{question_manifest_uid}', :GET
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/question_submissions/{question_manifest_uid}', :GET
 
         # path parameters
         path_params = {}
