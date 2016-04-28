@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class Event < NovacastSDK::BaseModel
-        attr_accessor :uid, :name, :stage
+        attr_accessor :channel_uid, :uid, :name, :stage
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -11,6 +11,9 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
+            # uid of the channel the event belongs to
+            :'channel_uid' => { base_name: 'channel_uid', type: 'String', required: false },
             
             # uid of the event
             :'uid' => { base_name: 'uid', type: 'String', required: true },

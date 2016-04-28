@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventExtended < NovacastSDK::BaseModel
-        attr_accessor :uid, :name, :stage, :default_session_uid, :access_policy_uid, :asset_bundle_uid, :user_set_uid, :public_aliases, :page_mappings, :event_sessions, :event_pages, :active_data_set_uid
+        attr_accessor :channel_uid, :uid, :name, :stage, :default_session_uid, :access_policy_uid, :asset_bundle_uid, :user_set_uid, :public_aliases, :page_mappings, :event_sessions, :event_pages, :active_data_set_uid
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -11,6 +11,9 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
+            # uid of the channel the event belongs to
+            :'channel_uid' => { base_name: 'channel_uid', type: 'String', required: false },
             
             # uid of the event
             :'uid' => { base_name: 'uid', type: 'String', required: true },
