@@ -659,7 +659,7 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params['resources'] = opts[:resources] if opts[:resources]
+        query_params['resources[]'] = opts[:resources] if opts[:resources]
         op.query = query_params
 
         # http body (model)
@@ -699,7 +699,7 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params['resources'] = opts[:resources] if opts[:resources]
+        query_params['resources[]'] = opts[:resources] if opts[:resources]
         op.query = query_params
 
         # http body (model)
