@@ -529,6 +529,19 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /user_sets/{user_set_uid}/enrollments', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'user_set_uid' => 'String',
+              
+                :'query' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/user_sets/{user_set_uid}/enrollments', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /events/{event_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

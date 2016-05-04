@@ -2047,6 +2047,57 @@ module NovacastSDK
       end
 
       # 
+      # Get a list of users belongs to this user set\n
+      # @param user_set_uid user set uid
+      # @param query terms to limit the query
+      # @param [Hash] opts the optional parameters
+      # @option opts [Integer] :page page number in a paginated query
+      # @option opts [Integer] :per_page 
+      # @return [PaginatedEnrollmentList]
+      def get_enrollments(user_set_uid, query, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "query"' if query.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/user_sets/{user_set_uid}/enrollments', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['user_set_uid'] = user_set_uid
+        path_params['query'] = query
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['page'] = opts[:page] if opts[:page]
+        query_params['per_page'] = opts[:per_page] if opts[:per_page]
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PaginatedEnrollmentList.from_json resp.body
+        
+      end
+
+      # 
       # Get Event with extended details\n
       # @param event_uid event uid
       # @return [EventExtended]

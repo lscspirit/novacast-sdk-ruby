@@ -680,6 +680,37 @@ module NovacastSDK
           }
           
         }, 
+        get_enrollments: {
+          
+          :'user_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'query' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'page' => {
+            type: 'Integer',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'per_page' => {
+            type: 'Integer',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
         get_event: {
           
           :'event_uid' => {
@@ -2050,6 +2081,13 @@ module NovacastSDK
         get_data_set_partitions: {
           
           200 => 'DataSetPartitionList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_enrollments: {
+          
+          200 => 'PaginatedEnrollmentList',
           
           0 => 'Error'
           

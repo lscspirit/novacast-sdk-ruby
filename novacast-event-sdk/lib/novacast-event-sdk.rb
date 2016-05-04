@@ -58,6 +58,10 @@ require 'novacast-event-sdk/models/data_set_partition_list'
 
 require 'novacast-event-sdk/models/enrollment'
 
+require 'novacast-event-sdk/models/enrollment_extended'
+
+require 'novacast-event-sdk/models/enrollment_extended_list'
+
 require 'novacast-event-sdk/models/enrollment_field'
 
 require 'novacast-event-sdk/models/enrollment_field_value'
@@ -133,6 +137,12 @@ require 'novacast-event-sdk/models/page_mapping_update_request'
 require 'novacast-event-sdk/models/page_runtime'
 
 require 'novacast-event-sdk/models/page_session_exceptions'
+
+require 'novacast-event-sdk/models/paginated_enrollment_list'
+
+require 'novacast-event-sdk/models/paging'
+
+require 'novacast-event-sdk/models/paging_details'
 
 require 'novacast-event-sdk/models/poll_status'
 
