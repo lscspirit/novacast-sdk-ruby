@@ -20,6 +20,7 @@ module NovacastSDK
       #                   | AssignRole
       #                   | ManageChannelUser
       #                   | ManageResource
+      #                   | ViewResource
       #                   | CreateEvent
       # ------------------------------------------------------------------
       # EventAdmin        | ViewEvent
@@ -29,7 +30,8 @@ module NovacastSDK
       # ReportViewer      | ViewReport
       # ------------------------------------------------------------------
       # Operator          | OperateSession
-      #
+      # ------------------------------------------------------------------
+      # ResourceViewer    | ViewResource
 
       ####################################################################
       # Permission        | Level                   | Allow to ...
@@ -49,6 +51,7 @@ module NovacastSDK
       #
       # ManageChannelUser | Channel                 | create, edit and remove the specified channel's private user
       #
+      # ViewResource      | Channel                 | view resource in the specified channel
       # ManageResource    | Channel                 | create, edit and remove any resource in the specified channel
       #
       # CreateEvent       | Channel                 | create new event in the specified channel
@@ -87,6 +90,7 @@ module NovacastSDK
         delete_channel:   'DeleteChannel',
         transfer_ownership:  'TransferOwnership',
         manage_channel_user: 'ManageChannelUser',
+        view_resource:    'ViewResource',
         manage_resource:  'ManageResource',
 
         # Event Permissions
