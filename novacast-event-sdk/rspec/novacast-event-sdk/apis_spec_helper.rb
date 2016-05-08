@@ -689,13 +689,6 @@ module NovacastSDK
             required: true
           },
           
-          :'query' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
           :'page' => {
             type: 'Integer',
             path_param: false,

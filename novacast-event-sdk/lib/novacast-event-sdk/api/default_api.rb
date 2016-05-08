@@ -2049,17 +2049,14 @@ module NovacastSDK
       # 
       # Get a list of users belongs to this user set\n
       # @param user_set_uid user set uid
-      # @param query terms to limit the query
       # @param [Hash] opts the optional parameters
       # @option opts [Integer] :page page number in a paginated query
       # @option opts [Integer] :per_page 
       # @return [PaginatedEnrollmentList]
-      def get_enrollments(user_set_uid, query, opts = {})
+      def get_enrollments(user_set_uid, opts = {})
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "query"' if query.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/user_sets/{user_set_uid}/enrollments', :GET
@@ -2067,7 +2064,6 @@ module NovacastSDK
         # path parameters
         path_params = {}
         path_params['user_set_uid'] = user_set_uid
-        path_params['query'] = query
         op.params = path_params
 
         # header parameters
