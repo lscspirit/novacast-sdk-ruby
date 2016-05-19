@@ -225,6 +225,28 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /auth_providers/{auth_provider_id}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'auth_provider_id' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/auth_providers/{auth_provider_id}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /auth_providers/name/{auth_provider_name}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'auth_provider_name' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/auth_providers/name/{auth_provider_name}', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /domains/{domain_id}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -233,6 +255,17 @@ module NovacastSDK
               
               }
               expect_path_routable(:GET => generate_path('/api/v1/domains/{domain_id}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /domains/{domain_id}/accounts', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'domain_id' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/domains/{domain_id}/accounts', path_params))
             end
           end
         

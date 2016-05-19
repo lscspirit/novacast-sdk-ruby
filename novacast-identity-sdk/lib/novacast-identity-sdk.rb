@@ -32,7 +32,13 @@ require 'novacast-identity-sdk/models/account'
 
 require 'novacast-identity-sdk/models/account_request'
 
+require 'novacast-identity-sdk/models/account_role_list'
+
+require 'novacast-identity-sdk/models/account_roles'
+
 require 'novacast-identity-sdk/models/assign_role_request'
+
+require 'novacast-identity-sdk/models/auth_provider'
 
 require 'novacast-identity-sdk/models/batch_update_roles_request'
 
@@ -57,6 +63,8 @@ require 'novacast-identity-sdk/models/resource_permissions'
 require 'novacast-identity-sdk/models/resource_permissions_list'
 
 require 'novacast-identity-sdk/models/role_permission'
+
+require 'novacast-identity-sdk/models/role_resource'
 
 require 'novacast-identity-sdk/models/role_resource_permissions'
 

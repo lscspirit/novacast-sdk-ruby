@@ -2,8 +2,8 @@ module NovacastSDK
   module IdentityV1
     module Models
       # 
-      class Account < NovacastSDK::BaseModel
-        attr_accessor :uid, :identifier, :domain_id, :provider_id
+      class AccountRoles < NovacastSDK::BaseModel
+        attr_accessor :uid, :identifier, :domain_id, :provider_id, :roles
 
         def self.api_model_module
           NovacastSDK::IdentityV1::Models
@@ -22,7 +22,10 @@ module NovacastSDK
             :'domain_id' => { base_name: 'domain_id', type: 'Integer', required: true },
             
             # authentication provider id
-            :'provider_id' => { base_name: 'provider_id', type: 'Integer', required: true }
+            :'provider_id' => { base_name: 'provider_id', type: 'Integer', required: true },
+            
+            # list of role on resource
+            :'roles' => { base_name: 'roles', type: 'Array[RoleResource]', required: true }
             
           }
         end

@@ -752,8 +752,82 @@ module NovacastSDK
       end
 
       # 
+      # Get an auth provider\n
+      # @param auth_provider_id authentication provider id
+      # @return [AuthProvider]
+      def get_auth_provider(auth_provider_id)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "auth_provider_id"' if auth_provider_id.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/auth_providers/{auth_provider_id}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['auth_provider_id'] = auth_provider_id
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::IdentityV1::Models::AuthProvider.from_json resp.body
+        
+      end
+
+      # 
+      # Get an auth provider by the name\n
+      # @param auth_provider_name name of the authentication provider
+      # @return [AuthProvider]
+      def get_auth_provider_by_name(auth_provider_name)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "auth_provider_name"' if auth_provider_name.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/auth_providers/name/{auth_provider_name}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['auth_provider_name'] = auth_provider_name
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::IdentityV1::Models::AuthProvider.from_json resp.body
+        
+      end
+
+      # 
       # Get a `Domain`\n
-      # @param domain_id Account Information
+      # @param domain_id domain id
       # @return [Domain]
       def get_domain(domain_id)
         # checks if all required parameters are set
@@ -785,6 +859,43 @@ module NovacastSDK
 
         
         NovacastSDK::IdentityV1::Models::Domain.from_json resp.body
+        
+      end
+
+      # 
+      # Get all accounts, along with their roles, for a domain\n
+      # @param domain_id domain id
+      # @return [AccountRoleList]
+      def get_domain_accounts(domain_id)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "domain_id"' if domain_id.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/domains/{domain_id}/accounts', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['domain_id'] = domain_id
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::IdentityV1::Models::AccountRoleList.from_json resp.body
         
       end
 

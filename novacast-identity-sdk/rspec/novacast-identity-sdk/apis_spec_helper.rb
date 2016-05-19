@@ -252,7 +252,37 @@ module NovacastSDK
           }
           
         }, 
+        get_auth_provider: {
+          
+          :'auth_provider_id' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_auth_provider_by_name: {
+          
+          :'auth_provider_name' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_domain: {
+          
+          :'domain_id' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_domain_accounts: {
           
           :'domain_id' => {
             type: 'String',
@@ -623,9 +653,30 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        get_auth_provider: {
+          
+          200 => 'AuthProvider',
+          
+          0 => 'Error'
+          
+        }, 
+        get_auth_provider_by_name: {
+          
+          200 => 'AuthProvider',
+          
+          0 => 'Error'
+          
+        }, 
         get_domain: {
           
           200 => 'Domain',
+          
+          0 => 'Error'
+          
+        }, 
+        get_domain_accounts: {
+          
+          200 => 'AccountRoleList',
           
           0 => 'Error'
           
