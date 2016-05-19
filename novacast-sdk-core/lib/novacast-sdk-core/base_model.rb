@@ -129,6 +129,18 @@ module NovacastSDK
     end
 
     #
+    # Accessor
+    #
+
+    def [](attr)
+      if self.class.model_properties.any? { |k, prop| prop[:base_name] == attr }
+        self.send attr
+      else
+        raise UnknownProperty, "Unknown property '#{attr}'"
+      end
+    end
+
+    #
     # Serialization
     #
 
@@ -201,5 +213,11 @@ module NovacastSDK
       raise ArgumentError, 'serializer class must be child class of Novacast::ModelSerializer' unless klass < NovacastSDK::ModelSerializer
       @inst_serializer = klass
     end
+
+    #
+    # Errors
+    #
+
+    class UnknownProperty < StandardError; end
   end
 end

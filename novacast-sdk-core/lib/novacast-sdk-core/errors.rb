@@ -23,6 +23,7 @@ module NovacastSDK
 
     # API Operation Errors
     class InvalidRecord      < Base; DEFAULT_STATUS = :bad_request;           end
+    class RecordExists       < Base; DEFAULT_STATUS = :bad_request;           end
     class MethodNotFound     < Base; DEFAULT_STATUS = :not_found;             end
     class InvalidArgument    < Base; DEFAULT_STATUS = :bad_request;           end
     class MissingParameter   < Base; DEFAULT_STATUS = :bad_request;           end
