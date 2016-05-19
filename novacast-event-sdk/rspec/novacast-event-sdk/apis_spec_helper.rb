@@ -180,6 +180,23 @@ module NovacastSDK
           }
           
         }, 
+        create_channel_account: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'AccountRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         create_data_set: {
           
           :'event_uid' => {
@@ -577,6 +594,16 @@ module NovacastSDK
           
         }, 
         get_channel: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_channel_accounts: {
           
           :'channel_uid' => {
             type: 'String',
@@ -1670,6 +1697,23 @@ module NovacastSDK
           }
           
         }, 
+        upload_account_feed: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'file' => {
+            type: 'Byte',
+            path_param: false,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         upload_slides: {
           
           :'slide_deck_uid' => {
@@ -1820,6 +1864,13 @@ module NovacastSDK
         create_channel: {
           
           201 => 'Channel',
+          
+          0 => 'Error'
+          
+        }, 
+        create_channel_account: {
+          
+          201 => 'Account',
           
           0 => 'Error'
           
@@ -2018,6 +2069,13 @@ module NovacastSDK
         get_channel: {
           
           200 => 'Channel',
+          
+          0 => 'Error'
+          
+        }, 
+        get_channel_accounts: {
+          
+          200 => 'AccountExtendedList',
           
           0 => 'Error'
           
@@ -2522,6 +2580,13 @@ module NovacastSDK
         update_user_set: {
           
           200 => 'UserSetExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        upload_account_feed: {
+          
+          200 => 'AccountCreationResponseList',
           
           0 => 'Error'
           

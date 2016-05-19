@@ -129,6 +129,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'POST /channels/{channel_uid}/accounts', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'channel_uid' => 'String'
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/channels/{channel_uid}/accounts', path_params))
+            end
+          end
+        
           ::RSpec.describe 'POST /events/{event_uid}/data_sets', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -438,6 +449,17 @@ module NovacastSDK
               
               }
               expect_path_routable(:GET => generate_path('/api/v1/channels/{channel_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /channels/{channel_uid}/accounts', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'channel_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/channels/{channel_uid}/accounts', path_params))
             end
           end
         
@@ -1260,6 +1282,17 @@ module NovacastSDK
               
               }
               expect_path_routable(:PUT => generate_path('/api/v1/user_sets/{user_set_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'POST /channels/{channel_uid}/accounts/feed', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'channel_uid' => 'String'
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/channels/{channel_uid}/accounts/feed', path_params))
             end
           end
         

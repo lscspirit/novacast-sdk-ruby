@@ -20,6 +20,20 @@ require 'novacast-event-sdk/models/access_policy_list'
 
 require 'novacast-event-sdk/models/access_policy_update_request'
 
+require 'novacast-event-sdk/models/account'
+
+require 'novacast-event-sdk/models/account_creation_response'
+
+require 'novacast-event-sdk/models/account_creation_response_list'
+
+require 'novacast-event-sdk/models/account_extended'
+
+require 'novacast-event-sdk/models/account_extended_list'
+
+require 'novacast-event-sdk/models/account_list'
+
+require 'novacast-event-sdk/models/account_request'
+
 require 'novacast-event-sdk/models/active_data_set_update_request'
 
 require 'novacast-event-sdk/models/add_poll_stat_request'

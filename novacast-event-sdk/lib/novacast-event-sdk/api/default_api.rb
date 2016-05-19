@@ -439,6 +439,53 @@ module NovacastSDK
       end
 
       # 
+      # Create a new channel account\n
+      # @param channel_uid uid of the channel
+      # @param body request body
+      # @return [Account]
+      def create_channel_account(channel_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/accounts', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['channel_uid'] = channel_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::Account.from_json resp.body
+        
+      end
+
+      # 
       # Create a new data set for the event\n
       # @param event_uid event uid
       # @param body request body
@@ -1699,6 +1746,48 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::Channel.from_json resp.body
+        
+      end
+
+      # 
+      # Get all accounts belonging to the channel\n
+      # @param channel_uid uid of the channel
+      # @return [AccountExtendedList]
+      def get_channel_accounts(channel_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/accounts', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['channel_uid'] = channel_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::AccountExtendedList.from_json resp.body
         
       end
 
@@ -4955,6 +5044,51 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::UserSetExtended.from_json resp.body
+        
+      end
+
+      # 
+      # Upload an account feed for creating channel accounts\n
+      # @param channel_uid uid of the channel
+      # @param file account feed file
+      # @return [AccountCreationResponseList]
+      def upload_account_feed(channel_uid, file)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "file"' if file.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/accounts/feed', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['channel_uid'] = channel_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::AccountCreationResponseList.from_json resp.body
         
       end
 
