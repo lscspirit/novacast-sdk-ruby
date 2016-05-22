@@ -30,8 +30,6 @@ module NovacastSDK
             it 'is a valid endpoint' do
               path_params = {
               
-                :'account_uid' => 'String'
-              
               }
               expect_path_routable(:POST => generate_path('/api/v1/accounts/{account_uid}/roles', path_params))
             end
@@ -203,17 +201,6 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /accounts/{account_uid}/roles', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'account_uid' => 'String'
-              
-              }
-              expect_path_routable(:GET => generate_path('/api/v1/accounts/{account_uid}/roles', path_params))
-            end
-          end
-        
           ::RSpec.describe 'GET /accounts/{account_uid}/user_roles', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -327,8 +314,6 @@ module NovacastSDK
           ::RSpec.describe 'DELETE /accounts/{account_uid}/roles', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
-              
-                :'account_uid' => 'String'
               
               }
               expect_path_routable(:DELETE => generate_path('/api/v1/accounts/{account_uid}/roles', path_params))

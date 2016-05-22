@@ -2,8 +2,8 @@ module NovacastSDK
   module IdentityV1
     module Models
       # 
-      class ResourcePermissionsList < NovacastSDK::BaseModel
-        attr_accessor :items
+      class AccountExtendedList < NovacastSDK::BaseModel
+        attr_accessor :accounts
 
         def self.api_model_module
           NovacastSDK::IdentityV1::Models
@@ -12,8 +12,8 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # list of resource-permissions mappings
-            :'items' => { base_name: 'items', type: 'Array[ResourcePermissions]', required: true }
+            # account list
+            :'accounts' => { base_name: 'accounts', type: 'Array[AccountExtended]', required: true }
             
           }
         end

@@ -9,13 +9,10 @@ module NovacastSDK
 
       # 
       # Assign a role to an account\n
-      # @param account_uid uid of the Account
       # @param role role data
       # @return [RoleResourcePermissions]
-      def assign_account_role(account_uid, role)
+      def assign_account_role(role)
         # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "role"' if role.nil?
         
@@ -24,7 +21,6 @@ module NovacastSDK
 
         # path parameters
         path_params = {}
-        path_params['account_uid'] = account_uid
         op.params = path_params
 
         # header parameters
@@ -635,11 +631,11 @@ module NovacastSDK
       end
 
       # 
-      # Get all permissions associated with this account\n
+      # Get all roles on resources, along with corresponding permissions, associated with this account\n
       # @param account_uid uid of the Account
       # @param [Hash] opts the optional parameters
       # @option opts [Array[String]] :resources filter the result by resource names
-      # @return [ResourcePermissionsList]
+      # @return [RoleResourcePermissionsList]
       def get_account_permissions(account_uid, opts = {})
         # checks if all required parameters are set
         
@@ -647,46 +643,6 @@ module NovacastSDK
         
 
         op = NovacastSDK::Client::Operation.new '/accounts/{account_uid}/permissions', :GET
-
-        # path parameters
-        path_params = {}
-        path_params['account_uid'] = account_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        query_params['resources[]'] = opts[:resources] if opts[:resources]
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::IdentityV1::Models::ResourcePermissionsList.from_json resp.body
-        
-      end
-
-      # 
-      # Get all roles on resources, along with corresponding permissions, associated with this account\n
-      # @param account_uid uid of the Account
-      # @param [Hash] opts the optional parameters
-      # @option opts [Array[String]] :resources filter the result by resource names
-      # @return [RoleResourcePermissionsList]
-      def get_account_roles(account_uid, opts = {})
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/accounts/{account_uid}/roles', :GET
 
         # path parameters
         path_params = {}
@@ -865,7 +821,7 @@ module NovacastSDK
       # 
       # Get all accounts, along with their roles, for a domain\n
       # @param domain_id domain id
-      # @return [AccountRoleList]
+      # @return [AccountExtendedList]
       def get_domain_accounts(domain_id)
         # checks if all required parameters are set
         
@@ -895,7 +851,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::IdentityV1::Models::AccountRoleList.from_json resp.body
+        NovacastSDK::IdentityV1::Models::AccountExtendedList.from_json resp.body
         
       end
 
@@ -1086,13 +1042,10 @@ module NovacastSDK
 
       # 
       # Remove a role from an account\n
-      # @param account_uid uid of the Account
       # @param role role to be deleted
       # @return [RoleResourcePermissions]
-      def remove_account_role(account_uid, role)
+      def remove_account_role(role)
         # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "role"' if role.nil?
         
@@ -1101,7 +1054,6 @@ module NovacastSDK
 
         # path parameters
         path_params = {}
-        path_params['account_uid'] = account_uid
         op.params = path_params
 
         # header parameters

@@ -15,13 +15,6 @@ module NovacastSDK
       REQUESTS = { 
         assign_account_role: {
           
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
           :'role' => {
             type: 'AssignRoleRequest',
             path_param: false,
@@ -225,23 +218,6 @@ module NovacastSDK
           }
           
         }, 
-        get_account_roles: {
-          
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'resources' => {
-            type: 'Array[String]',
-            path_param: false,
-            body_param: false,
-            required: false
-          }
-          
-        }, 
         get_account_user_roles: {
           
           :'account_uid' => {
@@ -343,13 +319,6 @@ module NovacastSDK
           
         }, 
         remove_account_role: {
-          
-          :'account_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
           
           :'role' => {
             type: 'DeleteRoleRequest',
@@ -634,13 +603,6 @@ module NovacastSDK
         }, 
         get_account_permissions: {
           
-          200 => 'ResourcePermissionsList',
-          
-          0 => 'Error'
-          
-        }, 
-        get_account_roles: {
-          
           200 => 'RoleResourcePermissionsList',
           
           0 => 'Error'
@@ -676,7 +638,7 @@ module NovacastSDK
         }, 
         get_domain_accounts: {
           
-          200 => 'AccountRoleList',
+          200 => 'AccountExtendedList',
           
           0 => 'Error'
           
