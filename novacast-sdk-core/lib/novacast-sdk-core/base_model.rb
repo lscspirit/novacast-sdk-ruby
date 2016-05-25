@@ -133,7 +133,7 @@ module NovacastSDK
     #
 
     def [](attr)
-      if self.class.model_properties.any? { |k, prop| prop[:base_name] == attr }
+      if self.class.model_properties.any? { |k, prop| prop[:base_name] == attr.to_s }
         self.send attr
       else
         raise UnknownProperty, "Unknown property '#{attr}'"
