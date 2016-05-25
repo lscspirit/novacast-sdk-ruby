@@ -34,6 +34,12 @@ require 'novacast-event-sdk/models/account_list'
 
 require 'novacast-event-sdk/models/account_request'
 
+require 'novacast-event-sdk/models/account_resource_roles'
+
+require 'novacast-event-sdk/models/account_resource_roles_list'
+
+require 'novacast-event-sdk/models/account_role_update_request'
+
 require 'novacast-event-sdk/models/active_data_set_update_request'
 
 require 'novacast-event-sdk/models/add_poll_stat_request'

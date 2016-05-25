@@ -1125,6 +1125,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'PUT /accounts/{account_uid}/roles', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'account_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/accounts/{account_uid}/roles', path_params))
+            end
+          end
+        
           ::RSpec.describe 'PUT /channels/{channel_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

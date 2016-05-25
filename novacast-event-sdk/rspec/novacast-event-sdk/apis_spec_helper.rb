@@ -1438,6 +1438,23 @@ module NovacastSDK
           }
           
         }, 
+        update_account_roles: {
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'AccountRoleUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         update_channel: {
           
           :'channel_uid' => {
@@ -2482,6 +2499,13 @@ module NovacastSDK
         update_access_policy: {
           
           200 => 'AccessPolicyExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        update_account_roles: {
+          
+          200 => 'AccountResourceRolesList',
           
           0 => 'Error'
           

@@ -4378,6 +4378,53 @@ module NovacastSDK
       end
 
       # 
+      # Update the roles assigned to an account\n
+      # @param account_uid uid of the account
+      # @param body request body
+      # @return [AccountResourceRolesList]
+      def update_account_roles(account_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/accounts/{account_uid}/roles', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['account_uid'] = account_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::AccountResourceRolesList.from_json resp.body
+        
+      end
+
+      # 
       # Update a channel\n
       # @param channel_uid uid of the channel
       # @param channel channel data

@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class AccountExtended < NovacastSDK::BaseModel
-        attr_accessor :uid, :identifier, :domain, :provider, :roles
+        attr_accessor :uid, :identifier, :domain, :provider, :resource_roles
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -24,8 +24,8 @@ module NovacastSDK
             # auth provider name
             :'provider' => { base_name: 'provider', type: 'String', required: true },
             
-            # role to resources map
-            :'roles' => { base_name: 'roles', type: 'Hash[String, Array[String]]', required: true }
+            # list of resource-roles mapping
+            :'resource_roles' => { base_name: 'resource_roles', type: 'Array[AccountResourceRoles]', required: false }
             
           }
         end
