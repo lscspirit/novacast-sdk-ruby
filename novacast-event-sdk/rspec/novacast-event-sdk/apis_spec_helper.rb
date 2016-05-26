@@ -980,6 +980,16 @@ module NovacastSDK
           }
           
         }, 
+        get_public_alias_by_path: {
+          
+          :'alias_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_public_aliases_for_channel: {
           
           :'channel_uid' => {
@@ -2358,6 +2368,13 @@ module NovacastSDK
           
         }, 
         get_public_alias: {
+          
+          200 => 'PublicAlias',
+          
+          0 => 'Error'
+          
+        }, 
+        get_public_alias_by_path: {
           
           200 => 'PublicAlias',
           

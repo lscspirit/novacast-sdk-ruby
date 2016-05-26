@@ -790,6 +790,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /public_aliases/path/{alias_path}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'alias_path' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/public_aliases/path/{alias_path}', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /channels/{channel_uid}/public_aliases', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
