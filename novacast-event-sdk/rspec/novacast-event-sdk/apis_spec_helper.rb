@@ -299,6 +299,23 @@ module NovacastSDK
           }
           
         }, 
+        create_public_alias: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PublicAliasCreateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         create_question_content: {
           
           :'question_set_uid' => {
@@ -455,6 +472,16 @@ module NovacastSDK
         delete_page_mapping: {
           
           :'mapping_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_public_alias: {
+          
+          :'public_alias_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -938,6 +965,26 @@ module NovacastSDK
           :'question_content_uid' => {
             type: 'String',
             path_param: false,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_public_alias: {
+          
+          :'public_alias_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_public_aliases_for_channel: {
+          
+          :'channel_uid' => {
+            type: 'String',
+            path_param: true,
             body_param: false,
             required: true
           }
@@ -1612,6 +1659,23 @@ module NovacastSDK
           }
           
         }, 
+        update_public_alias: {
+          
+          :'public_alias_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'PublicAliasUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         update_question_content: {
           
           :'question_content_uid' => {
@@ -1934,6 +1998,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        create_public_alias: {
+          
+          201 => 'PublicAlias',
+          
+          0 => 'Error'
+          
+        }, 
         create_question_content: {
           
           201 => 'QuestionContent',
@@ -2000,6 +2071,13 @@ module NovacastSDK
         delete_page_mapping: {
           
           200 => 'PageMapping',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_public_alias: {
+          
+          200 => 'PublicAlias',
           
           0 => 'Error'
           
@@ -2275,6 +2353,20 @@ module NovacastSDK
         get_poll_status: {
           
           200 => 'PollStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        get_public_alias: {
+          
+          200 => 'PublicAlias',
+          
+          0 => 'Error'
+          
+        }, 
+        get_public_aliases_for_channel: {
+          
+          200 => 'PublicAliasList',
           
           0 => 'Error'
           
@@ -2562,6 +2654,13 @@ module NovacastSDK
         update_page_mapping: {
           
           200 => 'PageMapping',
+          
+          0 => 'Error'
+          
+        }, 
+        update_public_alias: {
+          
+          200 => 'PublicAlias',
           
           0 => 'Error'
           

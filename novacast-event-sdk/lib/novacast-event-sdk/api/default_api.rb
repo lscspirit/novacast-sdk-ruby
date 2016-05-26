@@ -768,6 +768,53 @@ module NovacastSDK
       end
 
       # 
+      # Create a new event public alias\n
+      # @param channel_uid channel uid
+      # @param body request body
+      # @return [PublicAlias]
+      def create_public_alias(channel_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/public_aliases', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['channel_uid'] = channel_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PublicAlias.from_json resp.body
+        
+      end
+
+      # 
       # Create a new question content\n
       # @param question_set_uid question set uid
       # @param body request body
@@ -1228,6 +1275,48 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::PageMapping.from_json resp.body
+        
+      end
+
+      # 
+      # Remove an public alias mapping\n
+      # @param public_alias_uid uid of the public alias
+      # @return [PublicAlias]
+      def delete_public_alias(public_alias_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "public_alias_uid"' if public_alias_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/public_aliases/{public_alias_uid}', :DELETE
+
+        # path parameters
+        path_params = {}
+        path_params['public_alias_uid'] = public_alias_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PublicAlias.from_json resp.body
         
       end
 
@@ -2916,6 +3005,90 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
+        
+      end
+
+      # 
+      # Get an public alias mapping\n
+      # @param public_alias_uid uid of the public alias
+      # @return [PublicAlias]
+      def get_public_alias(public_alias_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "public_alias_uid"' if public_alias_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/public_aliases/{public_alias_uid}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['public_alias_uid'] = public_alias_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PublicAlias.from_json resp.body
+        
+      end
+
+      # 
+      # Get all the public aliases of the channel\n
+      # @param channel_uid channel uid
+      # @return [PublicAliasList]
+      def get_public_aliases_for_channel(channel_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "channel_uid"' if channel_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/channels/{channel_uid}/public_aliases', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['channel_uid'] = channel_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PublicAliasList.from_json resp.body
         
       end
 
@@ -4809,6 +4982,53 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::PageMapping.from_json resp.body
+        
+      end
+
+      # 
+      # Update an public alias\n
+      # @param public_alias_uid uid of the public alias
+      # @param body request body
+      # @return [PublicAlias]
+      def update_public_alias(public_alias_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "public_alias_uid"' if public_alias_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/public_aliases/{public_alias_uid}', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['public_alias_uid'] = public_alias_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PublicAlias.from_json resp.body
         
       end
 

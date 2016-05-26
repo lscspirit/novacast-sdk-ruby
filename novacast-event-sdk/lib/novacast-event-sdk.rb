@@ -172,6 +172,12 @@ require 'novacast-event-sdk/models/presigned_upload'
 
 require 'novacast-event-sdk/models/public_alias'
 
+require 'novacast-event-sdk/models/public_alias_create_request'
+
+require 'novacast-event-sdk/models/public_alias_list'
+
+require 'novacast-event-sdk/models/public_alias_update_request'
+
 require 'novacast-event-sdk/models/question_content'
 
 require 'novacast-event-sdk/models/question_content_create_request'
