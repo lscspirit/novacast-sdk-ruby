@@ -76,7 +76,8 @@ module NovacastSDK
         channel_admin: 'ChannelAdmin',
         event_admin:   'EventAdmin',
         report_viewer: 'ReportViewer',
-        operator:      'Operator'
+        operator:      'Operator',
+        resource_viewer: 'ResourceViewer'
       }
 
       PERMISSIONS = {
