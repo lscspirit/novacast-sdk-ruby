@@ -2,8 +2,8 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class PageMappingList < NovacastSDK::BaseModel
-        attr_accessor :mappings
+      class EventPageList < NovacastSDK::BaseModel
+        attr_accessor :pages
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,8 +12,8 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # collection of PageMapping
-            :'mappings' => { base_name: 'mappings', type: 'Array[PageMapping]', required: true }
+            # array of event pages
+            :'pages' => { base_name: 'pages', type: 'Array[EventPage]', required: true }
             
           }
         end

@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventSessionCreateRequest < NovacastSDK::BaseModel
-        attr_accessor :label, :pathname
+        attr_accessor :label
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -13,10 +13,7 @@ module NovacastSDK
           {
             
             # label of the session
-            :'label' => { base_name: 'label', type: 'String', required: true },
-            
-            # path name of the session
-            :'pathname' => { base_name: 'pathname', type: 'String', required: true }
+            :'label' => { base_name: 'label', type: 'String', required: true }
             
           }
         end
