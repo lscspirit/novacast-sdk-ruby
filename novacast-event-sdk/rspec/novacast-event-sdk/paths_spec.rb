@@ -889,6 +889,19 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /sessions/{session_uid}/question_submissions/{question_manifest_uid}/lookup_by_user', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'question_manifest_uid' => 'String',
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/question_submissions/{question_manifest_uid}/lookup_by_user', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /sessions/{session_uid}/questionnaire/{question_manifest_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

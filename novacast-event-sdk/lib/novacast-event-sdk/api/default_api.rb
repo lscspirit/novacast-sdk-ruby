@@ -3429,6 +3429,52 @@ module NovacastSDK
       end
 
       # 
+      # Get all submissions for a question manifest by the calling user\n
+      # @param question_manifest_uid question manifest uid
+      # @param session_uid the session uid
+      # @return [QuestionSubmissionList]
+      def get_question_submissions_by_user(question_manifest_uid, session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/question_submissions/{question_manifest_uid}/lookup_by_user', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['question_manifest_uid'] = question_manifest_uid
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
+        
+      end
+
+      # 
       # Get the questionnaire status\n
       # @param session_uid the session that this questionnaire is relevant to
       # @param question_manifest_uid quesiton manifest associated uid

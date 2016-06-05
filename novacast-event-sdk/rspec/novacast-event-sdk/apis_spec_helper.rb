@@ -1070,6 +1070,23 @@ module NovacastSDK
           }
           
         }, 
+        get_question_submissions_by_user: {
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_questionnaire_status: {
           
           :'session_uid' => {
@@ -2431,6 +2448,13 @@ module NovacastSDK
           
         }, 
         get_question_submissions: {
+          
+          200 => 'QuestionSubmissionList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_question_submissions_by_user: {
           
           200 => 'QuestionSubmissionList',
           
