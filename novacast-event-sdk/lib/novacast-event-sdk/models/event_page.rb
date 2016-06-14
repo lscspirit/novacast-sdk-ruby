@@ -16,7 +16,7 @@ module NovacastSDK
             :'uid' => { base_name: 'uid', type: 'String', required: true },
             
             # label of the page
-            :'label' => { base_name: 'label', type: 'String', required: false },
+            :'label' => { base_name: 'label', type: 'String', required: true },
             
             # page configuration in json
             :'page_config' => { base_name: 'page_config', type: 'String', required: false }

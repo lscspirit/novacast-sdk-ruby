@@ -568,6 +568,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /event_pages/{event_page_uid}/contents', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_page_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/event_pages/{event_page_uid}/contents', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /question_sets/{question_set_uid}/question_contents', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -656,14 +667,16 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /event_pages/{event_page_uid}/contents', type: :routing do
+          ::RSpec.describe 'GET /event_pages/{event_page_uid}/contents/{content_locale}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
-                :'event_page_uid' => 'String'
+                :'event_page_uid' => 'String',
+              
+                :'content_locale' => 'String'
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/event_pages/{event_page_uid}/contents', path_params))
+              expect_path_routable(:GET => generate_path('/api/v1/event_pages/{event_page_uid}/contents/{content_locale}', path_params))
             end
           end
         

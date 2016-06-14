@@ -2192,6 +2192,48 @@ module NovacastSDK
       end
 
       # 
+      # Get all the page contents of a event page\n
+      # @param event_page_uid event page uid
+      # @return [PageContentList]
+      def get_contents_for_event_page(event_page_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_page_uid"' if event_page_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/event_pages/{event_page_uid}/contents', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['event_page_uid'] = event_page_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PageContentList.from_json resp.body
+        
+      end
+
+      # 
       # Get all question contents for the question set\n
       # @param question_set_uid question set uid
       # @return [QuestionContentList]
@@ -2533,20 +2575,24 @@ module NovacastSDK
       end
 
       # 
-      # Get the page content of a event page\n
+      # Get event page content for a specific locale\n
       # @param event_page_uid event page uid
+      # @param content_locale locale of the page content
       # @return [PageContent]
-      def get_event_page_content(event_page_uid)
+      def get_event_page_content(event_page_uid, content_locale)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_page_uid"' if event_page_uid.nil?
         
+        raise ArgumentError, 'Missing required parameter "content_locale"' if content_locale.nil?
+        
 
-        op = NovacastSDK::Client::Operation.new '/event_pages/{event_page_uid}/contents', :GET
+        op = NovacastSDK::Client::Operation.new '/event_pages/{event_page_uid}/contents/{content_locale}', :GET
 
         # path parameters
         path_params = {}
         path_params['event_page_uid'] = event_page_uid
+        path_params['content_locale'] = content_locale
         op.params = path_params
 
         # header parameters

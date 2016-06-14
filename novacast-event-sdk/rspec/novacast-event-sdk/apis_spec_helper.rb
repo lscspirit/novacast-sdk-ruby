@@ -738,6 +738,16 @@ module NovacastSDK
           }
           
         }, 
+        get_contents_for_event_page: {
+          
+          :'event_page_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_contents_for_question_set: {
           
           :'question_set_uid' => {
@@ -835,6 +845,13 @@ module NovacastSDK
         get_event_page_content: {
           
           :'event_page_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'content_locale' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -2263,6 +2280,13 @@ module NovacastSDK
         get_content_by_path: {
           
           200 => 'EventContent',
+          
+          0 => 'Error'
+          
+        }, 
+        get_contents_for_event_page: {
+          
+          200 => 'PageContentList',
           
           0 => 'Error'
           

@@ -16,7 +16,7 @@ module NovacastSDK
             :'path' => { base_name: 'path', type: 'String', required: true },
             
             # whether the page is public or not
-            :'public' => { base_name: 'public', type: 'String', required: true },
+            :'public' => { base_name: 'public', type: 'BOOLEAN', required: true },
             
             # uid of the event session
             :'event_session_uid' => { base_name: 'event_session_uid', type: 'String', required: false },

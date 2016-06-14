@@ -152,6 +152,8 @@ require 'novacast-event-sdk/models/module_runtime'
 
 require 'novacast-event-sdk/models/page_content'
 
+require 'novacast-event-sdk/models/page_content_list'
+
 require 'novacast-event-sdk/models/page_content_update_request'
 
 require 'novacast-event-sdk/models/page_runtime'
