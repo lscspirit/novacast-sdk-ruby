@@ -22,7 +22,7 @@ module NovacastSDK
             :'public' => { base_name: 'public', type: 'BOOLEAN', required: false },
             
             # uid of the event session
-            :'event_session_uid' => { base_name: 'event_session_uid', type: 'String', required: false },
+            :'event_session_uid' => { base_name: 'event_session_uid', type: 'String', required: true },
             
             # uid of the event page
             :'event_page_uid' => { base_name: 'event_page_uid', type: 'String', required: true }
