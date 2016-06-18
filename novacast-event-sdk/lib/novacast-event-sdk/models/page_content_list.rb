@@ -2,8 +2,8 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class SessionExceptionUpdate < NovacastSDK::BaseModel
-        attr_accessor :session_uids
+      class PageContentList < NovacastSDK::BaseModel
+        attr_accessor :contents
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,8 +12,8 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # a collection of session uids
-            :'session_uids' => { base_name: 'session_uids', type: 'Array[String]', required: true }
+            # an array of PageContent
+            :'contents' => { base_name: 'contents', type: 'Array[PageContent]', required: true }
             
           }
         end

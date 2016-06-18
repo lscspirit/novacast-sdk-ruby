@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class PageContent < NovacastSDK::BaseModel
-        attr_accessor :locale, :path, :content
+        attr_accessor :event_page_uid, :locale, :content
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,11 +12,11 @@ module NovacastSDK
         def self.model_properties
           {
             
+            # uid of the event page
+            :'event_page_uid' => { base_name: 'event_page_uid', type: 'String', required: true },
+            
             # locale of the page content
             :'locale' => { base_name: 'locale', type: 'String', required: true },
-            
-            # page path of the event page
-            :'path' => { base_name: 'path', type: 'String', required: true },
             
             # page content
             :'content' => { base_name: 'content', type: 'String', required: true }

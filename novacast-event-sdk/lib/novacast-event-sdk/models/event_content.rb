@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventContent < NovacastSDK::BaseModel
-        attr_accessor :type, :value, :public, :content_path, :session_uid, :mapping_uid
+        attr_accessor :type, :value, :public, :session_uid
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -21,14 +21,8 @@ module NovacastSDK
             # content is public
             :'public' => { base_name: 'public', type: 'String', required: true },
             
-            # content path for the page (only available for &#39;html&#39; type)
-            :'content_path' => { base_name: 'content_path', type: 'String', required: false },
-            
             # uid of the session (only available for &#39;html&#39; type)
-            :'session_uid' => { base_name: 'session_uid', type: 'String', required: false },
-            
-            # mapping uid (only available for &#39;html&#39; type)
-            :'mapping_uid' => { base_name: 'mapping_uid', type: 'String', required: false }
+            :'session_uid' => { base_name: 'session_uid', type: 'String', required: false }
             
           }
         end

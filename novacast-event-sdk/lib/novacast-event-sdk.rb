@@ -42,6 +42,12 @@ require 'novacast-event-sdk/models/account_role_update_request'
 
 require 'novacast-event-sdk/models/active_data_set_update_request'
 
+require 'novacast-event-sdk/models/active_path_mapping'
+
+require 'novacast-event-sdk/models/active_path_mapping_create_request'
+
+require 'novacast-event-sdk/models/active_path_mapping_update_request'
+
 require 'novacast-event-sdk/models/add_poll_stat_request'
 
 require 'novacast-event-sdk/models/addquestionnaire_stat_request'
@@ -102,6 +108,8 @@ require 'novacast-event-sdk/models/event_page'
 
 require 'novacast-event-sdk/models/event_page_create_request'
 
+require 'novacast-event-sdk/models/event_page_list'
+
 require 'novacast-event-sdk/models/event_page_update_request'
 
 require 'novacast-event-sdk/models/event_session'
@@ -144,25 +152,19 @@ require 'novacast-event-sdk/models/module_runtime'
 
 require 'novacast-event-sdk/models/page_content'
 
+require 'novacast-event-sdk/models/page_content_list'
+
 require 'novacast-event-sdk/models/page_content_update_request'
 
-require 'novacast-event-sdk/models/page_mapping'
-
-require 'novacast-event-sdk/models/page_mapping_create_request'
-
-require 'novacast-event-sdk/models/page_mapping_list'
-
-require 'novacast-event-sdk/models/page_mapping_update_request'
-
 require 'novacast-event-sdk/models/page_runtime'
-
-require 'novacast-event-sdk/models/page_session_exceptions'
 
 require 'novacast-event-sdk/models/paginated_enrollment_list'
 
 require 'novacast-event-sdk/models/paging'
 
 require 'novacast-event-sdk/models/paging_details'
+
+require 'novacast-event-sdk/models/path_mapping_list'
 
 require 'novacast-event-sdk/models/poll_status'
 
@@ -228,10 +230,6 @@ require 'novacast-event-sdk/models/questionnaire_status'
 
 require 'novacast-event-sdk/models/questionnaire_status_control_request'
 
-require 'novacast-event-sdk/models/session_exception'
-
-require 'novacast-event-sdk/models/session_exception_update'
-
 require 'novacast-event-sdk/models/session_module'
 
 require 'novacast-event-sdk/models/session_module_config'
@@ -265,6 +263,12 @@ require 'novacast-event-sdk/models/slide_deck_update_request'
 require 'novacast-event-sdk/models/slide_delete_request'
 
 require 'novacast-event-sdk/models/slide_order_request'
+
+require 'novacast-event-sdk/models/static_path_mapping'
+
+require 'novacast-event-sdk/models/static_path_mapping_create_request'
+
+require 'novacast-event-sdk/models/static_path_mapping_update_request'
 
 require 'novacast-event-sdk/models/stream_medium'
 
