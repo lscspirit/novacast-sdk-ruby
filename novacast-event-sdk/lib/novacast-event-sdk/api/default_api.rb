@@ -960,7 +960,7 @@ module NovacastSDK
       # @param question_manifest_uid question manifest uid
       # @param session_uid the session uid
       # @param body request body
-      # @return [QuestionSubmission]
+      # @return [QuestionSubmissionList]
       def create_question_submission(question_manifest_uid, session_uid, body)
         # checks if all required parameters are set
         
@@ -1002,7 +1002,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::QuestionSubmission.from_json resp.body
+        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
         
       end
 
@@ -1848,6 +1848,90 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::ActivePathMapping.from_json resp.body
+        
+      end
+
+      # 
+      # get the currently active polls\n
+      # @param session_uid the session that we are querying for
+      # @return [ActivePollList]
+      def get_active_polls(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/get_active_polls', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ActivePollList.from_json resp.body
+        
+      end
+
+      # 
+      # get the currently active Questionnaires\n
+      # @param session_uid the session that we are querying for
+      # @return [ActiveQuestionnaireList]
+      def get_active_questionnaires(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/questionnaire/get_active_questionnaires', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ActiveQuestionnaireList.from_json resp.body
         
       end
 

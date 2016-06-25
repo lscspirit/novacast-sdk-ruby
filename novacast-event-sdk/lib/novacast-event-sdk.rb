@@ -48,6 +48,14 @@ require 'novacast-event-sdk/models/active_path_mapping_create_request'
 
 require 'novacast-event-sdk/models/active_path_mapping_update_request'
 
+require 'novacast-event-sdk/models/active_poll'
+
+require 'novacast-event-sdk/models/active_poll_list'
+
+require 'novacast-event-sdk/models/active_questionnaire'
+
+require 'novacast-event-sdk/models/active_questionnaire_list'
+
 require 'novacast-event-sdk/models/add_poll_stat_request'
 
 require 'novacast-event-sdk/models/addquestionnaire_stat_request'

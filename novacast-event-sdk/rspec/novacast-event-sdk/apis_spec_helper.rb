@@ -651,6 +651,26 @@ module NovacastSDK
           }
           
         }, 
+        get_active_polls: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_active_questionnaires: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_asset_bundle: {
           
           :'asset_bundle_uid' => {
@@ -2105,7 +2125,7 @@ module NovacastSDK
         }, 
         create_question_submission: {
           
-          201 => 'QuestionSubmission',
+          201 => 'QuestionSubmissionList',
           
           0 => 'Error'
           
@@ -2241,6 +2261,20 @@ module NovacastSDK
         get_active_path_mapping: {
           
           200 => 'ActivePathMapping',
+          
+          0 => 'Error'
+          
+        }, 
+        get_active_polls: {
+          
+          200 => 'ActivePollList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_active_questionnaires: {
+          
+          200 => 'ActiveQuestionnaireList',
           
           0 => 'Error'
           
