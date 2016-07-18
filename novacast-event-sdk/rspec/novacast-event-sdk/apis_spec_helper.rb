@@ -671,6 +671,16 @@ module NovacastSDK
           }
           
         }, 
+        get_active_session_commands: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_asset_bundle: {
           
           :'asset_bundle_uid' => {
@@ -2275,6 +2285,13 @@ module NovacastSDK
         get_active_questionnaires: {
           
           200 => 'ActiveQuestionnaireList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_active_session_commands: {
+          
+          200 => 'EventSessionCommandList',
           
           0 => 'Error'
           

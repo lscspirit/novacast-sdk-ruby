@@ -1936,6 +1936,48 @@ module NovacastSDK
       end
 
       # 
+      # 
+      # @param session_uid the session for which the commands are to be loaded for
+      # @return [EventSessionCommandList]
+      def get_active_session_commands(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/event_session_command/get_active_commands', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::EventSessionCommandList.from_json resp.body
+        
+      end
+
+      # 
       # Get asset bundle with contents\n
       # @param asset_bundle_uid asset bundle uid
       # @return [AssetBundle]
