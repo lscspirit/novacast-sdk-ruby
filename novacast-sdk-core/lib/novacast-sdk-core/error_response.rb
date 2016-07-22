@@ -19,10 +19,11 @@ module NovacastSDK
 
   module Client
     class ErrorResponse
-      attr_accessor :messages, :klass
+      attr_accessor :messages, :fields, :klass
 
       def initialize(err_obj, klass = nil)
         self.messages = err_obj
+        self.fields   = err_obj
         self.klass    = klass || NovacastSDK::Errors::Base
       end
 
@@ -43,6 +44,16 @@ module NovacastSDK
         @messages = msgs
       end
 
+      def fields=(err_obj)
+        @fields = []
+
+        if err_obj.respond_to?(:errors) && err_obj.errors.respond_to?(:each)
+          err_obj.errors.each do |attr, msg|
+            @fields << { field: attr, message: msg }
+          end
+        end
+      end
+
       def klass=(k)
         raise ArgumentError, 'ErrorResponse class must be a NovacastSDK::Errors::Base' unless k <= NovacastSDK::Errors::Base
         @klass = k
@@ -57,7 +68,7 @@ module NovacastSDK
       #
 
       def to_json(opts = {})
-        { klass_name: klass_name, messages: messages }.to_json
+        { klass_name: klass_name, messages: messages, fields: fields }.to_json
       end
 
       def self.from_json(json)

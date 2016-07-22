@@ -41,7 +41,7 @@ module NovacastSDK
         unless resp.success?
           # parse error response and raise error
           err_resp = ErrorResponse.from_json resp.body
-          raise err_resp.klass.new(err_resp.messages.join(', '), err_resp.messages)
+          raise err_resp.klass.new(err_resp.messages.join(', '), err_resp.messages, err_resp.fields)
         end
 
         resp

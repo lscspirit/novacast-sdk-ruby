@@ -52,6 +52,8 @@ require 'novacast-identity-sdk/models/domain_info'
 
 require 'novacast-identity-sdk/models/error'
 
+require 'novacast-identity-sdk/models/error_field'
+
 require 'novacast-identity-sdk/models/inline_response_200'
 
 require 'novacast-identity-sdk/models/login_response'

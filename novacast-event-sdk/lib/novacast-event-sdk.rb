@@ -102,6 +102,8 @@ require 'novacast-event-sdk/models/enrollment_field_value'
 
 require 'novacast-event-sdk/models/error'
 
+require 'novacast-event-sdk/models/error_field'
+
 require 'novacast-event-sdk/models/event'
 
 require 'novacast-event-sdk/models/event_content'

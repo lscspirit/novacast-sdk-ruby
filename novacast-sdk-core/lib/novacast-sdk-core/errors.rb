@@ -2,13 +2,14 @@ module NovacastSDK
   module Errors
     # Base class for SDK Error
     class Base < StandardError
-      attr_reader :full_messages
+      attr_reader :full_messages, :fields
 
       # Return the default HTTP status code associated with this error
       DEFAULT_STATUS = :bad_request
 
-      def initialize(msg = nil, full_messages = nil)
+      def initialize(msg = nil, full_messages = nil, fields = nil)
         @full_messages = full_messages
+        @field = fields
         super msg
       end
     end
