@@ -23,8 +23,8 @@ module NovacastSDK
 
       def initialize(err_obj, klass = nil)
         self.messages = err_obj
-        self.fields   = err_obj
         self.klass    = klass || NovacastSDK::Errors::Base
+        set_fields err_obj
       end
 
       def messages=(err_obj)
@@ -44,14 +44,8 @@ module NovacastSDK
         @messages = msgs
       end
 
-      def fields=(err_obj)
-        @fields = []
-
-        if err_obj.respond_to?(:errors) && err_obj.errors.respond_to?(:each)
-          err_obj.errors.each do |attr, msg|
-            @fields << { field: attr, message: msg }
-          end
-        end
+      def fields
+        @fields || []
       end
 
       def klass=(k)
@@ -72,9 +66,25 @@ module NovacastSDK
       end
 
       def self.from_json(json)
-        hash  = JSON.parse json
-        klass = Object.const_get hash['klass_name']
-        self.new hash['messages'], klass
+        hash  = JSON.parse json, symbolize_names: true
+        klass = Object.const_get hash[:klass_name]
+
+        err_resp = self.new hash[:messages], klass
+        err_resp.fields = hash[:fields]
+
+        err_resp
+      end
+
+      private
+
+      def set_fields(err_obj)
+        field_list = []
+        if err_obj.respond_to?(:errors) && err_obj.errors.respond_to?(:each)
+          err_obj.errors.each do |attr, msg|
+            field_list << { field: attr, message: msg }
+          end
+        end
+        self.fields = field_list
       end
     end
   end

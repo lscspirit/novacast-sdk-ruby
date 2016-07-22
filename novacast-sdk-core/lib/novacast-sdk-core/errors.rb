@@ -9,7 +9,7 @@ module NovacastSDK
 
       def initialize(msg = nil, full_messages = nil, fields = nil)
         @full_messages = full_messages
-        @field = fields
+        @fields = fields
         super msg
       end
     end
