@@ -244,6 +244,8 @@ require 'novacast-event-sdk/models/questionnaire_status'
 
 require 'novacast-event-sdk/models/questionnaire_status_control_request'
 
+require 'novacast-event-sdk/models/runtime_info'
+
 require 'novacast-event-sdk/models/session_module'
 
 require 'novacast-event-sdk/models/session_module_config'
