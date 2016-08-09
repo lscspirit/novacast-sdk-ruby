@@ -388,6 +388,27 @@ module NovacastSDK
             path_param: false,
             body_param: true,
             required: true
+          },
+          
+          :'max_records' => {
+            type: 'Float',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'from_date' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'to_date' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
           }
           
         }, 
@@ -1137,6 +1158,27 @@ module NovacastSDK
             path_param: true,
             body_param: false,
             required: true
+          },
+          
+          :'max_records' => {
+            type: 'Float',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'from_date' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'to_date' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
           }
           
         }, 
@@ -2578,7 +2620,7 @@ module NovacastSDK
         }, 
         get_question_submissions: {
           
-          200 => 'QuestionSubmissionList',
+          200 => 'QuestionSubmissionQueryResponse',
           
           0 => 'Error'
           

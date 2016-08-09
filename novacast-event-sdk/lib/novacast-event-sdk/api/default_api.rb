@@ -960,8 +960,12 @@ module NovacastSDK
       # @param question_manifest_uid question manifest uid
       # @param session_uid the session uid
       # @param body request body
+      # @param [Hash] opts the optional parameters
+      # @option opts [Float] :max_records optional max records for return
+      # @option opts [String] :from_date optional from date filter in ISO8601 format
+      # @option opts [String] :to_date optional to date filter in ISO8601 format
       # @return [QuestionSubmissionList]
-      def create_question_submission(question_manifest_uid, session_uid, body)
+      def create_question_submission(question_manifest_uid, session_uid, body, opts = {})
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
@@ -985,6 +989,9 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
+        query_params['max_records'] = opts[:max_records] if opts[:max_records]
+        query_params['from_date'] = opts[:from_date] if opts[:from_date]
+        query_params['to_date'] = opts[:to_date] if opts[:to_date]
         op.query = query_params
 
         # http body (model)
@@ -3681,8 +3688,12 @@ module NovacastSDK
       # Get all submissions for a question manifest\n
       # @param question_manifest_uid question manifest uid
       # @param session_uid the session uid
-      # @return [QuestionSubmissionList]
-      def get_question_submissions(question_manifest_uid, session_uid)
+      # @param [Hash] opts the optional parameters
+      # @option opts [Float] :max_records optional max records for return
+      # @option opts [String] :from_date optional from date filter in ISO8601 format
+      # @option opts [String] :to_date optional to date filter in ISO8601 format
+      # @return [QuestionSubmissionQueryResponse]
+      def get_question_submissions(question_manifest_uid, session_uid, opts = {})
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
@@ -3704,6 +3715,9 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
+        query_params['max_records'] = opts[:max_records] if opts[:max_records]
+        query_params['from_date'] = opts[:from_date] if opts[:from_date]
+        query_params['to_date'] = opts[:to_date] if opts[:to_date]
         op.query = query_params
 
         # http body (model)
@@ -3719,7 +3733,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
+        NovacastSDK::EventV1::Models::QuestionSubmissionQueryResponse.from_json resp.body
         
       end
 

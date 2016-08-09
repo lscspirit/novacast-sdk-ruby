@@ -16,7 +16,7 @@ module NovacastSDK
             :'question_content_uid' => { base_name: 'question_content_uid', type: 'String', required: true },
             
             # a JSON encoded string to represent the choices chosen
-            :'choice' => { base_name: 'choice', type: 'String', required: true }
+            :'choice' => { base_name: 'choice', type: 'Object', required: true }
             
           }
         end

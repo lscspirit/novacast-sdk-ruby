@@ -238,6 +238,8 @@ require 'novacast-event-sdk/models/question_submission_create_request'
 
 require 'novacast-event-sdk/models/question_submission_list'
 
+require 'novacast-event-sdk/models/question_submission_query_response'
+
 require 'novacast-event-sdk/models/questionnaire_answer'
 
 require 'novacast-event-sdk/models/questionnaire_status'
