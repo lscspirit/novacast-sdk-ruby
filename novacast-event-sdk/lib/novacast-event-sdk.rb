@@ -68,6 +68,10 @@ require 'novacast-event-sdk/models/asset_bundle_info'
 
 require 'novacast-event-sdk/models/asset_bundle_info_list'
 
+require 'novacast-event-sdk/models/attendance'
+
+require 'novacast-event-sdk/models/attendance_list'
+
 require 'novacast-event-sdk/models/bundle_content'
 
 require 'novacast-event-sdk/models/bundle_content_confirm_request'
@@ -137,6 +141,8 @@ require 'novacast-event-sdk/models/event_session_list'
 require 'novacast-event-sdk/models/event_stage_request'
 
 require 'novacast-event-sdk/models/event_update_request'
+
+require 'novacast-event-sdk/models/filtered_enrollment_list'
 
 require 'novacast-event-sdk/models/forum_post'
 
@@ -247,6 +253,8 @@ require 'novacast-event-sdk/models/questionnaire_status'
 require 'novacast-event-sdk/models/questionnaire_status_control_request'
 
 require 'novacast-event-sdk/models/runtime_info'
+
+require 'novacast-event-sdk/models/session_attendance'
 
 require 'novacast-event-sdk/models/session_module'
 

@@ -960,12 +960,8 @@ module NovacastSDK
       # @param question_manifest_uid question manifest uid
       # @param session_uid the session uid
       # @param body request body
-      # @param [Hash] opts the optional parameters
-      # @option opts [Float] :max_records optional max records for return
-      # @option opts [String] :from_date optional from date filter in ISO8601 format
-      # @option opts [String] :to_date optional to date filter in ISO8601 format
       # @return [QuestionSubmissionList]
-      def create_question_submission(question_manifest_uid, session_uid, body, opts = {})
+      def create_question_submission(question_manifest_uid, session_uid, body)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
@@ -989,9 +985,6 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params['max_records'] = opts[:max_records] if opts[:max_records]
-        query_params['from_date'] = opts[:from_date] if opts[:from_date]
-        query_params['to_date'] = opts[:to_date] if opts[:to_date]
         op.query = query_params
 
         # http body (model)
@@ -3876,6 +3869,108 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::PageRuntime.from_json resp.body
+        
+      end
+
+      # 
+      # Lookup event and session attendances by session uid
+      # @param session_uid the session uid
+      # @param [Hash] opts the optional parameters
+      # @option opts [Float] :max_records optional max records for return
+      # @option opts [String] :from_date optional from date filter in ISO8601 format
+      # @option opts [String] :to_date optional to date filter in ISO8601 format
+      # @return [AttendanceList]
+      def get_session_attendances(session_uid, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/attendances', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['max_records'] = opts[:max_records] if opts[:max_records]
+        query_params['from_date'] = opts[:from_date] if opts[:from_date]
+        query_params['to_date'] = opts[:to_date] if opts[:to_date]
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::AttendanceList.from_json resp.body
+        
+      end
+
+      # 
+      # Get a list of users belongs to this user set\n
+      # @param session_uid the session uid
+      # @param [Hash] opts the optional parameters
+      # @option opts [Integer] :page page number in a paginated query
+      # @option opts [Integer] :per_page 
+      # @option opts [Float] :max_records optional max records for return
+      # @option opts [String] :from_date optional from date filter in ISO8601 format
+      # @option opts [String] :to_date optional to date filter in ISO8601 format
+      # @return [FilteredEnrollmentList]
+      def get_session_enrollments(session_uid, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/enrollments', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['page'] = opts[:page] if opts[:page]
+        query_params['per_page'] = opts[:per_page] if opts[:per_page]
+        query_params['max_records'] = opts[:max_records] if opts[:max_records]
+        query_params['from_date'] = opts[:from_date] if opts[:from_date]
+        query_params['to_date'] = opts[:to_date] if opts[:to_date]
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::FilteredEnrollmentList.from_json resp.body
         
       end
 

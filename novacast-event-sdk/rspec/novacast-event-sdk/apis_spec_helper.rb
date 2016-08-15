@@ -388,27 +388,6 @@ module NovacastSDK
             path_param: false,
             body_param: true,
             required: true
-          },
-          
-          :'max_records' => {
-            type: 'Float',
-            path_param: false,
-            body_param: false,
-            required: false
-          },
-          
-          :'from_date' => {
-            type: 'String',
-            path_param: false,
-            body_param: false,
-            required: false
-          },
-          
-          :'to_date' => {
-            type: 'String',
-            path_param: false,
-            body_param: false,
-            required: false
           }
           
         }, 
@@ -1237,6 +1216,82 @@ module NovacastSDK
             path_param: true,
             body_param: false,
             required: true
+          }
+          
+        }, 
+        get_session_attendances: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'max_records' => {
+            type: 'Float',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'from_date' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'to_date' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
+        get_session_enrollments: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'page' => {
+            type: 'Integer',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'per_page' => {
+            type: 'Integer',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'max_records' => {
+            type: 'Float',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'from_date' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'to_date' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
           }
           
         }, 
@@ -2642,6 +2697,20 @@ module NovacastSDK
         get_runtime_by_path: {
           
           200 => 'PageRuntime',
+          
+          0 => 'Error'
+          
+        }, 
+        get_session_attendances: {
+          
+          200 => 'AttendanceList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_session_enrollments: {
+          
+          200 => 'FilteredEnrollmentList',
           
           0 => 'Error'
           
