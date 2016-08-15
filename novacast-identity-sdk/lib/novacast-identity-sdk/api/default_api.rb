@@ -46,6 +46,48 @@ module NovacastSDK
       end
 
       # 
+      # Gets the `User` object for a list of accounts\n
+      # @param account_uids the account uids
+      # @return [AccountList]
+      def batch_get_account(account_uids)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "account_uids"' if account_uids.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/accounts/batch_get', :GET
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['account_uids[]'] = account_uids
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'appSecret', key: 'app_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::IdentityV1::Models::AccountList.from_json resp.body
+        
+      end
+
+      # 
       # Assign and delete account role in batch\n
       # @param account_uid uid of the Account
       # @param body request body

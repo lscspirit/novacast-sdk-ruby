@@ -23,6 +23,16 @@ module NovacastSDK
           }
           
         }, 
+        batch_get_account: {
+          
+          :'account_uids' => {
+            type: 'Array[String]',
+            path_param: false,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         batch_update_account_roles: {
           
           :'account_uid' => {
@@ -488,6 +498,13 @@ module NovacastSDK
           200 => 'RoleResourcePermissions',
           
           201 => 'RoleResourcePermissions',
+          
+          0 => 'Error'
+          
+        }, 
+        batch_get_account: {
+          
+          200 => 'AccountList',
           
           0 => 'Error'
           

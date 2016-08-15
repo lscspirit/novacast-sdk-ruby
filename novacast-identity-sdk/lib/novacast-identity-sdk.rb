@@ -34,6 +34,8 @@ require 'novacast-identity-sdk/models/account_extended'
 
 require 'novacast-identity-sdk/models/account_extended_list'
 
+require 'novacast-identity-sdk/models/account_list'
+
 require 'novacast-identity-sdk/models/account_request'
 
 require 'novacast-identity-sdk/models/assign_role_request'
