@@ -976,6 +976,16 @@ module NovacastSDK
           }
           
         }, 
+        get_forum_post_likes_with_accounts: {
+          
+          :'forum_post_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_forum_posts: {
           
           :'session_uid' => {
@@ -2569,6 +2579,13 @@ module NovacastSDK
           
         }, 
         get_forum_post_likes_for_account: {
+          
+          200 => 'ForumPostLikeList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_forum_post_likes_with_accounts: {
           
           200 => 'ForumPostLikeList',
           
