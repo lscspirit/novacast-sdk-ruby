@@ -1534,6 +1534,68 @@ module NovacastSDK
         end
       end
   
+  
+      class InternalApiPaths
+        def self.specs
+        
+          ::RSpec.describe 'GET /channels/{channel_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'channel_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/channels/{channel_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /events/{event_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /events/{event_uid}/user_set', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/user_set', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /public_aliases/path/{alias_path}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'alias_path' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/public_aliases/path/{alias_path}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /user_sets/{user_set_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'user_set_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/user_sets/{user_set_uid}', path_params))
+            end
+          end
+        
+        end
+      end
+  
     end
   end
 end
