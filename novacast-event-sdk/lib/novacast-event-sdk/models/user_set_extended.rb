@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class UserSetExtended < NovacastSDK::BaseModel
-        attr_accessor :uid, :rn, :label, :ch_acct_only, :whitelisted_only, :full_enrollment, :fields
+        attr_accessor :uid, :rn, :label, :channel_uid, :ch_acct_only, :whitelisted_only, :full_enrollment, :fields
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -20,6 +20,9 @@ module NovacastSDK
             
             # label
             :'label' => { base_name: 'label', type: 'String', required: true },
+            
+            # channel uid
+            :'channel_uid' => { base_name: 'channel_uid', type: 'String', required: true },
             
             # channel accounts only
             :'ch_acct_only' => { base_name: 'ch_acct_only', type: 'BOOLEAN', required: true },

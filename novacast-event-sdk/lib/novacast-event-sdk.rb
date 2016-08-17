@@ -341,6 +341,7 @@ require 'novacast-event-sdk/models/whitelisted_user_list'
 
 # APIs
 require 'novacast-event-sdk/api/default_api'
+require 'novacast-event-sdk/api/internal_api'
 
 module NovacastSDK
   module EventV1
