@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class ForumPostExtended < NovacastSDK::BaseModel
-        attr_accessor :uid, :account_uid, :content, :likes, :visible, :submitted_at, :approved, :hidden, :deleted
+        attr_accessor :uid, :account_uid, :content, :likes, :visible, :submitted_at, :approved, :hidden, :deleted, :starred
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -37,7 +37,10 @@ module NovacastSDK
             :'hidden' => { base_name: 'hidden', type: 'BOOLEAN', required: true },
             
             # whether the post is deleted
-            :'deleted' => { base_name: 'deleted', type: 'BOOLEAN', required: true }
+            :'deleted' => { base_name: 'deleted', type: 'BOOLEAN', required: true },
+            
+            # whether the post is starred
+            :'starred' => { base_name: 'starred', type: 'BOOLEAN', required: true }
             
           }
         end
