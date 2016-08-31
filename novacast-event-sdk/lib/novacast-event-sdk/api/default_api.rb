@@ -2272,52 +2272,6 @@ module NovacastSDK
       end
 
       # 
-      # Get event content by path\n
-      # @param event_uid event uid
-      # @param content_path path to access the content
-      # @return [EventContent]
-      def get_content_by_path(event_uid, content_path)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "content_path"' if content_path.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/contents/{content_path}', :GET
-
-        # path parameters
-        path_params = {}
-        path_params['event_uid'] = event_uid
-        path_params['content_path'] = content_path
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::EventContent.from_json resp.body
-        
-      end
-
-      # 
       # Get all the page contents of a event page\n
       # @param event_page_uid event page uid
       # @return [PageContentList]
@@ -2613,48 +2567,6 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::EventExtended.from_json resp.body
-        
-      end
-
-      # 
-      # Get the access filter chain for the event interface\n
-      # @param event_uid event uid
-      # @return [AccessFilterChain]
-      def get_event_interface_filter_chain(event_uid)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/interface_filter_chain', :GET
-
-        # path parameters
-        path_params = {}
-        path_params['event_uid'] = event_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::AccessFilterChain.from_json resp.body
         
       end
 
@@ -3865,52 +3777,6 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::QuestionnaireStatus.from_json resp.body
-        
-      end
-
-      # 
-      # Get runtime by path\n
-      # @param event_uid event uid
-      # @param content_path path to access the content
-      # @return [PageRuntime]
-      def get_runtime_by_path(event_uid, content_path)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "content_path"' if content_path.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/runtimes/{content_path}', :GET
-
-        # path parameters
-        path_params = {}
-        path_params['event_uid'] = event_uid
-        path_params['content_path'] = content_path
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::PageRuntime.from_json resp.body
         
       end
 

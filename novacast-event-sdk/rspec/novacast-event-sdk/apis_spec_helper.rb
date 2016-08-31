@@ -809,23 +809,6 @@ module NovacastSDK
         get_channel_list: {
           
         }, 
-        get_content_by_path: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'content_path' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
         get_contents_for_event_page: {
           
           :'event_page_uid' => {
@@ -901,16 +884,6 @@ module NovacastSDK
           
         }, 
         get_event: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_event_interface_filter_chain: {
           
           :'event_uid' => {
             type: 'String',
@@ -1265,23 +1238,6 @@ module NovacastSDK
           :'question_set_uid' => {
             type: 'String',
             path_param: false,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_runtime_by_path: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'content_path' => {
-            type: 'String',
-            path_param: true,
             body_param: false,
             required: true
           }
@@ -2106,9 +2062,67 @@ module NovacastSDK
 
     class InternalApiRequests < ApiRequests
       REQUESTS = { 
+        enroll_to_user_set: {
+          
+          :'user_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'UserSetEnrollRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
+        filter_event_access: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'content_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
         get_channel: {
           
           :'channel_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_content_by_path: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'content_path' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -2139,6 +2153,23 @@ module NovacastSDK
         get_public_alias_by_path: {
           
           :'alias_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_runtime_by_path: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'content_path' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -2566,13 +2597,6 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        get_content_by_path: {
-          
-          200 => 'EventContent',
-          
-          0 => 'Error'
-          
-        }, 
         get_contents_for_event_page: {
           
           200 => 'PageContentList',
@@ -2618,13 +2642,6 @@ module NovacastSDK
         get_event: {
           
           200 => 'EventExtended',
-          
-          0 => 'Error'
-          
-        }, 
-        get_event_interface_filter_chain: {
-          
-          200 => 'AccessFilterChain',
           
           0 => 'Error'
           
@@ -2821,13 +2838,6 @@ module NovacastSDK
         get_questionnaire_status: {
           
           200 => 'QuestionnaireStatus',
-          
-          0 => 'Error'
-          
-        }, 
-        get_runtime_by_path: {
-          
-          200 => 'PageRuntime',
           
           0 => 'Error'
           
@@ -3152,9 +3162,32 @@ module NovacastSDK
 
     class InternalApiResponses < ApiResponses
       RESPONSES = { 
+        enroll_to_user_set: {
+          
+          200 => 'Enrollment',
+          
+          201 => 'Enrollment',
+          
+          0 => 'Error'
+          
+        }, 
+        filter_event_access: {
+          
+          200 => 'AccessFilterChain',
+          
+          0 => 'Error'
+          
+        }, 
         get_channel: {
           
           200 => 'Channel',
+          
+          0 => 'Error'
+          
+        }, 
+        get_content_by_path: {
+          
+          200 => 'EventContent',
           
           0 => 'Error'
           
@@ -3176,6 +3209,13 @@ module NovacastSDK
         get_public_alias_by_path: {
           
           200 => 'PublicAlias',
+          
+          0 => 'Error'
+          
+        }, 
+        get_runtime_by_path: {
+          
+          200 => 'PageRuntime',
           
           0 => 'Error'
           
