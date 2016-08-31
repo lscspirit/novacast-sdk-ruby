@@ -43,6 +43,7 @@ module NovacastSDK
       # AssignRole        | System                  | assign any role at any level to any account
       # AssignRole        | Channel                 | assign role belonging to the specified channel to any account at the channel level or below to any user
       #
+      # CreateChannel     | System                  | create a new channel
       # ViewChannel       | Channel                 | view settings of the specified channel
       # EditChannel       | Channel                 | edit any settings of the specified channel
       # DeleteChannel     | Channel                 | delete the specified channel
@@ -84,8 +85,9 @@ module NovacastSDK
         manage_account:   'ManageAccount',
         manage_role:      'ManageRole',
         assign_role:      'AssignRole',
+        create_channel:     'CreateChannel',
 
-        # Channel Permissions
+        # Channel Permissionsi
         view_channel:     'ViewChannel',
         edit_channel:     'EditChannel',
         delete_channel:   'DeleteChannel',
