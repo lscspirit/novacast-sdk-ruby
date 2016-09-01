@@ -1126,6 +1126,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'PUT /mods/forum_post/posts/{forum_post_uid}/publish', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'forum_post_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/mods/forum_post/posts/{forum_post_uid}/publish', path_params))
+            end
+          end
+        
           ::RSpec.describe 'POST /sessions/{session_uid}/polling/{question_manifest_uid}/publish', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

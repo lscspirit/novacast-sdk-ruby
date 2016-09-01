@@ -4362,6 +4362,48 @@ module NovacastSDK
       end
 
       # 
+      # publish a particular forum post\n
+      # @param forum_post_uid uid of the forum post
+      # @return [ForumPost]
+      def publish_forum_post(forum_post_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "forum_post_uid"' if forum_post_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/posts/{forum_post_uid}/publish', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['forum_post_uid'] = forum_post_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPost.from_json resp.body
+        
+      end
+
+      # 
       # publish statistics for a given poll\n
       # @param session_uid the session that this poll is relevant to
       # @param question_manifest_uid quesiton manifest associated uid
