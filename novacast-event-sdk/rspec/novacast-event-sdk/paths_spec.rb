@@ -1582,6 +1582,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /events/{event_uid}/interface_filter_chain', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/interface_filter_chain', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /public_aliases/path/{alias_path}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

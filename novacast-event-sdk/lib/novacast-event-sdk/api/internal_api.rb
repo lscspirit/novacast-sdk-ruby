@@ -60,7 +60,7 @@ module NovacastSDK
       # @param content_path path to access the content
       # @param [Hash] opts the optional parameters
       # @option opts [String] :account_uid account uid
-      # @return [AccessFilterChain]
+      # @return [nil]
       def filter_event_access(event_uid, content_path, opts = {})
         # checks if all required parameters are set
         
@@ -99,7 +99,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::AccessFilterChain.from_json resp.body
+        nil
         
       end
 
@@ -272,6 +272,48 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::UserSetExtended.from_json resp.body
+        
+      end
+
+      # 
+      # Get the event&#39;s interface filter chain\n
+      # @param event_uid event uid
+      # @return [AccessFilterChain]
+      def get_interface_filter_chain(event_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/interface_filter_chain', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['event_uid'] = event_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::AccessFilterChain.from_json resp.body
         
       end
 
