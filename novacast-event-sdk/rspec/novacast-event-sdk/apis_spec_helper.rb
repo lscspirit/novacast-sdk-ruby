@@ -63,8 +63,13 @@ module NovacastSDK
       private
 
       def self.find_request_definition(api)
-        raise "Api '#{api}' request definition not found" unless (definition = self::REQUESTS[api.to_sym])
-        definition
+        if (definition = DefaultApiRequests::REQUESTS[api.to_sym])
+          return definition
+        elsif (definition = InternalApiRequests::REQUESTS[api.to_sym])
+          return definition
+        end
+
+        raise "Api '#{api}' request definition not found"
       end
     end
 
@@ -2160,6 +2165,16 @@ module NovacastSDK
           }
           
         }, 
+        get_interface_filter_chain: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_public_alias_by_path: {
           
           :'alias_path' => {
@@ -2243,10 +2258,16 @@ module NovacastSDK
         # convert status_code in symbol into integer code
         status_code = resolve_status status_code
 
+        definition = if (resp = DefaultApiResponses::RESPONSES[api.to_sym])
+                       resp
+                     elsif (resp = InternalApiResponses::RESPONSES[api.to_sym])
+                       resp
+                     end
+
         # raise error if the response definition is not found for this api
-        raise ArgumentError, "Api '#{api}' response definition not found" unless (api_def = self::RESPONSES[api.to_sym])
+        raise ArgumentError, "Api '#{api}' response definition not found" unless definition
         # raise error if the response type (or a fallback) is not defined for this status code
-        raise ArgumentError, "Status code '#{status_code}' response definition not found for '#{api}'" unless (resp_type = api_def[status_code] || api_def[0])
+        raise ArgumentError, "Status code '#{status_code}' response definition not found for '#{api}'" unless (resp_type = definition[status_code] || definition[0])
 
         resp_type
       end
@@ -3190,7 +3211,7 @@ module NovacastSDK
         }, 
         filter_event_access: {
           
-          200 => 'AccessFilterChain',
+          200 => '',
           
           0 => 'Error'
           
@@ -3219,6 +3240,13 @@ module NovacastSDK
         get_event_user_set: {
           
           200 => 'UserSetExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        get_interface_filter_chain: {
+          
+          200 => 'AccessFilterChain',
           
           0 => 'Error'
           
@@ -3253,7 +3281,7 @@ end
 RSpec::Matchers.define :be_api_request do |api|
   match do |request_params|
     @actual = request_params
-    @diff   = NovacastSDK::EventV1::DefaultApiRequests.compare @actual, api
+    @diff   = NovacastSDK::EventV1::ApiRequests.compare @actual, api
     @diff.nil?
   end
 
@@ -3269,12 +3297,12 @@ end
 RSpec::Matchers.define :be_api_response do |api, status|
   match do |response_body|
     @actual = response_body.blank? ? nil : JSON.parse(response_body)
-    @diff   = NovacastSDK::EventV1::DefaultApiResponses.compare @actual, api, status
+    @diff   = NovacastSDK::EventV1::ApiResponses.compare @actual, api, status
     @diff.nil?
   end
 
   failure_message do
-    expected_type = NovacastSDK::EventV1::DefaultApiResponses.response_type api, status
+    expected_type = NovacastSDK::EventV1::ApiResponses.response_type api, status
     "expected response body be in #{api} (#{status}) format. \n\tDiff: #{@diff.to_s} \n\tactual: #{@actual} \n\texpected: #{expected_type} object (please refer to api specification)"
   end
 
@@ -3284,7 +3312,7 @@ RSpec::Matchers.define :be_api_response do |api, status|
 end
 
 RSpec.shared_examples 'a novacast EventV1 sdk api' do |api, status, error_klass_name = nil, error_message = nil|
-  status_code = NovacastSDK::EventV1::DefaultApiResponses.resolve_status(status)
+  status_code = NovacastSDK::EventV1::ApiResponses.resolve_status(status)
 
   it "accepts request in the format defined in api specification for #{api}" do
     expect(request.params).to be_api_request(api)
