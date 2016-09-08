@@ -158,6 +158,16 @@ module NovacastSDK
           }
           
         }, 
+        close_session_panels: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         confirm_bundle_content: {
           
           :'asset_bundle_uid' => {
@@ -653,6 +663,16 @@ module NovacastSDK
           },
           
           :'mapping_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        dismiss_forum_post: {
+          
+          :'forum_post_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -2304,6 +2324,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        close_session_panels: {
+          
+          200 => '',
+          
+          0 => 'Error'
+          
+        }, 
         confirm_bundle_content: {
           
           200 => 'BundleContent',
@@ -2524,6 +2551,13 @@ module NovacastSDK
         delete_static_path_mapping: {
           
           200 => 'StaticPathMapping',
+          
+          0 => 'Error'
+          
+        }, 
+        dismiss_forum_post: {
+          
+          200 => 'ForumPost',
           
           0 => 'Error'
           
