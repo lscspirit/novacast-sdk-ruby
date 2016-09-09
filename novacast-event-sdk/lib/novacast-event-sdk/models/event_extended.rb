@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventExtended < NovacastSDK::BaseModel
-        attr_accessor :channel_uid, :uid, :name, :stage, :default_session_uid, :access_policy_uid, :asset_bundle_uid, :user_set_uid, :public_aliases, :event_pages, :active_data_set_uid
+        attr_accessor :channel_uid, :uid, :name, :stage, :preview_enabled, :default_session_uid, :access_policy_uid, :asset_bundle_uid, :user_set_uid, :public_aliases, :event_pages, :active_data_set_uid
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -23,6 +23,9 @@ module NovacastSDK
             
             # state of the event
             :'stage' => { base_name: 'stage', type: 'String', required: true },
+            
+            # whether preview mode is enabled
+            :'preview_enabled' => { base_name: 'preview_enabled', type: 'BOOLEAN', required: true },
             
             # default session uid
             :'default_session_uid' => { base_name: 'default_session_uid', type: 'String', required: true },

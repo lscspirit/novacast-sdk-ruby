@@ -58,15 +58,18 @@ module NovacastSDK
       # Check if a user have access to the event\n
       # @param event_uid event uid
       # @param content_path path to access the content
+      # @param account_uid account uid
       # @param [Hash] opts the optional parameters
-      # @option opts [String] :account_uid account uid
-      # @return [nil]
-      def filter_event_access(event_uid, content_path, opts = {})
+      # @option opts [String] :preview_token preview token
+      # @return [FilterAccessResponse]
+      def filter_event_access(event_uid, content_path, account_uid, opts = {})
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "content_path"' if content_path.nil?
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/events/{event_uid}/filter_access/{content_path}', :GET
@@ -83,7 +86,8 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params['account_uid'] = opts[:account_uid] if opts[:account_uid]
+        query_params['account_uid'] = account_uid
+        query_params['preview_token'] = opts[:preview_token] if opts[:preview_token]
         op.query = query_params
 
         # http body (model)
@@ -99,7 +103,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        nil
+        NovacastSDK::EventV1::Models::FilterAccessResponse.from_json resp.body
         
       end
 
@@ -444,6 +448,48 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::UserSetExtended.from_json resp.body
+        
+      end
+
+      # 
+      # Validates a preview token\n
+      # @param token preivew token
+      # @return [PreviewTokenInfo]
+      def validate_preview_token(token)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "token"' if token.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/preview/validate', :GET
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['token'] = token
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PreviewTokenInfo.from_json resp.body
         
       end
     end

@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class Event < NovacastSDK::BaseModel
-        attr_accessor :channel_uid, :uid, :name, :stage
+        attr_accessor :channel_uid, :uid, :name, :stage, :preview_enabled
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -22,7 +22,10 @@ module NovacastSDK
             :'name' => { base_name: 'name', type: 'String', required: true },
             
             # state of the event
-            :'stage' => { base_name: 'stage', type: 'String', required: true }
+            :'stage' => { base_name: 'stage', type: 'String', required: true },
+            
+            # whether preview mode is enabled
+            :'preview_enabled' => { base_name: 'preview_enabled', type: 'BOOLEAN', required: true }
             
           }
         end

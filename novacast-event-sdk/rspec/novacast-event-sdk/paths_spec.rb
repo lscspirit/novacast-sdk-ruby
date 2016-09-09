@@ -465,6 +465,15 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /preview', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/preview', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /access_policies/{access_policy_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -1647,6 +1656,15 @@ module NovacastSDK
               
               }
               expect_path_routable(:GET => generate_path('/api/v1/user_sets/{user_set_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /preview/validate', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/preview/validate', path_params))
             end
           end
         

@@ -1806,6 +1806,56 @@ module NovacastSDK
       end
 
       # 
+      # Get a preview token to access a event in preview mode\n
+      # @param event_uid uid of the event to generate the token for
+      # @param ttl the number of seconds this token is valid for
+      # @param session_ttl the number of seconds each preview mode session is valid for
+      # @return [PreviewToken]
+      def generate_preview_token(event_uid, ttl, session_ttl)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "ttl"' if ttl.nil?
+        
+        raise ArgumentError, 'Missing required parameter "session_ttl"' if session_ttl.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/preview', :GET
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['event_uid'] = event_uid
+        query_params['ttl'] = ttl
+        query_params['session_ttl'] = session_ttl
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PreviewToken.from_json resp.body
+        
+      end
+
+      # 
       # Get details of an access policy\n
       # @param access_policy_uid access policy uid
       # @return [AccessPolicyExtended]

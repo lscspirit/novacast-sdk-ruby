@@ -697,6 +697,30 @@ module NovacastSDK
           }
           
         }, 
+        generate_preview_token: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: true
+          },
+          
+          :'ttl' => {
+            type: 'Integer',
+            path_param: false,
+            body_param: false,
+            required: true
+          },
+          
+          :'session_ttl' => {
+            type: 'Integer',
+            path_param: false,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_access_policy: {
           
           :'access_policy_uid' => {
@@ -2134,6 +2158,13 @@ module NovacastSDK
             type: 'String',
             path_param: false,
             body_param: false,
+            required: true
+          },
+          
+          :'preview_token' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
             required: false
           }
           
@@ -2227,6 +2258,16 @@ module NovacastSDK
           :'user_set_uid' => {
             type: 'String',
             path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        validate_preview_token: {
+          
+          :'token' => {
+            type: 'String',
+            path_param: false,
             body_param: false,
             required: true
           }
@@ -2567,6 +2608,13 @@ module NovacastSDK
           200 => 'Enrollment',
           
           201 => 'Enrollment',
+          
+          0 => 'Error'
+          
+        }, 
+        generate_preview_token: {
+          
+          200 => 'PreviewToken',
           
           0 => 'Error'
           
@@ -3245,7 +3293,7 @@ module NovacastSDK
         }, 
         filter_event_access: {
           
-          200 => '',
+          200 => 'FilterAccessResponse',
           
           0 => 'Error'
           
@@ -3302,6 +3350,13 @@ module NovacastSDK
         get_user_set: {
           
           200 => 'UserSetExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        validate_preview_token: {
+          
+          200 => 'PreviewTokenInfo',
           
           0 => 'Error'
           

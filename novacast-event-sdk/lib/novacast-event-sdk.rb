@@ -142,6 +142,8 @@ require 'novacast-event-sdk/models/event_stage_request'
 
 require 'novacast-event-sdk/models/event_update_request'
 
+require 'novacast-event-sdk/models/filter_access_response'
+
 require 'novacast-event-sdk/models/filtered_enrollment_list'
 
 require 'novacast-event-sdk/models/forum_post'
@@ -191,6 +193,10 @@ require 'novacast-event-sdk/models/poll_status'
 require 'novacast-event-sdk/models/poll_status_control_request'
 
 require 'novacast-event-sdk/models/presigned_upload'
+
+require 'novacast-event-sdk/models/preview_token'
+
+require 'novacast-event-sdk/models/preview_token_info'
 
 require 'novacast-event-sdk/models/public_alias'
 
