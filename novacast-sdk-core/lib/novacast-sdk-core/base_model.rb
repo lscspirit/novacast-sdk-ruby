@@ -175,8 +175,30 @@ module NovacastSDK
       self.class.model_properties.each_pair do |key, definition|
         type      = definition[:type]
         base_name = definition[:base_name]
+        required  = definition[:required]
 
-        prop_value = obj.send base_name
+        prop_value = nil
+        found = false
+
+        methods = [base_name]
+        methods << "#{base_name}?" if type.to_sym == :BOOLEAN
+
+        methods.each do |method|
+          if obj.respond_to? method
+            prop_value = obj.send method
+            found = true
+            break
+          end
+        end
+
+        unless found
+          # ignores this property unless it is required
+          break unless required
+
+          # raises error if the required property is not found in the source object
+          raise InvalidArgument, "#{base_name} is missing in the object being serialized"
+        end
+
         self.send "#{base_name}=", self.class.normalize_type(prop_value, type)
       end
     end
