@@ -204,6 +204,48 @@ module NovacastSDK
       end
 
       # 
+      # Close all the closable panels for this session\n
+      # @param session_uid event session uid
+      # @return [nil]
+      def close_session_panels(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/close_panels', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        nil
+        
+      end
+
+      # 
       # Confirm a pre-upload asset bundle content\n
       # @param asset_bundle_uid asset bundle uid
       # @param file_path content path within the bundle
@@ -1671,6 +1713,48 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::StaticPathMapping.from_json resp.body
+        
+      end
+
+      # 
+      # dismiss a published forum post\n
+      # @param forum_post_uid uid of the forum post
+      # @return [ForumPost]
+      def dismiss_forum_post(forum_post_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "forum_post_uid"' if forum_post_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/posts/{forum_post_uid}/publish', :DELETE
+
+        # path parameters
+        path_params = {}
+        path_params['forum_post_uid'] = forum_post_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPost.from_json resp.body
         
       end
 

@@ -74,6 +74,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'PUT /sessions/{session_uid}/close_panels', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/sessions/{session_uid}/close_panels', path_params))
+            end
+          end
+        
           ::RSpec.describe 'POST /assets/{asset_bundle_uid}/confirm/{file_path}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -429,6 +440,17 @@ module NovacastSDK
               
               }
               expect_path_routable(:DELETE => generate_path('/api/v1/events/{event_uid}/path_mappings/{mapping_path}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'DELETE /mods/forum_post/posts/{forum_post_uid}/publish', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'forum_post_uid' => 'String'
+              
+              }
+              expect_path_routable(:DELETE => generate_path('/api/v1/mods/forum_post/posts/{forum_post_uid}/publish', path_params))
             end
           end
         
