@@ -1659,6 +1659,15 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'POST /attendances/track_by_token', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/attendances/track_by_token', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /preview/validate', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

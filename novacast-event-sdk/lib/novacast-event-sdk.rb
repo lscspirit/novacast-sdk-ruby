@@ -318,6 +318,10 @@ require 'novacast-event-sdk/models/stream_source_create_request'
 
 require 'novacast-event-sdk/models/stream_source_pre_upload_request'
 
+require 'novacast-event-sdk/models/track_attendance_by_token'
+
+require 'novacast-event-sdk/models/track_attendance_by_token_request'
+
 require 'novacast-event-sdk/models/track_attendance_request'
 
 require 'novacast-event-sdk/models/user_feedback'

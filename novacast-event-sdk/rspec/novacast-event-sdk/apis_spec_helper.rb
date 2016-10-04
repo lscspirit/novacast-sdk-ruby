@@ -2263,6 +2263,16 @@ module NovacastSDK
           }
           
         }, 
+        track_attendance_by_token: {
+          
+          :'body' => {
+            type: 'TrackAttendanceByTokenRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         validate_preview_token: {
           
           :'token' => {
@@ -3350,6 +3360,13 @@ module NovacastSDK
         get_user_set: {
           
           200 => 'UserSetExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        track_attendance_by_token: {
+          
+          200 => 'AttendanceList',
           
           0 => 'Error'
           

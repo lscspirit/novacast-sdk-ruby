@@ -452,6 +452,49 @@ module NovacastSDK
       end
 
       # 
+      # a batch call to track multiple attendances by their access tokens\n
+      # @param body request body
+      # @return [AttendanceList]
+      def track_attendance_by_token(body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/attendances/track_by_token', :POST
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::AttendanceList.from_json resp.body
+        
+      end
+
+      # 
       # Validates a preview token\n
       # @param token preivew token
       # @return [PreviewTokenInfo]
