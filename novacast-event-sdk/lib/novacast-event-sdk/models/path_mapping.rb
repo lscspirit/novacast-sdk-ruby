@@ -2,8 +2,8 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class StaticPathMapping < NovacastSDK::BaseModel
-        attr_accessor :path, :public, :event_session_uid, :event_page_uid
+      class PathMapping < NovacastSDK::BaseModel
+        attr_accessor :uid, :label, :is_active, :public, :event_session_uid, :event_page_uid
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,8 +12,14 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # pathname
-            :'path' => { base_name: 'path', type: 'String', required: true },
+            # the uid for this path mapping
+            :'uid' => { base_name: 'uid', type: 'String', required: false },
+            
+            # an optional label for a human readable identifier for this mapping
+            :'label' => { base_name: 'label', type: 'String', required: false },
+            
+            # whether the mapping is active
+            :'is_active' => { base_name: 'is_active', type: 'BOOLEAN', required: true },
             
             # whether the page is public or not
             :'public' => { base_name: 'public', type: 'BOOLEAN', required: true },

@@ -391,11 +391,11 @@ module NovacastSDK
       end
 
       # 
-      # Create a new active path mapping\n
+      # Create a new active path with mapping(s)\n
       # @param event_uid uid of the event
       # @param body request body
-      # @return [ActivePathMapping]
-      def create_active_path_mapping(event_uid, body)
+      # @return [ActivePath]
+      def create_active_path(event_uid, body)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -403,7 +403,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_path_mappings', :POST
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_paths', :POST
 
         # path parameters
         path_params = {}
@@ -433,7 +433,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::ActivePathMapping.from_json resp.body
+        NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
         
       end
 
@@ -1096,53 +1096,6 @@ module NovacastSDK
       end
 
       # 
-      # Create a new static path mapping\n
-      # @param event_uid uid of the event
-      # @param body request body
-      # @return [StaticPathMapping]
-      def create_static_path_mapping(event_uid, body)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/path_mappings', :POST
-
-        # path parameters
-        path_params = {}
-        path_params['event_uid'] = event_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-        op.body = body.to_json
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::StaticPathMapping.from_json resp.body
-        
-      end
-
-      # 
       # Create a new stream medium\n
       # @param channel_uid channel uid
       # @param body request body
@@ -1326,24 +1279,24 @@ module NovacastSDK
       end
 
       # 
-      # Delete a active path mapping\n
+      # Delete an active path\n
       # @param event_uid uid of the event
-      # @param mapping_path path of the mapping
-      # @return [ActivePathMapping]
-      def delete_active_path_mapping(event_uid, mapping_path)
+      # @param path_uid uid of the active path
+      # @return [ActivePath]
+      def delete_active_path(event_uid, path_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
-        raise ArgumentError, 'Missing required parameter "mapping_path"' if mapping_path.nil?
+        raise ArgumentError, 'Missing required parameter "path_uid"' if path_uid.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_path_mappings/{mapping_path}', :DELETE
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_paths/{path_uid}', :DELETE
 
         # path parameters
         path_params = {}
         path_params['event_uid'] = event_uid
-        path_params['mapping_path'] = mapping_path
+        path_params['path_uid'] = path_uid
         op.params = path_params
 
         # header parameters
@@ -1367,7 +1320,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::ActivePathMapping.from_json resp.body
+        NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
         
       end
 
@@ -1671,52 +1624,6 @@ module NovacastSDK
       end
 
       # 
-      # Delete a static path mapping\n
-      # @param event_uid uid of the event
-      # @param mapping_path path of the mapping
-      # @return [StaticPathMapping]
-      def delete_static_path_mapping(event_uid, mapping_path)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "mapping_path"' if mapping_path.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/path_mappings/{mapping_path}', :DELETE
-
-        # path parameters
-        path_params = {}
-        path_params['event_uid'] = event_uid
-        path_params['mapping_path'] = mapping_path
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::StaticPathMapping.from_json resp.body
-        
-      end
-
-      # 
       # dismiss a published forum post\n
       # @param forum_post_uid uid of the forum post
       # @return [ForumPost]
@@ -1940,24 +1847,24 @@ module NovacastSDK
       end
 
       # 
-      # Get a active path mapping\n
+      # Get the config and mappings for a given active path\n
       # @param event_uid uid of the event
-      # @param mapping_path path of the mapping
-      # @return [ActivePathMapping]
-      def get_active_path_mapping(event_uid, mapping_path)
+      # @param path_uid uid of the active path
+      # @return [ActivePath]
+      def get_active_path(event_uid, path_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
-        raise ArgumentError, 'Missing required parameter "mapping_path"' if mapping_path.nil?
+        raise ArgumentError, 'Missing required parameter "path_uid"' if path_uid.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_path_mappings/{mapping_path}', :GET
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_paths/{path_uid}', :GET
 
         # path parameters
         path_params = {}
         path_params['event_uid'] = event_uid
-        path_params['mapping_path'] = mapping_path
+        path_params['path_uid'] = path_uid
         op.params = path_params
 
         # header parameters
@@ -1981,7 +1888,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::ActivePathMapping.from_json resp.body
+        NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
         
       end
 
@@ -2705,6 +2612,48 @@ module NovacastSDK
       end
 
       # 
+      # Get all active paths and their mappings of the event\n
+      # @param event_uid uid of the event
+      # @return [ActivePathList]
+      def get_event_active_paths(event_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_paths', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['event_uid'] = event_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ActivePathList.from_json resp.body
+        
+      end
+
+      # 
       # Get the event page\n
       # @param event_page_uid event page uid
       # @return [EventPage]
@@ -2789,48 +2738,6 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::PageContent.from_json resp.body
-        
-      end
-
-      # 
-      # Get all path mappings of the event\n
-      # @param event_uid uid of the event
-      # @return [PathMappingList]
-      def get_event_path_mappings(event_uid)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/path_mappings', :GET
-
-        # path parameters
-        path_params = {}
-        path_params['event_uid'] = event_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::PathMappingList.from_json resp.body
         
       end
 
@@ -4101,52 +4008,6 @@ module NovacastSDK
       end
 
       # 
-      # Get a static path mapping\n
-      # @param event_uid uid of the event
-      # @param mapping_path path of the mapping
-      # @return [StaticPathMapping]
-      def get_static_path_mapping(event_uid, mapping_path)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "mapping_path"' if mapping_path.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/path_mappings/{mapping_path}', :GET
-
-        # path parameters
-        path_params = {}
-        path_params['event_uid'] = event_uid
-        path_params['mapping_path'] = mapping_path
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::StaticPathMapping.from_json resp.body
-        
-      end
-
-      # 
       # Get stream medium object\n
       # @param stream_medium_uid stream medium uid
       # @return [StreamMedium]
@@ -5079,6 +4940,57 @@ module NovacastSDK
       end
 
       # 
+      # a runtime operation that switches active mapping for the given path\n
+      # @param event_uid uid of the event
+      # @param path_uid uid of the active path
+      # @param body request body
+      # @return [nil]
+      def switch_active_mapping(event_uid, path_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "path_uid"' if path_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_paths/{path_uid}/switch_active_mapping', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['event_uid'] = event_uid
+        path_params['path_uid'] = path_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        nil
+        
+      end
+
+      # 
       # Record user attendance\n
       # @param event_uid event uid
       # @param body request body
@@ -5220,27 +5132,27 @@ module NovacastSDK
       end
 
       # 
-      # Update a active path mapping\n
+      # Update a active path and its mappings\n
       # @param event_uid uid of the event
-      # @param mapping_path path of the mapping
+      # @param path_uid uid of the active path
       # @param body request body
-      # @return [ActivePathMapping]
-      def update_active_path_mapping(event_uid, mapping_path, body)
+      # @return [ActivePath]
+      def update_active_path(event_uid, path_uid, body)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
-        raise ArgumentError, 'Missing required parameter "mapping_path"' if mapping_path.nil?
+        raise ArgumentError, 'Missing required parameter "path_uid"' if path_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_path_mappings/{mapping_path}', :PUT
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/active_paths/{path_uid}', :PUT
 
         # path parameters
         path_params = {}
         path_params['event_uid'] = event_uid
-        path_params['mapping_path'] = mapping_path
+        path_params['path_uid'] = path_uid
         op.params = path_params
 
         # header parameters
@@ -5266,7 +5178,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::ActivePathMapping.from_json resp.body
+        NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
         
       end
 
@@ -5831,57 +5743,6 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::SlideDeckInfo.from_json resp.body
-        
-      end
-
-      # 
-      # Update a static path mapping\n
-      # @param event_uid uid of the event
-      # @param mapping_path path of the mapping
-      # @param body request body
-      # @return [StaticPathMapping]
-      def update_static_path_mapping(event_uid, mapping_path, body)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "mapping_path"' if mapping_path.nil?
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/path_mappings/{mapping_path}', :PUT
-
-        # path parameters
-        path_params = {}
-        path_params['event_uid'] = event_uid
-        path_params['mapping_path'] = mapping_path
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-        op.body = body.to_json
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::StaticPathMapping.from_json resp.body
         
       end
 

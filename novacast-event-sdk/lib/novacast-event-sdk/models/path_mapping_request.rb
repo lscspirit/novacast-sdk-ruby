@@ -2,8 +2,8 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class ActivePathMappingUpdateRequest < NovacastSDK::BaseModel
-        attr_accessor :path, :usage, :target
+      class PathMappingRequest < NovacastSDK::BaseModel
+        attr_accessor :path, :usage, :path_mappings
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -18,8 +18,8 @@ module NovacastSDK
             # usage of the page (only specify either path or usage)
             :'usage' => { base_name: 'usage', type: 'String', required: false },
             
-            # pathname of the static path to map this to
-            :'target' => { base_name: 'target', type: 'String', required: false }
+            # the path mappings aka path configs
+            :'path_mappings' => { base_name: 'path_mappings', type: 'Array[PathMapping]', required: true }
             
           }
         end

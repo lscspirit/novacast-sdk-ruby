@@ -226,7 +226,7 @@ module NovacastSDK
           }
           
         }, 
-        create_active_path_mapping: {
+        create_active_path: {
           
           :'event_uid' => {
             type: 'String',
@@ -236,7 +236,7 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'ActivePathMappingCreateRequest',
+            type: 'PathMappingRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -481,23 +481,6 @@ module NovacastSDK
           }
           
         }, 
-        create_static_path_mapping: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'StaticPathMappingCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
         create_stream_medium: {
           
           :'channel_uid' => {
@@ -559,7 +542,7 @@ module NovacastSDK
           }
           
         }, 
-        delete_active_path_mapping: {
+        delete_active_path: {
           
           :'event_uid' => {
             type: 'String',
@@ -568,7 +551,7 @@ module NovacastSDK
             required: true
           },
           
-          :'mapping_path' => {
+          :'path_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -653,23 +636,6 @@ module NovacastSDK
           }
           
         }, 
-        delete_static_path_mapping: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'mapping_path' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
         dismiss_forum_post: {
           
           :'forum_post_uid' => {
@@ -741,7 +707,7 @@ module NovacastSDK
           }
           
         }, 
-        get_active_path_mapping: {
+        get_active_path: {
           
           :'event_uid' => {
             type: 'String',
@@ -750,7 +716,7 @@ module NovacastSDK
             required: true
           },
           
-          :'mapping_path' => {
+          :'path_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -942,6 +908,16 @@ module NovacastSDK
           }
           
         }, 
+        get_event_active_paths: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_event_page: {
           
           :'event_page_uid' => {
@@ -962,16 +938,6 @@ module NovacastSDK
           },
           
           :'content_locale' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_event_path_mappings: {
-          
-          :'event_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -1388,23 +1354,6 @@ module NovacastSDK
           }
           
         }, 
-        get_static_path_mapping: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'mapping_path' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
         get_stream_medium: {
           
           :'stream_medium_uid' => {
@@ -1745,6 +1694,30 @@ module NovacastSDK
           }
           
         }, 
+        switch_active_mapping: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'path_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SwitchMappingRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         track_attendance: {
           
           :'event_uid' => {
@@ -1796,7 +1769,7 @@ module NovacastSDK
           }
           
         }, 
-        update_active_path_mapping: {
+        update_active_path: {
           
           :'event_uid' => {
             type: 'String',
@@ -1805,7 +1778,7 @@ module NovacastSDK
             required: true
           },
           
-          :'mapping_path' => {
+          :'path_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -1813,7 +1786,7 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'ActivePathMappingUpdateRequest',
+            type: 'PathMappingRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -2018,30 +1991,6 @@ module NovacastSDK
           
           :'body' => {
             type: 'SlideDeckUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        update_static_path_mapping: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'mapping_path' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'StaticPathMappingUpdateRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -2403,9 +2352,9 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        create_active_path_mapping: {
+        create_active_path: {
           
-          201 => 'ActivePathMapping',
+          201 => 'ActivePath',
           
           0 => 'Error'
           
@@ -2508,13 +2457,6 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        create_static_path_mapping: {
-          
-          201 => 'StaticPathMapping',
-          
-          0 => 'Error'
-          
-        }, 
         create_stream_medium: {
           
           201 => 'StreamMediumInfo',
@@ -2543,9 +2485,9 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        delete_active_path_mapping: {
+        delete_active_path: {
           
-          200 => 'ActivePathMapping',
+          200 => 'ActivePath',
           
           0 => 'Error'
           
@@ -2599,13 +2541,6 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        delete_static_path_mapping: {
-          
-          200 => 'StaticPathMapping',
-          
-          0 => 'Error'
-          
-        }, 
         dismiss_forum_post: {
           
           200 => 'ForumPost',
@@ -2643,9 +2578,9 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        get_active_path_mapping: {
+        get_active_path: {
           
-          200 => 'ActivePathMapping',
+          200 => 'ActivePath',
           
           0 => 'Error'
           
@@ -2769,6 +2704,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        get_event_active_paths: {
+          
+          200 => 'ActivePathList',
+          
+          0 => 'Error'
+          
+        }, 
         get_event_page: {
           
           200 => 'EventPage',
@@ -2779,13 +2721,6 @@ module NovacastSDK
         get_event_page_content: {
           
           200 => 'PageContent',
-          
-          0 => 'Error'
-          
-        }, 
-        get_event_path_mappings: {
-          
-          200 => 'PathMappingList',
           
           0 => 'Error'
           
@@ -2993,13 +2928,6 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        get_static_path_mapping: {
-          
-          200 => 'StaticPathMapping',
-          
-          0 => 'Error'
-          
-        }, 
         get_stream_medium: {
           
           200 => 'StreamMedium',
@@ -3140,6 +3068,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        switch_active_mapping: {
+          
+          200 => '',
+          
+          0 => 'Error'
+          
+        }, 
         track_attendance: {
           
           200 => '',
@@ -3161,9 +3096,9 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        update_active_path_mapping: {
+        update_active_path: {
           
-          200 => 'ActivePathMapping',
+          200 => 'ActivePath',
           
           0 => 'Error'
           
@@ -3248,13 +3183,6 @@ module NovacastSDK
         update_slide_deck: {
           
           200 => 'SlideDeckInfo',
-          
-          0 => 'Error'
-          
-        }, 
-        update_static_path_mapping: {
-          
-          200 => 'StaticPathMapping',
           
           0 => 'Error'
           

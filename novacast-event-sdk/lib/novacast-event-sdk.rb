@@ -42,11 +42,9 @@ require 'novacast-event-sdk/models/account_role_update_request'
 
 require 'novacast-event-sdk/models/active_data_set_update_request'
 
-require 'novacast-event-sdk/models/active_path_mapping'
+require 'novacast-event-sdk/models/active_path'
 
-require 'novacast-event-sdk/models/active_path_mapping_create_request'
-
-require 'novacast-event-sdk/models/active_path_mapping_update_request'
+require 'novacast-event-sdk/models/active_path_list'
 
 require 'novacast-event-sdk/models/active_poll'
 
@@ -186,7 +184,9 @@ require 'novacast-event-sdk/models/paging'
 
 require 'novacast-event-sdk/models/paging_details'
 
-require 'novacast-event-sdk/models/path_mapping_list'
+require 'novacast-event-sdk/models/path_mapping'
+
+require 'novacast-event-sdk/models/path_mapping_request'
 
 require 'novacast-event-sdk/models/poll_status'
 
@@ -296,12 +296,6 @@ require 'novacast-event-sdk/models/slide_delete_request'
 
 require 'novacast-event-sdk/models/slide_order_request'
 
-require 'novacast-event-sdk/models/static_path_mapping'
-
-require 'novacast-event-sdk/models/static_path_mapping_create_request'
-
-require 'novacast-event-sdk/models/static_path_mapping_update_request'
-
 require 'novacast-event-sdk/models/stream_medium'
 
 require 'novacast-event-sdk/models/stream_medium_create_request'
@@ -317,6 +311,8 @@ require 'novacast-event-sdk/models/stream_source_confirm_request'
 require 'novacast-event-sdk/models/stream_source_create_request'
 
 require 'novacast-event-sdk/models/stream_source_pre_upload_request'
+
+require 'novacast-event-sdk/models/switch_mapping_request'
 
 require 'novacast-event-sdk/models/track_attendance_by_token'
 

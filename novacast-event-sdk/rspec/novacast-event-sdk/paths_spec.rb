@@ -120,14 +120,14 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'POST /events/{event_uid}/active_path_mappings', type: :routing do
+          ::RSpec.describe 'POST /events/{event_uid}/active_paths', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
                 :'event_uid' => 'String'
               
               }
-              expect_path_routable(:POST => generate_path('/api/v1/events/{event_uid}/active_path_mappings', path_params))
+              expect_path_routable(:POST => generate_path('/api/v1/events/{event_uid}/active_paths', path_params))
             end
           end
         
@@ -285,17 +285,6 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'POST /events/{event_uid}/path_mappings', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'event_uid' => 'String'
-              
-              }
-              expect_path_routable(:POST => generate_path('/api/v1/events/{event_uid}/path_mappings', path_params))
-            end
-          end
-        
           ::RSpec.describe 'POST /channels/{channel_uid}/streams', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -340,16 +329,16 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'DELETE /events/{event_uid}/active_path_mappings/{mapping_path}', type: :routing do
+          ::RSpec.describe 'DELETE /events/{event_uid}/active_paths/{path_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
                 :'event_uid' => 'String',
               
-                :'mapping_path' => 'String'
+                :'path_uid' => 'String'
               
               }
-              expect_path_routable(:DELETE => generate_path('/api/v1/events/{event_uid}/active_path_mappings/{mapping_path}', path_params))
+              expect_path_routable(:DELETE => generate_path('/api/v1/events/{event_uid}/active_paths/{path_uid}', path_params))
             end
           end
         
@@ -430,19 +419,6 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'DELETE /events/{event_uid}/path_mappings/{mapping_path}', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'event_uid' => 'String',
-              
-                :'mapping_path' => 'String'
-              
-              }
-              expect_path_routable(:DELETE => generate_path('/api/v1/events/{event_uid}/path_mappings/{mapping_path}', path_params))
-            end
-          end
-        
           ::RSpec.describe 'DELETE /mods/forum_post/posts/{forum_post_uid}/publish', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -496,16 +472,16 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /events/{event_uid}/active_path_mappings/{mapping_path}', type: :routing do
+          ::RSpec.describe 'GET /events/{event_uid}/active_paths/{path_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
                 :'event_uid' => 'String',
               
-                :'mapping_path' => 'String'
+                :'path_uid' => 'String'
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/active_path_mappings/{mapping_path}', path_params))
+              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/active_paths/{path_uid}', path_params))
             end
           end
         
@@ -696,6 +672,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /events/{event_uid}/active_paths', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/active_paths', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /event_pages/{event_page_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -717,17 +704,6 @@ module NovacastSDK
               
               }
               expect_path_routable(:GET => generate_path('/api/v1/event_pages/{event_page_uid}/contents/{content_locale}', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'GET /events/{event_uid}/path_mappings', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'event_uid' => 'String'
-              
-              }
-              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/path_mappings', path_params))
             end
           end
         
@@ -1056,19 +1032,6 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /events/{event_uid}/path_mappings/{mapping_path}', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'event_uid' => 'String',
-              
-                :'mapping_path' => 'String'
-              
-              }
-              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/path_mappings/{mapping_path}', path_params))
-            end
-          end
-        
           ::RSpec.describe 'GET /streams/{stream_medium_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -1301,6 +1264,19 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'PUT /events/{event_uid}/active_paths/{path_uid}/switch_active_mapping', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_uid' => 'String',
+              
+                :'path_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/events/{event_uid}/active_paths/{path_uid}/switch_active_mapping', path_params))
+            end
+          end
+        
           ::RSpec.describe 'POST /events/{event_uid}/attendances', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -1334,16 +1310,16 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'PUT /events/{event_uid}/active_path_mappings/{mapping_path}', type: :routing do
+          ::RSpec.describe 'PUT /events/{event_uid}/active_paths/{path_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
                 :'event_uid' => 'String',
               
-                :'mapping_path' => 'String'
+                :'path_uid' => 'String'
               
               }
-              expect_path_routable(:PUT => generate_path('/api/v1/events/{event_uid}/active_path_mappings/{mapping_path}', path_params))
+              expect_path_routable(:PUT => generate_path('/api/v1/events/{event_uid}/active_paths/{path_uid}', path_params))
             end
           end
         
@@ -1476,19 +1452,6 @@ module NovacastSDK
               
               }
               expect_path_routable(:PUT => generate_path('/api/v1/slide_decks/{slide_deck_uid}', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'PUT /events/{event_uid}/path_mappings/{mapping_path}', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'event_uid' => 'String',
-              
-                :'mapping_path' => 'String'
-              
-              }
-              expect_path_routable(:PUT => generate_path('/api/v1/events/{event_uid}/path_mappings/{mapping_path}', path_params))
             end
           end
         
