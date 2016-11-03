@@ -3070,7 +3070,7 @@ module NovacastSDK
         }, 
         switch_active_mapping: {
           
-          200 => '',
+          200 => 'ActivePath',
           
           0 => 'Error'
           

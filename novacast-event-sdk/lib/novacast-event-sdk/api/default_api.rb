@@ -4944,7 +4944,7 @@ module NovacastSDK
       # @param event_uid uid of the event
       # @param path_uid uid of the active path
       # @param body request body
-      # @return [nil]
+      # @return [ActivePath]
       def switch_active_mapping(event_uid, path_uid, body)
         # checks if all required parameters are set
         
@@ -4986,7 +4986,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        nil
+        NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
         
       end
 

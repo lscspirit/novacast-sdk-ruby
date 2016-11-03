@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class PathMapping < NovacastSDK::BaseModel
-        attr_accessor :uid, :label, :is_active, :public, :event_session_uid, :event_page_uid
+        attr_accessor :uid, :label, :is_active, :public, :event_session_uid, :event_page_uid, :event_session_label, :event_page_label
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -28,7 +28,13 @@ module NovacastSDK
             :'event_session_uid' => { base_name: 'event_session_uid', type: 'String', required: true },
             
             # uid of the event page
-            :'event_page_uid' => { base_name: 'event_page_uid', type: 'String', required: true }
+            :'event_page_uid' => { base_name: 'event_page_uid', type: 'String', required: true },
+            
+            # label for the mapped event session
+            :'event_session_label' => { base_name: 'event_session_label', type: 'String', required: false },
+            
+            # label for the mapped event page
+            :'event_page_label' => { base_name: 'event_page_label', type: 'String', required: false }
             
           }
         end
