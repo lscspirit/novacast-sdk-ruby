@@ -2,7 +2,7 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class EventSessionCreateRequest < NovacastSDK::BaseModel
+      class EventSessionInfoRequest < NovacastSDK::BaseModel
         attr_accessor :label
 
         def self.api_model_module

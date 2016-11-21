@@ -1367,6 +1367,48 @@ module NovacastSDK
       end
 
       # 
+      # delete an event session\n
+      # @param session_uid event session uid
+      # @return [EventSession]
+      def delete_event_session(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}', :DELETE
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::EventSession.from_json resp.body
+        
+      end
+
+      # 
       # Remove an public alias mapping\n
       # @param public_alias_uid uid of the public alias
       # @return [PublicAlias]
@@ -5367,6 +5409,53 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::PageContent.from_json resp.body
+        
+      end
+
+      # 
+      # Update the info for an event session \n
+      # @param session_uid event session uid
+      # @param body update session info
+      # @return [EventSession]
+      def update_event_session(session_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::EventSession.from_json resp.body
         
       end
 

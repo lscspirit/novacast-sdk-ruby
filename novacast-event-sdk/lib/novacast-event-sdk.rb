@@ -130,9 +130,9 @@ require 'novacast-event-sdk/models/event_session_command'
 
 require 'novacast-event-sdk/models/event_session_command_list'
 
-require 'novacast-event-sdk/models/event_session_create_request'
-
 require 'novacast-event-sdk/models/event_session_extended'
+
+require 'novacast-event-sdk/models/event_session_info_request'
 
 require 'novacast-event-sdk/models/event_session_list'
 
