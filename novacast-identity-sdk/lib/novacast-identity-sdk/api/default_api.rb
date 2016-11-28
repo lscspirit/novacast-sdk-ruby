@@ -47,15 +47,15 @@ module NovacastSDK
 
       # 
       # Gets the `User` object for a list of accounts\n
-      # @param account_uids the account uids
+      # @param body request body
       # @return [AccountList]
-      def batch_get_account(account_uids)
+      def batch_get_account(body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "account_uids"' if account_uids.nil?
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/accounts/batch_get', :GET
+        op = NovacastSDK::Client::Operation.new '/accounts/batch_get', :POST
 
         # path parameters
         path_params = {}
@@ -67,10 +67,11 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params['account_uids[]'] = account_uids
         op.query = query_params
 
         # http body (model)
+        
+        op.body = body.to_json
         
 
         
