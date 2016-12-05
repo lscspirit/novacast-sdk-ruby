@@ -10,6 +10,8 @@ module NovacastSDK
       # ------------------------------------------------------------------
       # ChannelMaster     | (all channel permissions)
       # ------------------------------------------------------------------
+      # ChannelCreator    | CreateChannel
+      # ------------------------------------------------------------------
       #                   | ViewChannel
       # ChannelOwner      | DeleteChannel
       #                   | TransferOwnership
@@ -43,7 +45,7 @@ module NovacastSDK
       # AssignRole        | System                  | assign any role at any level to any account
       # AssignRole        | Channel                 | assign role belonging to the specified channel to any account at the channel level or below to any user
       #
-      # CreateChannel     | System                  | create a new channel
+      # CreateChannel     | Channel:*               | create a new channel
       # ViewChannel       | Channel                 | view settings of the specified channel
       # EditChannel       | Channel                 | edit any settings of the specified channel
       # DeleteChannel     | Channel                 | delete the specified channel
@@ -71,8 +73,9 @@ module NovacastSDK
       # OperateSession    | Event Session           | operate the specified event session
 
       ROLES = {
-        system_admin:  'SysAdmin',
-        channel_master: 'ChannelMaster',
+        system_admin:    'SysAdmin',
+        channel_master:  'ChannelMaster',
+        channel_creator: 'ChannelCreator',
         channel_owner: 'ChannelOwner',
         channel_admin: 'ChannelAdmin',
         event_admin:   'EventAdmin',
@@ -85,9 +88,9 @@ module NovacastSDK
         manage_account:   'ManageAccount',
         manage_role:      'ManageRole',
         assign_role:      'AssignRole',
-        create_channel:     'CreateChannel',
 
-        # Channel Permissionsi
+        # Channel Permissions
+        create_channel:   'CreateChannel',
         view_channel:     'ViewChannel',
         edit_channel:     'EditChannel',
         delete_channel:   'DeleteChannel',

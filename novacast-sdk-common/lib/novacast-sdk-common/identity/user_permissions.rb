@@ -1,6 +1,13 @@
 module NovacastSDK
   module Identity
     class UserPermissions
+      # Create an instance of a user permission cache
+      # @param perms [Array<RoleResourcePermissions>] list of permissions
+      #
+      # @example
+      #   user_uid = '1234567'
+      #   perms = NovacastSDK::IdentityV1::DefaultApi.client.get_account_permissions user_uid, resources: resources
+      #   UserPermissions.new perms
       def initialize(perms = nil)
         self.permissions = perms || []
       end
@@ -73,7 +80,7 @@ module NovacastSDK
       # @example
       #   user_uid = '1234567'
       #   UserPermissions.new do |resources|
-      #     result = NovacastSDK::IdentityV1::DefaultApi.client.get_account_roles user_uid, resources: resources
+      #     result = NovacastSDK::IdentityV1::DefaultApi.client.get_account_permissions user_uid, resources: resources
       #     result.items
       #   end
       def initialize(&block)
