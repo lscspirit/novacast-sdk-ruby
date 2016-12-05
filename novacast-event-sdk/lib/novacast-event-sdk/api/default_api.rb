@@ -1666,6 +1666,48 @@ module NovacastSDK
       end
 
       # 
+      # Delete a stream medium\n
+      # @param stream_medium_uid stream medium uid
+      # @return [Response]
+      def delete_stream_medium(stream_medium_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "stream_medium_uid"' if stream_medium_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/streams/{stream_medium_uid}', :DELETE
+
+        # path parameters
+        path_params = {}
+        path_params['stream_medium_uid'] = stream_medium_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::Response.from_json resp.body
+        
+      end
+
+      # 
       # dismiss a published forum post\n
       # @param forum_post_uid uid of the forum post
       # @return [ForumPost]

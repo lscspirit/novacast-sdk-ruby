@@ -646,6 +646,16 @@ module NovacastSDK
           }
           
         }, 
+        delete_stream_medium: {
+          
+          :'stream_medium_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         dismiss_forum_post: {
           
           :'forum_post_uid' => {
@@ -2571,6 +2581,13 @@ module NovacastSDK
         delete_slides: {
           
           200 => 'SlideDeck',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_stream_medium: {
+          
+          200 => 'Response',
           
           0 => 'Error'
           
