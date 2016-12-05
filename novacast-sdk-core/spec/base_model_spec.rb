@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 module NovacastSDK
   module Rspec
     class Client < NovacastSDK::BaseModel
@@ -44,6 +46,12 @@ module NovacastSDK
         }
       end
     end
+
+    class TestSerializer < NovacastSDK::ModelSerializer
+      def value
+        nil
+      end
+    end
   end
 end
 
@@ -84,32 +92,58 @@ RSpec.describe 'BaseModel', '::new' do
     end
     expect(lead_names).to match_array(['Lead 1', 'Lead 2'])
   end
+
+  context 'with custom serializer' do
+    before :example do
+      allow(NovacastSDK::Rspec::TestSerializer).to receive(:new).and_call_original
+      NovacastSDK::Rspec::Company.new({ 'name' => 'Test Company' }, :serializer => NovacastSDK::Rspec::TestSerializer)
+    end
+
+    it 'uses the custom serializer' do
+      expect(NovacastSDK::Rspec::TestSerializer).to have_received(:new)
+    end
+  end
+
+  context 'with serializer options' do
+    before :example do
+      allow(NovacastSDK::Rspec::TestSerializer).to receive(:new).and_call_original
+      NovacastSDK::Rspec::Company.new({ 'name' => 'Test Company' }, :serializer => NovacastSDK::Rspec::TestSerializer, :test_option => 'test_value')
+    end
+
+    it 'uses the custom serializer' do
+      expect(NovacastSDK::Rspec::TestSerializer).to have_received(:new)
+    end
+
+    it 'passes the options to the serializer' do
+      expect(NovacastSDK::Rspec::TestSerializer).to have_received(:new).with(anything, { :test_option => 'test_value' })
+    end
+  end
 end
 
-RSpec.describe 'BaseModel', '#to_hash' do
+RSpec.describe 'BaseModel', '#to_h' do
   it 'returns the model as a hash' do
     comp = NovacastSDK::Rspec::Company.new 'name' => 'Test Company'
-    expect(comp.to_hash).to match(name: 'Test Company')
+    expect(comp.to_h).to match(name: 'Test Company')
   end
 
   it 'returns the model as a hash with available attributes only' do
     client = NovacastSDK::Rspec::Client.new name: 'Test Client', client_id: 1
-    expect(client.to_hash).to match(client_id: 1, name: 'Test Client')
+    expect(client.to_h).to match(client_id: 1, name: 'Test Client')
   end
 
   it 'returns the model as a hash with non-primitive attribute' do
     client = NovacastSDK::Rspec::Client.new company: { name: 'Test Company' }
-    expect(client.to_hash).to match(company: { name: 'Test Company'})
+    expect(client.to_h).to match(company: { name: 'Test Company'})
   end
 
   it 'returns the model as a hash with array attribute' do
     client = NovacastSDK::Rspec::Client.new employees: ['Employees 1', 'Employees 2']
-    expect(client.to_hash).to match(employees: ['Employees 1', 'Employees 2'])
+    expect(client.to_h).to match(employees: ['Employees 1', 'Employees 2'])
   end
 
   it 'returns the model as a hash with non-primitive array attribute' do
     client = NovacastSDK::Rspec::Client.new leads: [ { name: 'Lead 1' }, { name: 'Lead 2' }]
-    expect(client.to_hash).to match(leads: [ { name: 'Lead 1' }, { name: 'Lead 2' }])
+    expect(client.to_h).to match(leads: [ { name: 'Lead 1' }, { name: 'Lead 2' }])
   end
 end
 

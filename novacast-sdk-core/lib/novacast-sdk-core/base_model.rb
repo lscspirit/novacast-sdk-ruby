@@ -113,7 +113,11 @@ module NovacastSDK
     # @option opts [Class] :serializer the serializer class
     def initialize(obj, opts = {})
       self.inst_serializer = opts[:serializer] if opts[:serializer]
-      build_object obj
+
+      opts_dup = opts.dup
+      opts_dup.delete(:serializer)
+
+      build_object obj, opts_dup
     end
 
     def validate
@@ -169,8 +173,8 @@ module NovacastSDK
 
     private
 
-    def build_object(obj)
-      obj = _to_serializer obj
+    def build_object(obj, opts = {})
+      obj = _to_serializer obj, opts
 
       self.class.model_properties.each_pair do |key, definition|
         type      = definition[:type]
@@ -196,14 +200,14 @@ module NovacastSDK
           break unless required
 
           # raises error if the required property is not found in the source object
-          raise InvalidArgument, "#{base_name} is missing in the object being serialized"
+          raise NovacastSDK::Errors::InvalidArgument, "#{base_name} is missing in the object being serialized"
         end
 
         self.send "#{base_name}=", self.class.normalize_type(prop_value, type)
       end
     end
 
-    def _to_serializer(obj)
+    def _to_serializer(obj, opts = {})
       klass = NovacastSDK::ModelSerializer
 
       # There are three places that a serializer can be specified, and they are resolved with the priority below (from top to bottom):
@@ -218,7 +222,7 @@ module NovacastSDK
         klass = serializer
       end
 
-      klass.new(obj)
+      klass.new(obj, opts)
     end
 
     # Method to output non-array value in the form of hash

@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 module NovacastSDK
   module Rspec
     class Model < NovacastSDK::BaseModel
