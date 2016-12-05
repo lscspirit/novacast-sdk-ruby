@@ -1668,7 +1668,7 @@ module NovacastSDK
       # 
       # Delete a stream medium\n
       # @param stream_medium_uid stream medium uid
-      # @return [Response]
+      # @return [StreamMedium]
       def delete_stream_medium(stream_medium_uid)
         # checks if all required parameters are set
         
@@ -1703,7 +1703,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::Response.from_json resp.body
+        NovacastSDK::EventV1::Models::StreamMedium.from_json resp.body
         
       end
 

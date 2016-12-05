@@ -2587,7 +2587,7 @@ module NovacastSDK
         }, 
         delete_stream_medium: {
           
-          200 => 'Response',
+          200 => 'StreamMedium',
           
           0 => 'Error'
           
