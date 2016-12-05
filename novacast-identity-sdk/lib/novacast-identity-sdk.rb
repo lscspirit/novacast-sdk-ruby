@@ -30,6 +30,8 @@ require 'novacast-identity-sdk/models/access_user_role_list'
 
 require 'novacast-identity-sdk/models/account'
 
+require 'novacast-identity-sdk/models/account_batch_request'
+
 require 'novacast-identity-sdk/models/account_extended'
 
 require 'novacast-identity-sdk/models/account_extended_list'

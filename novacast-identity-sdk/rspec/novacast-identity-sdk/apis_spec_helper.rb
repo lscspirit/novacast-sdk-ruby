@@ -10,8 +10,69 @@ module NovacastSDK
       end
     end
 
+    #
+    # Request Processing Classes
+    #
+
     class ApiRequests
-  
+      REQUESTS = {}
+
+      def self.compare(req_params, api)
+        req_def = find_request_definition api
+
+        diff = {}
+        req_def.each_pair do |param_name, definition|
+          is_body = definition[:body_param]
+          is_path = definition[:path_param]
+          is_req  = definition[:required]
+          data_type = definition[:type]
+
+          # find the particular parameter value
+          # if this is a body param, then use the whole request parameter object
+          param_val = is_body ? req_params : req_params[param_name]
+
+          if is_path
+            # ignore path parameter
+            next
+          elsif param_val.nil?
+            # ignore missing parameter if it is not required
+            next unless is_req
+
+            # parameter is missing but is required
+            diff[param_name] = :missing
+          else
+            result    = NovacastSDK::IdentityV1::Utils.type_check param_val, data_type
+
+            if is_body
+              # ignore not allowed parameter if this is body parameter
+              # because the all request params (i.e. the whole request.params) are included when checking body param
+              result.reject! { |k, v| v == :not_allowed } if is_body && !result.nil?
+
+              # merge the result to the top-level diff because
+              # body parameters go to the top-level params
+              diff.merge!(result) unless result.nil? || result.empty?
+            else
+              diff[param_name] = result unless result.nil? || result.empty?
+            end
+          end
+        end
+
+        diff.empty? ? nil : diff
+      end
+
+      private
+
+      def self.find_request_definition(api)
+        if (definition = DefaultApiRequests::REQUESTS[api.to_sym])
+          return definition
+        end
+
+        raise "Api '#{api}' request definition not found"
+      end
+    end
+
+
+    class DefaultApiRequests < ApiRequests
       REQUESTS = { 
         assign_account_role: {
           
@@ -25,10 +86,10 @@ module NovacastSDK
         }, 
         batch_get_account: {
           
-          :'account_uids' => {
-            type: 'Array[String]',
+          :'body' => {
+            type: 'AccountBatchRequest',
             path_param: false,
-            body_param: false,
+            body_param: true,
             required: true
           }
           
@@ -437,61 +498,66 @@ module NovacastSDK
           
         } 
       }
-  
+    end
 
-      def self.compare(req_params, api)
-        req_def = find_request_definition api
 
-        diff = {}
-        req_def.each_pair do |param_name, definition|
-          is_body = definition[:body_param]
-          is_path = definition[:path_param]
-          is_req  = definition[:required]
-          data_type = definition[:type]
+    #
+    # Response Processing Classes
+    #
 
-          # find the particular parameter value
-          # if this is a body param, then use the whole request parameter object
-          param_val = is_body ? req_params : req_params[param_name]
+    class ApiResponses
+      RESPONSES = {}
 
-          if is_path
-            # ignore path parameter
-            next
-          elsif param_val.nil?
-            # ignore missing parameter if it is not required
-            next unless is_req
+      def self.compare(resp_hash, api, status_code)
+        resp_type = find_response_type api, status_code
 
-            # parameter is missing but is required
-            diff[param_name] = :missing
-          else
-            result    = NovacastSDK::IdentityV1::Utils.type_check param_val, data_type
-
-            if is_body
-              # ignore not allowed parameter if this is body parameter
-              # because the all request params (i.e. the whole request.params) are included when checking body param
-              result.reject! { |k, v| v == :not_allowed } if is_body && !result.nil?
-
-              # merge the result to the top-level diff because
-              # body parameters go to the top-level params
-              diff.merge!(result) unless result.nil? || result.empty?
-            else
-              diff[param_name] = result unless result.nil? || result.empty?
-            end
+        if resp_type.blank?
+          # if there is no response type, then the response body is expected to be empty
+          # if the body is not empty then return :invalid_type
+          resp_hash.nil? ? nil : :invalid_type
+        else
+          NovacastSDK::Utils.type_check resp_hash, resp_type do |model_name|
+            NovacastSDK::IdentityV1::Models.const_get(model_name)
           end
         end
+      end
 
-        diff.empty? ? nil : diff
+      def self.response_type(api, status_code)
+        find_response_type api, status_code
       end
 
       private
 
-      def self.find_request_definition(api)
-        raise "Api '#{api}' request definition not found" unless (definition = REQUESTS[api.to_sym])
-        definition
+      def self.resolve_status(status_code)
+        if status_code.is_a?(Symbol)
+          Rack::Utils::SYMBOL_TO_STATUS_CODE.fetch(status_code) do
+            raise ArgumentError,
+                  "Invalid HTTP status: #{status_code.inspect}"
+          end
+        else
+          Integer(status_code)
+        end
+      end
+
+      def self.find_response_type(api, status_code)
+        # convert status_code in symbol into integer code
+        status_code = resolve_status status_code
+
+        definition = if (resp = DefaultApiResponses::RESPONSES[api.to_sym])
+                       resp
+                     end
+
+        # raise error if the response definition is not found for this api
+        raise ArgumentError, "Api '#{api}' response definition not found" unless definition
+        # raise error if the response type (or a fallback) is not defined for this status code
+        raise ArgumentError, "Status code '#{status_code}' response definition not found for '#{api}'" unless (resp_type = definition[status_code] || definition[0])
+
+        resp_type
       end
     end
 
-    class ApiResponses
 
+    class DefaultApiResponses < ApiResponses
       RESPONSES = { 
         assign_account_role: {
           
@@ -752,51 +818,8 @@ module NovacastSDK
           
         } 
       }
-
-
-      def self.compare(resp_hash, api, status_code)
-        resp_type = find_response_type api, status_code
-
-        if resp_type.blank?
-          # if there is no response type, then the response body is expected to be empty
-          # if the body is not empty then return :invalid_type
-          resp_hash.nil? ? nil : :invalid_type
-        else
-          NovacastSDK::Utils.type_check resp_hash, resp_type do |model_name|
-            NovacastSDK::IdentityV1::Models.const_get(model_name)
-          end
-        end
-      end
-
-      def self.response_type(api, status_code)
-        find_response_type api, status_code
-      end
-
-      private
-
-      def self.resolve_status(status_code)
-        if status_code.is_a?(Symbol)
-          Rack::Utils::SYMBOL_TO_STATUS_CODE.fetch(status_code) do
-            raise ArgumentError,
-                  "Invalid HTTP status: #{status_code.inspect}"
-          end
-        else
-          Integer(status_code)
-        end
-      end
-
-      def self.find_response_type(api, status_code)
-        # convert status_code in symbol into integer code
-        status_code = resolve_status status_code
-
-        # raise error if the response definition is not found for this api
-        raise ArgumentError, "Api '#{api}' response definition not found" unless (api_def = RESPONSES[api.to_sym])
-        # raise error if the response type (or a fallback) is not defined for this status code
-        raise ArgumentError, "Status code '#{status_code}' response definition not found for '#{api}'" unless (resp_type = api_def[status_code] || api_def[0])
-
-        resp_type
-      end
     end
+
   end
 end
 

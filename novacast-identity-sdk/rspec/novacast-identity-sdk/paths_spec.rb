@@ -35,12 +35,12 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /accounts/batch_get', type: :routing do
+          ::RSpec.describe 'POST /accounts/batch_get', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/accounts/batch_get', path_params))
+              expect_path_routable(:POST => generate_path('/api/v1/accounts/batch_get', path_params))
             end
           end
         

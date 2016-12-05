@@ -348,7 +348,7 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'EventSessionCreateRequest',
+            type: 'EventSessionInfoRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -562,6 +562,16 @@ module NovacastSDK
         delete_event_page: {
           
           :'event_page_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_event_session: {
+          
+          :'session_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -1861,6 +1871,23 @@ module NovacastSDK
           }
           
         }, 
+        update_event_session: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'EventSessionInfoRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         update_forum_post: {
           
           :'forum_post_uid' => {
@@ -2499,6 +2526,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        delete_event_session: {
+          
+          200 => 'EventSession',
+          
+          0 => 'Error'
+          
+        }, 
         delete_public_alias: {
           
           200 => 'PublicAlias',
@@ -3127,6 +3161,13 @@ module NovacastSDK
         update_event_page_content: {
           
           200 => 'PageContent',
+          
+          0 => 'Error'
+          
+        }, 
+        update_event_session: {
+          
+          200 => 'EventSession',
           
           0 => 'Error'
           

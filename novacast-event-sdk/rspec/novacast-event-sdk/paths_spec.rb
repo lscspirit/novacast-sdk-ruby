@@ -353,6 +353,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'DELETE /sessions/{session_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:DELETE => generate_path('/api/v1/sessions/{session_uid}', path_params))
+            end
+          end
+        
           ::RSpec.describe 'DELETE /public_aliases/{public_alias_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -1364,6 +1375,17 @@ module NovacastSDK
               
               }
               expect_path_routable(:PUT => generate_path('/api/v1/event_pages/{event_page_uid}/contents', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'PUT /sessions/{session_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/sessions/{session_uid}', path_params))
             end
           end
         
