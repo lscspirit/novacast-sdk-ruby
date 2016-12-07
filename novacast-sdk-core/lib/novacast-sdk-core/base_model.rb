@@ -195,15 +195,12 @@ module NovacastSDK
           end
         end
 
-        unless found
-          # ignores this property unless it is required
-          break unless required
-
+        if found
+          self.send "#{base_name}=", self.class.normalize_type(prop_value, type)
+        else
           # raises error if the required property is not found in the source object
-          raise NovacastSDK::Errors::InvalidArgument, "#{base_name} is missing in the object being serialized"
+          raise NovacastSDK::Errors::InvalidArgument, "#{base_name} is missing in the object being serialized" if required
         end
-
-        self.send "#{base_name}=", self.class.normalize_type(prop_value, type)
       end
     end
 
