@@ -1550,7 +1550,7 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /events/{event_uid}/filter_access/{content_path}', type: :routing do
+          ::RSpec.describe 'POST /events/{event_uid}/filter_access/{content_path}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
@@ -1559,7 +1559,7 @@ module NovacastSDK
                 :'content_path' => 'String'
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/filter_access/{content_path}', path_params))
+              expect_path_routable(:POST => generate_path('/api/v1/events/{event_uid}/filter_access/{content_path}', path_params))
             end
           end
         
@@ -1606,17 +1606,6 @@ module NovacastSDK
               
               }
               expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/user_set', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'GET /events/{event_uid}/interface_filter_chain', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'event_uid' => 'String'
-              
-              }
-              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/interface_filter_chain', path_params))
             end
           end
         

@@ -2147,6 +2147,13 @@ module NovacastSDK
             required: true
           },
           
+          :'client_request' => {
+            type: 'ClientRequestInfo',
+            path_param: false,
+            body_param: true,
+            required: true
+          },
+          
           :'preview_token' => {
             type: 'String',
             path_param: false,
@@ -2193,16 +2200,6 @@ module NovacastSDK
           
         }, 
         get_event_user_set: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        get_interface_filter_chain: {
           
           :'event_uid' => {
             type: 'String',
@@ -3318,13 +3315,6 @@ module NovacastSDK
         get_event_user_set: {
           
           200 => 'UserSetExtended',
-          
-          0 => 'Error'
-          
-        }, 
-        get_interface_filter_chain: {
-          
-          200 => 'AccessFilterChain',
           
           0 => 'Error'
           

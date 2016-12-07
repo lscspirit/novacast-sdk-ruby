@@ -6,10 +6,6 @@ require 'novacast-event-sdk/errors.rb'
 
 require 'novacast-event-sdk/models/access_filter'
 
-require 'novacast-event-sdk/models/access_filter_chain'
-
-require 'novacast-event-sdk/models/access_filter_chain_item'
-
 require 'novacast-event-sdk/models/access_policy'
 
 require 'novacast-event-sdk/models/access_policy_create_request'
@@ -81,6 +77,8 @@ require 'novacast-event-sdk/models/channel'
 require 'novacast-event-sdk/models/channel_data'
 
 require 'novacast-event-sdk/models/channel_list'
+
+require 'novacast-event-sdk/models/client_request_info'
 
 require 'novacast-event-sdk/models/data_set'
 

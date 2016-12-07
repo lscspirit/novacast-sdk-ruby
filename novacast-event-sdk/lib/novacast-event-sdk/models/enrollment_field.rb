@@ -19,7 +19,7 @@ module NovacastSDK
             :'data_type' => { base_name: 'data_type', type: 'String', required: true },
             
             # label of the field
-            :'label' => { base_name: 'label', type: 'String', required: true },
+            :'label' => { base_name: 'label', type: 'String', required: false },
             
             # whether the field is required
             :'optional' => { base_name: 'optional', type: 'BOOLEAN', required: true },
