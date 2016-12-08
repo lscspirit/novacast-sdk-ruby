@@ -248,25 +248,21 @@ module NovacastSDK
       # 
       # Confirm a pre-upload asset bundle content\n
       # @param asset_bundle_uid asset bundle uid
-      # @param file_path content path within the bundle
       # @param body request body
       # @return [BundleContent]
-      def confirm_bundle_content(asset_bundle_uid, file_path, body)
+      def confirm_bundle_content(asset_bundle_uid, body)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "asset_bundle_uid"' if asset_bundle_uid.nil?
         
-        raise ArgumentError, 'Missing required parameter "file_path"' if file_path.nil?
-        
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/assets/{asset_bundle_uid}/confirm/{file_path}', :POST
+        op = NovacastSDK::Client::Operation.new '/assets/{asset_bundle_uid}/confirm', :POST
 
         # path parameters
         path_params = {}
         path_params['asset_bundle_uid'] = asset_bundle_uid
-        path_params['file_path'] = file_path
         op.params = path_params
 
         # header parameters
@@ -1321,6 +1317,52 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
+        
+      end
+
+      # 
+      # Delete an asset bundle content\n
+      # @param asset_bundle_uid asset bundle uid
+      # @param bundle_content_uid uid for the bundle content to delete
+      # @return [BundleContent]
+      def delete_bundle_content(asset_bundle_uid, bundle_content_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "asset_bundle_uid"' if asset_bundle_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "bundle_content_uid"' if bundle_content_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/assets/{asset_bundle_uid}/delete_content/{bundle_content_uid}', :DELETE
+
+        # path parameters
+        path_params = {}
+        path_params['asset_bundle_uid'] = asset_bundle_uid
+        path_params['bundle_content_uid'] = bundle_content_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::BundleContent.from_json resp.body
         
       end
 
