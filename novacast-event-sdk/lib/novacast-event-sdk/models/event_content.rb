@@ -19,7 +19,7 @@ module NovacastSDK
             :'value' => { base_name: 'value', type: 'String', required: true },
             
             # content is public
-            :'public' => { base_name: 'public', type: 'BOOLEAN', required: true },
+            :'public' => { base_name: 'public', type: 'BOOLEAN', required: false },
             
             # uid of the session (only available for &#39;html&#39; type)
             :'session_uid' => { base_name: 'session_uid', type: 'String', required: false }
