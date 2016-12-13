@@ -177,13 +177,6 @@ module NovacastSDK
             required: true
           },
           
-          :'file_path' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
           :'body' => {
             type: 'BundleContentConfirmRequest',
             path_param: false,
@@ -552,6 +545,23 @@ module NovacastSDK
           },
           
           :'path_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_bundle_content: {
+          
+          :'asset_bundle_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'bundle_content_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -2522,6 +2532,13 @@ module NovacastSDK
         delete_active_path: {
           
           200 => 'ActivePath',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_bundle_content: {
+          
+          200 => 'BundleContent',
           
           0 => 'Error'
           

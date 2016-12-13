@@ -85,16 +85,14 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'POST /assets/{asset_bundle_uid}/confirm/{file_path}', type: :routing do
+          ::RSpec.describe 'POST /assets/{asset_bundle_uid}/confirm', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
-                :'asset_bundle_uid' => 'String',
-              
-                :'file_path' => 'String'
+                :'asset_bundle_uid' => 'String'
               
               }
-              expect_path_routable(:POST => generate_path('/api/v1/assets/{asset_bundle_uid}/confirm/{file_path}', path_params))
+              expect_path_routable(:POST => generate_path('/api/v1/assets/{asset_bundle_uid}/confirm', path_params))
             end
           end
         
@@ -339,6 +337,19 @@ module NovacastSDK
               
               }
               expect_path_routable(:DELETE => generate_path('/api/v1/events/{event_uid}/active_paths/{path_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'DELETE /assets/{asset_bundle_uid}/delete_content/{bundle_content_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'asset_bundle_uid' => 'String',
+              
+                :'bundle_content_uid' => 'String'
+              
+              }
+              expect_path_routable(:DELETE => generate_path('/api/v1/assets/{asset_bundle_uid}/delete_content/{bundle_content_uid}', path_params))
             end
           end
         

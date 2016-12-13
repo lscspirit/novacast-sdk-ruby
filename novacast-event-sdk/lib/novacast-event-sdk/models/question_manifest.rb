@@ -25,7 +25,7 @@ module NovacastSDK
             :'manifest_type' => { base_name: 'manifest_type', type: 'String', required: true },
             
             # extra config info for this manifest
-            :'config' => { base_name: 'config', type: 'Object', required: true },
+            :'config' => { base_name: 'config', type: 'Object', required: false },
             
             # 
             :'question_set' => { base_name: 'question_set', type: 'QuestionSetInfo', required: true }
