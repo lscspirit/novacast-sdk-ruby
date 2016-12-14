@@ -1072,6 +1072,23 @@ module NovacastSDK
           }
           
         }, 
+        get_forum_posts_with_accounts: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'data_set_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
         get_live_cast_page: {
           
           :'session_uid' => {
@@ -2849,6 +2866,13 @@ module NovacastSDK
         get_forum_posts: {
           
           200 => 'ForumPostList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_forum_posts_with_accounts: {
+          
+          200 => 'ForumPostExtendedList',
           
           0 => 'Error'
           

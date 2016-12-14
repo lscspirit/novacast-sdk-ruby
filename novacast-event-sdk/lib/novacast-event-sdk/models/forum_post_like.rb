@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class ForumPostLike < NovacastSDK::BaseModel
-        attr_accessor :account_uid, :forum_post_uid, :liked
+        attr_accessor :account_uid, :account_identifier, :forum_post_uid, :liked
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -14,6 +14,9 @@ module NovacastSDK
             
             # uid of the account
             :'account_uid' => { base_name: 'account_uid', type: 'String', required: false },
+            
+            # identifier of the account (only present in certain calls and relevant)
+            :'account_identifier' => { base_name: 'account_identifier', type: 'String', required: false },
             
             # uid of the forum post
             :'forum_post_uid' => { base_name: 'forum_post_uid', type: 'String', required: true },

@@ -3249,6 +3249,51 @@ module NovacastSDK
       end
 
       # 
+      # Get all forum posts (with extended information and subbmitter account identifier) of the session\n
+      # @param session_uid uid of the session
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :data_set_uid uid of the data set. Default to the active data set of the event
+      # @return [ForumPostExtendedList]
+      def get_forum_posts_with_accounts(session_uid, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/forum_post/sessions/{session_uid}/with_accounts', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['data_set_uid'] = opts[:data_set_uid] if opts[:data_set_uid]
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ForumPostExtendedList.from_json resp.body
+        
+      end
+
+      # 
       # Get the current live cast page\n
       # @param session_uid session uid
       # @return [LiveCastSlidePage]
