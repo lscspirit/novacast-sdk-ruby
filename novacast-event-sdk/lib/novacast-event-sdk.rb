@@ -302,6 +302,8 @@ require 'novacast-event-sdk/models/stream_medium_info'
 
 require 'novacast-event-sdk/models/stream_medium_info_list'
 
+require 'novacast-event-sdk/models/stream_medium_update_request'
+
 require 'novacast-event-sdk/models/stream_source'
 
 require 'novacast-event-sdk/models/stream_source_confirm_request'

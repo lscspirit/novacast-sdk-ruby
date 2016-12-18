@@ -666,6 +666,16 @@ module NovacastSDK
           }
           
         }, 
+        delete_stream_source: {
+          
+          :'stream_source_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         dismiss_forum_post: {
           
           :'forum_post_uid' => {
@@ -2061,6 +2071,23 @@ module NovacastSDK
           }
           
         }, 
+        update_stream_medium: {
+          
+          :'stream_medium_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'StreamMediumUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         update_user_set: {
           
           :'user_set_uid' => {
@@ -2619,6 +2646,13 @@ module NovacastSDK
         delete_stream_medium: {
           
           200 => 'StreamMedium',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_stream_source: {
+          
+          200 => 'StreamSource',
           
           0 => 'Error'
           
@@ -3279,6 +3313,13 @@ module NovacastSDK
         update_slide_deck: {
           
           200 => 'SlideDeckInfo',
+          
+          0 => 'Error'
+          
+        }, 
+        update_stream_medium: {
+          
+          200 => 'StreamMedium',
           
           0 => 'Error'
           

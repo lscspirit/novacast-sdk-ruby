@@ -452,6 +452,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'DELETE /stream_sources/{stream_source_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'stream_source_uid' => 'String'
+              
+              }
+              expect_path_routable(:DELETE => generate_path('/api/v1/stream_sources/{stream_source_uid}', path_params))
+            end
+          end
+        
           ::RSpec.describe 'DELETE /mods/forum_post/posts/{forum_post_uid}/publish', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -1507,6 +1518,17 @@ module NovacastSDK
               
               }
               expect_path_routable(:PUT => generate_path('/api/v1/slide_decks/{slide_deck_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'PUT /streams/{stream_medium_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'stream_medium_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/streams/{stream_medium_uid}', path_params))
             end
           end
         
