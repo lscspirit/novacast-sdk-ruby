@@ -75,7 +75,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "client_request"' if client_request.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/filter_access/{content_path}', :POST
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/filter_access{/content_path*}', :POST
 
         # path parameters
         path_params = {}
@@ -167,7 +167,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "content_path"' if content_path.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/contents/{content_path}', :GET
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/contents{/content_path*}', :GET
 
         # path parameters
         path_params = {}
@@ -339,7 +339,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "content_path"' if content_path.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/runtimes/{content_path}', :GET
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/runtimes{/content_path*}', :GET
 
         # path parameters
         path_params = {}

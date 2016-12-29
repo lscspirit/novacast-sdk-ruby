@@ -1594,7 +1594,7 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'POST /events/{event_uid}/filter_access/{content_path}', type: :routing do
+          ::RSpec.describe 'POST /events/{event_uid}/filter_access{/content_path*}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
@@ -1603,7 +1603,7 @@ module NovacastSDK
                 :'content_path' => 'String'
               
               }
-              expect_path_routable(:POST => generate_path('/api/v1/events/{event_uid}/filter_access/{content_path}', path_params))
+              expect_path_routable(:POST => generate_path('/api/v1/events/{event_uid}/filter_access{/content_path*}', path_params))
             end
           end
         
@@ -1618,7 +1618,7 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /events/{event_uid}/contents/{content_path}', type: :routing do
+          ::RSpec.describe 'GET /events/{event_uid}/contents{/content_path*}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
@@ -1627,7 +1627,7 @@ module NovacastSDK
                 :'content_path' => 'String'
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/contents/{content_path}', path_params))
+              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/contents{/content_path*}', path_params))
             end
           end
         
@@ -1664,7 +1664,7 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /events/{event_uid}/runtimes/{content_path}', type: :routing do
+          ::RSpec.describe 'GET /events/{event_uid}/runtimes{/content_path*}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
@@ -1673,7 +1673,7 @@ module NovacastSDK
                 :'content_path' => 'String'
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/runtimes/{content_path}', path_params))
+              expect_path_routable(:GET => generate_path('/api/v1/events/{event_uid}/runtimes{/content_path*}', path_params))
             end
           end
         
