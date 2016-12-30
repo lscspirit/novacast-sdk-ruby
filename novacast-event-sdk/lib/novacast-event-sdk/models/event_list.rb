@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # a collection of Event
             :'events' => { base_name: 'events', type: 'Array[Event]', required: true }
-            
           }
         end
       end

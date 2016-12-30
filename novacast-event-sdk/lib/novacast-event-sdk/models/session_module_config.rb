@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # configuration data
             :'config' => { base_name: 'config', type: 'Object', required: true },
-            
             # a collection of resources used by this module
             :'resources' => { base_name: 'resources', type: 'Array[SessionModuleResource]', required: false }
-            
           }
         end
       end

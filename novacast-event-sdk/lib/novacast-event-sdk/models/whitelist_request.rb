@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # identifier type
             :'type' => { base_name: 'type', type: 'String', required: true },
-            
             # a list of identifiers
             :'identifiers' => { base_name: 'identifiers', type: 'Array[String]', required: true }
-            
           }
         end
       end

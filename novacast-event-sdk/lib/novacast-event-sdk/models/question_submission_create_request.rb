@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # uid for the corresponding question_manifest
             :'question_manifest_uid' => { base_name: 'question_manifest_uid', type: 'String', required: false },
-            
             # a collection of submission create objects
             :'submissions' => { base_name: 'submissions', type: 'Array[QuestionSubmissionCreate]', required: true }
-            
           }
         end
       end

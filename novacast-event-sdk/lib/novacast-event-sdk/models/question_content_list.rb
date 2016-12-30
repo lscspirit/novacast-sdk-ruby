@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # question content collection
             :'contents' => { base_name: 'contents', type: 'Array[QuestionContent]', required: true }
-            
           }
         end
       end

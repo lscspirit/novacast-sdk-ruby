@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # list of account resource roles
             :'resource_roles' => { base_name: 'resource_roles', type: 'Array[AccountResourceRoles]', required: true }
-            
           }
         end
       end

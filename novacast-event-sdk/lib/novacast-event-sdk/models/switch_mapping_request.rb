@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # uid for the new mapping
             :'new_active_uid' => { base_name: 'new_active_uid', type: 'String', required: true }
-            
           }
         end
       end

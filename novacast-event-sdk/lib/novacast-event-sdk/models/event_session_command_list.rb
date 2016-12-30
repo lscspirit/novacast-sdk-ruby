@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # event session commands collection
             :'commands' => { base_name: 'commands', type: 'Array[EventSessionCommand]', required: true }
-            
           }
         end
       end

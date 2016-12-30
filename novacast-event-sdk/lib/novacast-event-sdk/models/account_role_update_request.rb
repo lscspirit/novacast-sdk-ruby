@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # roles to assign to the account
             :'assign' => { base_name: 'assign', type: 'Array[AccountResourceRoles]', required: false },
-            
             # roles to remove from the account
             :'delete' => { base_name: 'delete', type: 'Array[AccountResourceRoles]', required: false }
-            
           }
         end
       end

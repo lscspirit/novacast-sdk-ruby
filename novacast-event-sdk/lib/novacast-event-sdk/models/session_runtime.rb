@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # uid of the current session
             :'session_uid' => { base_name: 'session_uid', type: 'String', required: true },
-            
             # runtime config for individual module
             :'modules' => { base_name: 'modules', type: 'Array[ModuleRuntime]', required: true }
-            
           }
         end
       end

@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # a collection of session module configurations
             :'modules' => { base_name: 'modules', type: 'Array[SessionModule]', required: true }
-            
           }
         end
       end

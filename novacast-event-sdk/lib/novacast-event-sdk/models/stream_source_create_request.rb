@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # type/provider of the source
             :'type' => { base_name: 'type', type: 'String', required: true },
-            
             # provider specific url or identifier of the source
             :'url_or_key' => { base_name: 'url_or_key', type: 'String', required: true }
-            
           }
         end
       end

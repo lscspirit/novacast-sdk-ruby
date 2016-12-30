@@ -26,7 +26,8 @@ module NovacastSDK
       end
 
       def initialize(opts = {})
-        @access_token = opts[:access_token]
+        @access_token  = opts[:access_token]
+        @preview_token = opts[:preview_token]
       end
 
       protected
@@ -70,12 +71,14 @@ module NovacastSDK
                              _get_app_secret
                            when 'accessKey'
                              _get_access_key
+                           when 'previewToken'
+                             _get_preview_token
                            else
                              nil
                          end
 
-            raise NovacastSDK::ClientErrors::ConfigNotFound, "Authentication credential not found for '#{auth_def[:name]}'" if auth_value.nil? || auth_value.empty?
-
+            next unless auth_value
+            
             auth_def[:in_query] ?
                 query[param_key]   = auth_value :
                 headers[param_key] = auth_value
@@ -99,6 +102,10 @@ module NovacastSDK
         access_key = @access_token || self.class.config.access_token
         raise NovacastSDK::ClientErrors::ConfigNotFound, 'Access token is not configured in client' if access_key.nil? || access_key.empty?
         access_key
+      end
+
+      def _get_preview_token
+        @preview_token
       end
     end
   end

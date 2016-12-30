@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # page number to change to
             :'page' => { base_name: 'page', type: 'Integer', required: true }
-            
           }
         end
       end

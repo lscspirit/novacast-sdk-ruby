@@ -11,19 +11,14 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # question text
             :'question' => { base_name: 'question', type: 'String', required: false },
-            
             # order index
             :'order' => { base_name: 'order', type: 'String', required: false },
-            
             # answer content
             :'content' => { base_name: 'content', type: 'Object', required: false },
-            
             # content type key
             :'type' => { base_name: 'type', type: 'String', required: false }
-            
           }
         end
       end

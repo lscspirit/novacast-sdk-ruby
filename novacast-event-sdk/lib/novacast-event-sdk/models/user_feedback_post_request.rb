@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # feedback content
             :'content' => { base_name: 'content', type: 'String', required: true }
-            
           }
         end
       end

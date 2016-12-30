@@ -11,19 +11,14 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # type name
             :'name' => { base_name: 'name', type: 'String', required: true },
-            
             # type description
             :'desc' => { base_name: 'desc', type: 'String', required: false },
-            
             # key name
             :'type_key' => { base_name: 'type_key', type: 'String', required: true },
-            
             # config parameters
             :'params' => { base_name: 'params', type: 'Object', required: true }
-            
           }
         end
       end

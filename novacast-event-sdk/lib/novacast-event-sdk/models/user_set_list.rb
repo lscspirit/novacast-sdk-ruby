@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # a collection of user sets
             :'user_sets' => { base_name: 'user_sets', type: 'Array[UserSet]', required: true }
-            
           }
         end
       end

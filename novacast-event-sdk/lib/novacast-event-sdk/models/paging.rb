@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # 
             :'paging' => { base_name: 'paging', type: 'PagingDetails', required: false }
-            
           }
         end
       end

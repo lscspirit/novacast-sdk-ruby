@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # answer object
             :'answer' => { base_name: 'answer', type: 'Object', required: true },
-            
             # uid for the corresponding question_content
             :'question_content_uid' => { base_name: 'question_content_uid', type: 'String', required: true }
-            
           }
         end
       end

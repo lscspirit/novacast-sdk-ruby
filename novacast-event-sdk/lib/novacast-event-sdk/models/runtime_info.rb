@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # label of the event session
             :'session_label' => { base_name: 'session_label', type: 'String', required: true },
-            
             # name of the event
             :'event_name' => { base_name: 'event_name', type: 'String', required: true }
-            
           }
         end
       end

@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # question manifest collection
             :'manifests' => { base_name: 'manifests', type: 'Array[QuestionManifest]', required: true }
-            
           }
         end
       end

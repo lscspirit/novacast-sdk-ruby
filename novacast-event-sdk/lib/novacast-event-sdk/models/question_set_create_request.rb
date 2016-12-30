@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # label
             :'label' => { base_name: 'label', type: 'String', required: true },
-            
             # question set state
             :'state' => { base_name: 'state', type: 'String', required: true }
-            
           }
         end
       end

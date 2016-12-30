@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # resource name
             :'resource' => { base_name: 'resource', type: 'String', required: true },
-            
             # an list of roles
             :'roles' => { base_name: 'roles', type: 'Array[String]', required: true }
-            
           }
         end
       end

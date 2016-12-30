@@ -11,16 +11,12 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # uid of the stream
             :'uid' => { base_name: 'uid', type: 'String', required: true },
-            
             # stream label
             :'label' => { base_name: 'label', type: 'String', required: true },
-            
             # production use
             :'production' => { base_name: 'production', type: 'BOOLEAN', required: true }
-            
           }
         end
       end

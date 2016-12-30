@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # content path within the bundle
             :'file_path' => { base_name: 'file_path', type: 'String', required: true }
-            
           }
         end
       end

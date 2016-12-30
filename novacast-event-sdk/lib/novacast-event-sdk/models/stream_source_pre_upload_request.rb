@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # filename
             :'filename' => { base_name: 'filename', type: 'String', required: true }
-            
           }
         end
       end

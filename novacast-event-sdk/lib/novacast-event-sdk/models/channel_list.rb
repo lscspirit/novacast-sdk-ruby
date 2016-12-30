@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # collection of channels
             :'channels' => { base_name: 'channels', type: 'Array[Channel]', required: true }
-            
           }
         end
       end

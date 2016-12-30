@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # active polls collection
             :'polls' => { base_name: 'polls', type: 'Array[ActivePoll]', required: true }
-            
           }
         end
       end

@@ -11,19 +11,14 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # event uid
             :'event_uid' => { base_name: 'event_uid', type: 'String', required: true },
-            
             # the time at which this token will expire
             :'expires_at' => { base_name: 'expires_at', type: 'DateTime', required: false },
-            
             # the number of seconds each preview mode session is valid for
             :'session_ttl' => { base_name: 'session_ttl', type: 'Integer', required: true },
-            
             # token value
             :'token' => { base_name: 'token', type: 'String', required: true }
-            
           }
         end
       end

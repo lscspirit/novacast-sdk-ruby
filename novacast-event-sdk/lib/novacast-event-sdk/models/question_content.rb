@@ -11,25 +11,18 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # uid of the content
             :'uid' => { base_name: 'uid', type: 'String', required: true },
-            
             # question text
             :'question' => { base_name: 'question', type: 'String', required: true },
-            
             # order index
             :'order' => { base_name: 'order', type: 'Integer', required: true },
-            
             # answer content
             :'content' => { base_name: 'content', type: 'Object', required: true },
-            
             # uid for the question set that this question content belongs to
             :'question_set_uid' => { base_name: 'question_set_uid', type: 'String', required: false },
-            
             # 
             :'question_content_type' => { base_name: 'question_content_type', type: 'QuestionContentType', required: true }
-            
           }
         end
       end

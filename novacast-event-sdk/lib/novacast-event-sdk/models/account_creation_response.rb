@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # account object if creation succeed
             :'account' => { base_name: 'account', type: 'Account', required: false },
-            
             # error messages if creation failed
             :'error' => { base_name: 'error', type: 'Error', required: false }
-            
           }
         end
       end

@@ -11,16 +11,12 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # the uid for the session
             :'session_uid' => { base_name: 'session_uid', type: 'String', required: false },
-            
             # the first time user sign on to the session
             :'first_request_at' => { base_name: 'first_request_at', type: 'String', required: false },
-            
             # the last time user sign on to the session
             :'last_request_at' => { base_name: 'last_request_at', type: 'String', required: false }
-            
           }
         end
       end

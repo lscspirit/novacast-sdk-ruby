@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # an array of PageContent
             :'contents' => { base_name: 'contents', type: 'Array[PageContent]', required: true }
-            
           }
         end
       end

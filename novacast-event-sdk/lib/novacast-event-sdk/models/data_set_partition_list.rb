@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # collection of data set partition objects
             :'partitions' => { base_name: 'partitions', type: 'Array[DataSetPartition]', required: true }
-            
           }
         end
       end

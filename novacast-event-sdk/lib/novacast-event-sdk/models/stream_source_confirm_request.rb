@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # stream source confirmation token
             :'token' => { base_name: 'token', type: 'String', required: true }
-            
           }
         end
       end

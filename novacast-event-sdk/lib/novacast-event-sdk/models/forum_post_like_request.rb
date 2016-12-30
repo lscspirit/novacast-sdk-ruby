@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # true to like; false to unlike
             :'like' => { base_name: 'like', type: 'BOOLEAN', required: true }
-            
           }
         end
       end

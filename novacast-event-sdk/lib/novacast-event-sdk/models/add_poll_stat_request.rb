@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # the question content that is associated with this poll
             :'question_content_uid' => { base_name: 'question_content_uid', type: 'String', required: true },
-            
             # a JSON encoded string to represent the choices chosen
             :'choice' => { base_name: 'choice', type: 'Object', required: true }
-            
           }
         end
       end

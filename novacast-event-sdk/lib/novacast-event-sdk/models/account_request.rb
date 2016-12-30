@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # account identifier (username or email)
             :'identifier' => { base_name: 'identifier', type: 'String', required: true },
-            
             # account password
             :'password' => { base_name: 'password', type: 'String', required: true }
-            
           }
         end
       end

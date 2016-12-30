@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # the uid of the manifest deleted
             :'question_manifest_uid' => { base_name: 'question_manifest_uid', type: 'String', required: false }
-            
           }
         end
       end
