@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # name of the role
             :'name' => { base_name: 'name', type: 'String', required: true },
-            
             # description of the role
             :'desc' => { base_name: 'desc', type: 'String', required: false }
-            
           }
         end
       end

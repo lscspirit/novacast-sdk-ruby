@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # unique domain key
             :'key' => { base_name: 'key', type: 'String', required: true },
-            
             # domain name
             :'name' => { base_name: 'name', type: 'String', required: false }
-            
           }
         end
       end

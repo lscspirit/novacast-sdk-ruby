@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # 
             :'user' => { base_name: 'user', type: 'Account', required: true },
-            
             # access token
             :'token' => { base_name: 'token', type: 'String', required: true }
-            
           }
         end
       end

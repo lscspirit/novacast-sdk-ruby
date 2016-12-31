@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # list of assign role request
             :'assign' => { base_name: 'assign', type: 'Array[AssignRoleRequest]', required: false },
-            
             # list of delete role request
             :'delete' => { base_name: 'delete', type: 'Array[DeleteRoleRequest]', required: false }
-            
           }
         end
       end

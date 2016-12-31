@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # access role id
             :'role_id' => { base_name: 'role_id', type: 'Integer', required: true },
-            
             # access resource id
             :'resource_id' => { base_name: 'resource_id', type: 'Integer', required: true }
-            
           }
         end
       end

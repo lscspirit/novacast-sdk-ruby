@@ -11,13 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # list of assigned role resource permissions
             :'assigned' => { base_name: 'assigned', type: 'Array[RoleResourcePermissions]', required: false },
-            
             # list of deleted role resource permissions
             :'deleted' => { base_name: 'deleted', type: 'Array[RoleResourcePermissions]', required: false }
-            
           }
         end
       end

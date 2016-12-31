@@ -11,10 +11,8 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
             # list of access user role object
             :'user_roles' => { base_name: 'user_roles', type: 'Array[AccessUserRole]', required: true }
-            
           }
         end
       end
