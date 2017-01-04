@@ -1818,8 +1818,8 @@ module NovacastSDK
             body_param: false,
             required: true
           },
-          :'client_request' => {
-            type: 'ClientRequestInfo',
+          :'body' => {
+            type: 'FilterAccessRequest',
             path_param: false,
             body_param: true,
             required: true

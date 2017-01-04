@@ -138,6 +138,8 @@ require 'novacast-event-sdk/models/event_stage_request'
 
 require 'novacast-event-sdk/models/event_update_request'
 
+require 'novacast-event-sdk/models/filter_access_request'
+
 require 'novacast-event-sdk/models/filter_access_response'
 
 require 'novacast-event-sdk/models/filtered_enrollment_list'
