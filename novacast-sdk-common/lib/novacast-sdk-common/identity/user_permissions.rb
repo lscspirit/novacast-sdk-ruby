@@ -55,7 +55,7 @@ module NovacastSDK
       # @param resource_permissions [Hash<String => Symbol>] a mapping of resource to permission
       # @return [true, false] true if the user has at least one of the required permission; false otherwise
       def has_permissions?(resource_permissions)
-        resource_permissions.detect do |res, perm|
+        resource_permissions.any? do |res, perm|
           @resource_permissions[res].include? Definition::PERMISSIONS[perm]
         end
       end
@@ -65,7 +65,7 @@ module NovacastSDK
       # @param resource_roles [Hash<String => Symbol>] a mapping of resource to role
       # @return [true, false] true if the user has at least one of the required role; false otherwise
       def has_roles?(resource_roles)
-        resource_roles.detect do |res, role|
+        resource_roles.any? do |res, role|
           @resource_roles[res].include? Definition::ROLES[role]
         end
       end
