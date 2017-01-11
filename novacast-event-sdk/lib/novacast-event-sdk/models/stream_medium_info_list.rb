@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # a collection of stream medium info
             :'media' => { base_name: 'media', type: 'Array[StreamMediumInfo]', required: true }
+            
           }
         end
       end

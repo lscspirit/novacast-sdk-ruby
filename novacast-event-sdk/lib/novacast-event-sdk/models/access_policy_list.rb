@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # a collection of access policies
             :'policies' => { base_name: 'policies', type: 'Array[AccessPolicy]', required: true }
+            
           }
         end
       end

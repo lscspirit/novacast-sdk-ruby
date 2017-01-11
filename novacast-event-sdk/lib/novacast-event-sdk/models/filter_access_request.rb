@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # 
             :'client_request' => { base_name: 'client_request', type: 'ClientRequestInfo', required: true }
+            
           }
         end
       end

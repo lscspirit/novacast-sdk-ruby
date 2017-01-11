@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # question submission collection
             :'submissions' => { base_name: 'submissions', type: 'Array[QuestionSubmission]', required: true },
+            
             # 
             :'question_manifest' => { base_name: 'question_manifest', type: 'QuestionManifest', required: false }
+            
           }
         end
       end

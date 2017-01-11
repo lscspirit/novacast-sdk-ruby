@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # uid of the data set to be set as active
             :'data_set_uid' => { base_name: 'data_set_uid', type: 'String', required: true }
+            
           }
         end
       end

@@ -11,12 +11,16 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # type of the account
             :'account_type' => { base_name: 'account_type', type: 'String', required: true },
+            
             # uid of the account
             :'account_uid' => { base_name: 'account_uid', type: 'String', required: true },
+            
             # account is revoked
             :'revoked' => { base_name: 'revoked', type: 'BOOLEAN', required: false }
+            
           }
         end
       end

@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # locale of the page content
             :'content_locale' => { base_name: 'content_locale', type: 'String', required: false },
+            
             # page content
             :'content' => { base_name: 'content', type: 'String', required: true }
+            
           }
         end
       end

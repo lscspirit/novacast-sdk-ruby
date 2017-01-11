@@ -11,16 +11,22 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # label
             :'label' => { base_name: 'label', type: 'String', required: true },
+            
             # channel accounts only
             :'ch_acct_only' => { base_name: 'ch_acct_only', type: 'BOOLEAN', required: false },
+            
             # whitelisted accounts only
             :'whitelisted_only' => { base_name: 'whitelisted_only', type: 'BOOLEAN', required: false },
+            
             # enrollment required
             :'full_enrollment' => { base_name: 'full_enrollment', type: 'BOOLEAN', required: false },
+            
             # enrollment fields
             :'fields' => { base_name: 'fields', type: 'Array[EnrollmentField]', required: false }
+            
           }
         end
       end

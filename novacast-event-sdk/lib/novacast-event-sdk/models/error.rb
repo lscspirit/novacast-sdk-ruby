@@ -11,12 +11,16 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # error class name
             :'klass_name' => { base_name: 'klass_name', type: 'String', required: true },
+            
             # list of error messages (from all attributes)
             :'messages' => { base_name: 'messages', type: 'Array[String]', required: true },
+            
             # error fields
             :'fields' => { base_name: 'fields', type: 'Array[ErrorField]', required: false }
+            
           }
         end
       end

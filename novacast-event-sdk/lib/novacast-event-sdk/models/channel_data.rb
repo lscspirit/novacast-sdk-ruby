@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # channel name
             :'name' => { base_name: 'name', type: 'String', required: true }
+            
           }
         end
       end

@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # a collection of event session objects
             :'sessions' => { base_name: 'sessions', type: 'Array[EventSession]', required: true }
+            
           }
         end
       end

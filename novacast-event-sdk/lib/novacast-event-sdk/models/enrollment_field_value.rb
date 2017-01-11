@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # name of the field
             :'field_name' => { base_name: 'field_name', type: 'String', required: true },
+            
             # value of the field
             :'value' => { base_name: 'value', type: 'String', required: true }
+            
           }
         end
       end

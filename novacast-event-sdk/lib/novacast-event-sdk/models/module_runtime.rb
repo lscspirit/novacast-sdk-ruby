@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # name of the module
             :'module_name' => { base_name: 'module_name', type: 'String', required: true },
+            
             # module runtime configuration
             :'runtime' => { base_name: 'runtime', type: 'Object', required: true }
+            
           }
         end
       end

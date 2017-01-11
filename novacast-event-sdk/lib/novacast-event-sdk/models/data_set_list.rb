@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # collection of data set objects
             :'data_sets' => { base_name: 'data_sets', type: 'Array[DataSet]', required: true }
+            
           }
         end
       end

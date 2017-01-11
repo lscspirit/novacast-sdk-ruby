@@ -11,14 +11,19 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # name of the access filter
             :'name' => { base_name: 'name', type: 'String', required: true },
+            
             # configuration data
             :'config' => { base_name: 'config', type: 'Object', required: false },
+            
             # filter priority
             :'priority' => { base_name: 'priority', type: 'Integer', required: false },
+            
             # whether filter is enabled
             :'enabled' => { base_name: 'enabled', type: 'BOOLEAN', required: false }
+            
           }
         end
       end

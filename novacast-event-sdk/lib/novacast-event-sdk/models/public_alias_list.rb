@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # list of public aliases
             :'aliases' => { base_name: 'aliases', type: 'Array[PublicAlias]', required: true }
+            
           }
         end
       end

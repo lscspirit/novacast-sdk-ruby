@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # a collection of asset bundle informations
             :'bundles' => { base_name: 'bundles', type: 'Array[AssetBundleInfo]', required: true }
+            
           }
         end
       end

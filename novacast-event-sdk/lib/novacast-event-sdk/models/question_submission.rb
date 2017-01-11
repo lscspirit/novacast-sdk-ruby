@@ -11,16 +11,22 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # uid of the submitter
             :'user_uid' => { base_name: 'user_uid', type: 'String', required: false },
+            
             # identifier of the submitter
             :'user_identifier' => { base_name: 'user_identifier', type: 'String', required: false },
+            
             # uid for the question content specific of this submission
             :'question_content_uid' => { base_name: 'question_content_uid', type: 'String', required: false },
+            
             # answer object
             :'answer' => { base_name: 'answer', type: 'Object', required: true },
+            
             # submission time
             :'created_at' => { base_name: 'created_at', type: 'DateTime', required: true }
+            
           }
         end
       end

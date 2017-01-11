@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # current page number
             :'page' => { base_name: 'page', type: 'Integer', required: false }
+            
           }
         end
       end

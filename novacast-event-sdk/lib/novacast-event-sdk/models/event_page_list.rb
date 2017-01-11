@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # array of event pages
             :'pages' => { base_name: 'pages', type: 'Array[EventPage]', required: true }
+            
           }
         end
       end

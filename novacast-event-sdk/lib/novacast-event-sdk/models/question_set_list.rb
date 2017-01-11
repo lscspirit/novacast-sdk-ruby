@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # question set collection
             :'sets' => { base_name: 'sets', type: 'Array[QuestionSet]', required: true }
+            
           }
         end
       end

@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # list of Account
             :'accounts' => { base_name: 'accounts', type: 'Array[Account]', required: true }
+            
           }
         end
       end

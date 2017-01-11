@@ -11,14 +11,19 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # request method
             :'method' => { base_name: 'method', type: 'String', required: true },
+            
             # request protocol
             :'protocol' => { base_name: 'protocol', type: 'String', required: true },
+            
             # client IP
             :'remote_ip' => { base_name: 'remote_ip', type: 'String', required: true },
+            
             # request referrer
             :'referrer' => { base_name: 'referrer', type: 'String', required: false }
+            
           }
         end
       end

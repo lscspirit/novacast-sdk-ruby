@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # list of forum posts
             :'posts' => { base_name: 'posts', type: 'Array[ForumPost]', required: true }
+            
           }
         end
       end

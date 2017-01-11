@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # responses to individual account creation requests
             :'responses' => { base_name: 'responses', type: 'Array[AccountCreationResponse]', required: true }
+            
           }
         end
       end

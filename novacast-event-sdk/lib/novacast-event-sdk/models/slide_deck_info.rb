@@ -11,14 +11,19 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # uid of the slide deck
             :'uid' => { base_name: 'uid', type: 'String', required: true },
+            
             # resource name
             :'rn' => { base_name: 'rn', type: 'String', required: true },
+            
             # label
             :'label' => { base_name: 'label', type: 'String', required: true },
+            
             # number of pages in the slide deck
             :'page_count' => { base_name: 'page_count', type: 'Integer', required: true }
+            
           }
         end
       end

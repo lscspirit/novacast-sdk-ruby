@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # event stage
             :'stage' => { base_name: 'stage', type: 'String', required: true }
+            
           }
         end
       end

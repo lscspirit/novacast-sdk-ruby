@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # uid to order mapping
             :'content_orders' => { base_name: 'content_orders', type: 'Hash[String, Integer]', required: true }
+            
           }
         end
       end

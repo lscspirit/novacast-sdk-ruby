@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # list of slide uids
             :'ordered_uids' => { base_name: 'ordered_uids', type: 'Array[String]', required: true }
+            
           }
         end
       end

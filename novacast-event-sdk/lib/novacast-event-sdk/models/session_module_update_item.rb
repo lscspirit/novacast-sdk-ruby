@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # usage of this resource
             :'usage' => { base_name: 'usage', type: 'String', required: true },
+            
             # detail of the item
             :'detail' => { base_name: 'detail', type: 'Object', required: true }
+            
           }
         end
       end

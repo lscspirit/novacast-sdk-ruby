@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # confirmation token
             :'token' => { base_name: 'token', type: 'String', required: true },
+            
             # file path of the content to confirm
             :'file_path' => { base_name: 'file_path', type: 'String', required: true }
+            
           }
         end
       end

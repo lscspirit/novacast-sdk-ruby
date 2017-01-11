@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # asset bundle label
             :'label' => { base_name: 'label', type: 'String', required: true }
+            
           }
         end
       end

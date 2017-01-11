@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # the command string
             :'command' => { base_name: 'command', type: 'String', required: true },
+            
             # a JSON serializable object
             :'payload' => { base_name: 'payload', type: 'Object', required: true }
+            
           }
         end
       end

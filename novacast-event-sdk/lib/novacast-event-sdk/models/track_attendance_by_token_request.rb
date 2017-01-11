@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # a collection of track by token requests
             :'track_requests' => { base_name: 'track_requests', type: 'Array[TrackAttendanceByToken]', required: false }
+            
           }
         end
       end

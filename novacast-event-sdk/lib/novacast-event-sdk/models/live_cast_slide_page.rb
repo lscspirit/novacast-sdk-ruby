@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # 
             :'active' => { base_name: 'active', type: 'Slide', required: true },
+            
             # list of slides to be pre-loaded
             :'pre_loads' => { base_name: 'pre_loads', type: 'Array[Slide]', required: false }
+            
           }
         end
       end

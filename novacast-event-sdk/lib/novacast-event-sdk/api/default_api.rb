@@ -40,17 +40,25 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
+          { name: 'previewToken', key: 'preview_token', in_query: true },
+        
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
-              end
+        
+      end
 
       # 
       # add statistics for the given questionnaire status\n
@@ -85,17 +93,25 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
+          { name: 'previewToken', key: 'preview_token', in_query: true },
+        
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionnaireStatus.from_json resp.body
-              end
+        
+      end
 
       # 
       # Pre upload asset bundle content\n
@@ -126,17 +142,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PresignedUpload.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update the event stage\n
@@ -167,17 +189,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::Event.from_json resp.body
-              end
+        
+      end
 
       # 
       # Close all the closable panels for this session\n
@@ -205,16 +233,20 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
-
+        
         nil
+        
       end
 
       # 
@@ -246,17 +278,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::BundleContent.from_json resp.body
-              end
+        
+      end
 
       # 
       # Confirm the successful uploading of remote stream source\n
@@ -287,17 +325,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::StreamSource.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new access policy\n
@@ -328,17 +372,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AccessPolicyExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new active path with mapping(s)\n
@@ -369,17 +419,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new asset bundle\n
@@ -410,17 +466,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AssetBundleInfo.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new channel\n
@@ -447,17 +509,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = channel.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::Channel.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new channel account\n
@@ -488,17 +556,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::Account.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new data set for the event\n
@@ -529,17 +603,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::DataSet.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new event\n
@@ -570,17 +650,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new page for a event\n
@@ -611,17 +697,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventPage.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new session for the event\n
@@ -652,17 +744,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventSession.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new forum post\n
@@ -693,19 +791,25 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPost.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new event public alias\n
@@ -736,17 +840,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PublicAlias.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new question content\n
@@ -777,17 +887,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionContent.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new question manifest\n
@@ -818,17 +934,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionManifest.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new question set\n
@@ -859,17 +981,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionSetInfo.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create submissions for a given question manifest\n
@@ -904,17 +1032,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new slide deck\n
@@ -945,17 +1079,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SlideDeckInfo.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new stream medium\n
@@ -986,17 +1126,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::StreamMediumInfo.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new source for a stream medium\n
@@ -1027,17 +1173,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::StreamSource.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a new user set\n
@@ -1068,17 +1220,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::UserSetExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete an access policy\n
@@ -1106,16 +1264,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AccessPolicy.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete an active path\n
@@ -1147,16 +1310,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete an asset bundle content\n
@@ -1188,16 +1356,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::BundleContent.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete the event page\n
@@ -1225,16 +1398,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventPage.from_json resp.body
-              end
+        
+      end
 
       # 
       # delete an event session\n
@@ -1262,16 +1440,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventSession.from_json resp.body
-              end
+        
+      end
 
       # 
       # Remove an public alias mapping\n
@@ -1299,16 +1482,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PublicAlias.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete a question content\n
@@ -1336,16 +1524,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionContent.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete a question manifest\n
@@ -1373,16 +1566,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionManifestDeleteResponse.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete a question set\n
@@ -1410,16 +1608,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionSetInfo.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete a slide deck\n
@@ -1447,16 +1650,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SlideDeckInfo.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete slides from slide deck\n
@@ -1487,17 +1695,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SlideDeck.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete a stream medium\n
@@ -1525,16 +1739,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::StreamMedium.from_json resp.body
-              end
+        
+      end
 
       # 
       # Delete a stream source\n
@@ -1562,16 +1781,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::StreamSource.from_json resp.body
-              end
+        
+      end
 
       # 
       # dismiss a published forum post\n
@@ -1599,16 +1823,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPost.from_json resp.body
-              end
+        
+      end
 
       # 
       # Enroll an account to a user set\n
@@ -1639,17 +1868,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::Enrollment.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a preview token to access a event in preview mode\n
@@ -1685,16 +1920,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PreviewToken.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get details of an access policy\n
@@ -1722,16 +1962,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AccessPolicyExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a list of all access policies for the channel\n
@@ -1759,16 +2004,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AccessPolicyList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get the config and mappings for a given active path\n
@@ -1800,16 +2050,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
-              end
+        
+      end
 
       # 
       # get the currently active polls\n
@@ -1837,16 +2092,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ActivePollList.from_json resp.body
-              end
+        
+      end
 
       # 
       # get the currently active Questionnaires\n
@@ -1874,16 +2134,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ActiveQuestionnaireList.from_json resp.body
-              end
+        
+      end
 
       # 
       # 
@@ -1911,16 +2176,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventSessionCommandList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get asset bundle with contents\n
@@ -1948,16 +2218,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AssetBundle.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get information for all asset bundles in a channel\n
@@ -1985,16 +2260,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AssetBundleInfoList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get an asset bundle content\n
@@ -2026,16 +2306,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::BundleContent.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a channel\n
@@ -2063,16 +2348,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::Channel.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all accounts belonging to the channel\n
@@ -2100,16 +2390,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AccountExtendedList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all events belongs to this channel\n
@@ -2137,16 +2432,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a list of all channel for the current user\n
@@ -2170,16 +2470,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ChannelList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all the page contents of a event page\n
@@ -2207,16 +2512,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PageContentList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all question contents for the question set\n
@@ -2244,16 +2554,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionContentList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a data set\n
@@ -2281,16 +2596,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::DataSet.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all data sets for the event\n
@@ -2318,16 +2638,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::DataSetList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all partitions for a data set\n
@@ -2355,16 +2680,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::DataSetPartitionList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a list of users belongs to this user set\n
@@ -2397,16 +2727,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PaginatedEnrollmentList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get Event with extended details\n
@@ -2434,16 +2769,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all active paths and their mappings of the event\n
@@ -2471,16 +2811,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ActivePathList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get the event page\n
@@ -2508,16 +2853,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventPage.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get event page content for a specific locale\n
@@ -2549,16 +2899,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PageContent.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get an event session with extended details\n
@@ -2586,16 +2941,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventSessionExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all sessions for the event\n
@@ -2623,16 +2983,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventSessionList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get the page runtime configuration of event session\n
@@ -2660,16 +3025,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SessionRuntime.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get the user set for the event\n
@@ -2697,16 +3067,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::UserSetExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all forum posts (with extended information) of the session\n
@@ -2737,16 +3112,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPostExtendedList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all likes for the forum post\n
@@ -2774,16 +3154,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPostLikeList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all forum posts likes of the session submitted by the access user\n
@@ -2811,18 +3196,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPostLikeList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all likes for the forum post with the account info of the users\n
@@ -2850,16 +3240,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPostLikeList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all forum posts of the session\n
@@ -2887,18 +3282,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPostList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all forum posts (with extended information and subbmitter account identifier) of the session\n
@@ -2929,16 +3329,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPostExtendedList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get the current live cast page\n
@@ -2966,16 +3371,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::LiveCastSlidePage.from_json resp.body
-              end
+        
+      end
 
       # 
       # (LiveCast) Get the current LiveCast module state\n
@@ -3003,16 +3413,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::LiveCastState.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all the event pages of the event\n
@@ -3040,16 +3455,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventPageList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get the poll status\n
@@ -3085,16 +3505,121 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
-              end
+        
+      end
+
+      # 
+      # get previous submissions for this poll\n
+      # @param session_uid the session that this poll is relevant to
+      # @param question_manifest_uid quesiton manifest associated uid
+      # @param question_content_uid the question content that is specific for this poll
+      # @return [QuestionSubmissionList]
+      def get_prior_poll_submissions(session_uid, question_manifest_uid, question_content_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_content_uid"' if question_content_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}/prior_submissions', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['question_content_uid'] = question_content_uid
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'previewToken', key: 'preview_token', in_query: true },
+        
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
+        
+      end
+
+      # 
+      # get previous submissions for this questionnaire\n
+      # @param session_uid the session that this questionnaire is relevant to
+      # @param question_manifest_uid quesiton manifest associated uid
+      # @return [QuestionSubmissionList]
+      def get_prior_questionnaire_submissions(session_uid, question_manifest_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/questionnaire/{question_manifest_uid}/prior_submissions', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'previewToken', key: 'preview_token', in_query: true },
+        
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
+        
+      end
 
       # 
       # Get an public alias mapping\n
@@ -3122,16 +3647,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PublicAlias.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get public alias by path\n
@@ -3159,16 +3689,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PublicAlias.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all the public aliases of the channel\n
@@ -3196,16 +3731,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PublicAliasList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a question content\n
@@ -3233,16 +3773,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionContent.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get the list of all question content types\n
@@ -3266,16 +3811,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionContentTypeList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a question manifest\n
@@ -3303,16 +3853,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionManifest.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get the list of question manifests\n
@@ -3340,16 +3895,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionManifestList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a question set\n
@@ -3377,16 +3937,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionSet.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get the list of question sets\n
@@ -3414,16 +3979,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionSetList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all submissions for a question manifest\n
@@ -3462,57 +4032,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionSubmissionQueryResponse.from_json resp.body
-              end
-
-      # 
-      # Get all submissions for a question manifest by the calling user\n
-      # @param question_manifest_uid question manifest uid
-      # @param session_uid the session uid
-      # @return [QuestionSubmissionList]
-      def get_question_submissions_by_user(question_manifest_uid, session_uid)
-        # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/question_submissions/{question_manifest_uid}/lookup_by_user', :GET
-
-        # path parameters
-        path_params = {}
-        path_params['question_manifest_uid'] = question_manifest_uid
-        path_params['session_uid'] = session_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-
-        resp = call_api op
-
-        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
-              end
+      end
 
       # 
       # Get the questionnaire status\n
@@ -3548,16 +4082,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionnaireStatus.from_json resp.body
-              end
+        
+      end
 
       # 
       # Lookup event and session attendances by session uid
@@ -3592,16 +4131,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AttendanceList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a list of users belongs to this user set\n
@@ -3640,16 +4184,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::FilteredEnrollmentList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a slide deck\n
@@ -3677,16 +4226,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SlideDeck.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all slide deck for the channel\n
@@ -3714,16 +4268,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SlideDeckInfoList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get stream medium object\n
@@ -3751,16 +4310,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::StreamMedium.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all the streams for this channel\n
@@ -3788,16 +4352,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::StreamMediumInfoList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get user feedbacks submitted for a session\n
@@ -3828,16 +4397,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::UserFeedbackList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get a user set with extended details\n
@@ -3865,16 +4439,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::UserSetExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all user sets for channel\n
@@ -3902,16 +4481,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::UserSetList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all whitelisted accounts in the access policy\n
@@ -3939,16 +4523,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::WhitelistedUserList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Like or unlike a forum post\n
@@ -3979,19 +4568,25 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPostLike.from_json resp.body
-              end
+        
+      end
 
       # 
       # Post a new user feedback\n
@@ -4022,17 +4617,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::UserFeedback.from_json resp.body
-              end
+        
+      end
 
       # 
       # publish a particular forum post\n
@@ -4060,16 +4661,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPost.from_json resp.body
-              end
+        
+      end
 
       # 
       # publish statistics for a given poll\n
@@ -4104,17 +4710,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
-              end
+        
+      end
 
       # 
       # publish statistics for a given questionnaire\n
@@ -4149,17 +4761,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionnaireStatus.from_json resp.body
-              end
+        
+      end
 
       # 
       # Rearrange the order of slide\n
@@ -4190,17 +4808,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SlideDeck.from_json resp.body
-              end
+        
+      end
 
       # 
       # Reorder question set contents\n
@@ -4231,17 +4855,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionSet.from_json resp.body
-              end
+        
+      end
 
       # 
       # Removes one or more accounts from the whitelist\n
@@ -4272,17 +4902,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::WhitelistedUserList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Set the active data set for an event\n
@@ -4313,17 +4949,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::DataSet.from_json resp.body
-              end
+        
+      end
 
       # 
       # start the given poll\n
@@ -4358,17 +5000,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
-              end
+        
+      end
 
       # 
       # start the given questionnaire\n
@@ -4403,17 +5051,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionnaireStatus.from_json resp.body
-              end
+        
+      end
 
       # 
       # stop the given poll\n
@@ -4448,17 +5102,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PollStatus.from_json resp.body
-              end
+        
+      end
 
       # 
       # stop the given questionnaire\n
@@ -4493,17 +5153,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionnaireStatus.from_json resp.body
-              end
+        
+      end
 
       # 
       # Create a stream source for remote resource\n
@@ -4534,17 +5200,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PresignedUpload.from_json resp.body
-              end
+        
+      end
 
       # 
       # a runtime operation that switches active mapping for the given path\n
@@ -4579,17 +5251,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
-              end
+        
+      end
 
       # 
       # Record user attendance\n
@@ -4620,17 +5298,22 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
-
+        
         nil
+        
       end
 
       # 
@@ -4662,17 +5345,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AccessPolicyExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update the roles assigned to an account\n
@@ -4703,17 +5392,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AccountResourceRolesList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update a active path and its mappings\n
@@ -4748,17 +5443,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update a channel\n
@@ -4789,17 +5490,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = channel.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::Channel.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update an event\n
@@ -4830,17 +5537,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update the event page\n
@@ -4871,17 +5584,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventPage.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update the page content of the event page\n
@@ -4912,17 +5631,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PageContent.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update the info for an event session \n
@@ -4953,17 +5678,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::EventSession.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update the state of a forum post\n
@@ -4994,17 +5725,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::ForumPostExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # (LiveCast) Change slide page\nThis will also publish a LiveCastSlidePage command to the session pub sub channel\n
@@ -5035,17 +5772,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::LiveCastState.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update an public alias\n
@@ -5076,17 +5819,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::PublicAlias.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update a question content\n
@@ -5117,17 +5866,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionContent.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update a question manifest\n
@@ -5158,17 +5913,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionManifest.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update a question set\n
@@ -5199,17 +5960,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::QuestionSetInfo.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update the module configurations for a event session\n
@@ -5240,17 +6007,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SessionModuleList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update the slide deck\n
@@ -5281,17 +6054,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SlideDeckInfo.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update stream medium\n
@@ -5322,17 +6101,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::StreamMedium.from_json resp.body
-              end
+        
+      end
 
       # 
       # Update a user set\n
@@ -5363,17 +6148,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::UserSetExtended.from_json resp.body
-              end
+        
+      end
 
       # 
       # Upload an account feed for creating channel accounts\n
@@ -5404,16 +6195,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::AccountCreationResponseList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Upload a slide\n
@@ -5444,16 +6240,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::SlideDeck.from_json resp.body
-              end
+        
+      end
 
       # 
       # Whitelist one or more users\n
@@ -5484,17 +6285,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::EventV1::Models::WhitelistedUserList.from_json resp.body
-              end
+        
+      end
     end
   end
 end

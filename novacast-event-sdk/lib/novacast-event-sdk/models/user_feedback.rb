@@ -11,12 +11,16 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # uid of the submitter
             :'account_uid' => { base_name: 'account_uid', type: 'String', required: true },
+            
             # content of the feedback
             :'content' => { base_name: 'content', type: 'String', required: true },
+            
             # submission time
             :'submitted_at' => { base_name: 'submitted_at', type: 'DateTime', required: true }
+            
           }
         end
       end

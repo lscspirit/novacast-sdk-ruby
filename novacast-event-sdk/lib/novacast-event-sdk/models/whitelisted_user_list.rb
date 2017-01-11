@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # a collection of white-listed entries
             :'entries' => { base_name: 'entries', type: 'Array[WhitelistedUser]', required: true }
+            
           }
         end
       end

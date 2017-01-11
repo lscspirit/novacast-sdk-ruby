@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # array of static path mappings
             :'active_paths' => { base_name: 'active_paths', type: 'Array[ActivePath]', required: true }
+            
           }
         end
       end

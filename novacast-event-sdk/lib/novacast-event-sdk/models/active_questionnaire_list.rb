@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # active Questionnaires collection
             :'questionnaires' => { base_name: 'questionnaires', type: 'Array[ActiveQuestionnaire]', required: true }
+            
           }
         end
       end

@@ -11,16 +11,22 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # account unique id
             :'uid' => { base_name: 'uid', type: 'String', required: true },
+            
             # account identifier (username or email)
             :'identifier' => { base_name: 'identifier', type: 'String', required: true },
+            
             # domain name
             :'domain' => { base_name: 'domain', type: 'String', required: true },
+            
             # auth provider name
             :'provider' => { base_name: 'provider', type: 'String', required: true },
+            
             # list of resource-roles mapping
             :'resource_roles' => { base_name: 'resource_roles', type: 'Array[AccountResourceRoles]', required: false }
+            
           }
         end
       end

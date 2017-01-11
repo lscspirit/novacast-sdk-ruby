@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # list of forum post likes
             :'likes' => { base_name: 'likes', type: 'Array[ForumPostLike]', required: true }
+            
           }
         end
       end

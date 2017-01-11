@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # a collection of slide deck information
             :'decks' => { base_name: 'decks', type: 'Array[SlideDeckInfo]', required: true }
+            
           }
         end
       end

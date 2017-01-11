@@ -11,12 +11,16 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # upload url
             :'url' => { base_name: 'url', type: 'String', required: true },
+            
             # fields to be sent along with the upload request
             :'fields' => { base_name: 'fields', type: 'Object', required: true },
+            
             # data to be sent along with the callback upon successful upload
             :'callback_data' => { base_name: 'callback_data', type: 'Object', required: true }
+            
           }
         end
       end

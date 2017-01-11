@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # 
             :'submissions_list' => { base_name: 'submissions_list', type: 'QuestionSubmissionList', required: true },
+            
             # indicate if number of records exceeded limit
             :'record_exceeded' => { base_name: 'record_exceeded', type: 'BOOLEAN', required: true }
+            
           }
         end
       end

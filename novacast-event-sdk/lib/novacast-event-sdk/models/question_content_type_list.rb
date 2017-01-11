@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # question content types collection
             :'types' => { base_name: 'types', type: 'Array[QuestionContentType]', required: true }
+            
           }
         end
       end

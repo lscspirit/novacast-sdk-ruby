@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # label
             :'label' => { base_name: 'label', type: 'String', required: false },
+            
             # access policy filters
             :'filters' => { base_name: 'filters', type: 'Array[AccessFilter]', required: false }
+            
           }
         end
       end

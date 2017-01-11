@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # uids of the slides to be deleted
             :'slide_uids' => { base_name: 'slide_uids', type: 'Array[String]', required: true }
+            
           }
         end
       end

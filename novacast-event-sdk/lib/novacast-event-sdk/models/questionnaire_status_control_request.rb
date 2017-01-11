@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # the question content that is associated with this questionnaire
             :'question_set_uid' => { base_name: 'question_set_uid', type: 'String', required: true }
+            
           }
         end
       end

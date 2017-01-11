@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # stream label
             :'label' => { base_name: 'label', type: 'String', required: false }
+            
           }
         end
       end
