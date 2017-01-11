@@ -57,13 +57,67 @@ module NovacastSDK
       # 
       # Check if a user have access to the event\n
       # @param event_uid event uid
+      # @param account_uid account uid
+      # @param body request body
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :preview_token preview token
+      # @return [FilterAccessResponse]
+      def filter_event_access(event_uid, account_uid, body, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/filter_access', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['event_uid'] = event_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['account_uid'] = account_uid
+        query_params['preview_token'] = opts[:preview_token] if opts[:preview_token]
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::FilterAccessResponse.from_json resp.body
+        
+      end
+
+      # 
+      # Check if a user have access to the event\n
+      # @param event_uid event uid
       # @param content_path path to access the content
       # @param account_uid account uid
       # @param body request body
       # @param [Hash] opts the optional parameters
       # @option opts [String] :preview_token preview token
       # @return [FilterAccessResponse]
-      def filter_event_access(event_uid, content_path, account_uid, body, opts = {})
+      def filter_event_content_access(event_uid, content_path, account_uid, body, opts = {})
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -75,7 +129,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/filter_access{/content_path*}', :POST
+        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/filter_access/content{/content_path*}', :POST
 
         # path parameters
         path_params = {}

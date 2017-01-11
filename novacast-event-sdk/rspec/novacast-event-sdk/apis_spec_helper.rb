@@ -2211,6 +2211,37 @@ module NovacastSDK
             required: true
           },
           
+          :'account_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'FilterAccessRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          },
+          
+          :'preview_token' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
+        filter_event_content_access: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
           :'content_path' => {
             type: 'String',
             path_param: true,
@@ -3398,6 +3429,13 @@ module NovacastSDK
           
         }, 
         filter_event_access: {
+          
+          200 => 'FilterAccessResponse',
+          
+          0 => 'Error'
+          
+        }, 
+        filter_event_content_access: {
           
           200 => 'FilterAccessResponse',
           
