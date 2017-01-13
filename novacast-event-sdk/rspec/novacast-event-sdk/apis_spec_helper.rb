@@ -2389,7 +2389,7 @@ module NovacastSDK
       def self.compare(resp_hash, api, status_code)
         resp_type = find_response_type api, status_code
 
-        if resp_type.blank?
+        if resp_type.nil?
           # if there is no response type, then the response body is expected to be empty
           # if the body is not empty then return :invalid_type
           resp_hash.nil? ? nil : :invalid_type
@@ -3529,7 +3529,7 @@ end
 
 RSpec::Matchers.define :be_api_response do |api, status|
   match do |response_body|
-    @actual = response_body.blank? ? nil : JSON.parse(response_body)
+    @actual = (response_body.nil? || response_body.empty?) ? nil : JSON.parse(response_body)
     @diff   = NovacastSDK::EventV1::ApiResponses.compare @actual, api, status
     @diff.nil?
   end

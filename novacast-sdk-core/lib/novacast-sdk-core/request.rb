@@ -69,10 +69,10 @@ module NovacastSDK
 
       def body=(b)
         @body = case
-                  when b.blank?
+                  when b.nil?
                     nil
                   when b.is_a?(String)
-                    b
+                    b.empty? ? nil : b
                   when b.respond_to?(:to_s)
                     b.to_s
                   else
