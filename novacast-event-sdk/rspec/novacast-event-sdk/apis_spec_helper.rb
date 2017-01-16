@@ -2185,6 +2185,30 @@ module NovacastSDK
 
     class InternalApiRequests < ApiRequests
       REQUESTS = { 
+        check_account_permission: {
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'permission' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: true
+          },
+          
+          :'resource_rn' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         enroll_to_user_set: {
           
           :'user_set_uid' => {
@@ -2243,6 +2267,37 @@ module NovacastSDK
           },
           
           :'content_path' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'FilterAccessRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          },
+          
+          :'preview_token' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
+        filter_session_access: {
+          
+          :'session_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -3419,6 +3474,13 @@ module NovacastSDK
 
     class InternalApiResponses < ApiResponses
       RESPONSES = { 
+        check_account_permission: {
+          
+          200 => '',
+          
+          0 => 'Error'
+          
+        }, 
         enroll_to_user_set: {
           
           200 => 'Enrollment',
@@ -3436,6 +3498,13 @@ module NovacastSDK
           
         }, 
         filter_event_content_access: {
+          
+          200 => 'FilterAccessResponse',
+          
+          0 => 'Error'
+          
+        }, 
+        filter_session_access: {
           
           200 => 'FilterAccessResponse',
           

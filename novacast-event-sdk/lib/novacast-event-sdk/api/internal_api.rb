@@ -8,6 +8,56 @@ module NovacastSDK
 
 
       # 
+      # Check if the user has a particular permission\n
+      # @param account_uid account uid
+      # @param permission permission
+      # @param resource_rn resource name
+      # @return [nil]
+      def check_account_permission(account_uid, permission, resource_rn)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "permission"' if permission.nil?
+        
+        raise ArgumentError, 'Missing required parameter "resource_rn"' if resource_rn.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/access/accounts/{account_uid}/permission', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['account_uid'] = account_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['permission'] = permission
+        query_params['resource_rn'] = resource_rn
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        nil
+        
+      end
+
+      # 
       # Enroll an account to a user set\n
       # @param user_set_uid user set uid
       # @param body request body
@@ -72,7 +122,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/filter_access', :POST
+        op = NovacastSDK::Client::Operation.new '/access/events/{event_uid}', :POST
 
         # path parameters
         path_params = {}
@@ -129,12 +179,66 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/filter_access/content{/content_path*}', :POST
+        op = NovacastSDK::Client::Operation.new '/access/events/{event_uid}/content{/content_path*}', :POST
 
         # path parameters
         path_params = {}
         path_params['event_uid'] = event_uid
         path_params['content_path'] = content_path
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['account_uid'] = account_uid
+        query_params['preview_token'] = opts[:preview_token] if opts[:preview_token]
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::FilterAccessResponse.from_json resp.body
+        
+      end
+
+      # 
+      # Check if a user have access to the session\n
+      # @param session_uid session uid
+      # @param account_uid account uid
+      # @param body request body
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :preview_token preview token
+      # @return [FilterAccessResponse]
+      def filter_session_access(session_uid, account_uid, body, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/access/sessions/{session_uid}', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
         op.params = path_params
 
         # header parameters
