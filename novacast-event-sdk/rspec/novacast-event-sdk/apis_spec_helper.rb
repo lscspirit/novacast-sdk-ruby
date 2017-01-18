@@ -1455,6 +1455,16 @@ module NovacastSDK
           }
           
         }, 
+        get_template_manifest_by_type: {
+          
+          :'manifest_type' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_user_feedbacks: {
           
           :'session_uid' => {
@@ -3178,6 +3188,13 @@ module NovacastSDK
         get_stream_medium_list: {
           
           200 => 'StreamMediumInfoList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_template_manifest_by_type: {
+          
+          200 => 'TemplateManifestList',
           
           0 => 'Error'
           

@@ -1122,6 +1122,15 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /template_manifests/find_by_type', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/template_manifests/find_by_type', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /mods/user_feedback/{session_uid}/feedbacks', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
