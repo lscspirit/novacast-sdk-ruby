@@ -47,9 +47,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -100,9 +100,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -798,9 +798,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3201,9 +3201,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3287,9 +3287,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3560,9 +3560,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3608,9 +3608,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -4369,6 +4369,48 @@ module NovacastSDK
       end
 
       # 
+      # Get template manifests for a specific type\n
+      # @param manifest_type the type of template
+      # @return [TemplateManifestList]
+      def get_template_manifest_by_type(manifest_type)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "manifest_type"' if manifest_type.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/template_manifests/find_by_type', :GET
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['manifest_type'] = manifest_type
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::TemplateManifestList.from_json resp.body
+        
+      end
+
+      # 
       # Get user feedbacks submitted for a session\n
       # @param session_uid uid of the session
       # @param [Hash] opts the optional parameters
@@ -4575,9 +4617,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 

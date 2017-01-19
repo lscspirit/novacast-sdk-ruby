@@ -316,6 +316,10 @@ require 'novacast-event-sdk/models/stream_source_pre_upload_request'
 
 require 'novacast-event-sdk/models/switch_mapping_request'
 
+require 'novacast-event-sdk/models/template_manifest'
+
+require 'novacast-event-sdk/models/template_manifest_list'
+
 require 'novacast-event-sdk/models/track_attendance_by_token'
 
 require 'novacast-event-sdk/models/track_attendance_by_token_request'
