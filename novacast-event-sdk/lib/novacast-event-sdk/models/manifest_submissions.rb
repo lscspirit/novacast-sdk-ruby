@@ -2,7 +2,7 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class QuestionSubmissionList < NovacastSDK::BaseModel
+      class ManifestSubmissions < NovacastSDK::BaseModel
         attr_accessor :submissions, :question_manifest
 
         def self.api_model_module

@@ -54,6 +54,10 @@ require 'novacast-event-sdk/models/add_poll_stat_request'
 
 require 'novacast-event-sdk/models/addquestionnaire_stat_request'
 
+require 'novacast-event-sdk/models/archive_activity'
+
+require 'novacast-event-sdk/models/archive_activity_list'
+
 require 'novacast-event-sdk/models/asset_bundle'
 
 require 'novacast-event-sdk/models/asset_bundle_create_request'
@@ -168,6 +172,8 @@ require 'novacast-event-sdk/models/live_cast_slide_page'
 
 require 'novacast-event-sdk/models/live_cast_state'
 
+require 'novacast-event-sdk/models/manifest_submissions'
+
 require 'novacast-event-sdk/models/module_runtime'
 
 require 'novacast-event-sdk/models/page_content'
@@ -248,9 +254,9 @@ require 'novacast-event-sdk/models/question_submission_create'
 
 require 'novacast-event-sdk/models/question_submission_create_request'
 
-require 'novacast-event-sdk/models/question_submission_list'
-
 require 'novacast-event-sdk/models/question_submission_query_response'
+
+require 'novacast-event-sdk/models/question_submissions_list'
 
 require 'novacast-event-sdk/models/questionnaire_answer'
 

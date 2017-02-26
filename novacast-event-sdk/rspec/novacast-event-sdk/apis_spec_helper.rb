@@ -794,6 +794,16 @@ module NovacastSDK
           }
           
         }, 
+        get_archive_activities: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_asset_bundle: {
           
           :'asset_bundle_uid' => {
@@ -1160,33 +1170,12 @@ module NovacastSDK
             path_param: true,
             body_param: false,
             required: true
-          },
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'question_content_uid' => {
-            type: 'String',
-            path_param: false,
-            body_param: false,
-            required: true
           }
           
         }, 
         get_prior_questionnaire_submissions: {
           
           :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'question_manifest_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -2506,14 +2495,14 @@ module NovacastSDK
       RESPONSES = { 
         add_poll_stat: {
           
-          200 => 'PollStatus',
+          200 => 'QuestionSubmissionsList',
           
           0 => 'Error'
           
         }, 
         add_questionnaire_stat: {
           
-          200 => 'QuestionnaireStatus',
+          200 => 'QuestionSubmissionsList',
           
           0 => 'Error'
           
@@ -2653,7 +2642,7 @@ module NovacastSDK
         }, 
         create_question_submission: {
           
-          201 => 'QuestionSubmissionList',
+          201 => 'ManifestSubmissions',
           
           0 => 'Error'
           
@@ -2838,6 +2827,13 @@ module NovacastSDK
         get_active_session_commands: {
           
           200 => 'EventSessionCommandList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_archive_activities: {
+          
+          200 => 'ArchiveActivityList',
           
           0 => 'Error'
           
@@ -3061,14 +3057,14 @@ module NovacastSDK
         }, 
         get_prior_poll_submissions: {
           
-          200 => 'QuestionSubmissionList',
+          200 => 'QuestionSubmissionsList',
           
           0 => 'Error'
           
         }, 
         get_prior_questionnaire_submissions: {
           
-          200 => 'QuestionSubmissionList',
+          200 => 'QuestionSubmissionsList',
           
           0 => 'Error'
           

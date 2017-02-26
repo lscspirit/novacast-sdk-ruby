@@ -562,6 +562,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /sessions/{session_uid}/archive_session_activities', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/archive_session_activities', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /assets/{asset_bundle_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -907,29 +918,25 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /sessions/{session_uid}/polling/{question_manifest_uid}/prior_submissions', type: :routing do
+          ::RSpec.describe 'GET /sessions/{session_uid}/polling/prior_submissions', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
-                :'session_uid' => 'String',
-              
-                :'question_manifest_uid' => 'String'
+                :'session_uid' => 'String'
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/polling/{question_manifest_uid}/prior_submissions', path_params))
+              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/polling/prior_submissions', path_params))
             end
           end
         
-          ::RSpec.describe 'GET /sessions/{session_uid}/questionnaire/{question_manifest_uid}/prior_submissions', type: :routing do
+          ::RSpec.describe 'GET /sessions/{session_uid}/questionnaire/prior_submissions', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
-                :'session_uid' => 'String',
-              
-                :'question_manifest_uid' => 'String'
+                :'session_uid' => 'String'
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/questionnaire/{question_manifest_uid}/prior_submissions', path_params))
+              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/questionnaire/prior_submissions', path_params))
             end
           end
         

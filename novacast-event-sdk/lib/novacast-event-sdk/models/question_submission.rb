@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class QuestionSubmission < NovacastSDK::BaseModel
-        attr_accessor :user_uid, :user_identifier, :question_content_uid, :answer, :created_at
+        attr_accessor :user_uid, :user_identifier, :question_content_uid, :question_manifest_uid, :answer, :created_at
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -20,6 +20,9 @@ module NovacastSDK
             
             # uid for the question content specific of this submission
             :'question_content_uid' => { base_name: 'question_content_uid', type: 'String', required: false },
+            
+            # uid for the question manifest specific of this submission
+            :'question_manifest_uid' => { base_name: 'question_manifest_uid', type: 'String', required: false },
             
             # answer object
             :'answer' => { base_name: 'answer', type: 'Object', required: true },
