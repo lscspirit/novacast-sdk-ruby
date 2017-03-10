@@ -62,24 +62,26 @@ module NovacastSDK
         #
 
         begin
-          return case type.to_sym
-                   when :DateTime
+          return case type.downcase.to_sym
+                   when :datetime
                      if value.is_a?(DateTime)
                        value
+                     elsif value.is_a?(String)
+                       DateTime.parse(value)
                      elsif value.is_a?(Integer) || value.respond_to?(:to_i)
                        Time.at(value.to_i).to_datetime
                      else
                        DateTime.parse(value)
                      end
-                   when :Date
+                   when :date
                      value.is_a?(Date) ? value : Date.parse(value)
-                   when :String
+                   when :string
                      value.to_s
-                   when :Integer
+                   when :integer
                      Integer(value)
                    when :Float
                      Float(value)
-                   when :BOOLEAN
+                   when :boolean
                      if value === true || value =~ /^(true|t|yes|y|1)$/i
                        true
                      elsif value === false || value =~ /^(false|f|no|n|0)$/i
@@ -87,11 +89,11 @@ module NovacastSDK
                      else
                        raise 'invalid boolean value'
                      end
-                   when :Object
+                   when :object
                      value
-                   when :File
+                   when :file
                      value.to_s
-                   when :Byte
+                   when :byte
                      value
                    else # model
                      model = api_model_module.const_get(type)
@@ -185,7 +187,7 @@ module NovacastSDK
         found = false
 
         methods = [base_name]
-        methods << "#{base_name}?" if type.to_sym == :BOOLEAN
+        methods << "#{base_name}?" if type.downcase.to_sym == :boolean
 
         methods.each do |method|
           if obj.respond_to? method
