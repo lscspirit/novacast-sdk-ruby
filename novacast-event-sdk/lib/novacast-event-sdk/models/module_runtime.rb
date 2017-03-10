@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class ModuleRuntime < NovacastSDK::BaseModel
-        attr_accessor :module_name, :runtime
+        attr_accessor :module_name, :runtime, :timestamp
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -16,7 +16,10 @@ module NovacastSDK
             :'module_name' => { base_name: 'module_name', type: 'String', required: true },
             
             # module runtime configuration
-            :'runtime' => { base_name: 'runtime', type: 'Object', required: true }
+            :'runtime' => { base_name: 'runtime', type: 'Object', required: true },
+            
+            # last updated time (not available for &#39;url&#39; type)
+            :'timestamp' => { base_name: 'timestamp', type: 'DateTime', required: true }
             
           }
         end

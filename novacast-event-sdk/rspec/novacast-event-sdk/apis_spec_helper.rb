@@ -1798,23 +1798,6 @@ module NovacastSDK
           }
           
         }, 
-        track_attendance: {
-          
-          :'event_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'TrackAttendanceRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
         update_access_policy: {
           
           :'access_policy_uid' => {
@@ -2184,6 +2167,16 @@ module NovacastSDK
 
     class InternalApiRequests < ApiRequests
       REQUESTS = { 
+        batch_track_attendance: {
+          
+          :'body' => {
+            type: 'BatchTrackAttendanceRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         check_account_permission: {
           
           :'account_uid' => {
@@ -2409,10 +2402,17 @@ module NovacastSDK
           }
           
         }, 
-        track_attendance_by_token: {
+        track_attendance: {
+          
+          :'event_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
           
           :'body' => {
-            type: 'TrackAttendanceByTokenRequest',
+            type: 'TrackAttendanceRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -3328,13 +3328,6 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        track_attendance: {
-          
-          200 => '',
-          
-          0 => 'Error'
-          
-        }, 
         update_access_policy: {
           
           200 => 'AccessPolicyExtended',
@@ -3487,6 +3480,13 @@ module NovacastSDK
 
     class InternalApiResponses < ApiResponses
       RESPONSES = { 
+        batch_track_attendance: {
+          
+          200 => 'BatchTrackAttendanceResponse',
+          
+          0 => 'Error'
+          
+        }, 
         check_account_permission: {
           
           200 => '',
@@ -3573,9 +3573,9 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        track_attendance_by_token: {
+        track_attendance: {
           
-          200 => 'AttendanceList',
+          200 => '',
           
           0 => 'Error'
           

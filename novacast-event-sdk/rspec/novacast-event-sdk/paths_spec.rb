@@ -1063,14 +1063,14 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /sessions/{session_uid}/attendances', type: :routing do
+          ::RSpec.describe 'GET /attendances/sessions/{session_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
                 :'session_uid' => 'String'
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/attendances', path_params))
+              expect_path_routable(:GET => generate_path('/api/v1/attendances/sessions/{session_uid}', path_params))
             end
           end
         
@@ -1361,17 +1361,6 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'POST /events/{event_uid}/attendances', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'event_uid' => 'String'
-              
-              }
-              expect_path_routable(:POST => generate_path('/api/v1/events/{event_uid}/attendances', path_params))
-            end
-          end
-        
           ::RSpec.describe 'PUT /access_policies/{access_policy_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -1612,6 +1601,15 @@ module NovacastSDK
       class InternalApiPaths
         def self.specs
         
+          ::RSpec.describe 'POST /attendances/batch', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/attendances/batch', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /access/accounts/{account_uid}/permission', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -1750,12 +1748,14 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'POST /attendances/track_by_token', type: :routing do
+          ::RSpec.describe 'POST /attendances/events/{event_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
+                :'event_uid' => 'String'
+              
               }
-              expect_path_routable(:POST => generate_path('/api/v1/attendances/track_by_token', path_params))
+              expect_path_routable(:POST => generate_path('/api/v1/attendances/events/{event_uid}', path_params))
             end
           end
         

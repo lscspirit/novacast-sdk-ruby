@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class TrackAttendanceRequest < NovacastSDK::BaseModel
-        attr_accessor :client_session_id, :client_ip, :user_agent, :session_uid
+        attr_accessor :account_uid, :client_session_id, :client_ip, :user_agent, :session_uid
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -11,6 +11,9 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
+            # account uid
+            :'account_uid' => { base_name: 'account_uid', type: 'String', required: true },
             
             # client browser session id
             :'client_session_id' => { base_name: 'client_session_id', type: 'String', required: true },

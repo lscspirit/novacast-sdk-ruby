@@ -47,9 +47,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -100,9 +100,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -798,9 +798,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3243,9 +3243,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3329,9 +3329,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3594,9 +3594,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3638,9 +3638,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -4142,7 +4142,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/attendances', :GET
+        op = NovacastSDK::Client::Operation.new '/attendances/sessions/{session_uid}', :GET
 
         # path parameters
         path_params = {}
@@ -4647,9 +4647,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -5338,53 +5338,6 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::ActivePath.from_json resp.body
-        
-      end
-
-      # 
-      # Record user attendance\n
-      # @param event_uid event uid
-      # @param body request body
-      # @return [nil]
-      def track_attendance(event_uid, body)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/events/{event_uid}/attendances', :POST
-
-        # path parameters
-        path_params = {}
-        path_params['event_uid'] = event_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-        op.body = body.to_json
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        nil
         
       end
 

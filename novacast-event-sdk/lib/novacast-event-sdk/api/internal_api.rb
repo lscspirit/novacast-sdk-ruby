@@ -8,6 +8,49 @@ module NovacastSDK
 
 
       # 
+      # a batch call to track multiple attendances by their access tokens\n
+      # @param body request body
+      # @return [BatchTrackAttendanceResponse]
+      def batch_track_attendance(body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/attendances/batch', :POST
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::BatchTrackAttendanceResponse.from_json resp.body
+        
+      end
+
+      # 
       # Check if the user has a particular permission\n
       # @param account_uid account uid
       # @param permission permission
@@ -573,19 +616,23 @@ module NovacastSDK
       end
 
       # 
-      # a batch call to track multiple attendances by their access tokens\n
+      # Record user attendance\n
+      # @param event_uid event uid
       # @param body request body
-      # @return [AttendanceList]
-      def track_attendance_by_token(body)
+      # @return [nil]
+      def track_attendance(event_uid, body)
         # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/attendances/track_by_token', :POST
+        op = NovacastSDK::Client::Operation.new '/attendances/events/{event_uid}', :POST
 
         # path parameters
         path_params = {}
+        path_params['event_uid'] = event_uid
         op.params = path_params
 
         # header parameters
@@ -611,7 +658,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::AttendanceList.from_json resp.body
+        nil
         
       end
 

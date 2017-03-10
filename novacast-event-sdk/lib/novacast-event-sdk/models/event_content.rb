@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventContent < NovacastSDK::BaseModel
-        attr_accessor :type, :value, :public, :session_uid
+        attr_accessor :type, :value, :public, :session_uid, :timestamp
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -22,7 +22,10 @@ module NovacastSDK
             :'public' => { base_name: 'public', type: 'BOOLEAN', required: false },
             
             # uid of the session (only available for &#39;html&#39; type)
-            :'session_uid' => { base_name: 'session_uid', type: 'String', required: false }
+            :'session_uid' => { base_name: 'session_uid', type: 'String', required: false },
+            
+            # last updated time (not available for &#39;url&#39; type)
+            :'timestamp' => { base_name: 'timestamp', type: 'DateTime', required: false }
             
           }
         end

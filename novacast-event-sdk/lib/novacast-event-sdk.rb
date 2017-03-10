@@ -70,6 +70,12 @@ require 'novacast-event-sdk/models/attendance'
 
 require 'novacast-event-sdk/models/attendance_list'
 
+require 'novacast-event-sdk/models/batch_track_attendance_request'
+
+require 'novacast-event-sdk/models/batch_track_attendance_response'
+
+require 'novacast-event-sdk/models/batch_track_attendance_response_entry'
+
 require 'novacast-event-sdk/models/bundle_content'
 
 require 'novacast-event-sdk/models/bundle_content_confirm_request'
@@ -325,10 +331,6 @@ require 'novacast-event-sdk/models/switch_mapping_request'
 require 'novacast-event-sdk/models/template_manifest'
 
 require 'novacast-event-sdk/models/template_manifest_list'
-
-require 'novacast-event-sdk/models/track_attendance_by_token'
-
-require 'novacast-event-sdk/models/track_attendance_by_token_request'
 
 require 'novacast-event-sdk/models/track_attendance_request'
 
