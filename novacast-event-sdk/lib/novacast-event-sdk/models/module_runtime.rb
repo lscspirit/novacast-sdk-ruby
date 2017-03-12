@@ -18,8 +18,8 @@ module NovacastSDK
             # module runtime configuration
             :'runtime' => { base_name: 'runtime', type: 'Object', required: true },
             
-            # last updated time (not available for &#39;url&#39; type)
-            :'timestamp' => { base_name: 'timestamp', type: 'DateTime', required: true }
+            # last updated time
+            :'timestamp' => { base_name: 'timestamp', type: 'DateTime', required: false }
             
           }
         end
