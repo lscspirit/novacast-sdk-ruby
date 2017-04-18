@@ -124,6 +124,23 @@ module NovacastSDK
           }
           
         }, 
+        add_whitelist_patterns: {
+          
+          :'user_set_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'WhitelistRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         bundle_content_pre_upload: {
           
           :'asset_bundle_uid' => {
@@ -669,6 +686,16 @@ module NovacastSDK
         delete_stream_source: {
           
           :'stream_source_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        delete_whitelist_pattern: {
+          
+          :'pattern_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -1491,7 +1518,7 @@ module NovacastSDK
           }
           
         }, 
-        get_whitelisted_users: {
+        get_whitelist_patterns: {
           
           :'user_set_uid' => {
             type: 'String',
@@ -1621,23 +1648,6 @@ module NovacastSDK
           
           :'body' => {
             type: 'QuestionContentOrderRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        revoke_whitelisted_users: {
-          
-          :'user_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'WhitelistRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -2144,23 +2154,6 @@ module NovacastSDK
             required: true
           }
           
-        }, 
-        whitelist_users: {
-          
-          :'user_set_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'WhitelistRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
         } 
       }
     end
@@ -2524,6 +2517,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        add_whitelist_patterns: {
+          
+          200 => 'WhitelistPatternList',
+          
+          0 => 'Error'
+          
+        }, 
         bundle_content_pre_upload: {
           
           200 => 'PresignedUpload',
@@ -2779,6 +2779,13 @@ module NovacastSDK
         delete_stream_source: {
           
           200 => 'StreamSource',
+          
+          0 => 'Error'
+          
+        }, 
+        delete_whitelist_pattern: {
+          
+          200 => 'WhitelistPattern',
           
           0 => 'Error'
           
@@ -3233,9 +3240,9 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        get_whitelisted_users: {
+        get_whitelist_patterns: {
           
-          200 => 'WhitelistedUserList',
+          200 => 'WhitelistPatternList',
           
           0 => 'Error'
           
@@ -3285,13 +3292,6 @@ module NovacastSDK
         reorder_question_contents: {
           
           200 => 'QuestionSet',
-          
-          0 => 'Error'
-          
-        }, 
-        revoke_whitelisted_users: {
-          
-          200 => 'WhitelistedUserList',
           
           0 => 'Error'
           
@@ -3481,13 +3481,6 @@ module NovacastSDK
         upload_slides: {
           
           200 => 'SlideDeck',
-          
-          0 => 'Error'
-          
-        }, 
-        whitelist_users: {
-          
-          200 => 'WhitelistedUserList',
           
           0 => 'Error'
           

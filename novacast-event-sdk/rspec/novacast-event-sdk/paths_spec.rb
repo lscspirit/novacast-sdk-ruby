@@ -52,6 +52,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'POST /user_sets/{user_set_uid}/whitelist', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'user_set_uid' => 'String'
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/user_sets/{user_set_uid}/whitelist', path_params))
+            end
+          end
+        
           ::RSpec.describe 'POST /assets/{asset_bundle_uid}/pre_upload', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -460,6 +471,17 @@ module NovacastSDK
               
               }
               expect_path_routable(:DELETE => generate_path('/api/v1/stream_sources/{stream_source_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'DELETE /whitelisted_patterns/{pattern_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'pattern_uid' => 'String'
+              
+              }
+              expect_path_routable(:DELETE => generate_path('/api/v1/whitelisted_patterns/{pattern_uid}', path_params))
             end
           end
         
@@ -1263,17 +1285,6 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'POST /user_sets/{user_set_uid}/whitelist/revoke', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'user_set_uid' => 'String'
-              
-              }
-              expect_path_routable(:POST => generate_path('/api/v1/user_sets/{user_set_uid}/whitelist/revoke', path_params))
-            end
-          end
-        
           ::RSpec.describe 'PUT /events/{event_uid}/data_sets/active', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -1580,17 +1591,6 @@ module NovacastSDK
               
               }
               expect_path_routable(:POST => generate_path('/api/v1/slide_decks/{slide_deck_uid}/upload', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'POST /user_sets/{user_set_uid}/whitelist', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'user_set_uid' => 'String'
-              
-              }
-              expect_path_routable(:POST => generate_path('/api/v1/user_sets/{user_set_uid}/whitelist', path_params))
             end
           end
         

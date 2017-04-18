@@ -114,6 +114,53 @@ module NovacastSDK
       end
 
       # 
+      # Add one or more whitelisted patterns\n
+      # @param user_set_uid user set uid
+      # @param body request body
+      # @return [WhitelistPatternList]
+      def add_whitelist_patterns(user_set_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/user_sets/{user_set_uid}/whitelist', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['user_set_uid'] = user_set_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::WhitelistPatternList.from_json resp.body
+        
+      end
+
+      # 
       # Pre upload asset bundle content\n
       # @param asset_bundle_uid asset bundle uid
       # @param body request body
@@ -1794,6 +1841,48 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::StreamSource.from_json resp.body
+        
+      end
+
+      # 
+      # Removes a whitelisted pattern from the user set\n
+      # @param pattern_uid whitelisted pattern uid
+      # @return [WhitelistPattern]
+      def delete_whitelist_pattern(pattern_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "pattern_uid"' if pattern_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/whitelisted_patterns/{pattern_uid}', :DELETE
+
+        # path parameters
+        path_params = {}
+        path_params['pattern_uid'] = pattern_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::WhitelistPattern.from_json resp.body
         
       end
 
@@ -4570,10 +4659,10 @@ module NovacastSDK
       end
 
       # 
-      # Get all whitelisted accounts in the access policy\n
+      # Get all whitelisted patterns in the user set\n
       # @param user_set_uid user set uid
-      # @return [WhitelistedUserList]
-      def get_whitelisted_users(user_set_uid)
+      # @return [WhitelistPatternList]
+      def get_whitelist_patterns(user_set_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
@@ -4607,7 +4696,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::WhitelistedUserList.from_json resp.body
+        NovacastSDK::EventV1::Models::WhitelistPatternList.from_json resp.body
         
       end
 
@@ -4942,53 +5031,6 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::QuestionSet.from_json resp.body
-        
-      end
-
-      # 
-      # Removes one or more accounts from the whitelist\n
-      # @param user_set_uid user set uid
-      # @param body request body
-      # @return [WhitelistedUserList]
-      def revoke_whitelisted_users(user_set_uid, body)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/user_sets/{user_set_uid}/whitelist/revoke', :POST
-
-        # path parameters
-        path_params = {}
-        path_params['user_set_uid'] = user_set_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-        op.body = body.to_json
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::WhitelistedUserList.from_json resp.body
         
       end
 
@@ -6278,53 +6320,6 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::SlideDeck.from_json resp.body
-        
-      end
-
-      # 
-      # Whitelist one or more users\n
-      # @param user_set_uid user set uid
-      # @param body request body
-      # @return [WhitelistedUserList]
-      def whitelist_users(user_set_uid, body)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "user_set_uid"' if user_set_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/user_sets/{user_set_uid}/whitelist', :POST
-
-        # path parameters
-        path_params = {}
-        path_params['user_set_uid'] = user_set_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-        op.body = body.to_json
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::WhitelistedUserList.from_json resp.body
         
       end
     end

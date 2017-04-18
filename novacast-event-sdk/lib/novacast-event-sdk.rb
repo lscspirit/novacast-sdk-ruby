@@ -352,11 +352,11 @@ require 'novacast-event-sdk/models/user_set_list'
 
 require 'novacast-event-sdk/models/user_set_update_request'
 
+require 'novacast-event-sdk/models/whitelist_pattern'
+
+require 'novacast-event-sdk/models/whitelist_pattern_list'
+
 require 'novacast-event-sdk/models/whitelist_request'
-
-require 'novacast-event-sdk/models/whitelisted_user'
-
-require 'novacast-event-sdk/models/whitelisted_user_list'
 
 
 # APIs
