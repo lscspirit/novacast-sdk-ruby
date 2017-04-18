@@ -4178,7 +4178,7 @@ module NovacastSDK
       end
 
       # 
-      # Get a list of users belongs to this user set\n
+      # Get a list of users belonging to this session&#39;s user set\n
       # @param session_uid the session uid
       # @param [Hash] opts the optional parameters
       # @option opts [Integer] :page page number in a paginated query

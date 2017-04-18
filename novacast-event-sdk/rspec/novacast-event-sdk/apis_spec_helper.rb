@@ -2392,6 +2392,23 @@ module NovacastSDK
           }
           
         }, 
+        get_session_enrollment_by_account: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_user_set: {
           
           :'user_set_uid' => {
@@ -3562,6 +3579,13 @@ module NovacastSDK
         get_runtime_by_path: {
           
           200 => 'PageRuntime',
+          
+          0 => 'Error'
+          
+        }, 
+        get_session_enrollment_by_account: {
+          
+          200 => 'Enrollment',
           
           0 => 'Error'
           
