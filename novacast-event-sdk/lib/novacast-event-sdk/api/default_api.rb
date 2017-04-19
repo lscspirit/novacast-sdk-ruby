@@ -1854,7 +1854,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "pattern_uid"' if pattern_uid.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/whitelisted_patterns/{pattern_uid}', :DELETE
+        op = NovacastSDK::Client::Operation.new '/whitelist_patterns/{pattern_uid}', :DELETE
 
         # path parameters
         path_params = {}

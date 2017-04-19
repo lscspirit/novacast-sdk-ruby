@@ -474,14 +474,14 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'DELETE /whitelisted_patterns/{pattern_uid}', type: :routing do
+          ::RSpec.describe 'DELETE /whitelist_patterns/{pattern_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
                 :'pattern_uid' => 'String'
               
               }
-              expect_path_routable(:DELETE => generate_path('/api/v1/whitelisted_patterns/{pattern_uid}', path_params))
+              expect_path_routable(:DELETE => generate_path('/api/v1/whitelist_patterns/{pattern_uid}', path_params))
             end
           end
         
