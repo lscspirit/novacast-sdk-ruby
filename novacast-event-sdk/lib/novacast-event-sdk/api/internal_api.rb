@@ -577,7 +577,7 @@ module NovacastSDK
       # Get enrollment for an account belonging to this session&#39;s user set\n
       # @param session_uid the session uid
       # @param account_uid the account uid
-      # @return [Enrollment]
+      # @return [EnrollmentExtended]
       def get_session_enrollment_by_account(session_uid, account_uid)
         # checks if all required parameters are set
         
@@ -615,7 +615,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::Enrollment.from_json resp.body
+        NovacastSDK::EventV1::Models::EnrollmentExtended.from_json resp.body
         
       end
 

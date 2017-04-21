@@ -3578,7 +3578,7 @@ module NovacastSDK
         }, 
         get_session_enrollment_by_account: {
           
-          200 => 'Enrollment',
+          200 => 'EnrollmentExtended',
           
           0 => 'Error'
           
