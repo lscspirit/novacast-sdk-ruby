@@ -74,6 +74,8 @@ require 'novacast-event-sdk/models/batch_track_attendance_request'
 
 require 'novacast-event-sdk/models/batch_track_attendance_response'
 
+require 'novacast-event-sdk/models/batch_track_attendance_response_entry'
+
 require 'novacast-event-sdk/models/bundle_content'
 
 require 'novacast-event-sdk/models/bundle_content_confirm_request'
@@ -97,6 +99,12 @@ require 'novacast-event-sdk/models/data_set_list'
 require 'novacast-event-sdk/models/data_set_partition'
 
 require 'novacast-event-sdk/models/data_set_partition_list'
+
+require 'novacast-event-sdk/models/dictionary_entry'
+
+require 'novacast-event-sdk/models/dictionary_filter_response'
+
+require 'novacast-event-sdk/models/dictionary_query_response'
 
 require 'novacast-event-sdk/models/enrollment'
 
@@ -331,6 +339,10 @@ require 'novacast-event-sdk/models/template_manifest'
 require 'novacast-event-sdk/models/template_manifest_list'
 
 require 'novacast-event-sdk/models/track_attendance_request'
+
+require 'novacast-event-sdk/models/translation_filter_options_response'
+
+require 'novacast-event-sdk/models/update_dictionary_definition_request'
 
 require 'novacast-event-sdk/models/user_feedback'
 

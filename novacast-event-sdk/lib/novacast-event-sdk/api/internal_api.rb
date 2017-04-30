@@ -359,8 +359,10 @@ module NovacastSDK
       # Get event content by path\n
       # @param event_uid event uid
       # @param content_path path to access the content
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :content_locale an optional parameter to specify the locale for the content
       # @return [EventContent]
-      def get_content_by_path(event_uid, content_path)
+      def get_content_by_path(event_uid, content_path, opts = {})
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
@@ -382,6 +384,7 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
+        query_params['content_locale'] = opts[:content_locale] if opts[:content_locale]
         op.query = query_params
 
         # http body (model)

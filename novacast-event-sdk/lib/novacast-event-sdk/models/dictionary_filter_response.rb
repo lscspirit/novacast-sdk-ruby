@@ -2,8 +2,8 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class BatchTrackAttendanceResponse < NovacastSDK::BaseModel
-        attr_accessor :responses
+      class DictionaryFilterResponse < NovacastSDK::BaseModel
+        attr_accessor :entries
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,8 +12,8 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # a collection of responses
-            :'responses' => { base_name: 'responses', type: 'Array[BatchTrackAttendanceResponseEntry]', required: false }
+            # 
+            :'entries' => { base_name: 'entries', type: 'Array[DictionaryEntry]', required: false }
             
           }
         end

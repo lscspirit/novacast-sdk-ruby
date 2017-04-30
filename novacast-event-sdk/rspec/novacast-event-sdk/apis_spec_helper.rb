@@ -596,6 +596,23 @@ module NovacastSDK
           }
           
         }, 
+        delete_event_page_content: {
+          
+          :'event_page_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'content_locale' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         delete_event_session: {
           
           :'session_uid' => {
@@ -821,6 +838,9 @@ module NovacastSDK
           }
           
         }, 
+        get_all_filter_options: {
+          
+        }, 
         get_archive_activities: {
           
           :'session_uid' => {
@@ -951,6 +971,23 @@ module NovacastSDK
           }
           
         }, 
+        get_dictionary_for_locale: {
+          
+          :'locale' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: true
+          },
+          
+          :'category' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
         get_enrollments: {
           
           :'user_set_uid' => {
@@ -1072,6 +1109,23 @@ module NovacastSDK
           },
           
           :'data_set_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          }
+          
+        }, 
+        get_filtered_dictionary: {
+          
+          :'locale' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
+          },
+          
+          :'category' => {
             type: 'String',
             path_param: false,
             body_param: false,
@@ -1883,6 +1937,16 @@ module NovacastSDK
           }
           
         }, 
+        update_dictionary_definition: {
+          
+          :'body' => {
+            type: 'UpdateDictionaryDefinitionRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         update_event: {
           
           :'event_uid' => {
@@ -2335,6 +2399,13 @@ module NovacastSDK
             path_param: true,
             body_param: false,
             required: true
+          },
+          
+          :'content_locale' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
           }
           
         }, 
@@ -2720,6 +2791,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        delete_event_page_content: {
+          
+          200 => 'PageContent',
+          
+          0 => 'Error'
+          
+        }, 
         delete_event_session: {
           
           200 => 'EventSession',
@@ -2855,6 +2933,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        get_all_filter_options: {
+          
+          200 => 'TranslationFilterOptionsResponse',
+          
+          0 => 'Error'
+          
+        }, 
         get_archive_activities: {
           
           200 => 'ArchiveActivityList',
@@ -2946,6 +3031,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        get_dictionary_for_locale: {
+          
+          200 => 'DictionaryQueryResponse',
+          
+          0 => 'Error'
+          
+        }, 
         get_enrollments: {
           
           200 => 'PaginatedEnrollmentList',
@@ -3012,6 +3104,13 @@ module NovacastSDK
         get_extended_forum_posts: {
           
           200 => 'ForumPostExtendedList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_filtered_dictionary: {
+          
+          200 => 'DictionaryFilterResponse',
           
           0 => 'Error'
           
@@ -3369,6 +3468,13 @@ module NovacastSDK
         update_channel: {
           
           200 => 'Channel',
+          
+          0 => 'Error'
+          
+        }, 
+        update_dictionary_definition: {
+          
+          200 => 'DictionaryEntry',
           
           0 => 'Error'
           

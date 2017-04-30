@@ -47,9 +47,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -100,9 +100,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -845,9 +845,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -1458,6 +1458,52 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::EventPage.from_json resp.body
+        
+      end
+
+      # 
+      # Delete the event page content for a specific locale\n
+      # @param event_page_uid event page uid
+      # @param content_locale locale of the page content
+      # @return [PageContent]
+      def delete_event_page_content(event_page_uid, content_locale)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_page_uid"' if event_page_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "content_locale"' if content_locale.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/event_pages/{event_page_uid}/contents/{content_locale}', :DELETE
+
+        # path parameters
+        path_params = {}
+        path_params['event_page_uid'] = event_page_uid
+        path_params['content_locale'] = content_locale
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::PageContent.from_json resp.body
         
       end
 
@@ -2282,6 +2328,44 @@ module NovacastSDK
       end
 
       # 
+      # Get all the possible filter options\n
+      # @return [TranslationFilterOptionsResponse]
+      def get_all_filter_options()
+        # checks if all required parameters are set
+        
+
+        op = NovacastSDK::Client::Operation.new '/translation_service/all_filter_options', :GET
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::TranslationFilterOptionsResponse.from_json resp.body
+        
+      end
+
+      # 
       # Get the archive activities for a given session\n
       # @param session_uid the session that this questionnaire is relevant to
       # @return [ArchiveActivityList]
@@ -2828,6 +2912,51 @@ module NovacastSDK
       end
 
       # 
+      # Get dictionary for a given locale\n
+      # @param locale the locale that we are looking for
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :category the category that we are interested in
+      # @return [DictionaryQueryResponse]
+      def get_dictionary_for_locale(locale, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "locale"' if locale.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/translation_service/get_dictionary', :GET
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['locale'] = locale
+        query_params['category'] = opts[:category] if opts[:category]
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::DictionaryQueryResponse.from_json resp.body
+        
+      end
+
+      # 
       # Get a list of users belongs to this user set\n
       # @param user_set_uid user set uid
       # @param [Hash] opts the optional parameters
@@ -3260,6 +3389,49 @@ module NovacastSDK
       end
 
       # 
+      # Get dictionary for a given set of filter options\n
+      # @param [Hash] opts the optional parameters
+      # @option opts [String] :locale the locale that we are looking for
+      # @option opts [String] :category the category that we are interested in
+      # @return [DictionaryFilterResponse]
+      def get_filtered_dictionary(opts = {})
+        # checks if all required parameters are set
+        
+
+        op = NovacastSDK::Client::Operation.new '/translation_service/filter_dictionary', :GET
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['locale'] = opts[:locale] if opts[:locale]
+        query_params['category'] = opts[:category] if opts[:category]
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::DictionaryFilterResponse.from_json resp.body
+        
+      end
+
+      # 
       # Get all likes for the forum post\n
       # @param forum_post_uid uid of the forum post
       # @return [ForumPostLikeList]
@@ -3332,9 +3504,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3418,9 +3590,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3683,9 +3855,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3727,9 +3899,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -4736,9 +4908,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -5572,6 +5744,49 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::Channel.from_json resp.body
+        
+      end
+
+      # 
+      # Update a given dictionary definition\n
+      # @param body request body
+      # @return [DictionaryEntry]
+      def update_dictionary_definition(body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/translation_service/update_definition', :PUT
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::DictionaryEntry.from_json resp.body
         
       end
 

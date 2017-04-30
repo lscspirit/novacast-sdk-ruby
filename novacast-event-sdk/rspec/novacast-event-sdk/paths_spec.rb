@@ -375,6 +375,19 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'DELETE /event_pages/{event_page_uid}/contents/{content_locale}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'event_page_uid' => 'String',
+              
+                :'content_locale' => 'String'
+              
+              }
+              expect_path_routable(:DELETE => generate_path('/api/v1/event_pages/{event_page_uid}/contents/{content_locale}', path_params))
+            end
+          end
+        
           ::RSpec.describe 'DELETE /sessions/{session_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -584,6 +597,15 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /translation_service/all_filter_options', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/translation_service/all_filter_options', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /sessions/{session_uid}/archive_session_activities', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -727,6 +749,15 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /translation_service/get_dictionary', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/translation_service/get_dictionary', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /user_sets/{user_set_uid}/enrollments', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -836,6 +867,15 @@ module NovacastSDK
               
               }
               expect_path_routable(:GET => generate_path('/api/v1/mods/forum_post/sessions/{session_uid}/extended', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /translation_service/filter_dictionary', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/translation_service/filter_dictionary', path_params))
             end
           end
         
@@ -1415,6 +1455,15 @@ module NovacastSDK
               
               }
               expect_path_routable(:PUT => generate_path('/api/v1/channels/{channel_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'PUT /translation_service/update_definition', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/translation_service/update_definition', path_params))
             end
           end
         
