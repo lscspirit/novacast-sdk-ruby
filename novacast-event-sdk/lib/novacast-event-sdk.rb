@@ -74,8 +74,6 @@ require 'novacast-event-sdk/models/batch_track_attendance_request'
 
 require 'novacast-event-sdk/models/batch_track_attendance_response'
 
-require 'novacast-event-sdk/models/batch_track_attendance_response_entry'
-
 require 'novacast-event-sdk/models/bundle_content'
 
 require 'novacast-event-sdk/models/bundle_content_confirm_request'

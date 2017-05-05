@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class BatchTrackAttendanceResponse < NovacastSDK::BaseModel
-        attr_accessor :responses
+        attr_accessor :count
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,8 +12,8 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # a collection of responses
-            :'responses' => { base_name: 'responses', type: 'Array[BatchTrackAttendanceResponseEntry]', required: false }
+            # the number of requests queued for processing
+            :'count' => { base_name: 'count', type: 'Integer', required: true }
             
           }
         end
