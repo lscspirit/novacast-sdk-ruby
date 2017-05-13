@@ -188,6 +188,8 @@ require 'novacast-event-sdk/models/module_runtime'
 
 require 'novacast-event-sdk/models/page_content'
 
+require 'novacast-event-sdk/models/page_content_delete_response'
+
 require 'novacast-event-sdk/models/page_content_list'
 
 require 'novacast-event-sdk/models/page_content_update_request'

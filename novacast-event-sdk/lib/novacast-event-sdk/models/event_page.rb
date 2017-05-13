@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventPage < NovacastSDK::BaseModel
-        attr_accessor :uid, :label, :page_config
+        attr_accessor :uid, :label, :page_config, :default_locale
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -19,7 +19,10 @@ module NovacastSDK
             :'label' => { base_name: 'label', type: 'String', required: true },
             
             # page configuration in json
-            :'page_config' => { base_name: 'page_config', type: 'String', required: false }
+            :'page_config' => { base_name: 'page_config', type: 'String', required: false },
+            
+            # the default locale being used for this page
+            :'default_locale' => { base_name: 'default_locale', type: 'String', required: true }
             
           }
         end

@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EventPageCreateRequest < NovacastSDK::BaseModel
-        attr_accessor :label
+        attr_accessor :label, :default_locale
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -13,7 +13,10 @@ module NovacastSDK
           {
             
             # label of the page
-            :'label' => { base_name: 'label', type: 'String', required: true }
+            :'label' => { base_name: 'label', type: 'String', required: true },
+            
+            # the default locale being used for this page
+            :'default_locale' => { base_name: 'default_locale', type: 'String', required: true }
             
           }
         end

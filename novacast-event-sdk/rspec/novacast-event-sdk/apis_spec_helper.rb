@@ -2793,7 +2793,7 @@ module NovacastSDK
         }, 
         delete_event_page_content: {
           
-          200 => 'PageContent',
+          200 => 'PageContentDeleteResponse',
           
           0 => 'Error'
           
