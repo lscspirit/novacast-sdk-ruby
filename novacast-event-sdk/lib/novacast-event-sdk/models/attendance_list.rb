@@ -15,8 +15,8 @@ module NovacastSDK
             # the attendance objects
             :'attendances' => { base_name: 'attendances', type: 'Array[Attendance]', required: true },
             
-            # optional account info for all accounts in the attendances
-            :'accounts' => { base_name: 'accounts', type: 'Array[Account]', required: false },
+            # a map of account_uid to display info for relevant accounts
+            :'accounts' => { base_name: 'accounts', type: 'Object', required: false },
             
             # session infos for all sessions for the given event
             :'sessions' => { base_name: 'sessions', type: 'Array[EventSession]', required: false },
