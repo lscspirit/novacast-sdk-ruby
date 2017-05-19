@@ -10,6 +10,7 @@ module NovacastSDK
       class InvalidPreviewToken < NovacastSDK::Errors::Base; DEFAULT_STATUS=400; end
       class PreviewTokenExpired < NovacastSDK::Errors::Base; DEFAULT_STATUS=400; end
       class NoModuleAccess < NovacastSDK::Errors::Base; DEFAULT_STATUS=400; end
+      class RecordLimitExceed < NovacastSDK::Errors::Base; DEFAULT_STATUS=400; end
     end
   end
 end

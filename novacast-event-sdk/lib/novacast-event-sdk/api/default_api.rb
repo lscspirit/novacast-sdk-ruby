@@ -47,9 +47,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -100,9 +100,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -845,9 +845,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -2960,9 +2960,10 @@ module NovacastSDK
       # Get a list of users belongs to this user set\n
       # @param user_set_uid user set uid
       # @param [Hash] opts the optional parameters
-      # @option opts [Integer] :page page number in a paginated query
-      # @option opts [Integer] :per_page 
-      # @return [PaginatedEnrollmentList]
+      # @option opts [Float] :max_records optional max records for return
+      # @option opts [DateTime] :from_date optional from date filter in ISO8601 format
+      # @option opts [DateTime] :to_date optional to date filter in ISO8601 format
+      # @return [EnrollmentListResponse]
       def get_enrollments(user_set_uid, opts = {})
         # checks if all required parameters are set
         
@@ -2982,8 +2983,9 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params['page'] = opts[:page] if opts[:page]
-        query_params['per_page'] = opts[:per_page] if opts[:per_page]
+        query_params['max_records'] = opts[:max_records] if opts[:max_records]
+        query_params['from_date'] = opts[:from_date] if opts[:from_date]
+        query_params['to_date'] = opts[:to_date] if opts[:to_date]
         op.query = query_params
 
         # http body (model)
@@ -2999,7 +3001,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::PaginatedEnrollmentList.from_json resp.body
+        NovacastSDK::EventV1::Models::EnrollmentListResponse.from_json resp.body
         
       end
 
@@ -3084,6 +3086,55 @@ module NovacastSDK
 
         
         NovacastSDK::EventV1::Models::ActivePathList.from_json resp.body
+        
+      end
+
+      # 
+      # Lookup event level attendances
+      # @param event_uid event uid
+      # @param [Hash] opts the optional parameters
+      # @option opts [Float] :max_records optional max records for return
+      # @option opts [DateTime] :from_date optional from date filter in ISO8601 format
+      # @option opts [DateTime] :to_date optional to date filter in ISO8601 format
+      # @return [AttendanceResponse]
+      def get_event_attendances(event_uid, opts = {})
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "event_uid"' if event_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/attendances/events/{event_uid}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['event_uid'] = event_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        query_params['max_records'] = opts[:max_records] if opts[:max_records]
+        query_params['from_date'] = opts[:from_date] if opts[:from_date]
+        query_params['to_date'] = opts[:to_date] if opts[:to_date]
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::AttendanceResponse.from_json resp.body
         
       end
 
@@ -3504,9 +3555,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3590,9 +3641,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3855,9 +3906,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3899,9 +3950,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -4390,13 +4441,13 @@ module NovacastSDK
       end
 
       # 
-      # Lookup event and session attendances by session uid
+      # Lookup session attendances by session uid, which also include corresponding event level attendances
       # @param session_uid the session uid
       # @param [Hash] opts the optional parameters
       # @option opts [Float] :max_records optional max records for return
-      # @option opts [String] :from_date optional from date filter in ISO8601 format
-      # @option opts [String] :to_date optional to date filter in ISO8601 format
-      # @return [AttendanceList]
+      # @option opts [DateTime] :from_date optional from date filter in ISO8601 format
+      # @option opts [DateTime] :to_date optional to date filter in ISO8601 format
+      # @return [SessionAttendanceResponse]
       def get_session_attendances(session_uid, opts = {})
         # checks if all required parameters are set
         
@@ -4434,7 +4485,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::AttendanceList.from_json resp.body
+        NovacastSDK::EventV1::Models::SessionAttendanceResponse.from_json resp.body
         
       end
 
@@ -4442,12 +4493,10 @@ module NovacastSDK
       # Get a list of users belonging to this session&#39;s user set\n
       # @param session_uid the session uid
       # @param [Hash] opts the optional parameters
-      # @option opts [Integer] :page page number in a paginated query
-      # @option opts [Integer] :per_page 
       # @option opts [Float] :max_records optional max records for return
-      # @option opts [String] :from_date optional from date filter in ISO8601 format
-      # @option opts [String] :to_date optional to date filter in ISO8601 format
-      # @return [FilteredEnrollmentList]
+      # @option opts [DateTime] :from_date optional from date filter in ISO8601 format
+      # @option opts [DateTime] :to_date optional to date filter in ISO8601 format
+      # @return [EnrollmentListResponse]
       def get_session_enrollments(session_uid, opts = {})
         # checks if all required parameters are set
         
@@ -4467,8 +4516,6 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params['page'] = opts[:page] if opts[:page]
-        query_params['per_page'] = opts[:per_page] if opts[:per_page]
         query_params['max_records'] = opts[:max_records] if opts[:max_records]
         query_params['from_date'] = opts[:from_date] if opts[:from_date]
         query_params['to_date'] = opts[:to_date] if opts[:to_date]
@@ -4487,7 +4534,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::FilteredEnrollmentList.from_json resp.body
+        NovacastSDK::EventV1::Models::EnrollmentListResponse.from_json resp.body
         
       end
 
@@ -4908,9 +4955,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 

@@ -2,8 +2,8 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class EnrollmentExtendedList < NovacastSDK::BaseModel
-        attr_accessor :enrollments, :accounts, :fields
+      class EnrollmentListResponse < NovacastSDK::BaseModel
+        attr_accessor :enrollments, :account_info, :fields
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,14 +12,14 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # collection of enrollments
+            # collection of EnrollmentExtended
             :'enrollments' => { base_name: 'enrollments', type: 'Array[EnrollmentExtended]', required: true },
             
             # a map of account_uid to display info for relevant accounts
-            :'accounts' => { base_name: 'accounts', type: 'Object', required: false },
+            :'account_info' => { base_name: 'account_info', type: 'Hash[String, String]', required: false },
             
             # 
-            :'fields' => { base_name: 'fields', type: 'Array[String]', required: false }
+            :'fields' => { base_name: 'fields', type: 'Array[EnrollmentField]', required: false }
             
           }
         end

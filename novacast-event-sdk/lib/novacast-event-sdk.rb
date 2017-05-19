@@ -68,7 +68,7 @@ require 'novacast-event-sdk/models/asset_bundle_info_list'
 
 require 'novacast-event-sdk/models/attendance'
 
-require 'novacast-event-sdk/models/attendance_list'
+require 'novacast-event-sdk/models/attendance_response'
 
 require 'novacast-event-sdk/models/batch_track_attendance_request'
 
@@ -108,11 +108,11 @@ require 'novacast-event-sdk/models/enrollment'
 
 require 'novacast-event-sdk/models/enrollment_extended'
 
-require 'novacast-event-sdk/models/enrollment_extended_list'
-
 require 'novacast-event-sdk/models/enrollment_field'
 
 require 'novacast-event-sdk/models/enrollment_field_value'
+
+require 'novacast-event-sdk/models/enrollment_list_response'
 
 require 'novacast-event-sdk/models/error'
 
@@ -156,8 +156,6 @@ require 'novacast-event-sdk/models/filter_access_request'
 
 require 'novacast-event-sdk/models/filter_access_response'
 
-require 'novacast-event-sdk/models/filtered_enrollment_list'
-
 require 'novacast-event-sdk/models/forum_post'
 
 require 'novacast-event-sdk/models/forum_post_create_request'
@@ -195,8 +193,6 @@ require 'novacast-event-sdk/models/page_content_list'
 require 'novacast-event-sdk/models/page_content_update_request'
 
 require 'novacast-event-sdk/models/page_runtime'
-
-require 'novacast-event-sdk/models/paginated_enrollment_list'
 
 require 'novacast-event-sdk/models/paging'
 
@@ -279,6 +275,8 @@ require 'novacast-event-sdk/models/questionnaire_status_control_request'
 require 'novacast-event-sdk/models/runtime_info'
 
 require 'novacast-event-sdk/models/session_attendance'
+
+require 'novacast-event-sdk/models/session_attendance_response'
 
 require 'novacast-event-sdk/models/session_module'
 

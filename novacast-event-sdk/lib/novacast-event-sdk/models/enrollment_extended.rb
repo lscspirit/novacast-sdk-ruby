@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class EnrollmentExtended < NovacastSDK::BaseModel
-        attr_accessor :account_type, :account_uid, :revoked, :fields
+        attr_accessor :account_type, :account_uid, :revoked, :fields, :enrolled_at
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -22,7 +22,10 @@ module NovacastSDK
             :'revoked' => { base_name: 'revoked', type: 'BOOLEAN', required: false },
             
             # field value map
-            :'fields' => { base_name: 'fields', type: 'Hash[String, String]', required: true }
+            :'fields' => { base_name: 'fields', type: 'Hash[String, String]', required: true },
+            
+            # time of the enrollment
+            :'enrolled_at' => { base_name: 'enrolled_at', type: 'DateTime', required: true }
             
           }
         end
