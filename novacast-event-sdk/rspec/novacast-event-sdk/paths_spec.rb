@@ -551,6 +551,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'POST /sessions/{session_uid}/account_display_infos', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/sessions/{session_uid}/account_display_infos', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /events/{event_uid}/active_paths/{path_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

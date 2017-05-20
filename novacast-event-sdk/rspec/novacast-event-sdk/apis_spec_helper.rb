@@ -791,6 +791,23 @@ module NovacastSDK
           }
           
         }, 
+        get_account_display_infos: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'accountDisplayInfoBody' => {
+            type: 'AccountDisplayInfoBody',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         get_active_path: {
           
           :'event_uid' => {
@@ -2925,6 +2942,13 @@ module NovacastSDK
         get_access_policy_list: {
           
           200 => 'AccessPolicyList',
+          
+          0 => 'Error'
+          
+        }, 
+        get_account_display_infos: {
+          
+          200 => 'Object',
           
           0 => 'Error'
           

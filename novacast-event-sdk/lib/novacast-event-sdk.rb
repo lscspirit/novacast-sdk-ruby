@@ -22,6 +22,8 @@ require 'novacast-event-sdk/models/account_creation_response'
 
 require 'novacast-event-sdk/models/account_creation_response_list'
 
+require 'novacast-event-sdk/models/account_display_info_body'
+
 require 'novacast-event-sdk/models/account_extended'
 
 require 'novacast-event-sdk/models/account_extended_list'
