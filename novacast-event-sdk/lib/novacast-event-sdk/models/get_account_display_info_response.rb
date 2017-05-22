@@ -2,8 +2,8 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class AttendanceResponse < NovacastSDK::BaseModel
-        attr_accessor :attendances, :account_info
+      class GetAccountDisplayInfoResponse < NovacastSDK::BaseModel
+        attr_accessor :account_info
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -11,9 +11,6 @@ module NovacastSDK
 
         def self.model_properties
           {
-            
-            # the attendance objects
-            :'attendances' => { base_name: 'attendances', type: 'Array[Attendance]', required: true },
             
             # map of account display info
             :'account_info' => { base_name: 'account_info', type: 'Hash[String, AccountDisplayInfo]', required: false }

@@ -18,8 +18,8 @@ module NovacastSDK
             # the event attendance list
             :'attendances' => { base_name: 'attendances', type: 'Array[Attendance]', required: false },
             
-            # a map of account_uid to display info for relevant accounts
-            :'account_info' => { base_name: 'account_info', type: 'Hash[String, String]', required: false },
+            # map of account display info
+            :'account_info' => { base_name: 'account_info', type: 'Hash[String, AccountDisplayInfo]', required: false },
             
             # 
             :'session' => { base_name: 'session', type: 'EventSession', required: false }

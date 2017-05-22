@@ -22,7 +22,7 @@ require 'novacast-event-sdk/models/account_creation_response'
 
 require 'novacast-event-sdk/models/account_creation_response_list'
 
-require 'novacast-event-sdk/models/account_display_info_body'
+require 'novacast-event-sdk/models/account_display_info'
 
 require 'novacast-event-sdk/models/account_extended'
 
@@ -175,6 +175,10 @@ require 'novacast-event-sdk/models/forum_post_like_request'
 require 'novacast-event-sdk/models/forum_post_list'
 
 require 'novacast-event-sdk/models/forum_post_update_request'
+
+require 'novacast-event-sdk/models/get_account_display_info_request'
+
+require 'novacast-event-sdk/models/get_account_display_info_response'
 
 require 'novacast-event-sdk/models/live_cast_page_change_request'
 

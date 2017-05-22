@@ -15,8 +15,8 @@ module NovacastSDK
             # collection of EnrollmentExtended
             :'enrollments' => { base_name: 'enrollments', type: 'Array[EnrollmentExtended]', required: true },
             
-            # a map of account_uid to display info for relevant accounts
-            :'account_info' => { base_name: 'account_info', type: 'Hash[String, String]', required: false },
+            # map of account display info
+            :'account_info' => { base_name: 'account_info', type: 'Hash[String, AccountDisplayInfo]', required: false },
             
             # 
             :'fields' => { base_name: 'fields', type: 'Array[EnrollmentField]', required: false }

@@ -800,8 +800,8 @@ module NovacastSDK
             required: true
           },
           
-          :'accountDisplayInfoBody' => {
-            type: 'AccountDisplayInfoBody',
+          :'body' => {
+            type: 'GetAccountDisplayInfoRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -2948,7 +2948,7 @@ module NovacastSDK
         }, 
         get_account_display_infos: {
           
-          200 => 'Object',
+          200 => 'GetAccountDisplayInfoResponse',
           
           0 => 'Error'
           

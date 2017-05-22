@@ -2,7 +2,7 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class AccountDisplayInfoBody < NovacastSDK::BaseModel
+      class GetAccountDisplayInfoRequest < NovacastSDK::BaseModel
         attr_accessor :account_uids
 
         def self.api_model_module
@@ -13,7 +13,7 @@ module NovacastSDK
           {
             
             # 
-            :'account_uids' => { base_name: 'account_uids', type: 'Array[String]', required: false }
+            :'account_uids' => { base_name: 'account_uids', type: 'Array[String]', required: true }
             
           }
         end
