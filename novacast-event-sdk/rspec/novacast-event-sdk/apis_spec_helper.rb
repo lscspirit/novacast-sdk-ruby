@@ -1426,14 +1426,14 @@ module NovacastSDK
           },
           
           :'from_date' => {
-            type: 'String',
+            type: 'DateTime',
             path_param: false,
             body_param: false,
             required: false
           },
           
           :'to_date' => {
-            type: 'String',
+            type: 'DateTime',
             path_param: false,
             body_param: false,
             required: false

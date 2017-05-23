@@ -4390,8 +4390,8 @@ module NovacastSDK
       # @param session_uid the session uid
       # @param [Hash] opts the optional parameters
       # @option opts [Float] :max_records optional max records for return
-      # @option opts [String] :from_date optional from date filter in ISO8601 format
-      # @option opts [String] :to_date optional to date filter in ISO8601 format
+      # @option opts [DateTime] :from_date optional from date filter
+      # @option opts [DateTime] :to_date optional to date filter
       # @return [QuestionSubmissionQueryResponse]
       def get_question_submissions(question_manifest_uid, session_uid, opts = {})
         # checks if all required parameters are set
