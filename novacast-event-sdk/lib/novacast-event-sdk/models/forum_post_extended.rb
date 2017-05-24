@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class ForumPostExtended < NovacastSDK::BaseModel
-        attr_accessor :uid, :account_uid, :content, :likes, :visible, :submitted_at, :account_info, :account_identifier, :approved, :hidden, :deleted, :starred
+        attr_accessor :uid, :account_uid, :content, :likes, :visible, :submitted_at, :account_info, :approved, :hidden, :deleted, :starred
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -30,11 +30,8 @@ module NovacastSDK
             # submission time
             :'submitted_at' => { base_name: 'submitted_at', type: 'DateTime', required: true },
             
-            # an object containing relevant infos for the submitter
-            :'account_info' => { base_name: 'account_info', type: 'Object', required: false },
-            
-            # a generally acceptable identifier for the submitter which is not the account uid
-            :'account_identifier' => { base_name: 'account_identifier', type: 'String', required: false },
+            # 
+            :'account_info' => { base_name: 'account_info', type: 'AccountDisplayInfo', required: false },
             
             # approved by moderator
             :'approved' => { base_name: 'approved', type: 'BOOLEAN', required: true },
