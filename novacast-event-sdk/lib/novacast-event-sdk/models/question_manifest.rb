@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class QuestionManifest < NovacastSDK::BaseModel
-        attr_accessor :uid, :rn, :label, :manifest_type, :config, :question_set
+        attr_accessor :uid, :rn, :label, :manifest_type, :config, :created_timestamp, :question_set
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -26,6 +26,9 @@ module NovacastSDK
             
             # extra config info for this manifest
             :'config' => { base_name: 'config', type: 'Object', required: false },
+            
+            # unix timestamp value for the created datetime
+            :'created_timestamp' => { base_name: 'created_timestamp', type: 'Integer', required: false },
             
             # 
             :'question_set' => { base_name: 'question_set', type: 'QuestionSetInfo', required: true }
