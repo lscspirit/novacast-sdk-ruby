@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class ClientRequestInfo < NovacastSDK::BaseModel
-        attr_accessor :method, :protocol, :remote_ip, :referrer
+        attr_accessor :method, :protocol, :remote_ip, :referrer, :origin
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -22,7 +22,10 @@ module NovacastSDK
             :'remote_ip' => { base_name: 'remote_ip', type: 'String', required: true },
             
             # request referrer
-            :'referrer' => { base_name: 'referrer', type: 'String', required: false }
+            :'referrer' => { base_name: 'referrer', type: 'String', required: false },
+            
+            # request origin
+            :'origin' => { base_name: 'origin', type: 'String', required: false }
             
           }
         end
