@@ -32,16 +32,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = role.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::RoleResourcePermissions.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Gets the &#x60;User&#x60; object for a list of accounts\n
+      # Gets the `User` object for a list of accounts\n
       # @param body request body
       # @return [AccountList]
       def batch_get_account(body)
@@ -65,17 +70,23 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'appSecret', key: 'app_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccountList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Assign and delete account role in batch\n
@@ -106,16 +117,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = body.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::BatchUpdateRolesResponse.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Create a new &#x60;AccessPermission&#x60;\n
+      # Create a new `AccessPermission`\n
       # @param permission Details of the permission
       # @return [AccessPermission]
       def create_access_permission(permission)
@@ -139,16 +155,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = permission.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessPermission.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Create a new &#x60;AccessResource&#x60;\n
+      # Create a new `AccessResource`\n
       # @param resource Details of the resource
       # @return [AccessResource]
       def create_access_resource(resource)
@@ -172,16 +193,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = resource.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessResource.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Creates a new &#x60;Account&#x60;\n
+      # Creates a new `Account`\n
       # @param info Account Information
       # @return [Account]
       def create_account(info)
@@ -205,16 +231,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = info.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::Account.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Create a new &#x60;AccessUserRole&#x60;\n
+      # Create a new `AccessUserRole`\n
       # @param account_uid uid of the user account
       # @param user_role User role
       # @return [AccessUserRole]
@@ -242,16 +273,59 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = user_role.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessUserRole.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Create a new &#x60;Domain&#x60;\n
+      # Create a new authentication provider
+      # @param body request body
+      # @return [AuthProvider]
+      def create_auth_provider(body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/auth_providers', :POST
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::IdentityV1::Models::AuthProvider.from_json resp.body
+        
+      end
+
+      # 
+      # Create a new `Domain`\n
       # @param domain domain details
       # @return [Domain]
       def create_domain(domain)
@@ -275,16 +349,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = domain.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::Domain.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Create a new &#x60;AccessRole&#x60;\n
+      # Create a new `AccessRole`\n
       # @param role_set_id AccessRoleSet id
       # @param role Access role details
       # @return [AccessRole]
@@ -312,16 +391,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = role.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessRole.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Create a new &#x60;AccessRolePermission&#x60;\n
+      # Create a new `AccessRolePermission`\n
       # @param role_id AccessRole id
       # @param role_permission role permission
       # @return [AccessRolePermission]
@@ -349,16 +433,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = role_permission.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessRolePermission.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Create a new &#x60;RoleSet&#x60;\n
+      # Create a new `RoleSet`\n
       # @param role_set RoleSet Details
       # @return [RoleSet]
       def create_role_set(role_set)
@@ -382,16 +471,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = role_set.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::RoleSet.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Delete an &#x60;AccessPermission&#x60;\n
+      # Delete an `AccessPermission`\n
       # @param permission_id AccessPermission id
       # @return [AccessPermission]
       def delete_access_permission(permission_id)
@@ -416,15 +510,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessPermission.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Delete an &#x60;AccessResource&#x60;\n
+      # Delete an `AccessResource`\n
       # @param resource_id AccessResource id
       # @return [AccessResource]
       def delete_access_resource(resource_id)
@@ -449,15 +547,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessResource.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Delete an &#x60;AccessRole&#x60;\n
+      # Delete an `AccessRole`\n
       # @param role_id AccessRole id
       # @return [AccessRole]
       def delete_access_role(role_id)
@@ -482,15 +584,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessRole.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Delete a &#x60;AccessRolePermission&#x60;\n
+      # Delete a `AccessRolePermission`\n
       # @param role_permission_id AccessRolePermission id
       # @return [AccessRolePermission]
       def delete_role_permission(role_permission_id)
@@ -515,15 +621,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessRolePermission.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Delete an &#x60;AccessUserRole&#x60;\n
+      # Delete an `AccessUserRole`\n
       # @param user_role_id AccessUserRole id
       # @return [AccessUserRole]
       def delete_user_role(user_role_id)
@@ -548,15 +658,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessUserRole.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Gets the &#x60;User&#x60; object for the account\n
+      # Gets the `User` object for the account\n
       # @param account_uid Account UID
       # @return [Account]
       def get_account(account_uid)
@@ -581,16 +695,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'appSecret', key: 'app_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::Account.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all roles on resources, along with corresponding permissions, associated with this account\n
@@ -621,15 +740,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::RoleResourcePermissionsList.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Get all &#x60;AccessUserRole&#x60;\n
+      # Get all `AccessUserRole`\n
       # @param account_uid uid of the user account
       # @return [AccessUserRoleList]
       def get_account_user_roles(account_uid)
@@ -654,12 +777,16 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessUserRoleList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get an auth provider\n
@@ -687,12 +814,16 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AuthProvider.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get an auth provider by the name\n
@@ -720,15 +851,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AuthProvider.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Get a &#x60;Domain&#x60;\n
+      # Get a `Domain`\n
       # @param domain_id domain id
       # @return [Domain]
       def get_domain(domain_id)
@@ -753,12 +888,16 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::Domain.from_json resp.body
-              end
+        
+      end
 
       # 
       # Get all accounts, along with their roles, for a domain\n
@@ -786,15 +925,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccountExtendedList.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Get a &#x60;Domain&#x60; using the domain key\n
+      # Get a `Domain` using the domain key\n
       # @param domain_key Domain key
       # @return [Domain]
       def get_domain_by_key(domain_key)
@@ -819,15 +962,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::Domain.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Get &#x60;AccessRolePermission&#x60;\n
+      # Get `AccessRolePermission`\n
       # @param role_id AccessRole id
       # @return [AccessRolePermissionList]
       def get_role_permissions(role_id)
@@ -852,15 +999,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessRolePermissionList.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Get a &#x60;RoleSet&#x60;\n
+      # Get a `RoleSet`\n
       # @param role_set_id RoleSet Id
       # @return [RoleSet]
       def get_role_set(role_set_id)
@@ -885,15 +1036,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::RoleSet.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Get a &#x60;RoleSet&#x60; using the role set key\n
+      # Get a `RoleSet` using the role set key\n
       # @param role_set_key RoleSet key
       # @return [RoleSet]
       def get_role_set_by_key(role_set_key)
@@ -918,15 +1073,19 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::RoleSet.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Get all &#x60;AccessRole&#x60; in the &#x60;AccessRoleSet&#x60;\n
+      # Get all `AccessRole` in the `AccessRoleSet`\n
       # @param role_set_id AccessRoleSet id
       # @return [AccessRoleList]
       def get_roles(role_set_id)
@@ -951,12 +1110,16 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessRoleList.from_json resp.body
-              end
+        
+      end
 
       # 
       # Remove a role from an account\n
@@ -983,13 +1146,18 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = role.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::RoleResourcePermissions.from_json resp.body
-              end
+        
+      end
 
       # 
       # Sign in\n
@@ -1016,13 +1184,18 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = info.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::LoginResponse.from_json resp.body
-              end
+        
+      end
 
       # 
       # Sign out\n
@@ -1046,19 +1219,24 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'accessKey', key: 'access_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::LogoutResponse.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Update an &#x60;AccessPermission&#x60;\n
+      # Update an `AccessPermission`\n
       # @param permission_id AccessPermission id
       # @param permission Details of the permission
       # @return [AccessPermission]
@@ -1086,16 +1264,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = permission.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessPermission.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Update an &#x60;AccessResource&#x60;\n
+      # Update an `AccessResource`\n
       # @param resource_id AccessResource id
       # @param resource Name of the resource
       # @return [AccessResource]
@@ -1123,16 +1306,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = resource.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessResource.from_json resp.body
-              end
+        
+      end
 
       # 
-      # Update an &#x60;AccessRole&#x60;\n
+      # Update an `AccessRole`\n
       # @param role_id AccessRole id
       # @param role Access role details
       # @return [AccessRole]
@@ -1160,13 +1348,18 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
         op.body = role.to_json
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::AccessRole.from_json resp.body
-              end
+        
+      end
 
       # 
       # Validate whether the Account has a particular permission on a resource\n
@@ -1202,12 +1395,16 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::InlineResponse200.from_json resp.body
-              end
+        
+      end
 
       # 
       # Validates an access token\n
@@ -1235,16 +1432,21 @@ module NovacastSDK
         op.query = query_params
 
         # http body (model)
+        
 
+        
         # authentication requirement
         op.auths = [
           { name: 'appSecret', key: 'app_token', in_query: true }
         ]
+        
 
         resp = call_api op
 
+        
         NovacastSDK::IdentityV1::Models::Account.from_json resp.body
-              end
+        
+      end
     end
   end
 end

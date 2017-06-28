@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # valid or not
             :'valid' => { base_name: 'valid', type: 'BOOLEAN', required: true }
+            
           }
         end
       end

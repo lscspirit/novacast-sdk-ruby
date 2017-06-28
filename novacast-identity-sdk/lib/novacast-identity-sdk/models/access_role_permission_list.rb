@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # 
             :'items' => { base_name: 'items', type: 'Array[AccessRolePermission]', required: false }
+            
           }
         end
       end

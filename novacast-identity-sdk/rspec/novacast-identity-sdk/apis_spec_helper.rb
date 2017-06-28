@@ -75,346 +75,437 @@ module NovacastSDK
     class DefaultApiRequests < ApiRequests
       REQUESTS = { 
         assign_account_role: {
+          
           :'role' => {
             type: 'AssignRoleRequest',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         batch_get_account: {
+          
           :'body' => {
             type: 'AccountBatchRequest',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         batch_update_account_roles: {
+          
           :'account_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           },
+          
           :'body' => {
             type: 'BatchUpdateRolesRequest',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         create_access_permission: {
+          
           :'permission' => {
             type: 'AccessPermissionInfo',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         create_access_resource: {
+          
           :'resource' => {
             type: 'AccessResourceInfo',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         create_account: {
+          
           :'info' => {
             type: 'AccountRequest',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         create_account_user_role: {
+          
           :'account_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           },
+          
           :'user_role' => {
             type: 'AccessRoleResource',
             path_param: false,
             body_param: true,
             required: true
           }
+          
+        }, 
+        create_auth_provider: {
+          
+          :'body' => {
+            type: 'AuthProviderRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
         }, 
         create_domain: {
+          
           :'domain' => {
             type: 'DomainInfo',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         create_role: {
+          
           :'role_set_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           },
+          
           :'role' => {
             type: 'AccessRoleInfo',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         create_role_permission: {
+          
           :'role_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           },
+          
           :'role_permission' => {
             type: 'RolePermission',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         create_role_set: {
+          
           :'role_set' => {
             type: 'RoleSetInfo',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         delete_access_permission: {
+          
           :'permission_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         delete_access_resource: {
+          
           :'resource_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         delete_access_role: {
+          
           :'role_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         delete_role_permission: {
+          
           :'role_permission_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         delete_user_role: {
+          
           :'user_role_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_account: {
+          
           :'account_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_account_permissions: {
+          
           :'account_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           },
+          
           :'resources' => {
             type: 'Array[String]',
             path_param: false,
             body_param: false,
             required: false
           }
+          
         }, 
         get_account_user_roles: {
+          
           :'account_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_auth_provider: {
+          
           :'auth_provider_id' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_auth_provider_by_name: {
+          
           :'auth_provider_name' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_domain: {
+          
           :'domain_id' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_domain_accounts: {
+          
           :'domain_id' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_domain_by_key: {
+          
           :'domain_key' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_role_permissions: {
+          
           :'role_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_role_set: {
+          
           :'role_set_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_role_set_by_key: {
+          
           :'role_set_key' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         get_roles: {
+          
           :'role_set_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         }, 
         remove_account_role: {
+          
           :'role' => {
             type: 'DeleteRoleRequest',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         sign_in: {
+          
           :'info' => {
             type: 'AccountRequest',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         sign_out: {
+          
         }, 
         update_access_permission: {
+          
           :'permission_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           },
+          
           :'permission' => {
             type: 'AccessPermissionInfo',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         update_access_resource: {
+          
           :'resource_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           },
+          
           :'resource' => {
             type: 'AccessResourceInfo',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         update_role: {
+          
           :'role_id' => {
             type: 'Integer',
             path_param: true,
             body_param: false,
             required: true
           },
+          
           :'role' => {
             type: 'AccessRoleInfo',
             path_param: false,
             body_param: true,
             required: true
           }
+          
         }, 
         validate_account_permission: {
+          
           :'account_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           },
+          
           :'resource' => {
             type: 'String',
             path_param: false,
             body_param: false,
             required: true
           },
+          
           :'permission' => {
             type: 'String',
             path_param: false,
             body_param: false,
             required: true
           }
+          
         }, 
         validate_token: {
+          
           :'access_token' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           }
+          
         } 
       }
     end
@@ -430,7 +521,7 @@ module NovacastSDK
       def self.compare(resp_hash, api, status_code)
         resp_type = find_response_type api, status_code
 
-        if resp_type.blank?
+        if resp_type.nil?
           # if there is no response type, then the response body is expected to be empty
           # if the body is not empty then return :invalid_type
           resp_hash.nil? ? nil : :invalid_type
@@ -471,7 +562,7 @@ module NovacastSDK
         # raise error if the response type (or a fallback) is not defined for this status code
         raise ArgumentError, "Status code '#{status_code}' response definition not found for '#{api}'" unless (resp_type = definition[status_code] || definition[0])
 
-        resp_type
+        resp_type.empty? ? nil : resp_type
       end
     end
 
@@ -479,151 +570,269 @@ module NovacastSDK
     class DefaultApiResponses < ApiResponses
       RESPONSES = { 
         assign_account_role: {
+          
           200 => 'RoleResourcePermissions',
+          
           201 => 'RoleResourcePermissions',
+          
           0 => 'Error'
+          
         }, 
         batch_get_account: {
+          
           200 => 'AccountList',
+          
           0 => 'Error'
+          
         }, 
         batch_update_account_roles: {
+          
           200 => 'BatchUpdateRolesResponse',
+          
           0 => 'Error'
+          
         }, 
         create_access_permission: {
+          
           201 => 'AccessPermission',
+          
           0 => 'Error'
+          
         }, 
         create_access_resource: {
+          
           201 => 'AccessResource',
+          
           0 => 'Error'
+          
         }, 
         create_account: {
+          
           201 => 'Account',
+          
           0 => 'Error'
+          
         }, 
         create_account_user_role: {
+          
           200 => 'AccessUserRole',
+          
           201 => 'AccessUserRole',
+          
           0 => 'Error'
+          
+        }, 
+        create_auth_provider: {
+          
+          201 => 'AuthProvider',
+          
+          0 => 'Error'
+          
         }, 
         create_domain: {
+          
           201 => 'Domain',
+          
           0 => 'Error'
+          
         }, 
         create_role: {
+          
           201 => 'AccessRole',
+          
           0 => 'Error'
+          
         }, 
         create_role_permission: {
+          
           200 => 'AccessRolePermission',
+          
           201 => 'AccessRolePermission',
+          
           0 => 'Error'
+          
         }, 
         create_role_set: {
+          
           201 => 'RoleSet',
+          
           0 => 'Error'
+          
         }, 
         delete_access_permission: {
+          
           200 => 'AccessPermission',
+          
           0 => 'Error'
+          
         }, 
         delete_access_resource: {
+          
           200 => 'AccessResource',
+          
           0 => 'Error'
+          
         }, 
         delete_access_role: {
+          
           200 => 'AccessRole',
+          
           0 => 'Error'
+          
         }, 
         delete_role_permission: {
+          
           200 => 'AccessRolePermission',
+          
           0 => 'Error'
+          
         }, 
         delete_user_role: {
+          
           200 => 'AccessUserRole',
+          
           0 => 'Error'
+          
         }, 
         get_account: {
+          
           200 => 'Account',
+          
           0 => 'Error'
+          
         }, 
         get_account_permissions: {
+          
           200 => 'RoleResourcePermissionsList',
+          
           0 => 'Error'
+          
         }, 
         get_account_user_roles: {
+          
           200 => 'AccessUserRoleList',
+          
           0 => 'Error'
+          
         }, 
         get_auth_provider: {
+          
           200 => 'AuthProvider',
+          
           0 => 'Error'
+          
         }, 
         get_auth_provider_by_name: {
+          
           200 => 'AuthProvider',
+          
           0 => 'Error'
+          
         }, 
         get_domain: {
+          
           200 => 'Domain',
+          
           0 => 'Error'
+          
         }, 
         get_domain_accounts: {
+          
           200 => 'AccountExtendedList',
+          
           0 => 'Error'
+          
         }, 
         get_domain_by_key: {
+          
           200 => 'Domain',
+          
           0 => 'Error'
+          
         }, 
         get_role_permissions: {
+          
           200 => 'AccessRolePermissionList',
+          
           0 => 'Error'
+          
         }, 
         get_role_set: {
+          
           200 => 'RoleSet',
+          
           0 => 'Error'
+          
         }, 
         get_role_set_by_key: {
+          
           200 => 'RoleSet',
+          
           0 => 'Error'
+          
         }, 
         get_roles: {
+          
           200 => 'AccessRoleList',
+          
           0 => 'Error'
+          
         }, 
         remove_account_role: {
+          
           200 => 'RoleResourcePermissions',
+          
           0 => 'Error'
+          
         }, 
         sign_in: {
+          
           200 => 'LoginResponse',
+          
           0 => 'Error'
+          
         }, 
         sign_out: {
+          
           200 => 'LogoutResponse',
+          
           0 => 'Error'
+          
         }, 
         update_access_permission: {
+          
           200 => 'AccessPermission',
+          
           0 => 'Error'
+          
         }, 
         update_access_resource: {
+          
           200 => 'AccessResource',
+          
           0 => 'Error'
+          
         }, 
         update_role: {
+          
           200 => 'AccessRole',
+          
           0 => 'Error'
+          
         }, 
         validate_account_permission: {
+          
           200 => 'InlineResponse200',
+          
           0 => 'Error'
+          
         }, 
         validate_token: {
+          
           200 => 'Account',
+          
           0 => 'Error'
+          
         } 
       }
     end
@@ -649,7 +858,7 @@ end
 
 RSpec::Matchers.define :be_api_response do |api, status|
   match do |response_body|
-    @actual = response_body.blank? ? nil : JSON.parse(response_body)
+    @actual = (response_body.nil? || response_body.empty?) ? nil : JSON.parse(response_body)
     @diff   = NovacastSDK::IdentityV1::ApiResponses.compare @actual, api, status
     @diff.nil?
   end

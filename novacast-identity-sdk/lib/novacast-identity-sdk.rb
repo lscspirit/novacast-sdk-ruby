@@ -44,6 +44,8 @@ require 'novacast-identity-sdk/models/assign_role_request'
 
 require 'novacast-identity-sdk/models/auth_provider'
 
+require 'novacast-identity-sdk/models/auth_provider_request'
+
 require 'novacast-identity-sdk/models/batch_update_roles_request'
 
 require 'novacast-identity-sdk/models/batch_update_roles_response'

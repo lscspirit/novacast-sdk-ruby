@@ -11,12 +11,16 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # key of the role set
             :'role_set' => { base_name: 'role_set', type: 'String', required: true },
+            
             # name of the role
             :'role' => { base_name: 'role', type: 'String', required: true },
+            
             # name of the resource
             :'resource' => { base_name: 'resource', type: 'String', required: true }
+            
           }
         end
       end

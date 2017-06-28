@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # access permission id
             :'permission_id' => { base_name: 'permission_id', type: 'Integer', required: false }
+            
           }
         end
       end

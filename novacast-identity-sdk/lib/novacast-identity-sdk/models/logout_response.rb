@@ -11,10 +11,13 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # access token
             :'token' => { base_name: 'token', type: 'String', required: false },
+            
             # revocation time
             :'revoked_at' => { base_name: 'revoked_at', type: 'DateTime', required: false }
+            
           }
         end
       end

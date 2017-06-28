@@ -11,14 +11,19 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # account unique id (uid)
             :'uid' => { base_name: 'uid', type: 'String', required: true },
+            
             # account identifier (username or email)
             :'identifier' => { base_name: 'identifier', type: 'String', required: true },
+            
             # domain id
             :'domain_id' => { base_name: 'domain_id', type: 'Integer', required: true },
+            
             # authentication provider id
             :'provider_id' => { base_name: 'provider_id', type: 'Integer', required: true }
+            
           }
         end
       end

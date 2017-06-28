@@ -11,8 +11,10 @@ module NovacastSDK
 
         def self.model_properties
           {
+            
             # list of role-resource-permissions mappings
             :'items' => { base_name: 'items', type: 'Array[RoleResourcePermissions]', required: true }
+            
           }
         end
       end
