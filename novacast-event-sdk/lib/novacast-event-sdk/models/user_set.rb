@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class UserSet < NovacastSDK::BaseModel
-        attr_accessor :uid, :rn, :label, :channel_uid, :ch_acct_only, :whitelisted_only, :full_enrollment, :passcode
+        attr_accessor :uid, :rn, :label, :channel_uid, :ch_acct_only, :whitelisted_only, :full_enrollment, :passcode, :auth_provider
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -34,7 +34,10 @@ module NovacastSDK
             :'full_enrollment' => { base_name: 'full_enrollment', type: 'BOOLEAN', required: true },
             
             # enrollment passcode
-            :'passcode' => { base_name: 'passcode', type: 'String', required: false }
+            :'passcode' => { base_name: 'passcode', type: 'String', required: false },
+            
+            # name of the authentication provider
+            :'auth_provider' => { base_name: 'auth_provider', type: 'String', required: false }
             
           }
         end
