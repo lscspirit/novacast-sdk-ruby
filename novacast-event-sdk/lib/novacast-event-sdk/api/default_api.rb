@@ -6081,7 +6081,7 @@ module NovacastSDK
       # (LiveCast) Change slide page\nThis will also publish a LiveCastSlidePage command to the session pub sub channel\n
       # @param session_uid session uid
       # @param body request body
-      # @return [LiveCastState]
+      # @return [LiveCastPageChangeResponse]
       def update_live_cast_page(session_uid, body)
         # checks if all required parameters are set
         
@@ -6120,7 +6120,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::LiveCastState.from_json resp.body
+        NovacastSDK::EventV1::Models::LiveCastPageChangeResponse.from_json resp.body
         
       end
 

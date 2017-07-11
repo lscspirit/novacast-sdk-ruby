@@ -182,6 +182,8 @@ require 'novacast-event-sdk/models/get_account_display_info_response'
 
 require 'novacast-event-sdk/models/live_cast_page_change_request'
 
+require 'novacast-event-sdk/models/live_cast_page_change_response'
+
 require 'novacast-event-sdk/models/live_cast_slide_page'
 
 require 'novacast-event-sdk/models/live_cast_state'

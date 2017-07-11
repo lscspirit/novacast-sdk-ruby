@@ -3554,7 +3554,7 @@ module NovacastSDK
         }, 
         update_live_cast_page: {
           
-          200 => 'LiveCastState',
+          200 => 'LiveCastPageChangeResponse',
           
           0 => 'Error'
           
