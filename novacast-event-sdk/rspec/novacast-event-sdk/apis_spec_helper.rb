@@ -2165,6 +2165,23 @@ module NovacastSDK
           }
           
         }, 
+        update_slide: {
+          
+          :'slide_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'SlideUpdateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         update_slide_deck: {
           
           :'slide_deck_uid' => {
@@ -3590,6 +3607,13 @@ module NovacastSDK
         update_session_modules: {
           
           200 => 'SessionModuleList',
+          
+          0 => 'Error'
+          
+        }, 
+        update_slide: {
+          
+          200 => 'Slide',
           
           0 => 'Error'
           

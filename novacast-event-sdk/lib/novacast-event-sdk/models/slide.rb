@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class Slide < NovacastSDK::BaseModel
-        attr_accessor :uid, :rn, :page, :url, :thumb_url
+        attr_accessor :uid, :rn, :page, :url, :thumb_url, :title
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -25,7 +25,10 @@ module NovacastSDK
             :'url' => { base_name: 'url', type: 'String', required: true },
             
             # url of the slide thumbnail file
-            :'thumb_url' => { base_name: 'thumb_url', type: 'String', required: false }
+            :'thumb_url' => { base_name: 'thumb_url', type: 'String', required: false },
+            
+            # title of the slide
+            :'title' => { base_name: 'title', type: 'String', required: false }
             
           }
         end

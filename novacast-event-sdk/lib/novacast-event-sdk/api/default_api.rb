@@ -6360,6 +6360,53 @@ module NovacastSDK
       end
 
       # 
+      # Update slide properties\n
+      # @param slide_uid slide uid
+      # @param body request body
+      # @return [Slide]
+      def update_slide(slide_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "slide_uid"' if slide_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/slides/{slide_uid}', :PUT
+
+        # path parameters
+        path_params = {}
+        path_params['slide_uid'] = slide_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::Slide.from_json resp.body
+        
+      end
+
+      # 
       # Update the slide deck\n
       # @param slide_deck_uid slide deck uid
       # @param body request body

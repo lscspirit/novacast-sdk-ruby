@@ -320,6 +320,8 @@ require 'novacast-event-sdk/models/slide_delete_request'
 
 require 'novacast-event-sdk/models/slide_order_request'
 
+require 'novacast-event-sdk/models/slide_update_request'
+
 require 'novacast-event-sdk/models/stream_medium'
 
 require 'novacast-event-sdk/models/stream_medium_create_request'

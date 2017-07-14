@@ -1599,6 +1599,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'PUT /slides/{slide_uid}', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'slide_uid' => 'String'
+              
+              }
+              expect_path_routable(:PUT => generate_path('/api/v1/slides/{slide_uid}', path_params))
+            end
+          end
+        
           ::RSpec.describe 'PUT /slide_decks/{slide_deck_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
