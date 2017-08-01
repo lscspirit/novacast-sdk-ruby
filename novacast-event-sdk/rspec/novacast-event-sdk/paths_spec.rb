@@ -597,14 +597,14 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'GET /sessions/{session_uid}/event_session_command/get_active_commands', type: :routing do
+          ::RSpec.describe 'GET /sessions/{session_uid}/event_session_commands/active', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
               
                 :'session_uid' => 'String'
               
               }
-              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/event_session_command/get_active_commands', path_params))
+              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/event_session_commands/active', path_params))
             end
           end
         
@@ -1144,6 +1144,17 @@ module NovacastSDK
               
               }
               expect_path_routable(:GET => generate_path('/api/v1/attendances/sessions/{session_uid}', path_params))
+            end
+          end
+        
+          ::RSpec.describe 'GET /sessions/{session_uid}/event_session_commands', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/sessions/{session_uid}/event_session_commands', path_params))
             end
           end
         

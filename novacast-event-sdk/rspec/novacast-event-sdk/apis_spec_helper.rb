@@ -1485,6 +1485,16 @@ module NovacastSDK
           }
           
         }, 
+        get_session_commands: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_session_enrollments: {
           
           :'session_uid' => {
@@ -3327,6 +3337,13 @@ module NovacastSDK
         get_session_attendances: {
           
           200 => 'SessionAttendanceResponse',
+          
+          0 => 'Error'
+          
+        }, 
+        get_session_commands: {
+          
+          200 => 'EventSessionCommandList',
           
           0 => 'Error'
           
