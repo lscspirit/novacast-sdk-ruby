@@ -47,9 +47,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -100,9 +100,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -845,9 +845,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3602,9 +3602,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3646,9 +3646,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3911,9 +3911,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -3955,9 +3955,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 
@@ -4399,16 +4399,13 @@ module NovacastSDK
       # Get the questionnaire status\n
       # @param session_uid the session that this questionnaire is relevant to
       # @param question_manifest_uid quesiton manifest associated uid
-      # @param question_set_uid the question set that is specific for this questionnaire
       # @return [QuestionnaireStatus]
-      def get_questionnaire_status(session_uid, question_manifest_uid, question_set_uid)
+      def get_questionnaire_status(session_uid, question_manifest_uid)
         # checks if all required parameters are set
         
         raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "question_set_uid"' if question_set_uid.nil?
         
 
         op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/questionnaire/{question_manifest_uid}', :GET
@@ -4425,7 +4422,6 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
-        query_params['question_set_uid'] = question_set_uid
         op.query = query_params
 
         # http body (model)
@@ -5002,9 +4998,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
+          { name: 'previewToken', key: 'preview_token', in_query: true },
         
-          { name: 'previewToken', key: 'preview_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true }
         ]
         
 

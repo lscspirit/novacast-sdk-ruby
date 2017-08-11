@@ -1444,13 +1444,6 @@ module NovacastSDK
             path_param: true,
             body_param: false,
             required: true
-          },
-          
-          :'question_set_uid' => {
-            type: 'String',
-            path_param: false,
-            body_param: false,
-            required: true
           }
           
         }, 
