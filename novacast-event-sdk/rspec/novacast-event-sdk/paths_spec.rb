@@ -1683,6 +1683,15 @@ module NovacastSDK
       class InternalApiPaths
         def self.specs
         
+          ::RSpec.describe 'POST /channels/batch_get', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/channels/batch_get', path_params))
+            end
+          end
+        
           ::RSpec.describe 'POST /attendances/batch', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

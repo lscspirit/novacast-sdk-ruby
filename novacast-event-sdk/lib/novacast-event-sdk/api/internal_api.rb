@@ -8,6 +8,49 @@ module NovacastSDK
 
 
       # 
+      # Get a list of channels by uids\n
+      # @param body request body
+      # @return [ChannelList]
+      def batch_get_channel(body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/channels/batch_get', :POST
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ChannelList.from_json resp.body
+        
+      end
+
+      # 
       # a batch call to track multiple attendances by their access tokens\n
       # @param body request body
       # @return [BatchTrackAttendanceResponse]

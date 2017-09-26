@@ -2275,6 +2275,16 @@ module NovacastSDK
 
     class InternalApiRequests < ApiRequests
       REQUESTS = { 
+        batch_get_channel: {
+          
+          :'body' => {
+            type: 'ChannelBatchRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         batch_track_attendance: {
           
           :'body' => {
@@ -3668,6 +3678,13 @@ module NovacastSDK
 
     class InternalApiResponses < ApiResponses
       RESPONSES = { 
+        batch_get_channel: {
+          
+          200 => 'ChannelList',
+          
+          0 => 'Error'
+          
+        }, 
         batch_track_attendance: {
           
           200 => 'BatchTrackAttendanceResponse',

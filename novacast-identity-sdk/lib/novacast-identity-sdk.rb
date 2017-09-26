@@ -54,7 +54,11 @@ require 'novacast-identity-sdk/models/delete_role_request'
 
 require 'novacast-identity-sdk/models/domain'
 
+require 'novacast-identity-sdk/models/domain_batch_request'
+
 require 'novacast-identity-sdk/models/domain_info'
+
+require 'novacast-identity-sdk/models/domain_list'
 
 require 'novacast-identity-sdk/models/error'
 

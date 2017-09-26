@@ -84,6 +84,8 @@ require 'novacast-event-sdk/models/bundle_content_pre_upload_request'
 
 require 'novacast-event-sdk/models/channel'
 
+require 'novacast-event-sdk/models/channel_batch_request'
+
 require 'novacast-event-sdk/models/channel_data'
 
 require 'novacast-event-sdk/models/channel_list'

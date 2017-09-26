@@ -47,9 +47,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -100,9 +100,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -845,9 +845,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3602,9 +3602,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3646,9 +3646,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3911,9 +3911,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -3955,9 +3955,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
@@ -4998,9 +4998,9 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'previewToken', key: 'preview_token', in_query: true },
+          { name: 'accessKey', key: 'access_token', in_query: true },
         
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 

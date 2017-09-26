@@ -94,6 +94,16 @@ module NovacastSDK
           }
           
         }, 
+        batch_get_domain: {
+          
+          :'body' => {
+            type: 'DomainBatchRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         batch_update_account_roles: {
           
           :'account_uid' => {
@@ -581,6 +591,13 @@ module NovacastSDK
         batch_get_account: {
           
           200 => 'AccountList',
+          
+          0 => 'Error'
+          
+        }, 
+        batch_get_domain: {
+          
+          200 => 'DomainList',
           
           0 => 'Error'
           
