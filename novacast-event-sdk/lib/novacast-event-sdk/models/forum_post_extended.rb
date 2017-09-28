@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class ForumPostExtended < NovacastSDK::BaseModel
-        attr_accessor :uid, :account_uid, :content, :likes, :visible, :submitted_at, :account_info, :approved, :hidden, :deleted, :starred
+        attr_accessor :uid, :account_uid, :account_display_name, :content, :likes, :visible, :submitted_at, :account_info, :approved, :hidden, :deleted, :starred
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -17,6 +17,9 @@ module NovacastSDK
             
             # account uid of the submitter
             :'account_uid' => { base_name: 'account_uid', type: 'String', required: false },
+            
+            # display name of the author
+            :'account_display_name' => { base_name: 'account_display_name', type: 'String', required: false },
             
             # content of the post
             :'content' => { base_name: 'content', type: 'String', required: true },
