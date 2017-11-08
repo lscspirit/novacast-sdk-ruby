@@ -248,17 +248,6 @@ module NovacastSDK
             end
           end
         
-          ::RSpec.describe 'POST /channels/{channel_uid}/question_manifests', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'channel_uid' => 'String'
-              
-              }
-              expect_path_routable(:POST => generate_path('/api/v1/channels/{channel_uid}/question_manifests', path_params))
-            end
-          end
-        
           ::RSpec.describe 'POST /channels/{channel_uid}/question_sets', type: :routing do
             it 'is a valid endpoint' do
               path_params = {
@@ -418,17 +407,6 @@ module NovacastSDK
               
               }
               expect_path_routable(:DELETE => generate_path('/api/v1/question_contents/{question_content_uid}', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'DELETE /question_manifests/{question_manifest_uid}', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'question_manifest_uid' => 'String'
-              
-              }
-              expect_path_routable(:DELETE => generate_path('/api/v1/question_manifests/{question_manifest_uid}', path_params))
             end
           end
         
@@ -1574,17 +1552,6 @@ module NovacastSDK
               
               }
               expect_path_routable(:PUT => generate_path('/api/v1/question_contents/{question_content_uid}', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'PUT /question_manifests/{question_manifest_uid}', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'question_manifest_uid' => 'String'
-              
-              }
-              expect_path_routable(:PUT => generate_path('/api/v1/question_manifests/{question_manifest_uid}', path_params))
             end
           end
         

@@ -416,23 +416,6 @@ module NovacastSDK
           }
           
         }, 
-        create_question_manifest: {
-          
-          :'channel_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'QuestionManifestCreateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
         create_question_set: {
           
           :'channel_uid' => {
@@ -636,16 +619,6 @@ module NovacastSDK
         delete_question_content: {
           
           :'question_content_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          }
-          
-        }, 
-        delete_question_manifest: {
-          
-          :'question_manifest_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -2117,23 +2090,6 @@ module NovacastSDK
           }
           
         }, 
-        update_question_manifest: {
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'QuestionManifestUpdateRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
         update_question_set: {
           
           :'question_set_uid' => {
@@ -2775,13 +2731,6 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        create_question_manifest: {
-          
-          201 => 'QuestionManifest',
-          
-          0 => 'Error'
-          
-        }, 
         create_question_set: {
           
           201 => 'QuestionSetInfo',
@@ -2876,13 +2825,6 @@ module NovacastSDK
         delete_question_content: {
           
           200 => 'QuestionContent',
-          
-          0 => 'Error'
-          
-        }, 
-        delete_question_manifest: {
-          
-          200 => 'QuestionManifestDeleteResponse',
           
           0 => 'Error'
           
@@ -3606,13 +3548,6 @@ module NovacastSDK
         update_question_content: {
           
           200 => 'QuestionContent',
-          
-          0 => 'Error'
-          
-        }, 
-        update_question_manifest: {
-          
-          200 => 'QuestionManifest',
           
           0 => 'Error'
           
