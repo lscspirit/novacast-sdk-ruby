@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class QuestionContentUpdateRequest < NovacastSDK::BaseModel
-        attr_accessor :question, :order, :content, :type
+        attr_accessor :question, :order, :content, :optional, :type
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -20,6 +20,9 @@ module NovacastSDK
             
             # answer content
             :'content' => { base_name: 'content', type: 'Object', required: false },
+            
+            # whether answer is required
+            :'optional' => { base_name: 'optional', type: 'BOOLEAN', required: false },
             
             # content type key
             :'type' => { base_name: 'type', type: 'String', required: false }

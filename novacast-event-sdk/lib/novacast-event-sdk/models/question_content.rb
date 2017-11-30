@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class QuestionContent < NovacastSDK::BaseModel
-        attr_accessor :uid, :question, :order, :content, :question_set_uid, :question_content_type
+        attr_accessor :uid, :question, :order, :content, :optional, :question_set_uid, :question_content_type
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -23,6 +23,9 @@ module NovacastSDK
             
             # answer content
             :'content' => { base_name: 'content', type: 'Object', required: true },
+            
+            # whether answer is required
+            :'optional' => { base_name: 'optional', type: 'BOOLEAN', required: true },
             
             # uid for the question set that this question content belongs to
             :'question_set_uid' => { base_name: 'question_set_uid', type: 'String', required: false },

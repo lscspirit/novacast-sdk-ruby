@@ -54,7 +54,7 @@ require 'novacast-event-sdk/models/active_questionnaire_list'
 
 require 'novacast-event-sdk/models/add_poll_stat_request'
 
-require 'novacast-event-sdk/models/addquestionnaire_stat_request'
+require 'novacast-event-sdk/models/add_questionnaire_stat_request'
 
 require 'novacast-event-sdk/models/archive_activity'
 

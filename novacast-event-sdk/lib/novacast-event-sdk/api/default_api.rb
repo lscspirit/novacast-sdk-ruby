@@ -23,7 +23,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}/add_stat', :POST
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}/submit', :POST
 
         # path parameters
         path_params = {}
@@ -76,7 +76,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/questionnaire/{question_manifest_uid}/add_stat', :POST
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/questionnaire/{question_manifest_uid}/submit', :POST
 
         # path parameters
         path_params = {}
@@ -859,6 +859,57 @@ module NovacastSDK
       end
 
       # 
+      # Create submission for a given poll\n
+      # @param session_uid the session that this poll is relevant to
+      # @param question_manifest_uid quesiton manifest associated uid
+      # @param body request body
+      # @return [ManifestSubmissions]
+      def create_poll_submission(session_uid, question_manifest_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}/submissions', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        path_params['question_manifest_uid'] = question_manifest_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::ManifestSubmissions.from_json resp.body
+        
+      end
+
+      # 
       # Create a new event public alias\n
       # @param channel_uid channel uid
       # @param body request body
@@ -1000,27 +1051,27 @@ module NovacastSDK
       end
 
       # 
-      # Create submissions for a given question manifest\n
-      # @param question_manifest_uid question manifest uid
-      # @param session_uid the session uid
+      # Create submission for a given questionnaire\n
+      # @param session_uid the session that this questionnaire is relevant to
+      # @param question_manifest_uid quesiton manifest associated uid
       # @param body request body
       # @return [ManifestSubmissions]
-      def create_question_submission(question_manifest_uid, session_uid, body)
+      def create_questionnaire_submission(session_uid, question_manifest_uid, body)
         # checks if all required parameters are set
         
-        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
-        
         raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
         
         raise ArgumentError, 'Missing required parameter "body"' if body.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/question_submissions/{question_manifest_uid}', :POST
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/questionnaire/{question_manifest_uid}/submissions', :POST
 
         # path parameters
         path_params = {}
-        path_params['question_manifest_uid'] = question_manifest_uid
         path_params['session_uid'] = session_uid
+        path_params['question_manifest_uid'] = question_manifest_uid
         op.params = path_params
 
         # header parameters
@@ -4256,7 +4307,7 @@ module NovacastSDK
       # 
       # Get all submissions for a question manifest\n
       # @param question_manifest_uid question manifest uid
-      # @param session_uid the session uid
+      # @param session_uid the session that the submissions belong to
       # @param [Hash] opts the optional parameters
       # @option opts [Float] :max_records optional max records for return
       # @option opts [DateTime] :from_date optional from date filter
@@ -4270,7 +4321,7 @@ module NovacastSDK
         raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
         
 
-        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/question_submissions/{question_manifest_uid}', :GET
+        op = NovacastSDK::Client::Operation.new '/question_manifests/{question_manifest_uid}/sessions/{session_uid}/submissions', :GET
 
         # path parameters
         path_params = {}

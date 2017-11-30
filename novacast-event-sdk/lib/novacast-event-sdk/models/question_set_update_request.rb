@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class QuestionSetUpdateRequest < NovacastSDK::BaseModel
-        attr_accessor :label, :state
+        attr_accessor :label
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -13,10 +13,7 @@ module NovacastSDK
           {
             
             # label
-            :'label' => { base_name: 'label', type: 'String', required: false },
-            
-            # question set state
-            :'state' => { base_name: 'state', type: 'String', required: false }
+            :'label' => { base_name: 'label', type: 'String', required: false }
             
           }
         end

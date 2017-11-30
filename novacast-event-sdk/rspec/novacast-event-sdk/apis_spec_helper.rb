@@ -117,7 +117,7 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'AddquestionnaireStatRequest',
+            type: 'AddQuestionnaireStatRequest',
             path_param: false,
             body_param: true,
             required: true
@@ -382,6 +382,30 @@ module NovacastSDK
           }
           
         }, 
+        create_poll_submission: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'question_manifest_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'QuestionSubmissionCreateRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         create_public_alias: {
           
           :'channel_uid' => {
@@ -433,16 +457,16 @@ module NovacastSDK
           }
           
         }, 
-        create_question_submission: {
+        create_questionnaire_submission: {
           
-          :'question_manifest_uid' => {
+          :'session_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
             required: true
           },
           
-          :'session_uid' => {
+          :'question_manifest_uid' => {
             type: 'String',
             path_param: true,
             body_param: false,
@@ -2717,6 +2741,13 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
+        create_poll_submission: {
+          
+          201 => 'ManifestSubmissions',
+          
+          0 => 'Error'
+          
+        }, 
         create_public_alias: {
           
           201 => 'PublicAlias',
@@ -2738,7 +2769,7 @@ module NovacastSDK
           0 => 'Error'
           
         }, 
-        create_question_submission: {
+        create_questionnaire_submission: {
           
           201 => 'ManifestSubmissions',
           

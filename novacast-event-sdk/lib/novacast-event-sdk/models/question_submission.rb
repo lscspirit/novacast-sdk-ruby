@@ -19,10 +19,10 @@ module NovacastSDK
             :'account_info' => { base_name: 'account_info', type: 'AccountDisplayInfo', required: false },
             
             # uid for the question content specific of this submission
-            :'question_content_uid' => { base_name: 'question_content_uid', type: 'String', required: false },
+            :'question_content_uid' => { base_name: 'question_content_uid', type: 'String', required: true },
             
             # uid for the question manifest specific of this submission
-            :'question_manifest_uid' => { base_name: 'question_manifest_uid', type: 'String', required: false },
+            :'question_manifest_uid' => { base_name: 'question_manifest_uid', type: 'String', required: true },
             
             # answer object
             :'answer' => { base_name: 'answer', type: 'Object', required: true },

@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class AddPollStatRequest < NovacastSDK::BaseModel
-        attr_accessor :question_content_uid, :choice
+        attr_accessor :question_content_uid, :answer
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -15,8 +15,8 @@ module NovacastSDK
             # the question content that is associated with this poll
             :'question_content_uid' => { base_name: 'question_content_uid', type: 'String', required: true },
             
-            # a JSON encoded string to represent the choices chosen
-            :'choice' => { base_name: 'choice', type: 'Object', required: true }
+            # a JSON encoded string to represent the answer
+            :'answer' => { base_name: 'answer', type: 'Object', required: true }
             
           }
         end

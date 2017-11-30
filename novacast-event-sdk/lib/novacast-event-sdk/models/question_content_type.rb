@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class QuestionContentType < NovacastSDK::BaseModel
-        attr_accessor :name, :desc, :type_key, :params
+        attr_accessor :name, :desc, :type_key
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -19,10 +19,7 @@ module NovacastSDK
             :'desc' => { base_name: 'desc', type: 'String', required: false },
             
             # key name
-            :'type_key' => { base_name: 'type_key', type: 'String', required: true },
-            
-            # config parameters
-            :'params' => { base_name: 'params', type: 'Object', required: true }
+            :'type_key' => { base_name: 'type_key', type: 'String', required: true }
             
           }
         end
