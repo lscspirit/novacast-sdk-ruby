@@ -1141,6 +1141,26 @@ module NovacastSDK
           }
           
         }, 
+        get_event_session_status: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
+        get_event_session_users: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_event_user_set: {
           
           :'event_uid' => {
@@ -3138,6 +3158,20 @@ module NovacastSDK
         get_event_session_runtime: {
           
           200 => 'SessionRuntime',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event_session_status: {
+          
+          200 => 'SessionStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        get_event_session_users: {
+          
+          200 => 'SessionUserList',
           
           0 => 'Error'
           

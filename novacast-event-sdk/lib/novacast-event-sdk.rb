@@ -308,6 +308,10 @@ require 'novacast-event-sdk/models/session_module_update_request'
 
 require 'novacast-event-sdk/models/session_runtime'
 
+require 'novacast-event-sdk/models/session_status'
+
+require 'novacast-event-sdk/models/session_user_list'
+
 require 'novacast-event-sdk/models/slide'
 
 require 'novacast-event-sdk/models/slide_deck'

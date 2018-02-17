@@ -3362,6 +3362,90 @@ module NovacastSDK
       end
 
       # 
+      # Get the status of event session\n
+      # @param session_uid event session uid
+      # @return [SessionStatus]
+      def get_event_session_status(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/status', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::SessionStatus.from_json resp.body
+        
+      end
+
+      # 
+      # Get the uids of all users active in the event session\n
+      # @param session_uid event session uid
+      # @return [SessionUserList]
+      def get_event_session_users(session_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/users', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::SessionUserList.from_json resp.body
+        
+      end
+
+      # 
       # Get the user set for the event\n
       # @param event_uid event uid
       # @return [UserSetExtended]
@@ -5984,7 +6068,7 @@ module NovacastSDK
       end
 
       # 
-      # Update the info for an event session \n
+      # Update the info for an event session\n
       # @param session_uid event session uid
       # @param body update session info
       # @return [EventSession]
