@@ -2534,6 +2534,23 @@ module NovacastSDK
           }
           
         }, 
+        get_user_runtime_data: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'account_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          }
+          
+        }, 
         get_user_set: {
           
           :'user_set_uid' => {
@@ -3774,6 +3791,13 @@ module NovacastSDK
         get_session_enrollment_by_account: {
           
           200 => 'EnrollmentExtended',
+          
+          0 => 'Error'
+          
+        }, 
+        get_user_runtime_data: {
+          
+          200 => 'UserRuntimeData',
           
           0 => 'Error'
           

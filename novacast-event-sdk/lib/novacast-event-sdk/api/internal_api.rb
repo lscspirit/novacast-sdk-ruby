@@ -666,6 +666,52 @@ module NovacastSDK
       end
 
       # 
+      # Get user data required by the runtime\n
+      # @param session_uid event session uid
+      # @param account_uid uid of the account
+      # @return [UserRuntimeData]
+      def get_user_runtime_data(session_uid, account_uid)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "account_uid"' if account_uid.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/user_runtime_data/{account_uid}', :GET
+
+        # path parameters
+        path_params = {}
+        path_params['session_uid'] = session_uid
+        path_params['account_uid'] = account_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::UserRuntimeData.from_json resp.body
+        
+      end
+
+      # 
       # Get a user set with extended details\n
       # @param user_set_uid user set uid
       # @return [UserSetExtended]

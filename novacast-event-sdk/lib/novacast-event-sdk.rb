@@ -366,6 +366,8 @@ require 'novacast-event-sdk/models/user_feedback_list'
 
 require 'novacast-event-sdk/models/user_feedback_post_request'
 
+require 'novacast-event-sdk/models/user_runtime_data'
+
 require 'novacast-event-sdk/models/user_set'
 
 require 'novacast-event-sdk/models/user_set_create_request'
