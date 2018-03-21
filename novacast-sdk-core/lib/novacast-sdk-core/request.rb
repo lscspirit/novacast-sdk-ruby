@@ -26,8 +26,8 @@ module NovacastSDK
         http = Net::HTTP::new(uri.host, uri.port)
 
         # set timeouts
-        http.open_timeout = 10
-        http.read_timeout = 10
+        http.open_timeout = 40
+        http.read_timeout = 40
 
         request = case method
                     when :get
