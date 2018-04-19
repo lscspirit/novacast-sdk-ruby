@@ -7,7 +7,9 @@ module NovacastSDK
     end
 
     def method_missing(method, *args, &block)
-      if @is_hash && _indifferent_hash_has_key?(method)
+      if @opts && @opts.has_key?(method)
+        @opts[method]
+      elsif @is_hash && _indifferent_hash_has_key?(method)
         _indifferent_hash_get method
       elsif @model.respond_to? method
         @model.send method, *args, &block
