@@ -1,4 +1,18 @@
 module NovacastSDK
+  # Class for serializing a object's attributes
+  #
+  # @example
+  #   user = Account.new name: 'John', email: 'john@email.com'
+  #   user.name  #=> 'John'
+  #   user.email #=> 'john@email.com'
+  #
+  #   serializer = ModelSerializer.new user
+  #   serializer.name  #=> 'John'
+  #   serializer.email #=> 'john@email.com'
+  #
+  #   serializer = ModelSerializer.new user, name: 'Jane'
+  #   serializer.name  #=> 'Jane'
+  #   serializer.email #=> 'john@email.com'
   class ModelSerializer
     def initialize(obj, opts = {})
       @opts    = opts       # this options is used by child class
