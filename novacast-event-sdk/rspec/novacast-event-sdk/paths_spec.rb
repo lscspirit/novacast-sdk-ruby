@@ -1290,6 +1290,17 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'POST /mods/live_meeting/sessions/{session_uid}/connect', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+                :'session_uid' => 'String'
+              
+              }
+              expect_path_routable(:POST => generate_path('/api/v1/mods/live_meeting/sessions/{session_uid}/connect', path_params))
+            end
+          end
+        
           ::RSpec.describe 'POST /mods/user_feedback/{session_uid}/feedbacks', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

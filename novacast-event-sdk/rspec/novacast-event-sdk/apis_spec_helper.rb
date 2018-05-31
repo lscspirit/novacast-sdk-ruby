@@ -1650,6 +1650,23 @@ module NovacastSDK
           }
           
         }, 
+        live_meeting_connect: {
+          
+          :'session_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'LiveMeetingConnectRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         post_user_feedback: {
           
           :'session_uid' => {
@@ -3448,6 +3465,13 @@ module NovacastSDK
         like_forum_post: {
           
           200 => 'ForumPostLike',
+          
+          0 => 'Error'
+          
+        }, 
+        live_meeting_connect: {
+          
+          200 => 'LiveMeetingConnectResponse',
           
           0 => 'Error'
           

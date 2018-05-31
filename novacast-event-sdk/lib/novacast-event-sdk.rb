@@ -192,6 +192,10 @@ require 'novacast-event-sdk/models/live_cast_slide_page'
 
 require 'novacast-event-sdk/models/live_cast_state'
 
+require 'novacast-event-sdk/models/live_meeting_connect_request'
+
+require 'novacast-event-sdk/models/live_meeting_connect_response'
+
 require 'novacast-event-sdk/models/manifest_submissions'
 
 require 'novacast-event-sdk/models/module_runtime'
@@ -213,6 +217,10 @@ require 'novacast-event-sdk/models/paging_details'
 require 'novacast-event-sdk/models/path_mapping'
 
 require 'novacast-event-sdk/models/path_mapping_request'
+
+require 'novacast-event-sdk/models/peer_connector'
+
+require 'novacast-event-sdk/models/peer_descriptor'
 
 require 'novacast-event-sdk/models/poll_status'
 
