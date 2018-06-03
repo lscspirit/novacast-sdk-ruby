@@ -90,6 +90,8 @@ require 'novacast-event-sdk/models/channel_data'
 
 require 'novacast-event-sdk/models/channel_list'
 
+require 'novacast-event-sdk/models/chat_message'
+
 require 'novacast-event-sdk/models/client_request_info'
 
 require 'novacast-event-sdk/models/data_set'
@@ -195,6 +197,10 @@ require 'novacast-event-sdk/models/live_cast_state'
 require 'novacast-event-sdk/models/live_meeting_connect_request'
 
 require 'novacast-event-sdk/models/live_meeting_connect_response'
+
+require 'novacast-event-sdk/models/live_meeting_message_request'
+
+require 'novacast-event-sdk/models/live_meeting_message_response'
 
 require 'novacast-event-sdk/models/manifest_submissions'
 

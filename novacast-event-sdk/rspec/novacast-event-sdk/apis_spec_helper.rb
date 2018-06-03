@@ -1667,6 +1667,23 @@ module NovacastSDK
           }
           
         }, 
+        live_meeting_message: {
+          
+          :'meeting_uid' => {
+            type: 'String',
+            path_param: true,
+            body_param: false,
+            required: true
+          },
+          
+          :'body' => {
+            type: 'LiveMeetingMessageRequest',
+            path_param: false,
+            body_param: true,
+            required: true
+          }
+          
+        }, 
         post_user_feedback: {
           
           :'session_uid' => {
@@ -3472,6 +3489,13 @@ module NovacastSDK
         live_meeting_connect: {
           
           200 => 'LiveMeetingConnectResponse',
+          
+          0 => 'Error'
+          
+        }, 
+        live_meeting_message: {
+          
+          200 => 'LiveMeetingMessageResponse',
           
           0 => 'Error'
           

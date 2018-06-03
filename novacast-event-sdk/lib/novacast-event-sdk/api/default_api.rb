@@ -5105,6 +5105,53 @@ module NovacastSDK
       end
 
       # 
+      # (LiveMeeting) send a chat message to the live meeting\n
+      # @param meeting_uid live meeting uid
+      # @param body request body
+      # @return [LiveMeetingMessageResponse]
+      def live_meeting_message(meeting_uid, body)
+        # checks if all required parameters are set
+        
+        raise ArgumentError, 'Missing required parameter "meeting_uid"' if meeting_uid.nil?
+        
+        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
+        
+
+        op = NovacastSDK::Client::Operation.new '/mods/live_meeting/meetings/{meeting_uid}/message', :POST
+
+        # path parameters
+        path_params = {}
+        path_params['meeting_uid'] = meeting_uid
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+        op.body = body.to_json
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::LiveMeetingMessageResponse.from_json resp.body
+        
+      end
+
+      # 
       # Post a new user feedback\n
       # @param session_uid uid of the session
       # @param body request body
