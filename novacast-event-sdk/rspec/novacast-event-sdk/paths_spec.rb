@@ -1149,6 +1149,15 @@ module NovacastSDK
             end
           end
         
+          ::RSpec.describe 'GET /rts/config', type: :routing do
+            it 'is a valid endpoint' do
+              path_params = {
+              
+              }
+              expect_path_routable(:GET => generate_path('/api/v1/rts/config', path_params))
+            end
+          end
+        
           ::RSpec.describe 'GET /attendances/sessions/{session_uid}', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

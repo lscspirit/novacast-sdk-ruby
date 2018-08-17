@@ -4488,6 +4488,44 @@ module NovacastSDK
       end
 
       # 
+      # Get configuration required for setting up a RealTimeSession\n
+      # @return [RTSConfig]
+      def get_rts_config()
+        # checks if all required parameters are set
+        
+
+        op = NovacastSDK::Client::Operation.new '/rts/config', :GET
+
+        # path parameters
+        path_params = {}
+        op.params = path_params
+
+        # header parameters
+        header_params = {}
+        op.headers = header_params
+
+        # query parameters
+        query_params = {}
+        op.query = query_params
+
+        # http body (model)
+        
+
+        
+        # authentication requirement
+        op.auths = [
+          { name: 'accessKey', key: 'access_token', in_query: true }
+        ]
+        
+
+        resp = call_api op
+
+        
+        NovacastSDK::EventV1::Models::RTSConfig.from_json resp.body
+        
+      end
+
+      # 
       # Lookup session attendances by session uid, which also include corresponding event level attendances
       # @param session_uid the session uid
       # @param [Hash] opts the optional parameters

@@ -298,6 +298,8 @@ require 'novacast-event-sdk/models/questionnaire_status'
 
 require 'novacast-event-sdk/models/questionnaire_status_control_request'
 
+require 'novacast-event-sdk/models/rts_config'
+
 require 'novacast-event-sdk/models/runtime_info'
 
 require 'novacast-event-sdk/models/session_attendance'

@@ -1464,6 +1464,9 @@ module NovacastSDK
           }
           
         }, 
+        get_rts_config: {
+          
+        }, 
         get_session_attendances: {
           
           :'session_uid' => {
@@ -3391,6 +3394,13 @@ module NovacastSDK
         get_questionnaire_status: {
           
           200 => 'QuestionnaireStatus',
+          
+          0 => 'Error'
+          
+        }, 
+        get_rts_config: {
+          
+          200 => 'RTSConfig',
           
           0 => 'Error'
           
