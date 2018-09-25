@@ -13,7 +13,7 @@ module NovacastSDK
           {
             
             # active Questionnaires collection
-            :'questionnaires' => { base_name: 'questionnaires', type: 'Array[ActiveQuestionnaire]', required: true }
+            :'questionnaires' => { base_name: 'questionnaires', type: 'Array[Questionnaire]', required: true }
             
           }
         end

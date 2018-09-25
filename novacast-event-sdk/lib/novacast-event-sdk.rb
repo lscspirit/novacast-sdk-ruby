@@ -48,8 +48,6 @@ require 'novacast-event-sdk/models/active_poll'
 
 require 'novacast-event-sdk/models/active_poll_list'
 
-require 'novacast-event-sdk/models/active_questionnaire'
-
 require 'novacast-event-sdk/models/active_questionnaire_list'
 
 require 'novacast-event-sdk/models/add_poll_stat_request'
@@ -291,6 +289,8 @@ require 'novacast-event-sdk/models/question_submission_create_request'
 require 'novacast-event-sdk/models/question_submission_query_response'
 
 require 'novacast-event-sdk/models/question_submissions_list'
+
+require 'novacast-event-sdk/models/questionnaire'
 
 require 'novacast-event-sdk/models/questionnaire_answer'
 
