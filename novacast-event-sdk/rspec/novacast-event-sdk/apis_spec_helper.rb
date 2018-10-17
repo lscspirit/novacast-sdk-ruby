@@ -76,54 +76,6 @@ module NovacastSDK
 
     class DefaultApiRequests < ApiRequests
       REQUESTS = { 
-        add_poll_stat: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'AddPollStatRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
-        add_questionnaire_stat: {
-          
-          :'session_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'question_manifest_uid' => {
-            type: 'String',
-            path_param: true,
-            body_param: false,
-            required: true
-          },
-          
-          :'body' => {
-            type: 'AddQuestionnaireStatRequest',
-            path_param: false,
-            body_param: true,
-            required: true
-          }
-          
-        }, 
         add_whitelist_patterns: {
           
           :'user_set_uid' => {
@@ -399,7 +351,7 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'QuestionSubmissionCreateRequest',
+            type: 'SubmissionAnswer',
             path_param: false,
             body_param: true,
             required: true
@@ -474,7 +426,7 @@ module NovacastSDK
           },
           
           :'body' => {
-            type: 'QuestionSubmissionCreateRequest',
+            type: 'SubmissionAnswerList',
             path_param: false,
             body_param: true,
             required: true
@@ -1423,6 +1375,13 @@ module NovacastSDK
             path_param: true,
             body_param: false,
             required: true
+          },
+          
+          :'question_content_uid' => {
+            type: 'String',
+            path_param: false,
+            body_param: false,
+            required: false
           },
           
           :'max_records' => {
@@ -2706,20 +2665,6 @@ module NovacastSDK
 
     class DefaultApiResponses < ApiResponses
       RESPONSES = { 
-        add_poll_stat: {
-          
-          200 => 'QuestionSubmissionsList',
-          
-          0 => 'Error'
-          
-        }, 
-        add_questionnaire_stat: {
-          
-          200 => 'QuestionSubmissionsList',
-          
-          0 => 'Error'
-          
-        }, 
         add_whitelist_patterns: {
           
           200 => 'WhitelistPatternList',
@@ -2834,7 +2779,7 @@ module NovacastSDK
         }, 
         create_poll_submission: {
           
-          201 => 'ManifestSubmissions',
+          200 => 'QuestionSubmission',
           
           0 => 'Error'
           
@@ -2862,7 +2807,7 @@ module NovacastSDK
         }, 
         create_questionnaire_submission: {
           
-          201 => 'ManifestSubmissions',
+          200 => 'QuestionSubmission',
           
           0 => 'Error'
           
@@ -3326,14 +3271,14 @@ module NovacastSDK
         }, 
         get_prior_poll_submissions: {
           
-          200 => 'QuestionSubmissionsList',
+          200 => 'QuestionSubmissionList',
           
           0 => 'Error'
           
         }, 
         get_prior_questionnaire_submissions: {
           
-          200 => 'QuestionSubmissionsList',
+          200 => 'QuestionSubmissionList',
           
           0 => 'Error'
           

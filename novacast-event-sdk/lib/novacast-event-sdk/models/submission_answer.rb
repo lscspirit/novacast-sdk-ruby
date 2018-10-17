@@ -2,7 +2,7 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class QuestionnaireAnswer < NovacastSDK::BaseModel
+      class SubmissionAnswer < NovacastSDK::BaseModel
         attr_accessor :question_content_uid, :answer
 
         def self.api_model_module
@@ -12,10 +12,10 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # the question content that is associated with this answer
+            # uid for the question content specific of this submission
             :'question_content_uid' => { base_name: 'question_content_uid', type: 'String', required: true },
             
-            # a JSON encoded string to represent the answer
+            # answer object
             :'answer' => { base_name: 'answer', type: 'Object', required: true }
             
           }

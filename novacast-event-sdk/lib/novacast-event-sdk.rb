@@ -50,10 +50,6 @@ require 'novacast-event-sdk/models/active_poll_list'
 
 require 'novacast-event-sdk/models/active_questionnaire_list'
 
-require 'novacast-event-sdk/models/add_poll_stat_request'
-
-require 'novacast-event-sdk/models/add_questionnaire_stat_request'
-
 require 'novacast-event-sdk/models/archive_activity'
 
 require 'novacast-event-sdk/models/archive_activity_list'
@@ -200,8 +196,6 @@ require 'novacast-event-sdk/models/live_meeting_message_request'
 
 require 'novacast-event-sdk/models/live_meeting_message_response'
 
-require 'novacast-event-sdk/models/manifest_submissions'
-
 require 'novacast-event-sdk/models/module_runtime'
 
 require 'novacast-event-sdk/models/page_content'
@@ -282,17 +276,11 @@ require 'novacast-event-sdk/models/question_set_update_request'
 
 require 'novacast-event-sdk/models/question_submission'
 
-require 'novacast-event-sdk/models/question_submission_create'
-
-require 'novacast-event-sdk/models/question_submission_create_request'
+require 'novacast-event-sdk/models/question_submission_list'
 
 require 'novacast-event-sdk/models/question_submission_query_response'
 
-require 'novacast-event-sdk/models/question_submissions_list'
-
 require 'novacast-event-sdk/models/questionnaire'
-
-require 'novacast-event-sdk/models/questionnaire_answer'
 
 require 'novacast-event-sdk/models/questionnaire_status'
 
@@ -363,6 +351,10 @@ require 'novacast-event-sdk/models/stream_source_confirm_request'
 require 'novacast-event-sdk/models/stream_source_create_request'
 
 require 'novacast-event-sdk/models/stream_source_pre_upload_request'
+
+require 'novacast-event-sdk/models/submission_answer'
+
+require 'novacast-event-sdk/models/submission_answer_list'
 
 require 'novacast-event-sdk/models/switch_mapping_request'
 

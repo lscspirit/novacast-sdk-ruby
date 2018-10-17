@@ -2,8 +2,8 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class QuestionSubmissionsList < NovacastSDK::BaseModel
-        attr_accessor :submissions
+      class SubmissionAnswerList < NovacastSDK::BaseModel
+        attr_accessor :answers
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,8 +12,8 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # list of question submissions
-            :'submissions' => { base_name: 'submissions', type: 'Array[QuestionSubmission]', required: true }
+            # a collection of question answers
+            :'answers' => { base_name: 'answers', type: 'Array[SubmissionAnswer]', required: true }
             
           }
         end

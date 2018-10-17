@@ -8,112 +8,6 @@ module NovacastSDK
 
 
       # 
-      # add statistics for the given poll status\n
-      # @param session_uid the session that this poll is relevant to
-      # @param question_manifest_uid quesiton manifest associated uid
-      # @param body request body
-      # @return [QuestionSubmissionsList]
-      def add_poll_stat(session_uid, question_manifest_uid, body)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/polling/{question_manifest_uid}/submit', :POST
-
-        # path parameters
-        path_params = {}
-        path_params['session_uid'] = session_uid
-        path_params['question_manifest_uid'] = question_manifest_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-        op.body = body.to_json
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
-        
-          { name: 'previewToken', key: 'preview_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::QuestionSubmissionsList.from_json resp.body
-        
-      end
-
-      # 
-      # add statistics for the given questionnaire status\n
-      # @param session_uid the session that this questionnaire is relevant to
-      # @param question_manifest_uid quesiton manifest associated uid
-      # @param body request body
-      # @return [QuestionSubmissionsList]
-      def add_questionnaire_stat(session_uid, question_manifest_uid, body)
-        # checks if all required parameters are set
-        
-        raise ArgumentError, 'Missing required parameter "session_uid"' if session_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "question_manifest_uid"' if question_manifest_uid.nil?
-        
-        raise ArgumentError, 'Missing required parameter "body"' if body.nil?
-        
-
-        op = NovacastSDK::Client::Operation.new '/sessions/{session_uid}/questionnaire/{question_manifest_uid}/submit', :POST
-
-        # path parameters
-        path_params = {}
-        path_params['session_uid'] = session_uid
-        path_params['question_manifest_uid'] = question_manifest_uid
-        op.params = path_params
-
-        # header parameters
-        header_params = {}
-        op.headers = header_params
-
-        # query parameters
-        query_params = {}
-        op.query = query_params
-
-        # http body (model)
-        
-        op.body = body.to_json
-        
-
-        
-        # authentication requirement
-        op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true },
-        
-          { name: 'previewToken', key: 'preview_token', in_query: true }
-        ]
-        
-
-        resp = call_api op
-
-        
-        NovacastSDK::EventV1::Models::QuestionSubmissionsList.from_json resp.body
-        
-      end
-
-      # 
       # Add one or more whitelisted patterns\n
       # @param user_set_uid user set uid
       # @param body request body
@@ -859,11 +753,11 @@ module NovacastSDK
       end
 
       # 
-      # Create submission for a given poll\n
+      # create a submission for the given poll\n
       # @param session_uid the session that this poll is relevant to
       # @param question_manifest_uid quesiton manifest associated uid
       # @param body request body
-      # @return [ManifestSubmissions]
+      # @return [QuestionSubmission]
       def create_poll_submission(session_uid, question_manifest_uid, body)
         # checks if all required parameters are set
         
@@ -898,14 +792,16 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true },
+        
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::ManifestSubmissions.from_json resp.body
+        NovacastSDK::EventV1::Models::QuestionSubmission.from_json resp.body
         
       end
 
@@ -1051,11 +947,11 @@ module NovacastSDK
       end
 
       # 
-      # Create submission for a given questionnaire\n
+      # add statistics for the given questionnaire status\n
       # @param session_uid the session that this questionnaire is relevant to
       # @param question_manifest_uid quesiton manifest associated uid
       # @param body request body
-      # @return [ManifestSubmissions]
+      # @return [QuestionSubmission]
       def create_questionnaire_submission(session_uid, question_manifest_uid, body)
         # checks if all required parameters are set
         
@@ -1090,14 +986,16 @@ module NovacastSDK
         
         # authentication requirement
         op.auths = [
-          { name: 'accessKey', key: 'access_token', in_query: true }
+          { name: 'accessKey', key: 'access_token', in_query: true },
+        
+          { name: 'previewToken', key: 'preview_token', in_query: true }
         ]
         
 
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::ManifestSubmissions.from_json resp.body
+        NovacastSDK::EventV1::Models::QuestionSubmission.from_json resp.body
         
       end
 
@@ -3929,7 +3827,7 @@ module NovacastSDK
       # 
       # get all previous submissions from this user for this given session\n
       # @param session_uid the session that this poll is relevant to
-      # @return [QuestionSubmissionsList]
+      # @return [QuestionSubmissionList]
       def get_prior_poll_submissions(session_uid)
         # checks if all required parameters are set
         
@@ -3966,14 +3864,14 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::QuestionSubmissionsList.from_json resp.body
+        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
         
       end
 
       # 
       # get all previous submissions from this user for this given session\n
       # @param session_uid the session that this questionnaire is relevant to
-      # @return [QuestionSubmissionsList]
+      # @return [QuestionSubmissionList]
       def get_prior_questionnaire_submissions(session_uid)
         # checks if all required parameters are set
         
@@ -4010,7 +3908,7 @@ module NovacastSDK
         resp = call_api op
 
         
-        NovacastSDK::EventV1::Models::QuestionSubmissionsList.from_json resp.body
+        NovacastSDK::EventV1::Models::QuestionSubmissionList.from_json resp.body
         
       end
 
@@ -4393,6 +4291,7 @@ module NovacastSDK
       # @param question_manifest_uid question manifest uid
       # @param session_uid the session that the submissions belong to
       # @param [Hash] opts the optional parameters
+      # @option opts [String] :question_content_uid optional filter submission by question content uid
       # @option opts [Float] :max_records optional max records for return
       # @option opts [DateTime] :from_date optional from date filter
       # @option opts [DateTime] :to_date optional to date filter
@@ -4419,6 +4318,7 @@ module NovacastSDK
 
         # query parameters
         query_params = {}
+        query_params['question_content_uid'] = opts[:question_content_uid] if opts[:question_content_uid]
         query_params['max_records'] = opts[:max_records] if opts[:max_records]
         query_params['from_date'] = opts[:from_date] if opts[:from_date]
         query_params['to_date'] = opts[:to_date] if opts[:to_date]

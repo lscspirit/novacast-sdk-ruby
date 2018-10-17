@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class QuestionSubmissionQueryResponse < NovacastSDK::BaseModel
-        attr_accessor :submissions_list
+        attr_accessor :submissions, :question_manifest
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,8 +12,11 @@ module NovacastSDK
         def self.model_properties
           {
             
+            # question submission collection
+            :'submissions' => { base_name: 'submissions', type: 'Array[QuestionSubmission]', required: true },
+            
             # 
-            :'submissions_list' => { base_name: 'submissions_list', type: 'ManifestSubmissions', required: true }
+            :'question_manifest' => { base_name: 'question_manifest', type: 'QuestionManifest', required: false }
             
           }
         end

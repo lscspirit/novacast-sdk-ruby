@@ -26,32 +26,6 @@ module NovacastSDK
       class DefaultApiPaths
         def self.specs
         
-          ::RSpec.describe 'POST /sessions/{session_uid}/polling/{question_manifest_uid}/submit', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'session_uid' => 'String',
-              
-                :'question_manifest_uid' => 'String'
-              
-              }
-              expect_path_routable(:POST => generate_path('/api/v1/sessions/{session_uid}/polling/{question_manifest_uid}/submit', path_params))
-            end
-          end
-        
-          ::RSpec.describe 'POST /sessions/{session_uid}/questionnaire/{question_manifest_uid}/submit', type: :routing do
-            it 'is a valid endpoint' do
-              path_params = {
-              
-                :'session_uid' => 'String',
-              
-                :'question_manifest_uid' => 'String'
-              
-              }
-              expect_path_routable(:POST => generate_path('/api/v1/sessions/{session_uid}/questionnaire/{question_manifest_uid}/submit', path_params))
-            end
-          end
-        
           ::RSpec.describe 'POST /user_sets/{user_set_uid}/whitelist', type: :routing do
             it 'is a valid endpoint' do
               path_params = {

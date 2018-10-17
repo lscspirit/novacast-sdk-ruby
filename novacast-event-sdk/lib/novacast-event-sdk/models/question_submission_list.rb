@@ -2,8 +2,8 @@ module NovacastSDK
   module EventV1
     module Models
       # 
-      class AddQuestionnaireStatRequest < NovacastSDK::BaseModel
-        attr_accessor :answers
+      class QuestionSubmissionList < NovacastSDK::BaseModel
+        attr_accessor :submissions
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,8 +12,8 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # answers for all the questions in this questionnaire
-            :'answers' => { base_name: 'answers', type: 'Array[QuestionnaireAnswer]', required: true }
+            # list of question submissions
+            :'submissions' => { base_name: 'submissions', type: 'Array[QuestionSubmission]', required: true }
             
           }
         end
