@@ -32,6 +32,8 @@ module NovacastSDK
           # Separate check for ActiveRecord because client may not always be running within
           # a Rails environment
           msgs = err_obj.errors.full_messages
+        elsif err_obj.respond_to?(:full_messages)
+          msgs = err_obj.full_messages
         else
           msgs = case err_obj
                    when Exception then [err_obj.message]
@@ -81,6 +83,10 @@ module NovacastSDK
         field_list = []
         if err_obj.respond_to?(:errors) && err_obj.errors.respond_to?(:each)
           err_obj.errors.each do |attr, msg|
+            field_list << { field: attr, message: msg }
+          end
+        elsif err_obj.respond_to?(:full_messages) && err_obj.respond_to?(:each)
+          err_obj.each do |attr, msg|
             field_list << { field: attr, message: msg }
           end
         end
