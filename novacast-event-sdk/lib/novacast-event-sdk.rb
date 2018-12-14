@@ -216,10 +216,6 @@ require 'novacast-event-sdk/models/path_mapping'
 
 require 'novacast-event-sdk/models/path_mapping_request'
 
-require 'novacast-event-sdk/models/peer_connector'
-
-require 'novacast-event-sdk/models/peer_descriptor'
-
 require 'novacast-event-sdk/models/poll_status'
 
 require 'novacast-event-sdk/models/poll_status_control_request'

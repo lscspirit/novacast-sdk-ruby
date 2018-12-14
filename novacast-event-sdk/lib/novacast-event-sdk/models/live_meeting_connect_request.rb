@@ -3,7 +3,7 @@ module NovacastSDK
     module Models
       # 
       class LiveMeetingConnectRequest < NovacastSDK::BaseModel
-        attr_accessor :host_descriptor, :peer_uid, :meeting_uid
+        attr_accessor :connection_token, :peer_uid, :meeting_uid
 
         def self.api_model_module
           NovacastSDK::EventV1::Models
@@ -12,8 +12,8 @@ module NovacastSDK
         def self.model_properties
           {
             
-            # 
-            :'host_descriptor' => { base_name: 'host_descriptor', type: 'PeerDescriptor', required: false },
+            # connection token of the host
+            :'connection_token' => { base_name: 'connection_token', type: 'String', required: true },
             
             # uid of the peer
             :'peer_uid' => { base_name: 'peer_uid', type: 'String', required: true },
